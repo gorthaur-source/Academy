@@ -28,10 +28,9 @@ public class Main {
             System.out.println(e.getMessage()); // prints the exception message
         }
 
-       fileManager.logout();
 
         try {
-            fileManager.getFile("Batata");
+            fileManager.getFile("5");
         } catch (NotEnoughPermissionsException | FileNotFoundException e ) {
             System.out.println(e.getMessage()); // prints the exception message
         }

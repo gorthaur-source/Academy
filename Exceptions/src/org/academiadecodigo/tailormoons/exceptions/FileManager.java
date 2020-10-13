@@ -7,7 +7,6 @@ import org.academiadecodigo.tailormoons.exceptions.exceptions.NotEnoughSpaceExce
 public class FileManager {
 
     private boolean isLoggedIn = false;
-    private File file;
     public static final int MAX_FILE_NUMBER = 10;
     File[] fileArray = new File[MAX_FILE_NUMBER];
 
@@ -30,8 +29,7 @@ public class FileManager {
         }
         for(int i = 0; i < fileArray.length; i++) {
             if(fileArray[i] == null) {
-                file = new File(name);
-                fileArray[i] = file;
+                fileArray[i] = new File(name);;
                 System.out.println("File " + name + " created.");
                 return;
                 }
@@ -39,18 +37,17 @@ public class FileManager {
             throw new NotEnoughSpaceException(name);
     }
 
-    public void getFile(String name) throws NotEnoughPermissionsException, FileNotFoundException {
+    public File getFile(String name) throws NotEnoughPermissionsException, FileNotFoundException {
 
         if (!isLoggedIn) {
             throw new NotEnoughPermissionsException(name);
         }
-        else if (file == null) {
-            throw new FileNotFoundException(name);
+        for(int i = 0; i < fileArray.length; i++) {
+            if (fileArray[i].getName().equals(name)) {
+                System.out.println("File " + name + " loaded.");
+                return fileArray[i];
+            }
         }
-        else if (!file.getName().equals(name)) {
-            throw new FileNotFoundException(name);
-        }
-            System.out.println("File " + name + " loaded.");
-
+        throw new FileNotFoundException(name);
     }
 }
