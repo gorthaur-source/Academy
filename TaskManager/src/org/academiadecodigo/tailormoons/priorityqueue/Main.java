@@ -28,11 +28,11 @@ public class Main {
         ToDoList toDoList = new ToDoList();
         toDoList.add(Importance.HIGH, 2, "High 2");
         toDoList.add(Importance.MEDIUM, 2, "Medium 2");
-        toDoList.add(Importance.LOW, 1, "Low priority 1");
-        toDoList.add(Importance.LOW, 2, "Low priority 2");
+        toDoList.add(Importance.LOW, 1, "Low priority 1 1st");
+        toDoList.add(Importance.LOW, 2, "Low priority 2 1st");
         toDoList.add(Importance.MEDIUM, 3, "Medium 3");
-        toDoList.add(Importance.LOW, 1, "Low priority 1");
-        toDoList.add(Importance.LOW, 2, "Low priority 2");
+        toDoList.add(Importance.LOW, 1, "Low priority 1 1st");
+        toDoList.add(Importance.LOW, 2, "Low priority 2 2nd ");
         toDoList.add(Importance.HIGH, 1, "High 1");
         toDoList.add(Importance.MEDIUM, 1, "Medium priority 1");
 
