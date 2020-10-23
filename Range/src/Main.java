@@ -8,18 +8,30 @@ public class Main {
 
         range.adjustNumbers();
 
-        for (Integer integer : range) {
+        /*   for (Integer integer : range) {
             System.out.println(integer);
 
             if (integer == 10) {
                 range.setDownUp(true);
             }
+        }*/
+
+
+        Range rangeOne = new Range(5,10, false);
+
+
+        for (Integer nr : rangeOne) {
+            System.out.println(nr);
         }
+
+
+
+
 
         range.setDownUp(true);
 
-        for (Integer integer : range) {
+        /*for (Integer integer : range) {
             System.out.println(integer);
-        }
+        }*/
     }
 }

@@ -27,11 +27,18 @@ public class Range implements Iterable<Integer> {
 
     @Override
     public Iterator<Integer> iterator() {
+        if(min>max) {
+            int temp = min;
+            min = max;
+            max=temp;
+        }
         return new Iterator<>() {
 
             private int cursor = min;
-            private int end = max;
-            private boolean downUp = Range.this.downUp;
+            private int end = max;  
+            private final boolean downUpInner = downUp;
+
+
 
             @Override
             public boolean hasNext() {
@@ -41,7 +48,7 @@ public class Range implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                if (hasNext() && downUp) {
+                if (hasNext() && downUpInner) {
                     int current = cursor;
                     cursor++;
                     return current;
