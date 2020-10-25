@@ -4,13 +4,10 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
         WordReader reader = null;
-
-        WordReader reader1 = new WordReader("sample-2mb-text-file.txt");
-
 
         try {
 
@@ -21,17 +18,16 @@ public class Main {
                 System.out.println(s);
             }
             for (String s : reader) {
-                s = s + 1;
+                s = s+1;
                 System.out.println(s);
             }
 
         } catch (IOException e) {
-            System.out.println("io");
             e.printStackTrace();
         } finally {
-            reader.close();
+            if(reader !=null) {
+                reader.close();
+            }
         }
     }
 }
-
-
