@@ -6,14 +6,15 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
-        Grid grid = new Grid(35, 35);
+        Canvas game = new Canvas(35, 35);
 
-        grid.eventStartup();
 
+        game.start();
 
     }
+
 
 }
