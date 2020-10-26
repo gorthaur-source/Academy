@@ -24,6 +24,8 @@ public class NonSerializedReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         return lines;
     }
 }

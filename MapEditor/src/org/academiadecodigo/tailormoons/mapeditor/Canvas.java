@@ -2,6 +2,7 @@ package org.academiadecodigo.tailormoons.mapeditor;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.tailormoons.mapeditor.Keyboard.Input;
 
 public class Canvas {
 
@@ -16,62 +17,74 @@ public class Canvas {
 
     public void start() throws InterruptedException {
         while (true) {
-            Thread.sleep(70);
-            input.update();
-        }
-
-
-   /*public void update() {
-
-        if(input.left.down) {
-            //   if (input.left.equals(input.keys)) {
-            if (!(grid.getCursor().getX() == 0)) return;
-            grid.getCursor().cursorHide();
-            grid.getCursor().setSelected(false);
-            System.out.println("here");
-            grid.setCursor(grid.getGridCellPos(grid.getCursor().getX() - 1, grid.getCursor().getY()));
-            grid.getCursor().setSelected(true);
-            grid.getCursor().cursorShow();
-
-        } else if (input.right.down) {
-            if (!(grid.getCursor().getX() == grid.COLS - 1)) {
-                grid.getCursor().cursorHide();
-                grid.getCursor().setSelected(false);
-                grid.setCursor(grid.getGridCellPos(grid.getCursor().getX() + 1, grid.getCursor().getY()));
-                grid.getCursor().setSelected(true);
-                grid.getCursor().cursorShow();
-            }
-        } else if (input.up.down) {
-            if (grid.getCursor().getY() == 0) {
-                System.out.println("why");
-            }
-            System.out.println("wut");
-            grid.getCursor().cursorHide();
-            grid.getCursor().setSelected(false);
-            grid.setCursor(grid.getGridCellPos(grid.getCursor().getX(), grid.getCursor().getY() - 1));
-            grid.getCursor().cursorShow();
-        } else if (input.down.down) {
-            if (grid.getCursor().getY() == grid.ROWS - 1)
-                grid.getCursor().cursorHide();
-            grid.getCursor().setSelected(false);
-            grid.setCursor(grid.getGridCellPos(grid.getCursor().getX(), grid.getCursor().getY() + 1));
-            grid.getCursor().setSelected(true);
-            grid.getCursor().cursorShow();
-        } else if (input.space.down) {
-            grid.getCursor().paintOverlap();
-        } else if (input.c.down) {
-            grid.getCursor().paint(Color.PINK);
+            Thread.sleep(100);
+            update();
         }
     }
 
-         /*   while(input.down && input.space) {
-                grid.getCursor().cursorHide();
-                grid.getCursor().setSelected(false);
-                grid.setCursor(grid.getGridCellPos(grid.getCursor().getX(),grid.getCursor().getY() + 1));
-                grid.getCursor().setSelected(true);
-                grid.getCursor().cursorShow();        } */
+        public void update() throws InterruptedException {
+
+            if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_LEFT)) {
+                if ((grid.getCursor().getX() > 0)) {
+                    grid.move(Direction.LEFT.getDeltaCol(), Direction.LEFT.getDeltaRow());
+                    grid.getCursor().paintContinuous(Color.BLACK);
+                }
+            }
+            else if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_DOWN)) {
+                if ((grid.getCursor().getY() < grid.getROWS() + Direction.UP.getDeltaRow())) {
+                    grid.move(Direction.DOWN.getDeltaCol(), Direction.DOWN.getDeltaRow());
+                    grid.getCursor().paintContinuous(Color.BLACK);
+                }
+            }
+
+            else if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_UP)) {
+                if ((grid.getCursor().getY() > 0)) {
+                    grid.move(Direction.UP.getDeltaCol(), Direction.UP.getDeltaRow());
+                    grid.getCursor().paintContinuous(Color.BLACK);
+                }
+            }
+            else if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_RIGHT)) {
+                if ((grid.getCursor().getX() < grid.getCOLS() + Direction.LEFT.getDeltaCol())) {
+                    grid.move(Direction.RIGHT.getDeltaCol(), Direction.RIGHT.getDeltaRow());
+                    grid.getCursor().paintContinuous(Color.BLACK);
+                }
+            }
+            else if (isPressed(KeyboardEvent.KEY_LEFT)) {
+                //   if (input.left.equals(input.keys)) {
+                if (!(grid.getCursor().getX() == 0)) {
+                    grid.move(Direction.LEFT.getDeltaCol(), Direction.LEFT.getDeltaRow());
+                }
+            } else if (isPressed(KeyboardEvent.KEY_RIGHT)) {
+                if (!(grid.getCursor().getX() == grid.getCOLS() - 1)) {
+                    grid.move(Direction.RIGHT.getDeltaCol(), Direction.RIGHT.getDeltaRow());
+
+                }
+            } else if (isPressed(KeyboardEvent.KEY_UP)) {
+                if (!(grid.getCursor().getY() == 0)) {
+                    grid.move(Direction.UP.getDeltaCol(), Direction.UP.getDeltaRow());
+
+                }
+            } else if (isPressed(KeyboardEvent.KEY_DOWN)) {
+                if (!(grid.getCursor().getY() == grid.getROWS() - 1)) {
+                    grid.move(Direction.DOWN.getDeltaCol(), Direction.DOWN.getDeltaRow());
+                }
+            } else if (isPressed(KeyboardEvent.KEY_SPACE)) {
+                grid.getCursor().paintOverlap();
+            } else if (isPressed(KeyboardEvent.KEY_C)) {
+                grid.getCursor().paint(Color.PINK);
+            } else if (isPressed(KeyboardEvent.KEY_L)) {
+                grid.stringToNode();
+            } else if (isPressed(KeyboardEvent.KEY_S)) {
+                grid.saveData();
+            } else if (isPressed(KeyboardEvent.KEY_M)) {
+                grid.clear();
+            }
+            Thread.sleep(30);
+        }
 
 
+    private boolean isPressed(int code) {
+        return input.getKeyStates().getOrDefault(code, false);
     }
 }
 

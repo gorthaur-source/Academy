@@ -26,8 +26,8 @@ public class Node implements Serializable {
 
 
 
-    public void setPainted() {
-        isPainted = true;
+    public void setPainted(boolean value) {
+        isPainted = value;
     }
 
     public void paint(Color color) {
@@ -88,8 +88,9 @@ public class Node implements Serializable {
     }
 
 
-    public void paintContinuous() {
-        square.setColor(color);
+    public void paintContinuous(Color color) {
+        this.color = color;
+        square.setColor(Color.BLUE);
         square.fill();
         isPainted = true;
 
