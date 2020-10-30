@@ -4,37 +4,32 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
 
+    private static final String CLOSE_MESSAGE = "/quit";
     private Scanner scanner;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader reader;
 
-    public Client(String serverHostName, int serverPort) {
+    public Client(String serverHostName, int serverPort) throws IOException {
         System.out.println("Establishing connection. Please wait ...");
 
-        try {
             socket = new Socket(serverHostName, serverPort);
             System.out.println("Connected: " + socket);
-            scanner = new Scanner(System.in);
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
-    public void start() {
+    public void start() throws IOException {
+
+        openStreams();
 
         while (true) {
-
-            try {
 
                 String line = getUserInput();
 
@@ -42,23 +37,30 @@ public class Client {
                 out.println(line);
 
 
-                if(line.equals("/quit")) {
+                if(line.equals(CLOSE_MESSAGE)) {
                     System.out.println("Quit command issued. Shutting down.");
                     close();
-                    break;
+                    return;
+                }
+
+                if(socket.isClosed()) {
+                    System.out.println("Server connection severed. Shutting down.");
+                    close();
+                    return;
                 }
 
                 String receivedLine = reader.readLine();
                 System.out.println("Server sent back: " + receivedLine);
-
-            } catch (IOException e) {
-                System.err.println("Error communicating with server: " + e.getMessage());
-                close();
             }
-        }
-
     }
 
+
+    public void openStreams() throws IOException {
+
+            scanner = new Scanner(System.in);
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+    }
 
     public void close() {
 

@@ -18,7 +18,7 @@ public class ServerLauncher {
 
         try {
             Server chatServer = new Server(portNumber);
-            chatServer.start();
+            chatServer.init();
 
         } catch (IOException e) {
             e.printStackTrace();

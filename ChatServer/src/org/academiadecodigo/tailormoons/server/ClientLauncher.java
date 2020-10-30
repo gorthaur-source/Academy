@@ -1,9 +1,11 @@
 package org.academiadecodigo.tailormoons.server;
 
+import java.io.IOException;
+import java.net.SocketException;
+
 public class ClientLauncher {
 
     private static final String USAGE_MESSAGE = "Usage: java ClientLauncher <host> <port>";
-    private static final String CLOSE_MESSAGE = "/quit";
 
 
     public static void main(String[] args) {
@@ -14,15 +16,17 @@ public class ClientLauncher {
                 return;
             }
 
-            String hostName = args[0];
-            int portNumber = Integer.parseInt(args[1]);
+            try {
 
-            Client client = new Client(hostName, portNumber);
-            client.start();
+                String hostName = args[0];
+                int portNumber = Integer.parseInt(args[1]);
 
+                Client client = new Client(hostName, portNumber);
+                client.start();
 
-
-
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
     }
