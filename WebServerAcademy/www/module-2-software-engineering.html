@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Software <br> Engineering</h1>
+                <p>
+                  <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Software Development Lifecycle</h2>
+                    <p class="fragment">Building software like a pro!</p>
+                    <img class="fragment" src="images/1/software_engineering/like_a_pro.jpg">
+                    <aside class="notes">
+                        Product lifecycle is the cycle through which every product goes through from when the product is brought into the market all the way to when it is discontinued
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Software projects have a lot of people involved in the process:</h3>
+                    <ul class="float-left">
+                        <li class="fragment">Clients</li>
+                        <li class="fragment">Users</li>
+                        <li class="fragment">Managers</li>
+                        <li class="fragment">Developers</li>
+                        <li class="fragment">Designers</li>
+                        <li class="fragment">Testers</li>
+                    </ul>
+                    <p class="fragment float-left">...and each of them has different goals, backgrounds, sensibilities and expectations for the project.</p>
+                </section>
+
+                <section>
+                    <h3>...and software can get really complex involving a lot of different components:</h3>
+                    <ul class="float-left">
+                        <li class="fragment">Documents</li>
+                        <li class="fragment">Workflows</li>
+                        <li class="fragment">Databases</li>
+                        <li class="fragment">Interfaces</li>
+                        <li class="fragment">Code bases</li>
+                        <li class="fragment">Tests</li>
+                        <li class="fragment">Servers</li>
+                        <li class="fragment">...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>...and also a lot of variables:</h3>
+                    <ul class="float-left">
+                        <li class="fragment">Budget</li>
+                        <li class="fragment">Time</li>
+                        <li class="fragment">Quality</li>
+                        <li class="fragment">Human Resources</li>
+                        <li class="fragment">Expectations</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>How do we cope with all this?</h3>
+                    <h2 class="fragment">We need a <u>PLAN!</u></h2>
+                </section>
+
+                <section>
+                    <h2>The software development lifecycle</h2>
+                    <ul>
+                        <li class="fragment">A detailed plan consisting of a group of steps that occur in every software project.</li>
+                        <li class="fragment">Each step has a clearly defined goal and ends with a set of outputs or deliverables.</li>
+                        <li class="fragment">The outputs of a step are the inputs of the next step.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>The software development lifecycle</h2>
+                    <img src="images/1/software_engineering/sdlc.png">
+                </section>
+
+                <section>
+                    <h2>Requirement Analysis</h2>
+                    <p>The analysis step aims to:</p>
+                    <ul>
+                        <li class="fragment">understand <u>what</u> is the problem</li>
+                        <li class="fragment">understand the client</li>
+                        <li class="fragment">understand expectations</li>
+                        <li class="fragment">determine and document the requirements and objectives of the project</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Requirement Analysis</h2>
+                    <p>How?</p>
+                    <ul>
+                        <li class="fragment">identifying stakeholders (key-people that have a word to say on the project)</li>
+                        <li class="fragment">interviewing stakeholders and gathering requirements</li>
+                        <li class="fragment">organize gathered requirements by type (functional, operational, technical)</li>
+                        <li class="fragment">detail and prioritize requirements</li>
+                        <li class="fragment">analyse project risks</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>functional - what the system is supposed to do, process orders, send bills, regulate the temperature etc. etc.</li>
+                            <li>non-functional requirements describe how the system works</li>
+                            <li>operational - how to run the system, logging, startup/shutdown controls, monitoring, resource consumption, back up, availability etc.etc.</li>
+                            <li>technical requirements - how the system is built, which language, which OS, standards to be adhered to etc.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Requirement Analysis</h2>
+                    <img style="max-height: 500px;" class="fragment" src="images/1/software_engineering/swing_metaphor.jpg">
+                    <aside class="notes">
+                        What the requirement analysis phase tries to avoid
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Design</h2>
+                    <p>The design phase aims to describe <u>how</u> the system will work to meet the requirements.</p>
+                    <ul>
+                        <li class="fragment">break requirements into small problems</li>
+                        <li class="fragment">detail how to tackle those problems</li>
+                        <li class="fragment">describe and document the architectural design</li>
+                    </ul>
+                </section>
+
+                 <section>
+                    <h2>Design</h2>
+                    <p>How?</p>
+                    <ul>
+                        <li class="fragment">Mockups and prototypes to show the functionality</li>
+                        <li class="fragment">Wireframes to describe interfaces</li>
+                        <li class="fragment">Flowcharts to describe business rules</li>
+                        <li class="fragment">Class diagrams and sequence diagrams to describe the code</li>
+                        <li class="fragment">Database models to structure data</li>
+                        <li class="fragment">Test manuals to describe tests</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Implementation</h2>
+                    <p class="fragment">Translate the design into code!</p>
+                    <p class="fragment">Also known as "the fun part" :)</p>
+                </section>
+
+                <section>
+                    <h2>Testing</h2>
+                    <p>Test the developed software to answer the following questions:</p>
+                    <ul>
+                        <li class="fragment">Does the software have bugs?</li>
+                        <li class="fragment">Does the software meet the requirements and design?</li>
+                        <li class="fragment">Does the software perform well?</li>
+                        <li class="fragment">In sum: Is it ready for production?</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Testing - Unit tests</h2>
+                    <p>Tests if individual <u>units</u> of code (Classes, Methods) are working correctly</p>
+                    <ul>
+                        <li class="fragment">Usually are automated</li>
+                        <li class="fragment">Each test is independent from the others</li>
+                        <li class="fragment">Can help to structure the code if the tests are written ahead of the code</li>
+                        <li class="fragment">Facilitates code refactoring and regression</li>
+                        <li class="fragment">Remember the Linked List test example?</li>
+                        <li class="fragment">Unit tests are not enough!</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Testing - Integration tests</h2>
+                    <p>Tests if the code units work well <u>together</u> to accomplish software features</p>
+                    <ul>
+                        <li class="fragment">Aggregate code units to form the software modules that map software features </li>
+                        <li class="fragment">Top-down approach: Test higher level modules first and work your way down to low-level modules</li>
+                        <li class="fragment">Bottom-up approach: Test low-level modules first and aggregate modules into higher levels as they pass the tests</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Acceptance tests</h2>
+                    <p>Test if the software meets the requirements and the client expectations</p>
+                    <ul>
+                        <li class="fragment">Predefined tests that can be present in the project contract</li>
+                        <li class="fragment">Usually conducted by the client or in his presence</li>
+                        <li class="fragment">Can result in the rejection of the project</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Release and Support</h2>
+                    <p>This is the last phase of the project and it aims to put it in production</p>
+                    <ul>
+                        <li class="fragment">Deploy or release depending on the type of software</li>
+                        <li class="fragment">Transition from old client processes to the brand new ones</li>
+                        <li class="fragment">Educate users</li>
+                        <li class="fragment">Maintenance</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="ip">
+
+                <section>
+                    <h2>Development Methodologies</h2>
+                </section>
+
+                <section>
+                    <h2>Development Methodologies</h2>
+                    <ul>
+                    <li class="fragment">The lifecycle steps are common in all software projects but there are different ways to approach them</li>
+                    <li class="fragment">Different projects need different approaches</li>
+                    <li class="fragment">The most known and used methodologies today are the Waterfall and the Agile models</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Waterfall model</h2>
+                    <img style="margin-left: 20px; max-width: 400px" class="fragment float-right" src="images/1/software_engineering/waterfall.png">
+                    <ul class="float-left" style="max-width: 500px;">
+                    <li class="fragment">One lifecycle phase does not start while the previous is not completely done</li>
+                    <li class="fragment">The output of a phase is the input of the next phase</li>
+                    <li class="fragment">A phase is not over until all stakeholders accept it</li>
+                    <li class="fragment">Use of functional teams (design team, developer team, sales team...)</li>
+                    <li class="fragment">Strict structure in which changes to previous phases are difficult and discouraged</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Waterfall model</h2>
+                    <h3>Pros</h3>
+                    <ul>
+                    <li class="fragment">Extensive documentation as a result of each phase</li>
+                    <li class="fragment">Most project pitfalls and bottlenecks are discovered and addressed early before a single line of code is written</li>
+                    <li class="fragment">Strong process of acceptance for all stakeholders</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Waterfall model</h2>
+                    <h3>Cons</h3>
+                    <ul>
+                    <li class="fragment">Changes in requirements during subsequent phases are hard to implement</li>
+                    <li class="fragment">Pitfalls not discovered in analysis and design phases can put the project at risk in later phases</li>
+                    <li class="fragment">Collaboration between functional teams is hard</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Waterfall model</h2>
+                    <h3>Types of projects</h3>
+                    <ul>
+                    <li class="fragment">When clients know exactly what they want up-front and know how to communicate it</li>
+                    <li class="fragment">When changes to initial expectations are not an option</li>
+                    <li class="fragment">When a strict and documented relation between client and developers is needed</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Agile model</h2>
+                    <img style="margin-left: 20px; max-width: 400px" class="fragment float-right" src="images/1/software_engineering/agile.png">
+                    <small>
+                    <ul class="float-left" style="max-width: 500px;">
+                    <li class="fragment">Various iterations of the software lifecycle</li>
+                    <li class="fragment">A phase can start before the previous has ended.</li>
+                    <li class="fragment">Feature oriented: One feature can be analysed, designed, implemented, tested and released even before other features are started.</li>
+                    <li class="fragment">Changes are welcome and seen as a natural process of a product evolution</li>
+                    <li class="fragment">Privileges working software over extensive documentation.</li>
+                    <li class="fragment">Use of cross-functional teams (one team can have designers, developers, sales, etc.)</li>
+                    <li class="fragment">Collaboration between teams and clients is encouraged</li>
+                    <li class="fragment">Constant release of new features</li>
+                    </ul>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Agile model</h2>
+                    <h3>Pros</h3>
+                    <ul>
+                    <li class="fragment">Clients can see results early in the process</li>
+                    <li class="fragment">Changes in requirements are not a risk to the project</li>
+                    <li class="fragment">Focus on quality by constant refactor and refinement</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Agile model</h2>
+                    <h3>Cons</h3>
+                    <ul>
+                    <li class="fragment">Hard to implement on big organizations</li>
+                    <li class="fragment">Hard to understand when the project is really over for all stakeholders</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Agile model</h2>
+                    <h3>Types of projects</h3>
+                    <ul>
+                    <li class="fragment">When clients don't really know exactly what they want up-front</li>
+                    <li class="fragment">When requirements and environment variables are probably changing during the project</li>
+                    <li class="fragment">When the client is up for close collaboration on the project</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Agile model variations</h2>
+                    <p class="fragment">In fact, the Agile model is more of a manifesto for software development projects. The manifesto is followed by a lot of different methodologies like Scrum and Lean.</p>
+                </section>
+
+                <section id="scrum">
+                    <h2>Scrum</h2>
+                    <p class="fragment">Follows the agile manifesto implementing it by a set of Events, Roles and Artifacts</p>
+                    <p class="fragment">It's a more recent approach to software development than the classic Waterfall model</p>
+                </section>
+
+                <section>
+                    <h2>Scrum - Roles</h2>
+                    <h3>Each scrum team has 3 different key roles:</h3>
+                    <ul>
+                    <li class="fragment">Product Owner - Represents the stakeholders and is business oriented</li>
+                    <li class="fragment">Scrum Master - Interface between the product owner and the rest of the team. Manager of the scrum process within the team</li>
+                    <li class="fragment">Development team - Responsible for delivering the product</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Scrum - Events</h2>
+                    <h3>Scrum key events are:</h3>
+                    <ul>
+                    <li class="fragment">Sprint - Is a development unit effort. It aims to analyse, design, develop, test and release (the whole lifecycle!) a single new feature, module or unit. It has limited time duration usually between 1 and 4 weeks</li>
+                    <li class="fragment">Sprint planning - Meeting that marks the beginning of a new sprint that aims to plan the Sprint.</li>
+                    <li class="fragment">Daily Scrum - Daily small meeting where team members quickly explain what they did yesterday, what they'll do today and what are the current problems and obstacles on their work</li>
+                    <li class="fragment">Sprint Review - Meeting that marks the end of a sprint where team members discuss and take lessons from it</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Scrum - Artifacts</h2>
+                    <h3>Scrum artifacts are the documentation that supports the scrum process</h3>
+                    <ul>
+                    <li class="fragment">Project Backlog - The list of tasks to be done until the end of the project. Tasks can be features, bug corrections, knowledge acquisition, etc.  </li>
+                    <li class="fragment">Sprint Backlog -The group of tasks to be done until the end of the current sprint</li>
+                    <li class="fragment">Product Increment - All the tasks done during the previous sprints</li>
+                    <li class="fragment">Sprint Burn-Down Chart - Graphical representation of the status of the current sprint.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Scrum - Artifacts</h2>
+                    <img style="max-height: 400px" class="fragment" src="images/1/software_engineering/burn_down_chart.png">
+                    <small>
+                    <ul>
+                    <li class="fragment">Each task has a score. The higher the score, the more difficult is the task</li>
+                    <li class="fragment">The sprint points are the sum of each task score</li>
+                    <li class="fragment">When a task is finished, its score is discounted on sprint points until it hits 0!</li>
+                    </ul>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Time-boxed Sprint Lengths</h2>
+                    <ul>
+                        <li class="fragment">When sprints are too long then releases become infrequent (deferring revenue) and the team is forced to wait too long before being able to adapt to changing customer needs</li>
+                        <li class="fragment">if sprints are too short, big features need to be arbitrarily chunked into smaller tasks, which aren’t useful to the customer on their own &amp; can obfuscate what the team is trying to achieve</li>
+                    </ul>
+                    <img src="images/1/software_engineering/scrum.png">
+                </section>
+
+                <section id="kanban">
+                    <h2>Kanban</h2>
+                    <p class="fragment">Kanban has no sprints and puts limits on how many features a team can work on at a given time.
+                    <span class="fragment">As soon as a feature is completed – two things happen:</span></p>
+                    <ol>
+                        <li class="fragment">The feature is available for immediate release into production</li>
+                        <li class="fragment">The team can start working on whatever the next highest priority item is</li>
+                    </ol>
+                    <img class="fragment" src="images/1/software_engineering/kanban.png">
+                </section>
+
+                <section id="lean">
+                    <h2>Lean Development</h2>
+                    <small>
+                    <p class="fragment">A new fashionable approach that is being adopted essentially by startups.</p>
+                    <p class="fragment">Used when trying to build a new product/business from scratch but the market is not well understood and detailed requirements for the project can't be defined.</p>
+                    <p class="fragment">The lean development methodology approaches those problems by promoting a very quick cycle of development where the objective is to test the market to know if a product or a feature can be well accepted by future users.</p>
+                    </small>
+                    <img class="fragment" style="max-height: 200px;" src="images/1/software_engineering/lean.jpg">
+                </section>
+
+                <section>
+                    <h2>Exercise</h2>
+                    <p class="fragment">For the following three projects what do you think is the best development methodology for each one? Why?</p>
+                    <ul>
+                    <li class="fragment">1 - A Big multi-company project that aims to develop the software for a spaceship that will land on Mars.</li>
+                    <li class="fragment">2 - You have a new idea for a system that can revolutionize the way how people learn to code! You still don't know how it will work and you only have money for one developer - you!</li>
+                    <li class="fragment">3 - A Book company is well established in the physical world but is now aiming to expand its business to the web. They still don't have a clear idea of how they will do it and they hire you and your team to help them.</li>
+                    </ul>
+                </section>
+
+            </section>
+            <section>
+                <section id="uml">
+                    <h2>Unified Modeling Language</h2>
+                    <p class="fragment">UML is a standard language for specifying, visualizing, constructing, and documenting the artifacts of software systems</p>
+                    <p class="fragment">UML is not a programming language, but tools can be used to generate code in various languages using UML diagrams. UML has a direct relation with object-oriented analysis and design</p>
+                    <ul>
+                        <li class="fragment">Use case diagram</li>
+                        <li class="fragment">Class diagram</li>
+                        <li class="fragment">Sequence diagram</li>
+                        <li class="fragment">Deployment diagram</li>
+                        <li class="fragment">Component diagram</li>
+                        <li class="fragment">Activity diagram</li>
+                        <li class="fragment">Statechart diagram</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Use Case Diagram</h2>
+                    <p>
+                        <img style="max-height: 450px;" src="images/1/software_engineering/uml-use-case.png">
+                    </p>
+                    <small class="fragment">Documents the user interaction with the system</small>
+                </section>
+
+                <section>
+                    <h2>Class Diagram</h2>
+                    <p>
+                        <img style="max-height: 500px;" src="images/1/software_engineering/uml-class.png">
+                    </p>
+                    <small class="fragment">Documents the structure of a system</small>
+                </section>
+
+                <section>
+                    <h2>Sequence diagram</h2>
+                    <p>
+                        <img style="max-height: 500px;" src="images/1/software_engineering/uml-sequence.png">
+                    </p>
+                    <small class="fragment">Documents the collaboration between entities based on a time sequence</small>
+                    <aside class="notes">
+                        <ul>
+                            <li>arrow solid lines represent messages / method invocations</li>
+                            <li>open arrow represents asynchronous messages, closed arrow synchronous messages</li>
+                            <li>dash lines represent message results</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Deployment diagram</h2>
+                    <p>
+                        <img style="max-height: 500px;" src="images/1/software_engineering/uml-deployment.png">
+                    </p>
+                    <small class="fragment">Documents the physical hardware used to deploy the application</small>
+                </section>
+                <section>
+                    <h2>Component diagram</h2>
+                    <p>
+                        <img style="max-height: 400px;" src="images/1/software_engineering/uml-component.jpg">
+                    </p>
+                    <small class="fragment">Documents the relationship between the different components of the system</small>
+                </section>
+
+                <section>
+                    <h2>Activity diagram</h2>
+                    <p>
+                        <img style="max-height: 400px;" src="images/1/software_engineering/uml-activity.png">
+                    </p>
+                    <small class="fragment">Documents system activities and actions using workflows for representing choice, iteration and concurrency</small>
+                </section>
+
+                <section>
+                    <h2>Statechart diagram</h2>
+                    <p>
+                        <img style="max-height: 400px;" src="images/1/software_engineering/uml-state.png">
+                    </p>
+                    <small class="fragment">Documents the states of system components as well as the transitions between them</small>
+                </section>
+
+                <section id="alm">
+                    <h2>Application Lifecycle Management</h2>
+                    <img class="float-left" style="max-height: 400px;" src="images/1/software_engineering/alm.jpg">
+                    <img class="float-right" style="max-height: 400px;" src="images/1/software_engineering/alm-vendors.png">
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 16,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function () {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function () {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function () {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function () {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

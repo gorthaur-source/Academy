@@ -1,0 +1,2293 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Advanced Object Oriented Programming</h1>
+                <p>
+                    <small>Created by
+                        <a>&lt;Academia de Código_&gt;</a>
+                    </small>
+                </p>
+            </section>
+
+            <section class="stacked present" id="sniperelite">
+
+                <section>
+                    <h2>Sniper Elite</h2>
+                    <img src="images/1/java/java_oop_interfaces_sniper.jpg" alt="">
+                    <p>
+                        The text-based version
+                    </p>
+                </section>
+
+                <section>
+                    <h2>UML Class Diagram</h2>
+                    <img src="images/1/java/java_oop_interfaces_sniper_1.jpg" alt="">
+                </section>
+
+                <section>
+                    <h2>Game</h2>
+                    <ul>
+                        <li>When creating the game specify the number of game objects;</li>
+                        <li>Create an array of game objects with enemies and trees;</li>
+                        <li>There is a higher probability of having enemies than trees;</li>
+                        <li>Iterate through the array and shoot only the enemies;</li>
+                        <li>Do NOT shoot the Trees!;</li>
+                        <li>Keep shooting the same enemy until it is dead;</li>
+                        <li>At the end show the total number of shots fired.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Sniper Rifle</h2>
+                    <ul>
+                        <li>When shooting, it has a probability of hitting the target with a certain damage amount.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Enemies</h2>
+                    <ul>
+                        <li>Soldier: it loses health on each hit;</li>
+                        <li>Armoured Soldier: if the armour has points it takes the damage, else the enemy loses health.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Sniper Elite</h3>
+                        <p>Text based version</p>
+                    </div>
+                    <img style="max-width:400px;" src="images/1/java/java_oop_interfaces_sniper.jpg" />
+
+                </section>
+
+                <section>
+                    <h2>What if...</h2>
+                    <ul>
+                        <li>We want to shoot more than just enemies?</li>
+                        <li>Let's say we want to shoot some explosive barrels too;</li>
+                        <li>How should we organize our project classes?</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Question: Are the explosive barrels game objects?</li>
+                            <li>Note: A barrel isn't an enemy since some api methods dont apply</li>
+                            <li>Problem: Our sniper rifle shoot method takes an Enemy...</li>
+                            <li>Partial solution: Make it take game objects.</li>
+                            <li>This solution isn't ideal:</li>
+                            <li>Problem: If forces you to check if the argument of the shoot method is of type barrel or enemy
+                                (in order to hit it)</li>
+                            <li>Problem: The implementation of our sniper rifle method will change each time you add a new hittable
+                                game object class</li>
+                            <li>Problem: For each new game object class you will have a hard time trying to fit it into (or,
+                                sometimes, bend) the inheritance structure</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Explosive Barrels</h2>
+                    <p>
+                        Solution using Inheritance
+                    </p>
+                    <img src="images/1/java/java_oop_interfaces_sniper_2.png" alt="" style="max-height:450px">
+                    <aside class="notes">
+                        <ul>
+                            <li>Explosive barrels are game objects and not enemies</li>
+                            <li>Sniper rifle shoot method will take a GameObject</li>
+                            <li>Problems: Have to check either the argument type; So it will change each time you add a new hittable
+                                game object; Will be difficult fitting (or bending) your inheritance structure to include
+                                other hittable game objects.</li>
+                            <li>Option 1: Include the hit method on all game objects;</li>
+                            <li>Option 2: Make the method abstract and force all subclasses to override it;</li>
+                            <li>Option 3: Manually place the hit method on the classes.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Solution using Inheritance</h2>
+                    <ul>
+                        <li>Explosive barrels extend from GameObject;</li>
+                        <li>Change the shoot method parameter type to GameObject.</li>
+                    </ul>
+                    <p>
+                        Our solution isn't ideal...
+                    </p>
+                    <ul>
+                        <li>Forces the implementation of the shoot method to check if the parameter is of type Barrel or Enemy;</li>
+                        <li>You have to come back and change it each time you add a hittable game object class.</li>
+                    </ul>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>A step further is to introduce another level in the inheritance hierarchy.</li>
+                            <li>A HittableGameObject abstract class from which both Enemy and Barrel would extend.</li>
+                            <li>But they would not be proper is-a relationships.</li>
+                            <li>Furthermore, since a class can only extend from one class finding a solution for these problems
+                                using inheritance exclusively would prove incrementally difficult...</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>We want a way to...</h2>
+                    <ul>
+                        <li>Use polymorphism to refer to classes that contain the hit method;</li>
+                        <li>Force those classes to correctly implement the hit method.</li>
+                    </ul>
+                </section>
+
+            </section>
+
+            <section>
+                <section>
+                    <h2>Interfaces</h2>
+                    <p>
+                        An Interface is a completely abstract type that defines the behaviours a class must implement.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Why Interfaces?</h2>
+                    <ul>
+                        <li>Define a contract for the classes to follow;</li>
+                        <li>Take advantage of the polymorphism benefits;</li>
+                        <li>Not limited by the inheritance rigid structure.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Interfaces to the rescue!</h2>
+                    <img class="fragment" src="images/1/java/java_oop_interfaces_sniper_3.jpg" alt="" style="max-height:500px">
+                </section>
+
+                <section>
+                    <h2>Declare an Interface</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Destroyable.java
+ */
+
+// all methods are abstract
+public interface Destroyable {
+
+    public abstract void hit(int damage);
+
+    public abstract boolean isDestroyed();
+
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Implement an Interface</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Barrel.java
+ */
+// when implementing an interface you need to override all methods
+public class Barrel extends GameObject implements Destroyable {
+
+    @Override
+    public boolean isDestroyed() {
+        // implement behaviour
+    }
+
+    @Override
+    public void hit(int points) {
+        // implement behaviour
+    }
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Use the new Interface Type</h2>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="java" data-trim contenteditable>
+public class SniperRifle {
+
+    private int bulletDamage = 1;
+    private final float HIT_PROB = 0.3f;
+
+    // declare a parameter of type Destroyable
+    public void shoot(Destroyable target) {
+
+        if(Math.random() &lt; HIT_PROB) {
+
+            // call the method hit on the destroyable object
+            target.hit(bulletDamage);
+
+            System.out.println("It's a hit!");
+
+        } else {
+
+            System.out.println("It's a miss!");
+
+        }
+    }
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Sniper Elite with Explosive Barrels</h3>
+                    </div>
+            </section>
+
+            </section>
+
+            <section>
+                <section>
+                    <h1>Access Control</h1>
+                    <p class="fragment">
+                        Feature that helps with encapsulation
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Access Level Modifiers</h2>
+                    <p class="fragment">
+                        Determine classes, methods and fields access level.
+                    </p>
+
+                    <table class="fragment">
+                        <tr>
+                            <th>
+                                Modifier
+                            </th>
+                            <th>
+                                Accessibility
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                public
+                            </td>
+                            <td>
+                                From everywhere
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                protected
+                            </td>
+                            <td>
+                                Same package and subclasses
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                default (aka package-private)
+                            </td>
+                            <td>
+                                Same package
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                private
+                            </td>
+                            <td>
+                                Within the class
+                            </td>
+                        </tr>
+                    </table>
+
+                </section>
+
+                <section>
+                    <h2>Access Control Levels</h2>
+                    <table class="fragment">
+                        <tr>
+                            <th>
+                                Level
+                            </th>
+                            <th>
+                                Possible Modifiers
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Top Level (aka class level)
+                            </td>
+                            <td>
+                                public
+                                <br> default
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Member Level
+                            </td>
+                            <td>
+                                public
+                                <br> protected
+                                <br> default
+                                <br> private
+                            </td>
+                        </tr>
+                    </table>
+                </section>
+                <section>
+
+                    <h2>How to decide the proper access control to use for members of your class?</h2>
+                    <p class="fragment">Use the
+                        <b>most restrictive</b> access level possible.</p>
+                    <p class="fragment">
+                        <b>Avoid public</b> fields except for constants.</p>
+                    <p class="fragment">
+                        <b>Protected</b> and
+                        <b>default</b> might help with sub-classing.</p>
+                </section>
+
+            </section>
+
+
+            <section>
+
+                <section id="simple-graphics">
+                    <h2>Simple Graphics Library</h2>
+                    <img style="max-width: 400px;" src="images/1/java/simple-graphics.png" />
+                </section>
+
+                <section>
+                    <h2>Graphics</h2>
+                    <p class="fragment">GFX classes representing drawable entities:</p>
+                    <img class="logo float-right" src="images/1/java/simple-graphics.png" />
+                    <ul>
+                        <li class="fragment">Rectangles</li>
+                        <li class="fragment">Ellipses</li>
+                        <li class="fragment">Lines and Text</li>
+                        <li class="fragment">Images</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Interfaces</h2>
+                    <p class="fragment">Simple GFX classes implement one or more interfaces:</p>
+                    <img class="logo float-right" src="images/1/java/simple-graphics.png" />
+                    <ul>
+                        <li class="fragment">Shape to draw and grow</li>
+                        <li class="fragment">Movable to move shapes around</li>
+                        <li class="fragment">Colorable to color shapes</li>
+                        <li class="fragment">Fillable to paint shapes</li>
+                    </ul>
+                    <aside class="notes">
+                        Shapes only have one color / fill at a time.
+                    </aside>
+                </section>
+                <section>
+                    <h2>Canvas</h2>
+                    <p class="fragment">Shapes are drawn to a canvas on a dedicated thread</p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+Rectangle rect = new Rectangle(0, 0, 400, 400);
+rect.setColor(Color.RED);
+rect.fill();
+                    </code></pre>
+                    <img class="fragment" src="images/1/java/canvas.png" style="max-height: 300px;" />
+                    <p>
+                        <small class="fragment">The canvas will expand its size when required.</small>
+                        <small class="fragment">The canvas always preserves a right and lower margin of 10px</small>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>refresh process/thread concepts</li>
+                            <li>each process has its own memory, can communicate with other processes using IPC mechanisms (sockets,
+                                pipes, etc.)</li>
+                            <li>multiple threads inside a process all share the same process memory</li>
+                            <li>threads can share data using process memory, but this shared state needs to be handled with care,
+                                to be studied later on</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Keyboard</h2>
+                    <ol>
+                        <img style="max-width: 250px; margin-left: 10px;" class="float-right" src="images/1/java/simple-graphics-keyboard-uml.png"
+                        />
+                        <p class="fragment">The class that handles keyboard events should:</p>
+                        <li class="fragment">Implement the KeyboardHandler interface</li>
+                        <li class="fragment">Implement your logic inside KeyboardHandler methods</li>
+                        <p class="fragment">Your code should:</p>
+                        <li class="fragment">Instantiate a new Keyboard object with a KeyboardHandler reference</li>
+                        <li class="fragment">Instantiate as many KeyboardEvent objects as desired</li>
+                        <li class="fragment">Add KeyboardEvent objects to the Keyboard</li>
+                    </ol>
+                    <aside class="notes">
+                        <ul>
+                            <li>Explain difference/advantages of using events (simpleGFX will call our handler methods on key
+                                press/release) vs pooling (we call keyboard to ask if any key is pressed)</li>
+                            <li>key press/release will invoke handler with appropriate KeyboardEvent instance</li>
+                            <li>KeyboardEvent instance contains event type and key</li>
+                            <li>multiple keyboard instances can exist simultaneously</li>
+                            <li>keyboard can be instantiated on a central location or in a more encapsulated way</li>
+                            <li>one keyboard event should be instantiated for each key/event type to handle</li>
+                        </ul>
+                        <p>
+                            Event handlers are called from SimpleGfx Thread. If event handlers take too long to complete or do not complete at all, will
+                            impact the rendering process
+                        </p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Mouse</h2>
+                    <ol>
+                        <img style="max-width: 250px; margin-left: 10px;" class="float-right" src="images/1/java/simple-graphics-mouse-uml.png" />
+                        <p class="fragment">The class that handles mouse events should:</p>
+                        <li class="fragment">Implement the MouseHandler interface</li>
+                        <li class="fragment">Implement your logic inside MouseHandler methods</li>
+                        <p class="fragment">Your code should:</p>
+                        <li class="fragment">Instantiate a new Mouse object with a MouseHandler reference</li>
+                        <li class="fragment">Add MouseEventType objects to the Mouse</li>
+                    </ol>
+                    <aside class="notes">
+                        <ul>
+                            <li>mouse click/move will invoke handler method with MouseEvent instance</li>
+                            <li>MouseEvent instance created for each event, contains event type and mouse position</li>
+                            <li>multiple mouse instances can exist simultaneously</li>
+                            <li>mouse can be instantiated on a central location or in a more encapsulated way</li>
+                        </ul>
+                        <p>
+                            Event handlers are called from SimpleGfx Thread. If event handlers take too long to complete or do not complete at all, will
+                            impact the rendering process
+                        </p>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Test and Experiment with SimpleGFX library</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>CarCrash Extended</h3>
+                        <p>Agnostic to Graphics Library</p>
+                    </div>
+                    <img style="max-width:400px;" src="images/1/java/car-crash.jpg" />
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Pong Skeleton</h3>
+                        <p>Agnostic to Graphics Library</p>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Group Exercise }</h2>
+                        <h3>Roll your own game</h3>
+                    </div>
+                    <img style="max-width:400px;" src="images/1/java/game.jpg">
+                </section>
+
+            </section>
+
+            <section class="stacked present" id="exceptions">
+
+                <section>
+                    <h2>Exceptions</h2>
+                    <p class="fragment">An exception is an abnormal event which occurs during the execution of a program that disrupts the normal
+                        flow
+                        <br> of the program instructions</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>mechanism to handle errors or abnormal situations</li>
+                            <li>advantages of exceptions when compared with error codes in C (google for error.h)</li>
+                            <li>special object that defines the error</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Example</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+
+public static void main(String[] args) {
+
+    String[] names = new String[] { "Ze" };
+
+    System.out.println("Hello " + names[1].toUpperCase());
+}
+                    </code></pre>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="java" data-trim contenteditable>
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 1
+at org.academiadecodigo.exceptions.Main.main(Main.java:14)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140)
+                    </code></pre>
+                    <p class="fragment">
+                        Not catching an exception crashes the program.
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>You need to catch an exception in order to provide a different route when something goes wrong</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Catching an Exception</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+public static void main(String[] args) {
+
+    String[] names = new String[] { "Ze" };
+
+    try { // try to run this
+
+        System.out.println("Hello " + names[1].toUpperCase());
+
+    } catch (Exception e) { // but if it fails run this code instead
+
+        System.out.println("Ze is not here");
+    }
+}
+                    </code></pre>
+                    <p class="fragment">
+                        Please note that not all exceptions should be caught.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Exceptions are objects</h2>
+                    <img src="images/1/java/java_oop_exceptions_objects.png" alt="">
+                    <ul class="">
+                        <li class="fragment">Throwable: the super class of the error handling mechanism;</li>
+                        <li class="fragment">Error: system errors that we don't need to catch;</li>
+                        <li class="fragment">Exception: the ones we need to care about.</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Exceptions are objects that follow the same rules of inheritance and polymorphism</li>
+                            <li>We specify which exception type we want to catch, the sub or superclass</li>
+                            <li>According to the type of exception being caught we have more or less information about the error</li>
+                            <li>If the exception is too global we know that something wrong happened but not exactly what</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Checked vs. Unchecked</h2>
+                    <img src="images/1/java/java_oop_exceptions.png" alt="">
+                    <p class="fragment">
+                        Only the
+                        <u>checked</u> exceptions should be caught.
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Checked - Compiler makes sure that programmer is handling all error situations</li>
+                            <li>Unchecked - Happen at run time, normally represent errors/bugs that we want/need to fix</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Chained Exceptions</h2>
+                    <p class="fragment">If the caught exception cannot be handled correctly by the method, it can bubble up to another method</p>
+                    <p class="fragment">Some method up the call chain will catch the exception</p>
+                    <img class="fragment" src="images/1/java/java_oop_exceptions_handling.png" alt="">
+                </section>
+
+                <section>
+                    <h2>Exception Handling</h2>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="java" data-trim contenteditable>
+public void method1() {
+    try {
+        method2();
+    } catch (Exception ex) {
+        doErrorProcessing(ex); // this method will handle the exception
+    }
+}
+
+public void method2() throws Exception{
+    method3();
+}
+
+public void method3() throws Exception {
+
+    // this method returns true if able to read the file
+    boolean readFile = readFile("VerySpecialFile");
+
+    if(!readFile) {
+        throw new Exception();
+    }
+}
+                    </code></pre>
+                    <p class="fragment">
+                        When an exception is thrown we can choose to deal with it or pass it to the calling method
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>If no method deals with the exception it reaches the main method and crashes the program.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>The finally block</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+public static void main(String[] args) {
+
+    String[] names = new String[] { "Ze" };
+
+    try { // try to run this
+
+        System.out.println("Hello " + names[1].toUpperCase());
+
+    } catch (Exception e) { // but if it fails run this code instead
+
+        System.out.println("Ze is not here");
+
+    } finally { // and this will always run
+
+        System.out.println("Either way I will run whatever is in here...");
+    }
+}
+                    </code></pre>
+                    <p class="fragment">
+                        The finally block always runs, even if the method is returning inside the try or catch.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Catching multiple exceptions</h2>
+                    <pre class="fragment" style="font-size: 0.8rem;"><code class="java" data-trim contenteditable>
+// process of reading a file
+try {
+    open(file);
+    determineSize(file);
+    allocateMemory(memoryNeeded);
+    read(file);
+    close(file);
+} catch (FileOpenException ex) {
+    // something went wrong while opening the file
+    handleOpenException();
+
+} catch (SizeDeterminationException ex) {
+    // something went wrong while determining the file size
+    handleSizeDeterminationException();
+
+} catch (MemoryAllocationException ex) {
+    // something went wrong while trying to allocate memory
+    handleMemoryAllocationException();
+
+} catch (ReadException ex) {
+    // something went wrong while trying to read the file
+    handleReadException();
+
+} catch (Exception ex) {
+    // something went wrong with the file
+    handleException(ex);
+}
+                    </code></pre>
+                    <p class="fragment">
+                        The less specific exceptions must be at the end.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Creating your own exceptions</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * A custom exception
+ */
+public class CustomException extends Exception {
+
+    public CustomException() {
+    }
+
+    public CustomException(String s) {
+        super(s);
+    }
+}
+                    </code></pre>
+                    <p class="fragment">
+                        Usually the name of the exception should be self-explanatory, but a message can be added to provide additional information.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Throwing your own exception</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Throwing a custom exception
+ */
+public class MyClass {
+
+    public void someRiskyMethod() throws CustomException {
+        if("something terrible happens") {
+            throw new CustomException("Brace yourselves an exception is coming");
+        }
+    }
+}
+                    </code></pre>
+                    <p class="fragment">
+                        The method throws the exception
+                        <br>when a specified condition occurs.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Catching the exception</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/**
+ * Catching the custom exception
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        MyClass myClass = new MyClass();
+
+        try {
+            myClass.someRiskyMethod();
+        } catch (CustomException ex) {
+            System.out.println(ex.getMessage()); // prints the exception message
+        }
+    }
+}
+                    </code></pre>
+                    <p class="fragment">
+                        The calling method handles the exception and deals with it.
+                    </p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h3>{ Exercise }</h3>
+                        <h2>Exceptions</h2>
+                    </div>
+                    <img style="max-height: 400px;" src="images/1/java/java_oop_exceptions_example_fileFinder.png">
+                </section>
+
+            </section>
+
+            <section id="containers">
+                <section>
+                    <h1>Containers and Collections</h1>
+                </section>
+
+                <section>
+                    <h2>Containers</h2>
+                    <img class="logo float-right" src="images/1/java/containers.jpg">
+                    <p>Used to hold any number of objects.
+                        <u>Arrays</u> are built in the Java programming language and have been our natural choice, but they
+                        have obvious limitations:</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>Fixed size</u> - the dimension of an array is determined the moment the array is created, and
+                            cannot be changed later on</li>
+                        <li class="fragment">
+                            <u>Memory usage</u> - the array occupies an amount of memory that is proportional to its size, independently
+                            of the number of elements that are actually used</li>
+                        <li class="fragment">
+                            <u>Inefficient</u> - sorting or changing the order of the elements requires moving elements around</li>
+                    </ul>
+                    <p class="fragment">
+                        <u>What we need is a dynamic container!</u>
+                    </p>
+                    <aside class="notes">
+                        <p>Containers are data structures just like the stack and the queue</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Dynamic Container</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Linked List</h2>
+                    <img style="max-width: 400px;" src="images/1/java/linked-list.png">
+                    <ul>
+                        <li class="fragment">data structure consisting of a group of nodes which together represent a sequence</li>
+                        <li class="fragment">each node is composed of data and a reference to the next node in the sequence</li>
+                        <li class="fragment">the number of nodes in a list is not fixed and can grow and shrink on demand</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Linked List</h3>
+                        <p>and the
+                            <u>add</u> method</p>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Linked List</h3>
+                        <p>Implement remaining methods until all tests pass</p>
+                    </div>
+                </section>
+
+                <section id="generics">
+                    <h2>Is our linked list
+                        <u>Type Safe</u>?</h2>
+                    <p class="fragment">No. What does this mean?
+                        <img class="logo float-right" src="images/1/java/programmer.jpg">
+                        <ul>
+                            <li class="font-medium fragment">designed to hold
+                                <u>java.lang.Object</u>
+                            </li>
+                            <li class="font-medium fragment">all classes can be
+                                <u>upcasted</u> to Object and stored in the container</li>
+                            <li class="font-medium fragment">it is the programmer's responsibility to
+                                <u>downcast</u> the Object back to its original class</li>
+                            <li class="font-medium fragment">the compiler is not able to check whether the downcasting is valid at compile-time</li>
+                            <li class="font-medium fragment">but no problem, programmers are perfect in every way and never make mistakes
+                            </li>
+                        </ul>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>upcasts are safe, downcasts are unsafe</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3> Linked list type unsafety exercise </h3>
+                    </div>
+                </section>
+
+                <section>
+                    <img class="float-right logo" src="images/1/java/generic-cup.jpg">
+                    <h2>Generics</h2>
+                    <ul>
+                        <li class="fragment">pass
+                            <u>type information</u> to the compiler</li>
+                        <li class="fragment">
+                            <u>automatically</u> insert the proper downcast operator</li>
+                        <li class="fragment">ensures type safety at
+                            <u>compile time</u>
+                        </li>
+                    </ul>
+                    <p class="fragment">The type parameter section, delimited by angle brackets (
+                        <u>&lt;&gt;</u>) follows the class name and specifies the
+                        <u>type variables</u>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Part of the language since JDK 1.5</li>
+                            <li>Generics it's all about let the compiler catch more bugs</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Parameterized Types</h2>
+                    <p class="fragment">The Box class wraps any type of object:</p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+public class Box {
+    private Object object;
+    public void set(Object object) { this.object = object; }
+    public Object get() { return object; }
+}
+
+Box integerWrapper = new Box(new Integer(1)); // wrap an Integer
+String s = (String) integerWrapper.get(); // unsafe downcast produces run time error
+                    </code></pre>
+                    <p class="fragment">We can make the Box class safer by using a type parameter:</p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+public class Box&lt;T&gt; {
+    // T stands for "Type"
+    private T t;
+
+    public void set(T t) { this.t = t; }
+    public T get() { return t; }
+}
+
+Box&lt;Integer&gt; integerWrapper = new Box&lt;&gt;(new Integer(1)); // wrap an Integer
+String s = (String) integerWrapper.get(); // compile time error
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>type parameters are also called type variables</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Type Parameters</h2>
+                    <p class="fragment">A type parameter can be any non-primitive type:</p>
+                    <ul>
+                        <li class="fragment">Class</li>
+                        <li class="fragment">Interface</li>
+                        <li class="fragment">Array</li>
+                        <li class="fragment">Type Variable</li>
+                    </ul>
+                    <p class="fragment">By convention, type parameter names are single, uppercase letters. The most commonly used type parameter
+                        names are:</p>
+                    <small>
+                        <ul>
+                        <li class="fragment">E - element</li>
+                        <li class="fragment">K - key</li>
+                        <li class="fragment">N - number</li>
+                        <li class="fragment">T - type</li>
+                        <li class="fragment">V - value</li>
+                        <li class="fragment">S,U,V etc. - 2nd, 3rd, 4th types</li>
+                        </ul>
+                    </small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Linked list type safety exercise</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Modify Linked List to be type safe using Generics</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Generic Containers</h2>
+                    <p class="fragment">Using generics, we can make our containers
+                        <br>agnostic to the type of data they hold</p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+LinkedList&lt;Integer&gt; integerList = new LinkedList&lt;&gt;();
+LinkedList&lt;String&gt; stringList = new LinkedList&lt;&gt;();
+
+integerList.add(new Integer(1));
+integerList.add(new Integer(10));
+integerList.add(new Integer(15));
+
+stringList.add("a");
+stringList.add("b");
+stringList.add("c");
+
+for (Integer i : integerList) {
+    System.out.println(i);
+}
+
+for (String s : stringList) {
+    System.out.println(s);
+}
+                    </code></pre>
+                </section>
+
+                <section id="boxing">
+                    <h2>Autoboxing &amp; Unboxing</h2>
+                    <p class="fragment">
+                        How can we store primitives in generic containers?
+                    </p>
+                    <small>
+                        <ul>
+                      <li class="fragment">a generic container contains only objects</li>
+                      <li class="fragment">it cannot hold primitives such as int or double</li>
+                      <li class="fragment">to put a primitive into a generic container a corresponding wrapper class has to be used</li>
+                        </ul>
+                    </small>
+                    <p class="fragment">
+                        <img style="max-height: 350px;" src="images/1/java/autoboxing.png">
+                    </p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+Integer intObj = 5566;    // autoboxing from int to Integer
+int i = intObj;           // unboxing from Integer to int
+
+Double doubleObj = 55.66; // autoboxing from double to Double
+double d = doubleObj;     // unboxing from Double to double
+                    </code></pre>
+                </section>
+
+                    <section id="iterators">
+                        <h2>Iterating over Containers</h2>
+                    <p class="fragment">The
+                        <u>enhanced for</u> syntax can be used to iterate over arrays</p>
+                        <pre class="fragment"><code class="java" data-trim contenteditable>
+Integer[] integerArray = new Integer[3];
+integerArray[0] = 1;
+integerArray[1] = 10;
+integerArray[2] = 15;
+
+for (Integer i : integerArray) {
+    System.out.println(i); // 1, 10, 15
+}
+                        </code></pre>
+                    <p class="fragment">You can use the same syntax to iterate over other container types, as long as they implement the
+                        <u>Iterable</u> interface</p>
+                        <pre class="fragment"><code class="java" data-trim contenteditable>
+LinkedList&lt;Integer&gt; list = new LinkedList();
+
+list.add(new Integer(1));
+list.add(new Integer(10));
+list.add(new Integer(15));
+
+for (Integer i : list) {
+    System.out.println(i); // 1, 10, 15
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Iterable Interface</h2>
+                    <p class="fragment">Declares an abstract method called
+                        <u>iterator()</u> to retrieve an
+                        <u>Iterator&lt;E&gt;</u> object associated with the container</p>
+                    <p class="fragment">This
+                        <u>Iterator</u> object can be used to transverse through all the elements of its associated container</p>
+                    </section>
+
+                    <section id="iterator">
+                        <h2>Iterator Interface</h2>
+                        <p class="fragment">Used to iterate over containers</p>
+                        <p class="fragment">Allows safe removal of elements during iteration</p>
+                        <pre class="fragment"><code class="java" data-trim contenteditable>
+// Retrieve the Iterator associated with the container
+Iterator it = list.iterator();
+
+// Transverse this List using the Iterator
+while (it.hasNext()) {
+
+    // Retrieve and print each element
+    System.out.println(it.next());
+
+    if (someCondition()) {
+
+        // Iterators allow safe removal while iterating
+        it.remove();
+    }
+}
+                        </code></pre>
+                    <small class="fragment">enhanced for loop can also be used to iterate through the container, but it
+                        <u>lacks the remove</u> capability</small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Implement an Iterable Integer Range class</h3>
+                        </div>
+                        <aside class="notes">
+                            on anonymous classes, we will ask for bi-direction range iterator
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Iterable Linked List</h3>
+                            <p>Update your linked list to work with the enhanced for syntax</p>
+                        </div>
+                    </section>
+
+                <section id="collections">
+                    <h2>Collections Framework - Java containers</h2>
+                    <img style="max-width: 450px;" src="images/1/java/containers-uml.png">
+                    <p>
+                        <ul>
+                            <li class="fragment">implemented in the package
+                                <u>java.util</u>
+                            </li>
+                            <li class="fragment">four basic container interfaces
+                                <p>
+                                    <span class="fragment float-left">Map</span>
+                                    <span class="fragment float-right">List</span>
+                                    <span class="fragment float-left">
+                                        <br>Set</span>
+                                    <span class="fragment float-right">
+                                        <br>Queue</span>
+                                </p>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            <p>For the most part, the API of our custom linked list is compatible with java.util.LinkedList</p>
+                            <p>But the collection framework provides type safety..</p>
+                        </aside>
+                    </p>
+                </section>
+
+
+                <section>
+                    <h2>Support for Generics</h2>
+                    <p class="fragment">All implementations of the collections framework use generic types</p>
+                    <p class="fragment">
+                        <img style="max-height: 350px;" src="images/1/java/collection-interfaces.png">
+                    </p>
+                    <aside class="notes">
+                        in JDK 1.5
+                    </aside>
+                </section>
+
+
+                <section id>
+                    <h2>Collection Interface</h2>
+                    <p class="fragment">The root interface of the Collection Framework, abstracts the concept of a
+                        <u>Group of Objects</u>
+                    </p>
+                    <p class="fragment">Defines the common behaviours expected of all classes that belong to the Collections Framework</p>
+                    <p class="fragment">No assumptions are made about the order of the collection or whether it may contain duplicate elements</p>
+                </section>
+
+                <section>
+                    <h2>Basic Collection Operations</h2>
+                    <pre><code class="java" data-trim contenteditable>
+// Returns the number of elements of the Collection
+int size();
+
+// Removes all the elements of the Collection
+void clear();
+
+// Returns true if there are no elements in the Collection
+boolean isEmpty();
+
+// Ensures that the Collection contains the given element
+boolean add(E element);
+
+// Removes the given element, if present
+boolean remove(Object element);
+
+// Returns true if the Collection contains the given element
+boolean contains(Object element);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Bulk Operations with other Collections</h2>
+                    <pre><code class="java" data-trim contenteditable>
+// Returns true if the Collection contains another Collection of any "unknown" type
+boolean containsAll(Collection&lt;?&gt; c);
+
+// Adds all elements of Collection of E or its subtypes to the Collection of E
+boolean addAll(Collection&lt;? extends E&gt; c);
+
+// Removes from the Collection all the elements contained in another Collection
+boolean removeAll(Collection&lt;?&gt; c);
+
+// Removes all elements from the Collection, retaining only the elements
+// that are contained in another Collection
+boolean retainAll(Collection&lt;?&gt; c);
+                    </code></pre>
+                    <small class="fragment">
+                        <u>?</u> is a type wildcard</small>
+                    <br>
+                    <small class="fragment">
+                        <u>? extends E</u> refers to the type of any class that extends or implements type E</small>
+                </section>
+
+                <section>
+                    <h2>Comparison and Array Operations</h2>
+                    <pre><code class="java" data-trim contenteditable>
+// Comparison - Objects that are equal must have the same hashCode
+boolean equals(Object o);
+int hashCode();
+
+// Array Operations
+Object[] toArray();       // Convert to an Object array
+&lt;T&gt; T[] toArray(T[] a);   // Convert to an array of the given type T
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Iterating Collections</h2>
+                    <p class="fragment">All Java collections are iterable</p>
+                    <p class="fragment">Iterators can be either
+                        <u>fail-fast</u> or
+                        <u>fail-safe</u> in their nature</p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>A system is called fail-fast if it immediately reports any condition that is likely to indicate
+                                a failure, before it actually occurs.</li>
+                            <li>A system is called fail-safe if when a failure occurs, it tends to fail in a predictable manner,
+                                leaving the system in a safe state</li>
+                        </ul>
+                    </aside>
+
+                </section>
+
+                <section>
+                    <h2>Fail-Fast Iterators</h2>
+
+                    <img style="max-width: 330px; margin-top: 60px; margin-left: 20px;" src="images/1/java/fail-fast.png">
+                    <div style="max-width: 610px;" class="float-left">
+                        <p class="fragment">The type of Iterator returned by most of the collections.</p>
+                        <p class="fragment">Will throw a
+                            <u>ConcurrentModificationException</u> if any structural modification happens to a collection while
+                            iterating over it.</p>
+                        <p class="fragment">Won't throw any exception if the collection is structurally modified by the iterator's own methods.</p>
+                    </div>
+
+                    <small class="fragment">Better to fail than risking having the container in an unknown state.</small>
+
+                    <aside class="notes">
+                        <b>Structural modifications:</b> add, remove or updating an element of the collection.
+                        <br> The iterators use an internal flag to signal any modification in the collection.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Fail-Safe Iterators</h2>
+                    <img style="max-width: 330px; margin-top: 60px; margin-left: 20px;" src="images/1/java/fail-safe.png">
+                    <div style="max-width: 610px;" class="float-left">
+                        <p class="fragment">Won't throw any exception when a modification happens to a collection while iterating over it because
+                            they
+                            <u>iterate over a clone</u> of the collection.</p>
+                        <p class="fragment">It's not guaranteed that the data you're iterating on is up-to-date.</p>
+                        <p class="fragment">These iterators introduce additional overhead to our program in terms of time and memory (due to
+                            the creation of the collection copy).</p>
+                    </div>
+
+
+                    <aside class="notes">
+                        Any structural modification done on the collection after the iterator has been created goes unnoticed by these iterators.
+                    </aside>
+                </section>
+
+                <section id="list">
+                    <h2>List interface</h2>
+                    <p>Holds a sequence of elements in the way they were inserted</p>
+                    <img class="logo float-right" src="images/1/java/linked-list.png">
+                    <ul>
+                        <li class="fragment">
+                            <u>add()</u> to insert objects</li>
+                        <li class="fragment">
+                            <u>get()</u> to get them out one at a time</li>
+                        <li class="fragment">
+                            <u>iterator()</u> to get an Iterator for the sequence. </li>
+                    </ul>
+                    <p class="fragment">Implementations:
+                        <small>
+                            <ul>
+                                <li class="fragment">
+                                    <u>ArrayList</u> excels at randomly accessing elements, but is slower when inserting and
+                                    removing elements in the middle of a List</li>
+                                <li class="fragment">
+                                    <u>LinkedList</u> provides optimal sequential access, with inexpensive insertions and deletions
+                                    from the middle of the List. Relatively slow for random access, but it has a larger feature
+                                    set than ArrayList,
+                                    <u>allowing it to be used as Queue or a Stack</u>
+                                </li>
+                            </ul>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Add capability to add new cars to the car crash exercise, starting with only 1 car and having
+                                a key to insert more</li>
+                            <li>Use iterators as a for replacement, cadets will get concurrent modification exception, fix it</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Collection Specific Iterators</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+List&lt;String&gt; lst = new ArrayList&lt;&gt;();
+lst.add("alpha");
+lst.add("beta");
+lst.add("charlie");
+
+ListIterator&lt;String&gt; iter = lst.listIterator();
+while (iter.hasNext()) {
+
+    // Retrieve each element
+    String str = iter.next();
+
+    // Duplicate each element
+    iter.add(str.substring(0));
+
+}
+                    </code></pre>
+                    <small class="fragment">specific iterators like ListIterator may support additional functionality, like adding while iterating</small>
+                </section>
+
+                <section>
+                    <h2>Collections Utilities</h2>
+                    <p>The
+                        <u>java.util.Collections</u> class provides useful functionalities for working with list collections,
+                        such as:</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>copy</u> all elements from a list into another list</li>
+                        <li class="fragment">
+                            <u>reverse</u> the order of the elements in the list</li>
+                        <li class="fragment">
+                            <u>shuffle</u> the list elements</li>
+                        <li class="fragment">
+                            <u>sort</u> the list</li>
+                    </ul>
+                </section>
+
+                <section id="queue">
+                    <h2>Queue interface</h2>
+                    <p>Produces elements in an order determined by a queuing discipline, usually FIFO. Especially important
+                        in
+                        <u>concurrent programming</u>, because they safely transfer objects from one thread to another.</p>
+                    <ul>
+                        <img class="logo float-right" src="images/1/java/queue.png">
+                        <li class="fragment">
+                            <u>offer()</u> to insert objects</li>
+                        <li class="fragment">
+                            <u>peek()</u> to get the head of the queue without removing it</li>
+                        <li class="fragment">
+                            <u>poll()</u> to retrieve and remove the head of the queue</li>
+                    </ul>
+                    <p class="fragment">Implementations:
+                        <small>
+                            <ul>
+                                <li class="fragment">
+                                    <u>LinkedList</u> has methods to support queue behaviour and implements the Queue interface</li>
+                                <li class="fragment">
+                                    <u>PriorityQueue</u> objects are sorted into the queue, maintaining their natural order</li>
+                            </ul>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise } </h2>
+                        <h3>TODO List using a Priority Queue</h3>
+                    </div>
+                </section>
+
+                <section id="set">
+                    <h2>Set interface</h2>
+                    <img style="margin-left: 20px;" class="logo float-right" src="images/1/java/set.jpg">
+                    <p>A Set can not have duplicate elements, it holds only one element of each value</p>
+                    <ul>
+                        <li class="fragment">elements added to a Set must at least define
+                            <u>equals()</u> to establish object uniqueness.</li>
+                        <li class="fragment">does not guarantee that it will maintain its elements in any particular order. </li>
+                    </ul>
+                    <p class="fragment">Implementations:
+                        <small>
+                            <ul>
+                                <li class="fragment">
+                                    <u>HashSet</u> uses hashing for speed and is optimized for rapid lookup. Elements must also
+                                    define
+                                    <u>hashCode()</u>
+                                </li>
+                                <li class="fragment">
+                                    <u>TreeSet</u> keeps elements in a sorted order. Elements must also implement the
+                                    <u>Comparable</u> interface </li>
+                                <li class="fragment">
+                                    <u>LinkedHashSet</u> uses hashing for lookup speed, but maintain elements in insertion order
+                                    using a linked list. Elements must also define
+                                    <u>hashCode()</u>
+                                </li>
+                            </ul>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        Count number of individual words
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>
+                            <u>UniqueWord</u> class - Stores the unique words in a string, implements
+                            <u>Iterable</u>
+                        </h3>
+                    </div>
+
+                </section>
+
+                <section id="hash">
+                    <h2>hash</h2>
+                    <p>
+                        <img style="max-height:150px; margin-left: 50px;" class="float-right" src="images/1/java/hash.png"> A hash function is any function that can be used to map data of arbitrary size to data of fixed
+                        size.
+                    </p>
+                    <p class="fragment" style="margin-top: 120px;">
+                        <img style="max-height:200px; margin-right: 30px;" class="float-left" src="images/1/java/hash-table.png"> A hash table is a data structure used in computer software for rapid data lookup.</p>
+                    <p class="fragment">The hash table on the left utilizes a function that maps names to integers from 0 to 15.</p>
+                    <small class="fragment">There is a collision between  "John Smith" and "Sandra Dee".</small>
+                    <aside class="notes">
+                        echo "some text" | md5
+                    </aside>
+                </section>
+
+                <section id="map">
+                    <h2>Map interface</h2>
+                    <img class="logo-big float-right" src="images/1/java/map.jpg">
+                    <p>Look up an object using another object as key</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>put()</u> to insert key/object pairs </li>
+                        <li class="fragment">
+                            <u>get()</u> to get the value for a specific key </li>
+                        <li class="fragment">
+                            <u>keySet()</u> to get a Set view of all the keys in the map </li>
+                    </ul>
+                    <p class="fragment">Implementations:
+                        <ul>
+                            <li class="fragment"><u>HashMap</u> provides near constant-time performance for inserting and locating pairs</li>
+                            <li class="fragment"><u>LinkedHashMap</u> you get the pairs in insertion order when iterating</li>
+                            <li class="fragment"><u>TreeMap</u> view the keys or the pairs in a sorted order determined by the Comparable interface</li>
+                        </ul>
+                    </p>
+                    <aside class="notes">
+                        HashMap O(1) performance is dependent on good hash distribution and other factors such as load factor (check javadoc for details)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Hash Map</h2>
+                    <p>
+                        <ul>
+                            <img class="logo-big float-right" src="images/1/java/buckets.jpg">
+                            <li class="fragment">key/value pairs are stored in different
+                                <u>buckets</u>
+                            </li>
+                            <li class="fragment">
+                                <u>hashCode()</u> of the key identifies the bucket</li>
+                            <li class="fragment">
+                                <u>equals()</u> of the value identifies the element inside the bucket</li>
+                        </ul>
+                    </p>
+                    <p class="fragment">hashcode – equals contract</p>
+                    <ul>
+                        <li class="fragment">Objects that are equal according to the equals method must return the same hashCode value</li>
+                        <li class="fragment">If two objects are not equal according to equals, they are not required to return different hashCode
+                            values
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>hashCode() and equals()</h2>
+                    <p class="fragment">The hash code
+                        <u>can not depend on mutable data</u>, as we risk having an object that produces different hash codes
+                        when it is put and get, making it impossible to retrieve from the map.</p>
+                    <p class="fragment">Default Object implementation uses the object address, which depending on the objects used as keys,
+                        <u>might not work</u>.</p>
+                    <p class="fragment">For a hash code to be effective, it must be fast and it must be generated
+                        <u>based on the contents of the object</u>.</p>
+                    <p class="fragment">Between hashCode() and equals(), the identity of the object must be
+                        <u>completely resolved</u>.</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Class capable of producing a histogram of words in a string, implements
+                            <u>Iterable</u>
+                        </h3>
+                        <p>Perform 2 solutions, one using
+                            <u>Inheritance</u>, the other using
+                            <u>Composition</u>
+                        </p>
+                    </div>
+                    <p class="fragment">[GFX NOT REQUIRED]</p>
+                    <aside class="notes">
+                        <p>String hashCode() implementation:</p>
+                        <p>The value 31 was chosen because it is an odd prime. If it were even and the multiplication overflowed,
+                            information would be lost, as multiplication by 2 is equivalent to shifting. The advantage of
+                            using a prime is less clear, but it is traditional. A nice property of 31 is that the multiplication
+                            can be replaced by a shift and a subtraction for better performance: 31 * i == (i &lt;&lt; 5)
+                            - i. Modern VMs do this sort of optimization automatically.</p>
+                    </aside>
+                </section>
+
+            </section>
+
+            <section id="nested">
+
+                <section>
+                    <h1>Nested Classes</h1>
+                </section>
+
+                <section>
+                    <h2>Nested Classes</h2>
+                    <img src="images/1/java/java_nestedclasses_overview.png" />
+                    <p class="fragment">
+                        <b>Nested classes</b> are members of its enclosing class.</p>
+                    <p class="fragment">There are
+                        <b>static</b> and
+                        <b>non-static</b> Nested Classes.</p>
+                    <p class="fragment">Non-static nested classes are called
+                        <b>Inner Classes</b>.</p>
+                </section>
+
+                <section id="when-nested-classes">
+                    <div style="overflow:auto;">
+                        <img src="images/1/java/java_nestedclasses_russian_dolls.jpg" class="logo float-right" />
+                        <h2>When to use nested classes?</h2>
+                    </div>
+                    <p class="fragment">You can easily identify a
+                        <b>primary class</b>
+                        <br>and others as
+                        <b>supporting classes</b>.
+                    </p>
+                    <p class="fragment">
+                        Supporting classes are
+                        <b>meaningful</b> but make
+                        <b>no sense on their own</b>. This results in some class
+                        <b>coupling</b>.
+                    </p>
+                    <p class="fragment">Increase
+                        <b>encapsulation</b> as more members of the outer class
+                        <br>can be declared private.</p>
+                    <p class="fragment">Promote more
+                        <b>readable</b> and
+                        <b>maintainable</b> code, avoiding namespace pollution and reducing the number of source files.</p>
+
+                </section>
+
+                <section id="static-nested-classes-usage">
+                    <h2>Static Nested Classes</h2>
+                    <div class="fragment">
+                        <img src="images/1/java/java_nestedclasses_static_nested_class_trimmed.png" class="logo float-right" />
+                        <p>A
+                            <b>static nested class</b> is behaviourally a
+                            <u>top-level class</u> that has been nested in another top-level class for
+                            <u>packaging convenience</u>.</p>
+                    </div>
+                    <p class="fragment">Like static class methods, a static nested class cannot directly access instance variables or methods
+                        defined in its enclosing class.</p>
+                    <div class="fragment">
+                        <p>From the outside, static nested classes are accessed using the enclosing class name:</p>
+                        <pre><code class="java" data-trim contenteditable>
+/**
+ * Create a static nested class type object
+ */
+OuterClass.StaticNestedClass nestedObject = new OuterClass.StaticNestedClass();
+                        </code></pre>
+                    </div>
+
+                </section>
+
+                <section>
+
+                    <h2>Inner Class Subtypes</h2>
+                    <div class="fragment">
+                        <p>
+                            There are 3 types of inner classes:
+                        </p>
+                        <ol>
+                            <li class="fragment">
+                                <b>Inner Classes</b> are members of its enclosing class;</li>
+                            <li class="fragment">
+                                <b>Local Classes</b> are declared within the body of a method;</li>
+                            <li class="fragment">
+                                <b>Anonymous Classes</b> are declared and instantiated at the same time within the body of a
+                                method.
+                            </li>
+                        </ol>
+
+                        <div class="fragment">
+                            <figure>
+                                <figure style="width:32%">
+                                    <img data-src="images/1/java/java_nestedclasses_inner_class.png">
+                                </figure>
+
+                                <figure style="width:32%">
+                                    <img data-src="images/1/java/java_nestedclasses_local_class.png">
+                                </figure>
+                                <figure style="width:32%">
+                                    <img data-src="images/1/java/java_nestedclasses_anonymous_class.png">
+                                </figure>
+                            </figure>
+                        </div>
+
+
+                    </div>
+                </section>
+
+                <section>
+                <h2>Inner Classes</h2>
+
+                <div class="fragment">
+                    <img src="images/1/java/java_nestedclasses_inner_class_trimmed.png" class="logo float-right" />
+                        <p>An instance of an inner class can only exist within an instance of its outer class and has
+                            <u>direct access to the methods and fields</u> of its enclosing instance.</p>
+                </div>
+                <p class="fragment">Inner classes cannot declare any static members.</p>
+                    <p class="fragment">Inner classes have access to the members of its enclosing class,
+                        <u>even private ones.</u>
+                    </p>
+                <div class="fragment">
+                    <p>You can only instantiate an inner class object using an instance of the enclosing class:</p>
+                    <pre><code class="java" data-trim contenteditable>
+    /**
+    * Create an InnerClass type object
+    */
+
+    OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+                    </code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>Inner Class Example</h2>
+                <div class="fragment">
+                    <pre><code class="java" data-trim contenteditable>
+public class Outer {
+
+    private int x = 0;
+
+    public void outerMethod() {
+
+        Inner inner = new Inner();
+            inner.innerMethod();
+    }
+
+    private class Inner {
+
+        private void innerMethod() {
+
+            // access to private outer instance property is allowed
+            System.out.println(x);
+        }
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section id="local-classes">
+                <h2>Local Classes</h2>
+
+                <div class="fragment">
+                    <img src="images/1/java/java_nestedclasses_local_class_trimmed.png" class="logo float-right" />
+                    <p>
+                            Classes defined inside any block (typically within the
+                            <i>body of a method</i>, a
+                            <i>for loop</i>, or an
+                            <i>if</i> clause).
+                    </p>
+                </div>
+
+                <p class="fragment">
+                        Have access to the members of their enclosing class, even
+                        <u>private</u> ones.
+                </p>
+
+                <p class="fragment">
+                        In addition, a local class has access to
+                        <u>local final</u> variables.
+                </p>
+
+
+            </section>
+
+            <section>
+                <h2>Local Class Example</h2>
+                <div class="fragment">
+                    <pre style="font-size: 0.9rem;"><code class="java" data-trim contenteditable>
+class OuterClass {
+
+    public Iterator method() {
+
+        boolean variable = true;
+        final int finalVariable = 1;
+
+        class LocalClass implements Iterator {
+
+            public int next() {
+                return finalVariable;  // OK
+            }
+
+            public boolean hasNext() {
+                return variable;  // COMPILE ERROR
+            }
+        }
+
+        return new LocalClass();
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section id="anonymous-classes">
+                <h2>Anonymous Classes</h2>
+
+                <div class="fragment" style="overflow:auto">
+                    <img src="images/1/java/java_nestedclasses_anonymous_class_trimmed.png" class="logo float-right" />
+                    <p>
+                        Like local classes in most respects.
+                    </p>
+                </div>
+                <p class="fragment">
+                        Unlike local classes they are
+                        <b>not named</b>, and are
+                        <b>declared</b> and
+                        <b>instantiated</b> at the same time (only instantiated once).
+                </p>
+                <p class="fragment">
+                    Require an interface to implement or a class to extend.
+                </p>
+
+
+            </section>
+
+            <section>
+                <h2>Anonymous Class Example</h2>
+                <div class="fragment">
+                    <pre><code class="java" data-trim contenteditable>
+class OuterClass implements Iterable&lt;Integer&gt; {
+
+    public Iterator&lt;Integer&gt; iterator() {
+
+        return new Iterator() {
+
+            @Override
+            public boolean hasNext() {
+              return true;
+            }
+
+            @Override
+            public Integer next() {
+              return 1;
+            }
+        };
+    }
+}
+                    </code></pre>
+                </div>
+
+            </section>
+
+                            <section>
+                <div class="exercise">
+                    <h2>{ Exercise }</h2>
+                    <h3>Bi-directional integer Range class</h3>
+                    <ul class="">
+                        <li>A Range (outer) class that implements Iterable</li>
+                        <li>A Bidirectional Iterator anonymous class</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            </section>
+
+            <section class="stacked present" id="io">
+
+                <section>
+                    <h1>Java I/O</h1>
+                    <h2>Basic Input/Output Mechanisms</h2>
+                </section>
+
+                <section>
+                    <h2>I/O Streams</h2>
+                    <img src="images/1/java/java_io_stream.gif" alt="">
+                    <ul>
+                        <li class="fragment">A stream is a sequence of data</li>
+                        <li class="fragment">Streams support many different kinds of data</li>
+                        <li class="fragment">Some streams simply pass on data while others manipulate and transform it in useful ways</li>
+                        <li class="fragment">A program uses an input stream to read data from a source, one item at a time</li>
+                        <li class="fragment">A program uses an output stream to write data to a destination, one item at a time</li>
+                    </ul>
+                    <p>
+
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>An I/O Stream represents an input source or an output destination. </li>
+                            <li>Programming language I/O libraries often use the abstraction of a stream, which represents any
+                                data source or sink as an object capable of producing or receiving pieces of data.</li>
+                            <li>Streams support many different kinds of data, including simple bytes, primitive data types, localized
+                                characters, and objects.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Java I/O Streams</h2>
+                    <img src="images/1/java/java_io.gif" alt="">
+
+                    <ol class="fragment">
+                        There are two types of streams in Java:
+                        <li class="fragment">Byte streams used for handling byte input/output;</li>
+                        <li class="fragment">Character streams used for handling character input/output.</li>
+                    </ol>
+                    <aside class="notes">
+                        <ul>
+                            <li>Byte streams for binary data</li>
+                            <li>Character streams for textual data</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Java Byte Streams</h2>
+                    <img src="images/1/java/java_io_byte_streams.png" alt="">
+                    <p class="fragment">
+                        Byte streams perform input and output of 8-bit bytes.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Reading bytes from a file</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+// open an input stream with a file path as the source
+FileInputStream inputStream = new FileInputStream("file_path");
+
+// read one byte from the file
+int b = inputStream.read();
+
+// test for end of file
+if (b == -1) {
+    // no more reading from this file...
+}
+
+// read multiple bytes from the file
+byte[] buffer = new byte[1024];
+int num = inputStream.read(buffer);
+
+// print the number of bytes read
+if (num != -1) {
+    System.out.println("I have read this many bytes: " + num);
+}
+
+// don't forget to close the input stream
+inputStream.close();
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>reader.read() method is blocking, compare to javascript callback approach;</li>
+                            <li>Simple cast of integer to char will work only for plain ASCII files, remember issue with accents
+                                on file read exercise</li>
+                            <li>Closing the stream allows the operating system to free any resources associated with the stream;</li>
+                        </ul>
+                    </aside>
+                </section>
+
+
+                <section>
+                    <h2>Writing bytes to a File</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+// open an output stream with a file path as the destination
+FileOutputStream outputStream = new FileOutputStream("file_path");
+
+// write a single byte to file
+byte b = 0x37;
+outputStream.write(b);
+
+// write multiple bytes to file
+byte[] buffer = "Some string".getBytes();
+outputStream.write(buffer);
+
+// don't forget to close the output stream
+outputStream.close();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Create a class capable of copying the entire contents of a file</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Java Character Streams</h2>
+                    <img src="images/1/java/java_io_character_streams.png" alt="">
+                    <p class="fragment">
+                        Input and output performed with character stream classes are automatically translated to and from the specified character
+                        set.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Character Sets</h2>
+                    <p>A defined list of characters recognized by computer hardware and software where each character is represented
+                        by a number</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <u>US-ASCII</u> Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode
+                                character set </li>
+                            <li class="fragment">
+                                <u>ISO-8859-1</u> ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1</li>
+                            <li class="fragment">
+                                <u>UTF-8</u> Eight-bit UCS Transformation Format</li>
+                            <li class="fragment">
+                                <u>UTF-16BE</u> Sixteen-bit UCS Transformation Format, big-endian byte order</li>
+                            <li class="fragment">
+                                <u>UTF-16LE</u> Sixteen-bit UCS Transformation Format, little-endian byte order</li>
+                            <li class="fragment">
+                                <u>UTF-16</u> Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order
+                                mark
+                            </li>
+                        </ul>
+                    </small>
+
+                </section>
+
+                <section>
+                    <h2>Character Streams</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+// FileReader is meant for reading streams of characters
+FileReader fileReader = new FileReader(file);
+
+// buffer to store decoded characters
+char[] buffer = new char[1024];
+
+// attempt to read the first 1024 characters from the file
+// using the default character set to decode bytes into characters
+int num = fileReader.read(buffer);
+
+// print the number of characters read
+if (num != -1) {
+    System.out.println("I have read this many characters: " + num);
+}
+// construct a string from the buffer and print its content
+String resultingString = new String(buffer);
+
+// don't forget to close the input reader
+fileReader.close();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Buffered Reader</h2>
+                    <p>
+                        Reads text from a character-input stream in a buffered way, providing efficient reading of characters, arrays, and lines.
+                    </p>
+                    <ul>
+                        <li class="fragment">Pre-fetches characters into a buffer for performance;</li>
+                        <li class="fragment">Allows reading a file line by line instead of one character at a time.</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>Buffered Reader</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+private String readFileByLine(String file) throws IOException {
+
+    // create a new file reader
+    FileReader reader = new FileReader(file);
+
+    // wrap the file reader using a buffered reader
+    BufferedReader bReader = new BufferedReader(reader);
+
+    String line = "";
+    String result = "";
+
+    // using the buffered reader we can read lines
+    while((line = bReader.readLine()) != null) {
+        result += line + "\n";
+    }
+
+    bReader.close();
+
+    return result;
+}
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Most of the examples we've seen so far use unbuffered I/O. This means each read or write request
+                                is handled directly by the underlying OS. This can make a program much less efficient, since
+                                each such request often triggers disk access, network activity, or some other operation that
+                                is relatively expensive.</li>
+                            <li>To reduce this kind of overhead, the Java platform implements buffered I/O streams. Buffered
+                                input streams read data from a memory area known as a buffer; the native input API is called
+                                only when the buffer is empty.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+		        <section>
+                    <h2>Buffered Writer</h2>
+                    <p>
+                        Writes text from a character-input stream in a buffered way, providing efficient writing of characters, arrays, and lines.
+                    </p>
+                    <ul>
+                        <li class="fragment">Characters are first written in a buffer;</li>
+                        <li class="fragment">Buffer will then flush, writing a sequence instead of a character at a time;</li>
+		            </ul>
+                </section>
+
+                <section>
+                    <h2>Buffered Writer</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+private String writeFileByLine(String file, String text) throws IOException {
+
+    // create a new file writer
+    FileWriter writer = new FileWriter(file);
+
+    // wrap the file writer using a buffered writer
+    BufferedWriter bWriter = new BufferedWriter(writer);
+
+    //add text to buffer
+    bWriter.write(text);
+
+    bWriter.flush(); // if the buffer is not full, flush will force disk write
+    bWriter.close(); // auto-flush is done on close
+
+}
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Buffered writer will auto flush if closed or if buffer reach limit.</li>
+                            <li>Buffer reduces delay by writing everything in the buffer at once, instead of writing one by one.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Additional Classes</h2>
+                    <ul>
+                        <li class="fragment">Print Writer - converts data into formatted output</li>
+                        <li class="fragment">Data Streams - binary I/O of primitive data types</li>
+                        <li class="fragment">Object Streams - binary I/O of objects (serialization)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Read words from a text file</h3>
+                        <p>Create a WordReader class that implements iterable</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Line Numbers</h2>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+private String readFileByLine(String file) throws IOException {
+
+    // create a new reader
+    FileReader reader = new FileReader(file);
+
+    // wrap the file reader using a buffered reader to read one line at a time
+    BufferedReader bufferedReader = new BufferedReader(reader);
+
+    // wrap the buffered reader using a line number reader to get line numbers
+    LineNumberReader lineNumberReader = new LineNumberReader(bufferedReader);
+
+    String line = "";
+    String result = "";
+
+    // using the line number reader we can read lines and the line number
+    while((line = lineNumberReader.readLine()) != null) {
+        result += lineNumberReader.getLineNumber() + ": " + line + "\n";
+    }
+
+    bufferedReader.close();
+    return result;
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h2>Map Editor</h2>
+                    </div>
+                    <p>[GFX required]</p>
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 11,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? "css/print/pdf.css"
+                : "css/print/paper.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="header">
+            <img id="logo" src="logo.png" />
+        </div>
+
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Introduction to Object Oriented Programming</h1>
+                    <p>
+                        <small
+                            >Created by
+                            <a>&lt;Academia de Código_&gt;</a></small
+                        >
+                    </p>
+                </section>
+
+                <section>
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/oop-logo.png"
+                            alt=""
+                        />
+                        <h2>Object Oriented Programming</h2>
+                        <h3>Why?</h3>
+                        <ul>
+                            <li class="fragment">
+                                Handle size and complexity of software
+                            </li>
+                            <li class="fragment">
+                                Produce reusable and maintainable software
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>What OOP? - programming paradigm</li>
+                                <li>What is a programming paradigm?</li>
+                                <li>
+                                    Why do we need it? What was it created for?
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/dod.png"
+                            alt=""
+                        />
+                        <h2>Case Study</h2>
+                        <p class="fragment">
+                            In the early 1970s, the US DoD commissioned a task
+                            force
+                        </p>
+                        <p class="fragment">
+                            Their mission was to investigate why the IT budget
+                            always went out of control without much to show
+                            for...
+                        </p>
+                        <small
+                            ><ul>
+                                <li class="fragment">
+                                    80% of the budget went to the software,
+                                    while the remaining 20% was spent on
+                                    hardware
+                                </li>
+                                <li class="fragment">
+                                    More than 80% of the software budget went to
+                                    maintenance, only the remaining 20% was used
+                                    on new software development
+                                </li>
+                                <li class="fragment">
+                                    Hardware components could be shared and
+                                    reused on other products
+                                </li>
+                                <li class="fragment">
+                                    Software was often non-sharable and non
+                                    reusable
+                                </li>
+                                <li class="fragment">
+                                    Most often, the integrity of hardware did
+                                    not affect other products, faults were
+                                    isolated
+                                </li>
+                                <li class="fragment">
+                                    Software faults could affect other running
+                                    programs
+                                </li>
+                            </ul></small
+                        >
+                        <p class="fragment">
+                            The task force proposed to
+                            <u>make software behave like hardware</u>
+                        </p>
+                        <aside class="notes">
+                            <strong
+                                >next: So How did DOD solved this
+                                problem?</strong
+                            >
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/ada.png"
+                            alt=""
+                        />
+                        <h2>Object Oriented Programming</h2>
+                        <h3>How?</h3>
+                        <p class="fragment">
+                            DoD replaced over
+                            <u>450 computer languages</u> which were used to
+                            build DoD systems with an object-oriented language
+                            called <u>Ada</u>
+                        </p>
+                        <aside class="notes">
+                            http://www.adahome.com/articles/1998-01/ar_intro.html<br />
+                            <strong>next: So what is an object?</strong>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Objects</h2>
+                        <p class="fragment">
+                            Software entities that encapsulate state and
+                            behaviour
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                <u>State</u> is what the object knows about
+                                itself (attributes)
+                            </li>
+                            <li class="fragment">
+                                <u>Behaviour</u> is what the object can do
+                                (methods)
+                            </li>
+                        </ul>
+                        <img
+                            class="fragment"
+                            style="max-height: 300px;"
+                            src="images/1/java/objects.png"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <strong
+                                >next: And what does an OOP program look
+                                like?</strong
+                            >
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>OOP Program</h2>
+                        <p class="fragment">
+                            An object oriented program consists of
+                            <u>many objects</u> interacting with each other by
+                            <u>sending messages</u>
+                        </p>
+                        <img
+                            class="fragment medium"
+                            src="images/1/java/oop-program.png"
+                            alt=""
+                        />
+                        <p>
+                            <small class="fragment"
+                                >In Java,
+                                <u
+                                    >invoking a method on another object is
+                                    equivalent to passing it a message</u
+                                ></small
+                            >
+                        </p>
+                        <aside class="notes">
+                            <strong
+                                >next: we can approach OOP in different ways, in
+                                java we use what is called classical (or class
+                                based) OOP</strong
+                            >
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>A calculator object</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_calculator.png"
+                            alt=""
+                        />
+                        <h3 class="fragment">What is a calculator?</h3>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Imagine you just met someone who never saw a
+                                    calculator. How would you explain it?
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>How we define an Object</h2>
+                        <ul>
+                            <li class="fragment">
+                                What it looks like (e.g. shape, size, color,
+                                elements, etc.);
+                            </li>
+                            <li class="fragment">
+                                What it does (e.g. adds, subtracts, multiplies,
+                                etc.).
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Despite all the possible explanations that
+                                    you could give, they would probably fall
+                                    into two broad categories.
+                                </li>
+                                <li>
+                                    What are the characteristics of a
+                                    calculator: it’s shape, size or material, it
+                                    has buttons, it has a brand, etc
+                                </li>
+                                <li>
+                                    And what it can do: add, subtract, multiply
+                                    or divide numbers, percentages, etc.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>An Object in Java</h2>
+                        <p class="fragment">
+                            An object in Java is a container of
+                            <u>properties</u> and related <u>behaviours</u> that
+                            operate on those properties.
+                        </p>
+                        <div class="fragment">
+                            <img
+                                src="images/1/java/java_oop_object.gif"
+                                alt=""
+                            />
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    If you think about it, this is how we
+                                    describe or think about almost every object
+                                    we know.
+                                </li>
+                                <li>
+                                    To define an object we usually describe it’s
+                                    properties: what it looks like, the several
+                                    parts its has, etc;
+                                </li>
+                                <li>
+                                    And it’s behaviours: what the object is able
+                                    to do or what we can do with it.
+                                </li>
+                                <li>
+                                    An object in Java is just a container of
+                                    properties and related functionality.
+                                </li>
+                                <li>
+                                    But how do we create objects in Java? How do
+                                    we know which properties or behaviours the
+                                    object will have?
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>How do we create objects?</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_objectcreation.png"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            We need a set of <u>specifications</u>!
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Well just like in real life, objects are
+                                    created accordingly to a set of
+                                    specifications.
+                                </li>
+                                <li>
+                                    If we take the calculator as an example, it
+                                    is probably manufactured in a factory right?
+                                </li>
+                                <li>
+                                    But how does the factory know what it should
+                                    do to build a calculator?
+                                </li>
+                                <li>
+                                    Well, the factory must have a set of designs
+                                    and specifications that will guide them
+                                    through the process, something like a
+                                    template or a blueprint.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="classandinstances">
+                        <h2>Classes and Instances</h2>
+                        <p class="fragment">
+                            In Java, that set of specifications is called a
+                            <u>Class</u> and each object is an
+                            <u>Instance</u> of that Class.
+                        </p>
+                        <div class="fragment">
+                            <figure>
+                                <img data-src="images/1/java/blueprint.jpg" />
+                                <div class="caption">Class</div>
+                            </figure>
+                            <figure>
+                                <figure>
+                                    <img
+                                        data-src="images/1/java/tesla_instance.jpg"
+                                    />
+                                    <div class="caption">Instance</div>
+                                    <img
+                                        data-src="images/1/java/tesla_instance2.jpg"
+                                    />
+                                    <div class="caption">Instance</div>
+                                </figure>
+                                <figure>
+                                    <img
+                                        data-src="images/1/java/tesla_instance3.jpg"
+                                    />
+                                    <div class="caption">Instance</div>
+                                    <img
+                                        data-src="images/1/java/tesla_instance.jpg"
+                                    />
+                                    <div class="caption">Instance</div>
+                                </figure>
+                            </figure>
+                        </div>
+                        <p class="fragment">
+                            <b
+                                >each class is a new <u>data type</u> in the
+                                program</b
+                            >
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    This design and specifications document it
+                                    is what we call a class in Java.
+                                </li>
+                                <li>
+                                    So classes are the templates or blueprints
+                                    from where objects are created.
+                                </li>
+                                <li>
+                                    With a single class we can create how many
+                                    objects we need. Each object is also called
+                                    an instance of the class.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>A calculator Class and Instances</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_class.png"
+                            alt=""
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Calculator Class</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_calculator_class.png"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    As you imagine if we want to create a
+                                    calculator object for a game or application,
+                                    we won’t need the same set of specifications
+                                    as a real factory needs.
+                                </li>
+                                <li>
+                                    We create an abstract representation of a
+                                    calculator, adapted to our needs.
+                                </li>
+                                <li>
+                                    For example, we can create our own
+                                    representation of a calculator by defining
+                                    its color and brand, and providing only the
+                                    add and subtract functionality.
+                                </li>
+                                <li>
+                                    If no more is needed we don’t declare it
+                                </li>
+                                <li>
+                                    A class is your representation of an object
+                                    and it should be declared according to your
+                                    needs.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Calculator Class</h3>
+                            <pre><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+// Create a new class
+public class Calculator {
+
+    // properties or instance variables
+    public String brand;
+    public String color;
+
+}
+                    </code></pre>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Technically speaking, objects store their
+                                    individual states in "non-static fields",
+                                    that is, fields declared without the static
+                                    keyword.
+                                </li>
+                                <li>
+                                    Non-static fields are also known as instance
+                                    variables because their values are unique to
+                                    each instance of a class (to each object, in
+                                    other words);
+                                </li>
+                                <li>
+                                    the currentSpeed of one bicycle is
+                                    independent from the currentSpeed of
+                                    another.
+                                </li>
+                                <li>
+                                    Right now all we have in this example is a
+                                    class that defines how to build a new
+                                    calculator.
+                                </li>
+                                <li>
+                                    When we create a new class all we have is a
+                                    set of specifications.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Create Calculator Instances</h3>
+                            <pre><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // create a Calculator instance
+    Calculator calculator = new Calculator();
+
+    // assign values to the instance variables
+    calculator.brand = "Casio";
+    calculator.color = "Grey";
+
+    // a new Calculator instance with different values assigned
+    Calculator calculator1 = new Calculator();
+    calculator1.brand = "Texas Instruments";
+    calculator1.color = "Black";
+
+    // output the result
+    System.out.println("Calculator is a " + calculator.brand + " of color " + calculator.color);
+    System.out.println("Calculator is a " + calculator1.brand + " of color " + calculator1.color);
+
+}
+                    </code></pre>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>Main is the application entry point.</li>
+                                <li>
+                                    So let’s go to our main file and create a
+                                    calculator using the template.
+                                </li>
+                                <li>
+                                    Notice that you access object properties
+                                    just like in js.
+                                </li>
+                                <li>
+                                    Right now we have a calculator in our game:
+                                    a Black Texas Calculator.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Classes and Objects</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_calculator_instance.png"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Right now we have a calculator but its kind
+                                    of boring because it cannot do anything!
+                                </li>
+                                <li>Lets add some action to it!</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section>
+                        <h2>Methods</h2>
+                        <p class="fragment">
+                            A method is a function defined in a class. It
+                            consists of a group of statements that perform a
+                            specific task
+                        </p>
+                        <p class="fragment">
+                            In OOP, methods are the way to provide functionality
+                            to our objects
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Imagine we want the calculator to perform
+                                    some operations. We need for example a
+                                    method to add numbers.
+                                </li>
+                                <li>
+                                    First we need to declare the method inside
+                                    the calculator class and provide the
+                                    necessary behaviour. Let’s see how it works.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Declaring a method</h3>
+                            <pre><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    public String brand;
+    public String color;
+
+    // declare the method add
+    public void add() {
+
+        int number1 = 1;
+        int number2 = 2;
+
+        // print the result
+        System.out.println(number1 + number2);
+    }
+}
+                    </code></pre>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    The Method Name allow us to identify and
+                                    call the method.
+                                </li>
+                                <li>
+                                    It follows the same naming conventions of
+                                    the variables however in this case we should
+                                    always try to begin with a verb.
+                                </li>
+                                <li>
+                                    And the method body is where the actual
+                                    behaviour happens.
+                                </li>
+                                <li>
+                                    In this case it declares two numbers, adds
+                                    them and prints the result.
+                                </li>
+                                <li>
+                                    Variables declared within a method are
+                                    called local variables.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Calling a method</h3>
+                            <pre><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // create a Calculator
+    Calculator calculator = new Calculator();
+
+    // assign values to the properties
+    calculator.brand = "Casio";
+    calculator.color = "Grey";
+
+    // call the method
+    calculator.add();
+
+    // prints ALWAYS 3
+}
+                    </code></pre>
+                            <p class="fragment">
+                                Why should I want a method that only adds 1 and
+                                2?
+                            </p>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Now that we’ve defined the method on the
+                                    class, all calculator instances
+                                    automatically have that behaviour.
+                                </li>
+                                <li>
+                                    In the main file, let’s call the method add
+                                    of the calculator object.
+                                </li>
+                                <li>
+                                    To call methods we use the object name,
+                                    followed by a dot and then the method name
+                                    followed by parentheses.
+                                </li>
+                                <li>
+                                    The method adds the two numbers, in this
+                                    case 1 and 2, and prints the result.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Adding parameters to a method</h3>
+                            <pre><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+public class Calculator {
+
+    public String brand;
+    public String color;
+
+    // declare the method add with two parameters
+    // method signature: name + parameters
+    public void add(int number1, int number2) {
+
+        // this makes no sense
+        // int number1 = 1;
+        // int number2 = 2;
+
+        // print the result
+        System.out.println(number1 + number2);
+    }
+}
+                    </code></pre>
+                            <p class="fragment">
+                                We must always conform to the method signature!
+                            </p>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    What we need is a way to tell the method
+                                    which numbers we want to add.
+                                </li>
+                                <li>We can do this using parameters.</li>
+                                <li>
+                                    The Parameters allows us to pass variables
+                                    to the methods body when calling it.
+                                </li>
+                                <li>
+                                    A parameter is a variable, so we need to
+                                    declare it in the same way: with the data
+                                    type and the name;
+                                </li>
+                                <li>
+                                    We can have as many parameters as we want,
+                                    just need to separate them with a comma.
+                                </li>
+                                <li>
+                                    In this case the method is now accepting the
+                                    two numbers it will add.
+                                </li>
+                                <li>
+                                    So we no longer need to declare the number
+                                    variables inside the methods body.
+                                </li>
+                                <li>
+                                    Instead, the numbers being added are the
+                                    ones passed in the parameters.
+                                </li>
+                                <li>
+                                    The method name plus the parameters is
+                                    called the method signature.
+                                </li>
+                                <li>
+                                    Meaning, we can only pass parameters when
+                                    they are defined and in such case we are
+                                    obliged to do so.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Calling a method with parameters</h3>
+                            <pre><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // create a Calculator
+    Calculator calculator = new Calculator();
+
+    // assign values to the properties
+    calculator.brand = "Casio";
+    calculator.color = "Grey";
+
+    // call the method add with parameters
+    calculator.add(3, 4);
+
+    // prints the result according to the parameters, in this case 7
+}
+                    </code></pre>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Now when we call the method we need to pass
+                                    the necessary parameters.
+                                </li>
+                                <li>
+                                    The method adds the two numbers and prints
+                                    the result.
+                                </li>
+                                <li>
+                                    Instead of passing directly a value we could
+                                    also pass a variable as long as the data
+                                    type matched the one defined in the
+                                    parameters.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What about the void?</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    public String brand;
+    public String color;
+
+    public void add(int number1, int number2) {
+
+        System.out.println(number1 + number2);
+
+    }
+}
+                    </code></pre>
+                        <p class="fragment">
+                            The keyword void tells the compiler the method<br />will
+                            not return anything to its caller.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    In this case we want the method to return
+                                    the result of the operation. So, first we
+                                    need to change the return type to int.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Return type</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    public String brand;
+    public String color;
+
+    // this method returns an int
+    public int add(int number1, int number2) {
+
+        return number1 + number2;
+
+    }
+}
+                    </code></pre>
+                        <p class="fragment">
+                            The return type defines the data type the method
+                            returns when called.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Using the return value</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    Calculator calculator = new Calculator();
+
+    calculator.brand = "Casio";
+    calculator.color = "Grey";
+
+    // get the return value
+    int result = calculator.add(3, 4);
+
+    result = calculator.add(result, 5);
+
+    System.out.println(result);
+}
+                    </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    We get the return value into a new variable
+                                    and print it on the console.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Method Overloading</h2>
+                        <p class="fragment">
+                            Feature that allows a class to have two or more
+                            methods with the same name if their argument lists
+                            are different
+                        </p>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+public class Calculator {
+
+    // Method for performing the sum operation with 2 integers
+    public int add(int number1, int number2) {
+        // ...
+    }
+
+    // Method for performing the sum operation with 2 floats
+    public float add(float number1, float number2) {
+        // ...
+    }
+
+}
+                    </code></pre>
+                        <small class="fragment"
+                            >The method name, number of arguments and their
+                            types constitute the method signature.</small
+                        >
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section>
+                        <h2>Constructors</h2>
+                        <p class="fragment">
+                            A constructor is a method called whenever we create
+                            a new object
+                        </p>
+                        <p class="fragment ">
+                            It is responsible for initializing the object
+                        </p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    In java constructors are instance methods
+                                    with the same name as their class.
+                                </li>
+                                <li>
+                                    In java we create objects using the new
+                                    operator.
+                                </li>
+                                <li>
+                                    After it creates our instance it will call
+                                    its constructor
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Default Constructor</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    Calculator calculator = new Calculator(); // using the default constructor
+
+    calculator.brand = "Casio";
+    calculator.color = "Grey";
+
+    int result = calculator.add(3, 4);
+
+    System.out.println(result);
+}
+                </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Objects come with a default (empty, no
+                                    arguments) constructor. In fact we’ve
+                                    already used it before.
+                                </li>
+                                <li>
+                                    When we created the Calculator object we
+                                    called a new Calculator(). Calling a
+                                    constructor is one of the steps in object
+                                    creation.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Declaring a new Constructor</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    public String brand;
+    public String color;
+
+    // declaring a new constructor
+    public Calculator(String brand, String color) {
+        this.brand = brand;
+        this.color = color;
+    }
+
+    // this method returns an int
+    public int add(int number1, int number2) {
+        return number1 + number2;
+    }
+}
+                    </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    But we can also declare a new constructor
+                                    that will accept arguments necessary to the
+                                    object initialization process.
+                                </li>
+                                <li>
+                                    Once you declare a constructor explicitly
+                                    the java compiler will no longer add the
+                                    default one for you.
+                                </li>
+                                <li>
+                                    Inside the constructor body we assign the
+                                    values passed in the parameters to the
+                                    corresponding variables.
+                                </li>
+                                <li>
+                                    THIS keyword in java that refers to the
+                                    instance on which the method was called.
+                                </li>
+                                <li>
+                                    The THIS keyword states that the variable we
+                                    are talking about is the instance variable
+                                    and not the parameter.
+                                </li>
+                                <li>
+                                    Here we are assigning the parameter brand
+                                    value to the instance variable brand.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Using the new Constructor</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // using the new constructor
+    Calculator calculator = new Calculator("Casio", "Grey");
+
+    // calculator.brand = "Casio";
+    // calculator.color = "Grey";
+
+    int result = calculator.add(3, 4);
+
+    System.out.println(result);
+}
+                    </code></pre>
+                        <p class="fragment">
+                            If a constructor is explicitly defined, the
+                            no-argument default constructor is not generated
+                            anymore.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Now we can go back to the example and create
+                                    a new calculator with the brand and color.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section id="encapsulation">
+                        <h2>Encapsulation</h2>
+                        <p>
+                            Encapsulation refers to hiding data and
+                            implementation from the outside and providing
+                            methods to its access and use.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Why Encapsulation?</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_encapsulation2.png"
+                            alt=""
+                        />
+                        <ul class="fragment">
+                            <li class="fragment">
+                                Provides an interface for the object behaviour;
+                            </li>
+                            <li class="fragment">
+                                Improves maintainability, flexibility and
+                                reusability;
+                            </li>
+                            <li class="fragment">
+                                Allows to implement read-only/write-only access.
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    We can add or remove the getter or setter to
+                                    control the access control to the members;
+                                </li>
+                                <li>
+                                    We can perform validations on the data being
+                                    inserted or choose how to return the data;
+                                </li>
+                                <li>
+                                    The user does not know how the data is
+                                    stored; if we change the inner
+                                    implementation, there is no need to change
+                                    the code calling the getter.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Getters and Setters</h2>
+                        <img
+                            class="fragment"
+                            src="images/1/java/java_oop_encapsulation.png"
+                            alt=""
+                        />
+                        <ul class="fragment">
+                            <li class="fragment">
+                                Getter: returns the instance variable;
+                            </li>
+                            <li class="fragment">
+                                Setter: sets the new value to the instance
+                                variable.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Hiding the data</h2>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.85rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    // hiding the data from the "outside"
+    private String brand;
+    private String color;
+
+    public Calculator(String brand, String color) {
+        this.brand = brand;
+        this.color = color;
+    }
+
+    // GETTER
+    public String getBrand() {
+        return this.brand;
+    }
+
+    // SETTER
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+}
+                    </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    To hide the data we need to make it private.
+                                    Making a variable being private means it is
+                                    only accessible from the inside of the
+                                    class.
+                                </li>
+                                <li>
+                                    If we try to access a private variable from
+                                    the outside it will throw an error because
+                                    the variable is no longer accessible.
+                                </li>
+                                <li>
+                                    We need to define methods to access the
+                                    variables. These are usually called GETTERS
+                                    and SETTERS.
+                                </li>
+                                <li>
+                                    A getter is a method that returns the value
+                                    of a class variable.
+                                </li>
+                                <li>
+                                    While a setter is a method that assigns a
+                                    new value to a class variable.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Accessing the data</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // using the new constructor
+    Calculator calculator = new Calculator("Casio", "Grey");
+
+    // using the SETTER
+    calculator.setBrand("Texas Instruments");
+
+    // using the GETTER
+    String brand = calculator.getBrand();
+
+    int result = calculator.add(3, 4);
+
+    System.out.println(result);
+}
+                    </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    So now to set the calculator brand we need
+                                    to use the setter and to get the brand we
+                                    use the getter.
+                                </li>
+                                <li>
+                                    Now you may be thinking, why are we going
+                                    through all this trouble when we are doing
+                                    exactly the same as before.
+                                </li>
+                                <li>
+                                    Another advantage of using encapsulation is
+                                    that you can add additional verifications or
+                                    behaviours when manipulating the variables.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section id="static">
+                        <h2>Static Properties</h2>
+                        <p class="fragment">
+                            We can create variables that are common to all
+                            instances of a class.
+                            <span class="fragment"
+                                >They are associated <u>with the class</u>,
+                                rather than with a specific object.</span
+                            >
+                        </p>
+                        <p class="fragment">
+                            We call them static or class variables and changing
+                            their value in one object will change its value for
+                            all objects
+                        </p>
+                    </section>
+
+                    <section>
+                        <div>
+                            <h3>Instance vs Class variables</h3>
+                        </div>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+// Create a new class
+public class Calculator {
+
+    // class variables: common to all instances
+    public static int calculatorsManufactured;
+
+    // fields or instance variables: unique to each single instance
+    private String brand; // Casio, Texas Instruments
+    private String color; // Grey, Black
+}
+                    </code></pre>
+                        <p class="fragment">
+                            A public class variable is the equivalent of a
+                            <u>Global</u> variable
+                        </p>
+                        <small class="fragment"
+                            >Global variables
+                            <u>break the encapsulation principle</u> and should
+                            be used carefully!</small
+                        >
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Each instance have their own copies of
+                                    instance variables;
+                                </li>
+                                <li>
+                                    The values are stored in different memory
+                                    locations;
+                                </li>
+                                <li>
+                                    Fields with the static modifier are
+                                    associated with the class and not with the
+                                    instances;
+                                </li>
+                                <li>
+                                    Class variables share one fixed location in
+                                    memory;
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div>
+                            <h3>Accessing Static Variables</h3>
+                        </div>
+
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // create a Calculator instance
+    Calculator calculator = new Calculator();
+
+    // ...
+
+    // class variables are referenced by the class name itself
+    System.out.println(Calculator.calculatorsManufactured);
+}
+                    </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    We access static variables using the class
+                                    name.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="static-methods">
+                        <h2>Static Methods</h2>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    // class variables: common to all instances
+    private static int calculatorsManufactured;
+
+    // increment the number of calculators manufactured in the constructor
+    public Calculator(String brand, String color) {
+        this.brand = brand;
+        this.color = color;
+        calculatorsManufactured++;
+    }
+
+    // class method: obtain the total number of calculators manufactured
+    public static int getCalculatorsManufactured() {
+
+        return calculatorsManufactured;
+    }
+}
+                    </code></pre>
+                        <p class="fragment">
+                            Can <u>NOT</u> access instance variables!
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Static methods, which have the static
+                                    modifier in their declarations, should be
+                                    invoked with the class name, without the
+                                    need for creating an instance of the class;
+                                </li>
+                                <li>
+                                    A common use for static methods is to access
+                                    static fields
+                                </li>
+                                <li>
+                                    You can only access static variables inside
+                                    static methods.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Using Static Methods</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Main.java
+*/
+
+public static void main(String[] args) {
+
+    // class methods are invoked with the class name
+    System.out.println(Calculator.getCalculatorsManufactured());
+
+}
+                    </code></pre>
+                        <p class="fragment">
+                            Static methods are <u>globally</u> available
+                        </p>
+                        <p class="fragment">
+                            They do not require passing object references
+                            around, but...
+                        </p>
+                        <small class="fragment"
+                            ><u
+                                >They break the solid principles of OOP
+                                design</u
+                            >
+                            and should be used carefully!</small
+                        >
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Not all combinations of instance and class
+                                    variables and methods are allowed.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Instance and Static Methods</h2>
+                        <img
+                            src="images/1/java/java_oop_static_methods.png"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Instance methods can access instance
+                                    variables and instance methods directly.
+                                </li>
+                                <li>
+                                    Instance methods can access class variables
+                                    and class methods directly.
+                                </li>
+                                <li>
+                                    Class methods can access class variables and
+                                    class methods directly.
+                                </li>
+                                <li>
+                                    Class methods cannot access instance
+                                    variables or instance methods directly—they
+                                    must use an object reference.
+                                </li>
+                                <li>
+                                    Also, class methods cannot use the this
+                                    keyword as there is no instance for this to
+                                    refer to.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="guess-a-number">
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Guess a Number</h3>
+                            <img
+                                style="max-height: 200px;"
+                                src="images/1/java/guess_a_number.gif"
+                            />
+                            <ul>
+                                <li class="fragment">
+                                    System chooses a number
+                                </li>
+                                <li class="fragment">
+                                    Each player will in turn try to guess the
+                                    number
+                                </li>
+                                <li class="fragment">
+                                    Game ends when one of the players makes the
+                                    correct guess
+                                </li>
+                                <li class="fragment">
+                                    Start simple, no input, all guesses are
+                                    random between 0 and a max value
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section id="enums">
+                        <h2>Enumerations</h2>
+                        <p>
+                            Simply a set of possible values
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>No Enumerations</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+int currentDrink = 0;
+
+switch(currentDrink) {
+
+    case 0: // Beer
+        System.out.println("Drinking beer.");
+        break;
+
+    case 1: // Vodka
+        System.out.println("Drinking vodka.");
+        break;
+
+    case 2: // Water
+        System.out.println("Drinking water.");
+        break;
+}
+                    </code></pre>
+                        <p class="fragment">
+                            Confusing... And what if we set
+                            <u>currentDrink = 10</u>?
+                        </p>
+                        <p class="fragment">
+                            There must be a better and safer way...
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Constants?</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+public class Drink {
+    public final static int BEER = 0;
+    public final static int VODKA = 1;
+    public final static int WATER = 2;
+}
+
+int currentDrink = Drink.BEER;
+
+switch (currentDrink) {
+    // ...
+}
+                    </code></pre>
+                        <p class="fragment">Looks nicer, but still not safe:</p>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+// Does this make any sense?
+int currentDrink = Drink.BEER * Drink.VODKA;
+
+switch (currentDrink) {
+    // ...
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Java Enumerations</h2>
+
+                        <p>
+                            An enum is a class that has a predefined set of
+                            instances
+                        </p>
+
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* DrinkType.java
+*/
+
+public enum DrinkType {
+    BEER,
+    VODKA,
+    WATER
+}
+                    </code></pre>
+
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+// DrinkType is a java enumerated type
+DrinkType currentDrink = DrinkType.BEER;
+
+switch(currentDrink) {
+
+    case BEER:
+        System.out.println("Drinking beer.");
+    break;
+
+    case VODKA:
+        System.out.println("Drinking vodka.");
+    break;
+
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Why Enumerations?</h2>
+                        <ul>
+                            <li class="fragment">
+                                Type safety (enforced by the compiler)
+                            </li>
+                            <li class="fragment">
+                                Behaviour (just like ordinary classes)
+                            </li>
+                            <li class="fragment">
+                                Readability (DrinkType.BEER instead of 0)
+                            </li>
+                            <li class="fragment">
+                                Correctness (Input limited to predefined set of
+                                values)
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>When to use them?</h2>
+                        <p>
+                            Should always be used when a variable (especially a
+                            method parameter) can only take one out of a small
+                            set of possible values
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    The weapon type example is a good case for
+                                    an enum. All values are known beforehand,
+                                    meaning we know in advance the set of
+                                    weapons that will exist in the game and that
+                                    set of weapons won’t change.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Enum creation</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Operation.java
+*/
+
+public enum Operation {
+    ADD,
+    SUBTRACT,
+    MULTIPLY,
+    DIVIDE
+}
+                    </code></pre>
+                        <p class="fragment">
+                            ADD, SUBTRACT, MULTIPLY and DIVIDE are actually
+                            constant references to 4 Operation type instances
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Using the Enum</h2>
+                        <p class="fragment">
+                            The Enum is a new data type
+                        </p>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+* Calculator.java
+*/
+
+public class Calculator {
+
+    private String brand;
+    private String color;
+
+    // private int operation;
+    private Operation operation;
+
+}
+                    </code></pre>
+
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+*/
+
+public static void main(String[] args) {
+
+    calculator.setOperation(Operation.ADD); // instead of calculator.setOperation(0);
+
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>
+                            Enum Properties,<br />
+                            Constructors and Instance Methods
+                        </h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+public enum Operation {
+    ADD("+"), // Each enum value is actually a constructor call
+    SUBTRACT("-"),
+    MULTIPLY("x"),
+    DIVIDE("/"); //end with ; when declaring class members afterwards
+
+    private String symbol;
+
+    Operation(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getSymbol() {
+        return this.symbol;
+    }
+}
+                    </code></pre>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+    Operation add = Operation.ADD;
+    System.out.println(add.getSymbol());
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Enum Class Methods</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+public enum Operation {
+
+    public static String showOperations() {
+        String result = "Available Operations: ";
+
+        // Operation.values() returns an array with all the enum values
+        for(Operation operation : Operation.values()) {
+            result += operation.symbol + " ";
+        }
+
+        return result;
+    }
+}
+                    </code></pre>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+*/
+
+public static void main(String[] args) {
+
+    System.out.println(Operation.showOperations()); // Available Operations: + - x /
+
+}
+                    </code></pre>
+                    </section>
+
+                    <section id="rps">
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Rock-Paper-Scissors</h3>
+                            <ul>
+                                <li class="fragment">
+                                    Player with more wins after a set of rounds
+                                    wins
+                                </li>
+                                <li class="fragment">
+                                    Each player will in turn select a hand
+                                    randomly
+                                </li>
+                                <li class="fragment">No input is required</li>
+                            </ul>
+                            <img
+                                style="max-height: 300px;"
+                                src="images/1/java/rock-paper-scissors.jpg"
+                            />
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Money in the Bank</h3>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                transition: "slide", // none/fade/slide/convex/concave/zoom
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: "left",
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+                // Specifies section for limits-app
+                section: 9,
+                // Optional reveal.js plugins
+                dependencies: [
+                    {
+                        src: "lib/js/classList.js",
+                        condition: function() {
+                            return !document.body.classList;
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/marked.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/markdown.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/highlight/highlight.js",
+                        async: true,
+                        condition: function() {
+                            return !!document.querySelector("pre code");
+                        },
+                        callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+                    {
+                        src: "plugin/zoom-js/zoom.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/notes/notes.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/bootcamp/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/hide-slides/index.js",
+                        async: true
+                    },
+                    {
+                        src: "//cdn.socket.io/socket.io-1.4.5.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/multiplex/client.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/master.js",
+                        async: true
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>

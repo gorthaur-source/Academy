@@ -1,0 +1,2668 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section>
+                    <h1>Java Web
+                        <br> Programming</h1>
+                    <p>
+                        <small>Created by
+                            <a>&lt;Academia de Código_&gt;</a>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Web Application</h2>
+                    <p class="fragment">Collection of web components that work together to provide a specific functionality on the Web</p>
+                    <small class="fragment">In the JEE specification, a web component is either a
+                        <u>Servlet</u>, JavaServer Faces or a
+                        <u>Java Server Page (JSP)</u> page</small>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/web/java-web-1.png">
+                    <small class="fragment">Web applications are modeled after the request-response stateless nature of the HTTP protocol</small>
+                    <aside class="notes">
+                        <p>Servlet is a Java programming language class that is used to extend the capabilities of servers that
+                            host applications accessed by means of a request-response programming model.</p>
+                        <p>A JSP page is a text document that contains two types of text: static data, which can be expressed
+                            in any text-based format, and JSP elements, which construct dynamic content.</p>
+                    </aside>
+                </section>
+
+                <section id="servlet">
+                    <h2>Servlet</h2>
+                    <p class="fragment">Core classes in web applications that either perform the work of
+                        <u>responding to requests</u> or
+                        <u>delegate that work</u> to some other part of the application</p>
+                    <img class="fragment" style="max-height: 350px;" src="images/2/web/servlet.png" alt="">
+                </section>
+
+                <section id="servlet-container">
+                    <h2>Servlet Container</h2>
+                    <p class="fragment">The web application and its constituent components are managed and executed inside the web container,
+                        also called a servlet container.</p>
+                    <img class="fragment" src="images/2/web/java-web-2.png">
+                </section>
+
+                <section id="jsp">
+                    <h2>Java Server Pages</h2>
+                    <img style="margin-left: 20px;" class="float-right logo" src="images/2/web/jsp.png">
+                    <p class="fragment">JSP is an extension of the servlet technology allowing java programming code to be embedded in HTML pages</p>
+                    <p class="fragment">The Java code is executed on the server and compiled with the JSP to produce a plain HTML page</p>
+                </section>
+
+                <section>
+                    <h2>Translation Process</h2>
+                    <p class="fragment">JSP files are first compiled into Servlets before they can be used</p>
+                    <img class="fragment" src="images/2/web/jsp-mechanics.jpg">
+                    <aside class="notes">
+                        <p>You can show on terminal the precompiled jsp. For example: "/apache-tomcat-8.0.36/work/Catalina/localhost/manager/org/apache/jsp"</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Servlet Class Hierarchy</h2>
+                    <ul>
+                        <li class="fragment">
+                            <u>GenericServlet</u> provides protocol-independent basic servlet functionality</li>
+                        <li class="fragment">
+                            <u>HttpServlet</u> inspects the incoming HTTP request and invokes the appropriate method for the
+                            request type</li>
+                        <li class="fragment">
+                            <u>ServletConfig</u> is used to pass initialization parameters to the servlet and access to the
+                            ServletContext
+                        </li>
+                    </ul>
+                    <img class="fragment" style="max-height: 250px;" src="images/2/web/servlet-class-hierarchy.jpg">
+                </section>
+
+                <section id="api">
+                    <h2>Servlet API</h2>
+                    <p class="fragment">The
+                        <u>javax.servlet.Servlet</u> interface defines lifecycle methods to
+                        <u>initialize</u> a servlet, to
+                        <u>service</u> requests and to
+                        <u>remove</u> a servlet from the server</p>
+                    <img class="fragment" src="images/2/web/servlet-api.jpg">
+                    <small class="fragment">The interface also provides the
+                        <u>getServletConfig</u> method, which the servlet can use to get any startup information and the
+                        <u>getServletInfo</u> method, which allows the servlet to return basic information about itself</small>
+                </section>
+
+                <section>
+                    <h2>Servlet Lifecycle</h2>
+                    <p class="fragment">The Servlet life-cycle methods are invoked by the container at appropriate instants in a servlet's life:</p>
+                    <img class="fragment" src="images/2/web/servlet-life-cycle.png">
+                </section>
+
+                <section id="context">
+                    <h2>ServletContext</h2>
+                    <p class="fragment">Can be used to access application parameters (request, initialization and context), set globally accessible attributes and to obtain container information</p>
+                    <img style="max-height: 300px;" class="fragment" src="images/2/web/servlet-context.png">
+                    <aside class="notes">
+                        <p>initialization and context parameters are passed from the deployment descriptor</p>
+                        <p>ServletContext - Defines a set of methods that a servlet uses to communicate with its servlet container
+                            (for example, to get the MIME type of a file, dispatch requests, or write to a log file)</p>
+                        <p>There is one context per "web application" per Java Virtual Machine.</p>
+                        <p>A "web application" is a collection of servlets and content installed under a specific subset of
+                            the server's URL namespace such as /catalog and possibly installed via a .war file.</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>HttpServlet</h2>
+                    <p class="fragment">
+                        <u>javax.servlet.http.HttpServlet</u> extends GenericServlet and implements the service method to accept
+                        only HTTP requests, providing empty implementations for methods corresponding to each HTTP verb type</p>
+                    <img class="fragment" style="max-height: 300px;" src="images/2/web/http-servlet.png">
+                    <aside class="notes">
+                        <p>Must override http related methods (at least one): </p>
+                        <ul>
+                            <li>doGet</li>
+                            <li>doPost</li>
+                            <li>doPut</li>
+                            <li>doDelete</li>
+                            <li>init and destroy to manage resources in serlet life.</li>
+                            <li>getServletInfo, to provide information about itself</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="redirect">
+                    <h2>Redirection</h2>
+                    <p class="fragment">In a web application the request flow can be redirected to a completely different URL</p>
+                    <img style="max-height: 180px;" class="fragment" src="images/2/web/http-redirect.gif">
+                    <small class="fragment">The redirect is done by the browser and can be triggered by calling
+                        <u>sendRedirect()</u> on the response object.</small>
+                    <pre class="fragment" style="font-size: 0.5em;"><code>
+public class LoginServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+
+        resp.sendRedirect("http://javabank.com/login");
+    }
+}
+                    </code></pre>
+                    <aside class="notes">
+                        1 - request is made to server. 2 - redirect is sent in the response 3 - request is made to redirected server 4 - response
+                        obtained
+                    </aside>
+                </section>
+
+                <section id="dispatch">
+                    <h2>Dispatching</h2>
+                    <p style="font-size: 0.7em;" class="fragment">Requests can be dispatched to other application components such as Servlets or JSP pages</p>
+                    <img style="max-height: 200px;" src="images/2/web/dispatch.gif" alt="" class="fragment">
+                    <small class="fragment">A request dispatch is different from a redirect, the work is done on the server side and not by the browser</small>
+                    <pre class="fragment" style="font-size: 0.5em;"><code>
+public class LoginServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("customer.jsp");
+        dispatcher.forward(req, resp);
+    }
+}
+                    </code></pre>
+
+                    <aside class="notes">
+                        <p>A RequestDispatcher is obtained from the ServletRequest or ServletContext, and forward is called.</p>
+                        <p>The servlet acts as a controller deciding where to dispatch the request. The dispatcher has available
+                            2 methods: forward (forwards the response request to another page) and include(adds resource
+                            to current response.</p>
+                    </aside>
+                </section>
+
+                <section id="filters">
+                    <h2>Filters</h2>
+                    <p class="fragment">Filters are application components organized in a chain that can intercept, inspect and modify requests
+                        and responses</p>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/web/servlet-filters.jpg">
+                    <p class="fragment">Filters implement the
+                        <u>javax.servlet.Filter</u> interface, are configured on the deployment descriptor and are typically
+                        used for authentication, caching, encryption, logging, auditing, etc.</p>
+                </section>
+
+                <section>
+                    <h2>Web Applications Directory Structure</h2>
+                    <p class="fragment">Web Applications follow a directory structure convention, which contains the deployment descriptor, classes
+                        and other application resources</p>
+                    <img style="max-height:350px;" class="fragment" src="images/2/web/servlet-directory-structure.jpg">
+                </section>
+
+                <section id="war">
+                    <img class="float-right logo" src="images/2/web/java-package.png">
+                    <h2>Web Application Archive</h2>
+                    <p class="fragment">A WAR file is usually used to distribute a collection of JavaServer Pages, Java Servlets, Java classes,
+                        XML files, tag libraries, static Web pages (HTML and related files) and other resources that together
+                        constitute a Web application</p>
+                    <p class="fragment">In essence, a WAR file is really a JAR file with some
+                        <br> additional web specific metadata</p>
+                </section>
+
+                <section>
+                    <h2>The Deployment Descriptor</h2>
+                    <small>
+                        <p class="fragment">At the heart of all web applications is a deployment descriptor that is an XML file named
+                            <u>web.xml</u> and contains configuration information for the entire web application.</p>
+                    </small>
+                    <img class="fragment" style="max-height: 400px;" src="images/2/web/web-xml-file.jpg">
+                </section>
+
+                <section>
+                    <h2>Servlet URL Mapping</h2>
+                    <img style="max-height:350px;" class="fragment" src="images/2/web/servlet-mapping.png">
+                    <small>
+                        <ul>
+                            <li class="fragment">a path matching pattern is an url pattern which starts from / and ends with *</li>
+                            <li class="fragment">if a servlet is mapped with url pattern '/*' then it overrides every other servlet</li>
+                            <li class="fragment">if a servlet is mapped with url pattern '/' then it is called the default servlet</li>
+                            <li class="fragment">if a servlet is mapped with empty string url pattern then it is mapped the root of the web application</li>
+                        </ul>
+                    </small>
+                    <aside class="notes">
+                        <p>When an empty string is used, every other request that is not mapped, will be served by the default
+                            servlet
+                        </p>
+                        <p>When / is used we are mapping with the root dev.</p>
+                    </aside>
+                </section>
+
+
+
+            </section>
+            <section>
+
+                <section id="tomcat">
+                    <h2>Apache Tomcat</h2>
+                    <p>Java Based Web Application Container used to deploy Java applications that are built using the Servlet
+                        and JSP APIs</p>
+                    <img style="max-height: 300px;" src="images/2/web/tomcat.png">
+                </section>
+
+                <section>
+                    <h2>Maven Tomcat Plugin</h2>
+                    <p class="fragment">Provides goals to deploy and manipulate WAR projects within the Apache Tomcat servlet container</p>
+                    <p class="fragment">Once a WAR project has been deployed on Tomcat, it is possible to:</p>
+                    <ul>
+                        <li class="fragment">Redeploy a WAR project</li>
+                        <li class="fragment">Undeploy a WAR project</li>
+                        <li class="fragment">Start a WAR project</li>
+                        <li class="fragment">Stop a WAR project</li>
+                        <li class="fragment">List session statistics</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Maven Tomcat Configuration</h2>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.2&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;url&gt;http://localhost:8080/manager/text&lt;/url&gt;
+        &lt;!-- server defined in ~/.m2/settings.xml --&gt;
+        &lt;server&gt;tomcat&lt;/server&gt;
+        &lt;path&gt;/hello&lt;/path&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Install and Configure Tomcat Server</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Hello Servlet</h3>
+                    </div>
+                </section>
+
+                <section id="mvc">
+                    <h2>MVC with Servlets and JSPs</h2>
+                    <ul>
+                        <li class="fragment">
+                            <u>Model</u> is represented by a POJO object that carries data</li>
+                        <li class="fragment">
+                            <u>View</u> layer will present the data using a JSP page</li>
+                        <li class="fragment">
+                            <u>Controller</u> logic will be implemented by the Servlet</li>
+                    </ul>
+                    <img class="fragment" style="max-height: 350px;" src="images/2/web/servlet-mvc.jpg">
+                </section>
+
+                <section>
+                    <h2>Request Dispatcher</h2>
+                    <p class="fragment">The View can be presented by forwarding the request to the JSP using a
+                        <u>RequestDispatcher</u>
+                    </p>
+                    <p class="fragment">The RequestDispatcher object receives requests from the client and sends them to any resource on the
+                        server, such as a servlet, HTML file or JSP file</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Create request dispatcher wrappers around the views
+RequestDispatcher page1Dispatcher = getServletContext().getRequestDispatcher("page1.jsp");
+RequestDispatcher page2Dispatcher = getServletContext().getRequestDispatcher("page2.jsp");
+
+// include the page1 processing by calling the appropriate jsp page code
+page1Dispatcher.include(request, response);
+
+// transfer the control to page2 jsp
+page2Dispatcher.forward(request, response);
+                        </code>
+                    </pre>
+                    <aside class="notes">
+                        <p>Forward will transfer control to the servlet responsible for the page</p>
+                        <p>Include will call the code in the current servlet</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Populating the View</h2>
+                    <p class="fragment">Before handling the processing of the request to the view, it needs to be populated with model data</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+User user = new User();
+user.setName("Catarina Campino");
+user.setEmail("catarina.campino@academiadecodigo.org");
+
+// Use global Servlet context to pass user object
+getServletContext().setAttribute("user", user);
+
+// Use session context to pass the user object
+request.getSession().setAttribute("user", user);
+
+// Use request  context to pass the user object
+request.setAttribute("user", user);
+                        </code>
+                    </pre>
+                    <aside class="notes">
+                        <p>use global to pass global information - for example some app wide configuration like week specials</p>
+                        <p>use session to pass info relative to the current session - example credentials</p>
+                        <p>use to pass information for processing on a include or forward.</p>
+                    </aside>
+                </section>
+
+                <section id="session">
+                    <h2>Tomcat Sessions</h2>
+                    <p class="fragment">Session state is maintained in Tomcat using a <u>JSESSIONID</u> cookie, which is created the first time
+                        <u>request.getSession()</u></p>
+                    <img class="fragment" style="max-height:450px;" src="images/2/web/session-token.png">
+                </section>
+
+                <section id="el">
+                    <h2>Expression Language</h2>
+                    <p class="fragment">Allows dynamic access to model data stored as attributes in the request, session or application scope</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;html&gt;
+    &lt;head&gt;&lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Welcome ${user.name}&lt;/h2&gt;
+        &lt;p&gt;Email: ${user.email}&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Metadata</h2>
+                    <p class="fragment">The apache <u>maven-archetype-webapp</u> can be utilized to create a basic web application structure</p>
+                    <p class="fragment">Make sure the maven compiler and tomcat plugins are installed and configured and the servlet-api dependency is added</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+                        </code>
+                    </pre>
+                    <small class="fragment">The
+                        <u>provided</u> scope means the dependency will be provided at runtime by the compiler</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Web MVC Customer Details</h3>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+
+                <section id="spring">
+                    <img src="images/2/web/spring-mvc-logo.jpg">
+                </section>
+
+                <section>
+                    <h2>Spring MVC</h2>
+                    <p class="fragment">Higher level abstraction built on top of Java Servlets and centered around the Model View Controller design pattern</p>
+                    <p class="fragment">Speeds up development time by providing general solutions to commonly well-known problems</p>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/web/spring-mvc-stack.png">
+                </section>
+
+                <section>
+                    <h2>Architecture Overview</h2>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/web/spring-architecture.png">
+                    <p class="fragment">Spring uses the Front Controller design pattern</p>
+                    <p class="fragment">Servlets are replaced with controllers</p>
+                </section>
+
+                <section id="dispatcher">
+                    <h2>Dispatcher Servlet</h2>
+                    <ul>
+                        <li class="fragment">Maps and delegates requests to controllers</li>
+                        <li class="fragment">Resolves the appropriate view</li>
+                    </ul>
+                    <img style="max-height: 300px;" class="fragment float-left" src="images/2/web/spring-mvc-arch.png">
+                    <img style="max-height: 300px;" class="fragment float-right" src="images/2/web/spring-dispatcher-servlet.png">
+                    <p class="fragment">
+                        <u>DispatcherServlet</u> and
+                        <u>HandlerMapping</u> beans are provided by the framework</p>
+                </section>
+
+                <section>
+                    <h2>End-to-End Request Flow</h2>
+                    <img src="images/2/web/spring-mvc-flow.png" alt="" class="fragment">
+                </section>
+
+                <section id="controller">
+                    <h2>Spring Controller</h2>
+                    <p class="fragment">Spring will register
+                        <u>controllers</u> and their
+                        <u>mappings</u> by scanning your code for the
+                        <u>@Controller</u> and
+                        <u>@RequestMapping</u> annotations</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Let Spring find the controller
+@Controller
+public class HelloController {
+
+    // Map the URL/Verb to the method
+    @RequestMapping(method = RequestMethod.GET, value = "/hello")
+    public String sayHello(Model model) {
+
+        // Add an attribute to the request
+        model.addAttribute("greeting", "Hello World");
+
+        // Return the view name
+        return "hello";
+
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">Model data can be conveniently added to the request through <br> the usage of an <u>org.springframework.ui.Model</u> object as argument</small>
+                </section>
+
+                <section id="model">
+                    <h2>Spring Model</h2>
+                    <p class="fragment">The model is a
+                        <u>Map</u> interface defining a holder for model attributes and allowing for the complete abstraction
+                        of the view technology</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">Data can be added to the Spring model inside the controller using the
+                                <u>Model</u> or
+                                <u>ModelAndView</u> classes</li>
+                            <li class="fragment">Data can be added to the Spring model by annotating methods with
+                                <u>ModelAttribute</u>
+                            </li>
+                            <li class="fragment">Data can be retrieved from the Spring model by annotating controller method arguments with
+                                <u>ModelAttribute</u>
+                            </li>
+                            <li class="fragment">Spring model attributes are copied to the request scope before rendering the view</li>
+                        </ul>
+                    </small>
+                    <div class="fragment" style="padding-top: 20px">
+                        <img class="float-right" style="max-height: 160px;" src="images/2/web/spring-model-data.png" />
+                        <img class="float-left" style="max-height: 160px;" src="images/2/web/spring-ctrl-model.jpg" />
+                    </div>
+                </section>
+
+                <section id="view-resolver">
+                    <h2>View Resolver</h2>
+                    <p class="fragment">The
+                        <u>ViewResolver</u> interface provides a mapping between view names and the actual view objects</p>
+                    <p class="fragment">
+                        <u>InternalResourceViewResolver</u> is a convenience ViewResolver implementation for using JSP pages
+                        as view templates</p>
+                    <img class="fragment" src="images/2/web/spring-view-resolver.png">
+                    <p class="fragment">The view resolver surrounds the view name with a prefix and a suffix
+                        <br> providing the dispatcher servlet with the file path to the template</p>
+                </section>
+
+                <section>
+                    <h2>View Template</h2>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hello Spring MVC&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;${greeting}&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">Model data is accessed using the JSP Expression Language</p>
+                </section>
+
+                <section>
+                    <h2>Spring Configuration</h2>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="xml" data-trim contenteditable>
+&lt;beans&gt;
+
+    &lt;!-- Use spring servlet for all requests, including static resources --&gt;
+    &lt;mvc:default-servlet-handler/&gt;
+
+    &lt;!-- look for spring annotations inside the controller package --&gt;
+    &lt;mvc:annotation-driven/&gt;
+    &lt;context:component-scan base-package="org.academiadecodigo.bootcamp.controller"/&gt;
+
+
+    &lt;!-- configure the view resolver --&gt;
+    &lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+        &lt;property name="prefix" value="/templates/"/&gt;
+        &lt;property name="suffix" value=".jsp"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Bootstrapping Spring</h2>
+                    <p class="fragment">The Spring application context is loaded from the DispatcherServlet, which is configured in the project
+                        deployment descriptor:</p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="xml" data-trim contenteditable>
+&lt;servlet&gt;
+    &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+        &lt;param-value&gt;WEB-INF/spring/spring-config.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/servlet&gt;
+
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Project Dependencies</h2>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;dependencies&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+        &lt;version&gt;4.3.11.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">Add these to maven-archetype-webapp project</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Spring MVC Customer Details</h3>
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="autowiring">
+                    <h2>Auto Wiring</h2>
+                    <p class="fragment">Spring auto wiring enables object dependencies to be injected implicitly
+                        <u>without</u> the need for explicit configuration</p>
+                    <p class="fragment">Beans can be registered on the Spring container by using one of the available annotations:</p>
+                    <img src="images/2/web/spring-annotations.jpg" alt="" class="fragment">
+                    <p class="fragment">A Spring managed bean can be injected into a property simply by using the
+                        <u>@Autowired</u> annotation</p>
+                </section>
+
+                <section>
+                    <h2>Spring Profiles</h2>
+                    <small class="fragment">Beans can be registered on the container only when the appropriate profiles are active:</small>
+                    <pre style="font-size: 0.5em; margin: 0; padding: 0;" class="fragment">
+                    <code class="java" data-trim contenteditable>
+@Service
+@Profile("jpa")
+public class CustomerServiceImpl implements CustomerService {}
+
+@Service
+@Profile("memory")
+public class MockCustomerService implements CustomerService {}
+
+@Controller
+@RequestMapping("/customer")
+public class CustomerController {
+
+    private CustomerService customerService;
+
+    @Autowired
+    public void setCustomerService(CustomerService customerService) {}
+}
+                    </code>
+                    </pre>
+                    <small class="fragment">Active profile selection can be done through servlet context parameter:</small>
+                    <pre style="font-size: 0.5em; margin: 0; padding: 0;" class="fragment">
+                    <code class="xml" data-trim contenteditable>
+&lt;context-param&gt;
+    &lt;param-name&gt;spring.profiles.active&lt;/param-name&gt;
+    &lt;param-value&gt;jpa&lt;/param-value&gt;
+&lt;/context-param&gt;
+                    </code>
+                    </pre>
+
+                    <aside class="notes">
+                        the @Autowired annotation on properties is now deprecated, so we should annotate our setters
+                    </aside>
+
+                </section>
+
+                <section id="template">
+                    <h2>Template Engines</h2>
+                    <p class="fragment">Spring allows the usage of different view technologies, from the well established JSP technology to a
+                        variety of template engines</p>
+                    <img class="fragment xsmall" src="images/2/web/template-engines.png" alt="">
+                    <p class="fragment">To render each view type, a
+                        <u>ViewResolver</u> bean corresponding to the template engine technology needs to be defined</p>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/web/th-logo.png" alt="">
+                    <h2>Thymeleaf</h2>
+                    <p class="fragment">Modern Java template engine which can process HTML, XML, text, JavaScript or CSS files</p>
+                    <p class="fragment">Supports
+                        <u>Natural Templating</u>, allowing the template to be correctly displayed in the browser and work as
+                        a static prototype</p>
+                    <div style="margin: 0 150px 0 150px;" class="fragment">
+                        <img class="float-right" style="max-width: 240px;" src="images/2/web/jsp-server.png" alt="">
+                        <img class="float-left" style="max-width: 240px;" src="images/2/web/th-server.png" alt="">
+                    </div>
+                    <div class="fragment" style="clear: both; margin: 0 150px 0 150px;">
+                        <img class="float-right" style="max-width: 240px;" src="images/2/web/jsp-file.png" alt="">
+                        <img class="float-left" style="max-width: 240px;" src="images/2/web/th-file.png" alt="">
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Model Attributes</h2>
+                    <p class="fragment">For
+                        <u>simple model attributes</u>, the
+                        <strong>th:text</strong> tag attribute can be used to display the value of model attributes:</p>
+                    <pre class="fragment" style="font-size: 0.5em;"><code class="html" data-trim contenteditable>
+&lt;h2 th:text="${'Welcome ' + user.firstName + '  ' + user.lastName}"&gt;Welcome Bruno Ferreira&lt;/h2&gt;
+                </code></pre>
+                    <p class="fragment">For iterating over a
+                        <u>collection</u>, the
+                        <strong>th:each</strong> tag attribute can be used:</p>
+                    <pre class="fragment" style="font-size: 0.5em;"><code class="html" data-trim contenteditable>
+&lt;table&gt;
+    &lt;tr th:each="student: ${students}"&gt;
+        &lt;td th:text="${student.id}" /&gt;
+        &lt;td th:text="${student.name}" /&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Conditional Evaluation</h2>
+                    <p class="fragment">The
+                        <strong>th:if</strong> attribute is used to display a section of the view
+                        <br> if the condition
+                        <u>is met</u>
+                    </p>
+                    <p class="fragment">The
+                        <strong>th:unless</strong> attribute is used to display a section of the view
+                        <br> if the condition
+                        <u>is not met</u>
+                    </p>
+                    <pre class="fragment" style="font-size: 0.5em;"><code class="html" data-trim contenteditable>
+&lt;p&gt;
+    &lt;span th:if="${student.gender} == 'M'" th:text="Male" /&gt;
+    &lt;span th:unless="${student.gender} == 'M'" th:text="Female" /&gt;
+&lt;/p&gt;
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Conditional Evaluation</h2>
+                    <p class="fragment">The
+                        <strong>th:switch</strong> and
+                        <strong>th:case</strong> attributes are used to display content conditionally:</p>
+                    <pre class="fragment" style="font-size: 0.5em;"><code class="html" data-trim contenteditable>
+&lt;p th:switch="${student.gender}"&gt;
+    &lt;span th:case="'M'" th:text="Male" /&gt;
+    &lt;span th:case="'F'" th:text="Female" /&gt;
+&lt;/p&gt;
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Thymeleaf Template</h2>
+                    <pre style="font-size: 0.4em;"><code class="html" data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" xmlns:th="http://www.thymeleaf.org"&gt;
+&lt;head&gt;
+    &lt;title&gt;JavaBank&lt;/title&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;h2&gt;Customer List&lt;/h2&gt;
+            &lt;table&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Id&lt;/th&gt;
+                    &lt;th&gt;First Name&lt;/th&gt;
+                    &lt;th&gt;Last Name&lt;/th&gt;
+                    &lt;th&gt;Email&lt;/th&gt;
+                    &lt;th&gt;Phone&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr th:each="customer : ${customers}"&gt;
+                    &lt;td th:text="${customer.id}"&gt;&lt;/td&gt;
+                    &lt;td th:text="${customer.firstName}"&gt;&lt;/td&gt;
+                    &lt;td th:text="${customer.lastName}"&gt;&lt;/td&gt;
+                    &lt;td th:text="${customer.email}"&gt;&lt;/td&gt;
+                    &lt;td th:text="${customer.phone}"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Spring Configuration</h2>
+                    <small class="fragment">To integrate Thymeleaf with Spring, a new
+                        <u>ViewResolver</u> implementation bean needs to be provided:</small>
+                    <pre style="margin:0; padding: 0;" class="fragment">
+                    <code style="font-size: 0.8em; margin:0; padding: -60px;" class="xml" data-trim contenteditable>
+                        <!-- Thymeleaf View Resolver, implements Spring ViewResolver interface -->
+&lt;bean id="viewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver"&gt;
+   &lt;property name="templateEngine" ref="templateEngine"/&gt;
+   &lt;property name="characterEncoding" value="UTF-8"/&gt;
+   &lt;property name="contentType" value="text/html; charset=UTF-8"/&gt;
+&lt;/bean&gt;
+                    </code>
+                </pre>
+                    <small class="fragment">The
+                        <u>ThymeleafViewResolver</u> bean requires two additional beans from the Thymeleaf project to work:</small>
+                    <pre style="font-size: 0.4em; margin:0; padding: 0;" class="fragment">
+                    <code style="margin:0; padding: -60px;" class="xml" data-trim contenteditable>
+&lt;!-- Thymeleaf Template Engine (Spring4-specific version) --&gt;
+&lt;bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine"&gt;
+    &lt;property name="templateResolvers"&gt;
+        &lt;set&gt;
+            &lt;ref bean="templateResolver"/&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- Thymeleaf template resolver --&gt;
+&lt;bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver"&gt;
+    &lt;property name="prefix" value="/templates/"/&gt;
+    &lt;property name="suffix" value=".html"/&gt;
+    &lt;property name="templateMode" value="HTML"/&gt;
+    &lt;property name="cacheable" value="false"/&gt;
+    &lt;property name="characterEncoding" value="UTF-8"/&gt;
+&lt;/bean&gt;
+                    </code>
+                </pre>
+                </section>
+
+                <section>
+                    <h2>Metadata</h2>
+                    <p class="fragment">The Spring Thymeleaf package needs to be added
+                        <br> to the project metadata:</p>
+                    <pre class="fragment"><code class="xml" data-trim contenteditable>
+&lt;dependency&gt;
+    &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;
+    &lt;artifactId&gt;thymeleaf-spring4&lt;/artifactId&gt;
+    &lt;version&gt;3.0.8.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+                </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>JavaBank Customer list view using
+                            <br>Spring MVC and Thymeleaf</h3>
+                        <img style="max-height: 330px;" src="images/2/web/customer-list.png" alt="">
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Request Parameters</h2>
+                    <p class="fragment">The
+                        <u>RequestParam</u> annotation indicates that a method parameter should be bound to an URL request parameter</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Can serve URLs like http://www.someserver.org/someapp/hello?name=catarina
+@RequestMapping(method = RequestMethod.GET, value = "/hello")
+public String hello(Model model, @RequestParam("name") String name) {
+
+    model.addAttribute("message", "Hello " + name);
+    return "hello";
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>URL templates</h2>
+                    <p class="fragment">URL-like string, containing one or more variable names.
+                        <span class="fragment">When these variables are substituted by values, the template becomes a URL</span>
+                    </p>
+                    <ul>
+                        <li class="fragment">
+                            <u>URL template:</u> http://www.javabank.com/customer/{id}</li>
+                        <li class="fragment">
+                            <u>URL</u> http://www.javabank.com/customer/2</li>
+                    </ul>
+
+                    <p class="fragment">The
+                        <u>@PathVariable</u> annotation can be used on a controller method argument to bind it to the value
+                        of a URI template variable:</p>
+                    <pre class="fragment">
+                    <code class="java" data-trim contenteditable>
+@RequestMapping(method = RequestMethod.GET, path = "/customer/{id}")
+public String getCustomer(@PathVariable Integer id) {
+
+    // User asked for a specific customer
+
+}
+                    </code>
+                </pre>
+                </section>
+
+                <section>
+                    <h2>Session Attributes</h2>
+                    <p>The
+                        <u>SessionAttributes</u> annotation is used on a controller to designate which model attributes should
+                        be stored in the session before rendering the next view</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+@Controller
+@SessionAttributes("customer")
+public class LoginController {
+
+    // store accessing customer in the http session
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Spring Redirect</h2>
+                    <p class="fragment">A Browser redirect can be triggered by returning from the controller the
+                        <u>redirect:</u> prefix followed by the URL:</p>
+                    <pre class="fragment">
+                    <code class="java" data-trim contenteditable>
+public String deleteCustomer(@PathVariable Integer id) {
+    customerService.delete(id);
+    return "redirect:/customer";
+}
+                    </code>
+                </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Add the Customer show and delete features
+                            <br>to the JavaBank application</h3>
+                        <img class="float-right" style="max-height: 300px; margin-left: 30px; margin-right: 30px;" src="images/2/web/customer-list2.png"
+                            alt="">
+                        <img class="float-left" style="max-height: 300px;  margin-left: 30px; margin-right: 30px;" src="images/2/web/customer-show.png"
+                            alt="">
+                        <div style="clear: both;"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Spring Command Objects</h2>
+                    <p class="fragment">Command objects (or form objects, form-backing objects) allow binding of form request parameters to bean
+                        properties using setters</p>
+                    <ul>
+                        <li class="fragment">The
+                            <strong>th:object</strong> attribute inside a
+                            <u>&lt;form&gt;</u> tag tells thymeleaf which command object to bind to the form</li>
+                        <li class="fragment">The
+                            <strong>th:field</strong> attribute attached to an html input field binds the specific field to the command
+                            object property</li>
+                    </ul>
+                    <pre class="fragment">
+                    <code class="xml" data-trim contenteditable>
+&lt;form th:object="${customer}" th:action="@{/customer}" method="post"&gt;
+    &lt;input type="text" th:field="*{firstName}"/&gt;
+&lt;/form&gt;
+                    </code>
+                </pre>
+                    <small class="fragment">Values for
+                        <strong>th:field</strong> attributes must be selection expressions
+                        <br> because they are binded for command objects and not model attributes</small>
+                </section>
+
+                <section>
+                    <h2>Thymeleaf Expressions</h2>
+                    <p class="fragment">Thymeleaf attributes have their values set by using
+                        <br> one of the following expression syntax:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <strong>${…}</strong>
+                                <u> Variable Expressions</u> - Access to model data</li>
+                            <li class="fragment">
+                                <strong>*{…}</strong>
+                                <u> Selection Variable Expressions - </u> Access properties of previously selected objects</li>
+                            <li class="fragment">
+                                <strong>@{…}</strong>
+                                <u> Link URL Expressions - </u> Absolute or relative URLs</li>
+                            <li class="fragment">
+                                <strong>#{…}</strong>
+                                <u> Message Expressions - Access messages from resource bundles (eg: properties files with multiple
+                                    langs)
+                                </u>
+                            </li>
+                        </ul>
+                    </small>
+                </section>
+
+            <section id="dto">
+                <h2>DTO Pattern</h2>
+                <p class="fragment"><u>Data Transfer Object</u> is a design pattern used to transport information from a remote client to a server and vice-versa</p>
+                <img class="fragment" style="max-height: 200px;" src="images/2/web/dto-example.png"/>
+                <p class="fragment">Using
+                    <u>DTOs instead of models</u> to transfer data to/from Spring backed forms we
+                    <u>separate presentation logic from persistence logic</u>
+                </p>
+                <small>
+                    <p class="fragment">A DTO is just a collection of properties with getters and setters and should NOT have complex associations</p>
+                    <p class="fragment">
+                    <b>A converter/assembler is required on the server to transfer data between DTOs and domain/model objects</b>
+                    </p>
+                </small>
+                <aside class="notes">
+                    Reference: Patterns of Enterprise Application Architecture by Martin Fowler
+                    Spring Converter interface can be a good starting point for implementing a DTO-Model converters
+                </aside>
+            </section>
+
+                <section>
+                    <h2>Duplicate Form Submission Problem</h2>
+                    <p class="fragment">If the controller processing a form submission returns a success view, hitting the refresh browser button
+                        may trigger a new submission of the form with the same form data:</p>
+                    <img class="fragment" src="images/2/web/double-submit.png" />
+                </section>
+
+                <section id="prg">
+                    <h2>Post/Redirect/Get Pattern</h2>
+                    <p class="fragment">PRG is a web development design pattern
+                        <br>that prevents duplicate form submissions</p>
+                    <img class="fragment" style="max-height: 350px;" src="images/2/web/double-submit-solution.png" />
+                    <small class="fragment">PRG supports bookmarks and allows the browser refresh button to work in a predictable way</small>
+                </section>
+
+                <section>
+                    <h2>Spring Redirects</h2>
+                    <p class="fragment">To implement PRG the controller handling the request
+                        <br>needs to redirect the browser to another URL:</p>
+                    <pre class="fragment">
+                    <code class="java" data-trim contenteditable>
+@Controller
+@RequestMapping("/customer")
+public class CustomerController {
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public String showCustomer(@PathVariable Integer id, Model model) {
+        model.addAttribute("customer", customerService.get(id));
+        return "customer/show";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    public String addCustomer(@ModelAttribute Customer customer) {
+
+        Customer savedCustomer = customerService.save(customer);
+
+        // Instead of returning a rendered view to the browser,
+        // a 302 redirect is sent to the browser, forcing showCustomer()
+        // to execute after adding a new customer
+        return "redirect:/customer/" + savedCustomer.getId();
+    }
+}
+                    </code>
+                </pre>
+                </section>
+
+                <section id="flash">
+                    <h2>Flash Attributes</h2>
+                    <small>
+                        <p class="fragment">When redirecting a request, data stored in the original request is lost, making it impossible to
+                            the controller handling the redirected request to access the parameters contained in the original
+                            one
+                        </p>
+                        <p class="fragment">PRG solves multiple form submissions but prevents retrieving request parameters and attributes
+                            <br>Flash attributes provide a way for one request to store attributes intended for use in another
+                            request
+                        </p>
+                    </small>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+                    <code class="java" data-trim contenteditable>
+@Controller
+@RequestMapping("customer")
+public class CustomerController {
+
+    @RequestMapping(method = RequestMethod.GET, path = {"/list", "/", ""})
+    public String listCustomers(Model model) {
+        model.addAttribute("customers", customerService.list());
+        return "customer/list";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
+    public String saveCustomer(@ModelAttribute CustomerDto customerDto, RedirectAttributes redirectAttributes) {
+
+        Customer savedCustomer = customerService.save(customer);
+        redirectAttributes.addFlashAttribute("lastAction", "Added customer successfully!");
+        return "redirect:/customer/list";
+
+   }
+}
+                    </code>
+                </pre>
+                    <small class="fragment">
+                        <b>Flash attributes are saved temporarily before the redirect and removed immediately after</b>
+                    </small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Add the Customer Add and Edit features
+                            <br>to the JavaBank application</h3>
+                        <img class="float-right" style="max-height: 260px;  margin-left: 30px; margin-right: 30px;" src="images/2/web/exercise-list3.png"
+                            alt="">
+                        <img class="float-left" style="max-height: 260px; margin-left: 30px; margin-right: 30px;" src="images/2/web/exercise-merge.png"
+                            alt="">
+                        <div style="clear: both;"></div>
+                    </div>
+                </section>
+
+            </section>
+
+            <section id="validation">
+                <section>
+                    <h2>Form Validation</h2>
+                    <p class="fragment">JSR 303 (part of J2EE) defines a metadata model and API
+                        <br>for JavaBeans validation</p>
+                    <img class="fragment medium tight" src="images/2/web/form-validation.png">
+                    <p class="fragment">Spring MVC is JSR 303 compatible</p>
+                </section>
+
+                <section>
+                    <h2>Hibernate Validator</h2>
+                    <p class="fragment">JSR 303 reference implementation, validation rules expressed in a standardized way using annotation-based
+                        constraints
+                    </p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;!-- JSR-301/3 validation --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate.validator&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
+    &lt;version&gt;6.0.2.Final&lt;/version&gt;
+&lt;/dependency&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Form Validation - DTO</h2>
+                    <p class="fragment">Validation rules and error messages are defined
+                        <br>through annotations in the DTO class</p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="java" data-trim contenteditable>
+public class CustomerDto {
+
+    private Integer id;
+
+    @NotNull(message = "first name is mandatory")
+    @NotBlank(message = "first name is mandatory")
+    @Size(min=3, max=64)
+    private String firstName;
+
+    @NotNull(message = "last name is mandatory")
+    @NotBlank(message = "last name is mandatory")
+    @Size(min=3, max=64)
+    private String lastName;
+
+    @Email
+    private String email;
+
+    @Pattern(regexp = "^\+?[0-9]*$", message = "phone has invalid characters")
+    @Size(min=9, max=16)
+    private String phone;
+
+    // Getters and setters ...
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Form Validation - Controller</h2>
+                    <p class="fragment">
+                        <u>@Valid</u> annotation on the command argument</p>
+                    <p class="fragment">
+                        <u>BindingResult</u> object with validation results</p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="java" data-trim contenteditable>
+@Controller
+@RequestMapping("customer")
+public class CustomerController {
+
+    @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
+    public String saveCustomer(@Valid @ModelAttribute CustomerDto newCustomer, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "customer/add-update";
+        }
+
+        // save customer
+
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">The
+                        <strong>BindingResult</strong> argument must
+                        <u>immediately follow</u> the command object</small>
+                </section>
+
+                <section>
+                    <h2>Form Validation - View</h2>
+                    <p class="fragment">The function
+                        <strong>#fields.hasErrors()</strong> can be used
+                        <br> to check if a field has errors</p>
+                    <p class="fragment">With
+                        <strong>#fields.errors()</strong> or
+                        <strong>th:errors</strong> the errors
+                        <br> for a particular field can be displayed</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;label&gt;First Name:&lt;/label&gt;
+&lt;input type="text" th:field="*{firstName}"/&gt;
+&lt;span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"&gt;
+    First Name field error messages
+&lt;/span&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Add form validation to customer add/update form
+                            <br>in the JavaBank application</h3>
+                        <img style="max-height: 330px;" src="images/2/web/form-validation.png" alt="">
+                    </div>
+                </section>
+
+            </section>
+
+            <section id="error-handling">
+                <section>
+                    <img src="images/2/web/domain-errors-logo.png" class="logo float-right" alt="">
+                    <h2>Domain Errors</h2>
+                    <p class="fragment clearfix">Dealing with the sunshine path in our application
+                        <u>is not enough</u>
+                    </p>
+                    <p class="fragment">How should we handle an action on a Customer that does not exist?</p>
+                    <p class="fragment">
+                        <b>Code to handle application domains errors is required!</b>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Domain Exceptions</h2>
+                    <p class="fragment">Creating dedicated exceptions for signaling business logic errors allows specialized error handling for
+                        each situation</p>
+                    <p class="fragment">Lets start small with a single
+                        <b>JavaBankException</b>
+                        <br>and handle all generic business logic errors in one centralized place</p>
+                    <p class="fragment">How can we achieve this?</p>
+                </section>
+
+                <section>
+                    <h2>AOP to the rescue</h2>
+                    <p>Annotating a class with
+                        <u>
+                            <strong>@ControllerAdvice</strong>
+                        </u> applies its methods
+                        <br>to all controllers in the application</p>
+                    <p class="fragment">Annotations like
+                        <u>
+                            <strong>@ExceptionHandler</strong>
+                        </u> in a specific method act as selectors, calling the method when the selected exception is thrown</p>
+                    <p class="fragment">Armed with this information, let's create a
+                        <u>generic exception handler</u>
+                    </p>
+                </section>
+
+                <section id="error-controller">
+                    <h2>Generic Exception Handler</h2>
+                    <p class="fragment tight">Controller responsible for rendering
+                        <br>a generic error view on uncaught exceptions</p>
+                    <pre class="fragment tight" style="font-size: 0.86rem;">
+                    <code class="java tight" data-trim contenteditable>
+@ControllerAdvice
+public class GlobalControllerExceptionHandler {
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // respond with an http 400
+    @ExceptionHandler(value = JavaBankException.class) // user did something wrong
+    public ModelAndView handleClientErrors(HttpServletRequest req, JavaBankException ex) {
+
+        ModelAndView model = new ModelAndView();
+
+        // add error info to the model
+        model.setViewName("error");
+        return  model;
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // respond with an http 500
+    @ExceptionHandler(value = Exception.class) // something is wrong with the server
+    public ModelAndView handleServerErrors(HttpServletRequest req, Exception ex) {
+
+        ModelAndView model = new ModelAndView();
+
+        // add error info to the model
+        model.setViewName("error");
+        return  model;
+    }
+}
+                </code></pre>
+                    <img src="images/2/web/application-error-view.png" style="position:relative; left: 380px; bottom: 200px;" class=" fragment tight"
+                    />
+                </section>
+
+                <section>
+                    <h2>Specific Exception Handlers</h2>
+                    <p class="fragment">Now that we have a proper error page for uncaught exceptions,
+                        <br>we can add specific error handling logic to controllers</p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                    <code class="java" data-trim contenteditable>
+@RequestMapping(method = RequestMethod.GET, path = "/{id}/delete")
+public String deleteCustomer(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+
+    try {
+
+        Customer customer = customerService.get(id);
+        customerService.delete(id);
+
+        // populate the model and render the appropriate view
+
+    } catch (AssociationExistsException) {
+
+        // provide a visual indication to the user that is not a good idea
+        // to delete the customer before closing all accounts
+    }
+}
+                    </code>
+                </pre>
+                    <small class="fragment">Concrete business logic exceptions
+                        <u>should extend</u> from our generic
+                        <b>JavaBankException</b>
+                    </small>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <h1>Logging</h1>
+                </section>
+
+                <section id="logging">
+                    <img class="logo float-right" style="display: inline" src="images/2/web/diary.png">
+                    <h2>What is Logging?</h2>
+                    <p class="fragment clearfix">The process of writing messages regarding a running piece of software to a centralized place</p>
+                    <p class="fragment">These messages have different levels to reflect their importance:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">TRACE</li>
+                            <li class="fragment">DEBUG</li>
+                            <li class="fragment">INFO</li>
+                            <li class="fragment">WARN</li>
+                            <li class="fragment">ERROR</li>
+                            <li class="fragment">FATAL</li>
+                        </ul>
+                    </small>
+
+                    <p class="fragment">The object which performs the logging is called a Logger</p>
+                    <aside class="notes">
+                        Log4j2 supports custom log levels
+                        <br>
+                        <br>Trace - Only when I would be "tracing" the code and trying to find one part of a function specifically.
+                        <br>
+                        <br>Debug - Information that is diagnostically helpful to people more than just developers (IT, sysadmins,
+                        etc.).
+                        <br>
+                        <br>Info - Generally useful information to log (service start/stop, configuration assumptions, etc).
+                        Info I want to always have available but usually don't care about under normal circumstances.
+                        <br>
+                        <br>Warn - Anything that can potentially cause application oddities, but for which I am automatically
+                        recovering. (Such as switching from a primary to backup server, retrying an operation, missing secondary
+                        data, etc.)
+                        <br>
+                        <br>Error - Any error which is fatal to the operation, but not the service or application (can't open
+                        a required file, missing data, etc.). These errors will force user (administrator, or direct user)
+                        intervention.
+                        <br>
+                        <br>Fatal - Any error that is forcing a shutdown of the service or application to prevent data loss (or
+                        further data loss).
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Importance and Benefits of Logging</h2>
+                    <p class="fragment">Logging allows us to persist important information such as errors, client accesses, transactions and
+                        other relevant events.</p>
+                    <p class="fragment">Log files are mainly used for debugging, data analysis and statistics.</p>
+                    <p class="fragment">Stack traces are useful for knowing the exact point where an application failed, but they provide little
+                        to no information regarding the previous state of an application</p>
+                    <aside class="notes">
+                        Disadvantages: Slow down your application Scroll blindness
+                        <br>
+                        <br>Scroll Blindness: The state by which a human being is blind to meaningful information as the information
+                        is going by too fast or in too complex a form.
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" style="display:inline" src="images/2/web/options.png">
+                    <h2>Logging Options</h2>
+                    <p class="fragment clearfix">Three major logging frameworks to choose from exist:</p>
+
+                    <ul>
+                        <li class="fragment">java.util.logging (commonly known as JUL)</li>
+                        <li class="fragment">Logback</li>
+                        <li class="fragment">Log4j/Log4j2</li>
+                    </ul>
+
+                    <p class="fragment">JUL cannot be recommended due to a lower performance when compared to the other options</p>
+                    <p class="fragment">SLF4J is a logging facade, which abstracts the various logging frameworks from the application</p>
+                    <aside class="notes">
+                        slf4j stands for Simple Logging Facade, which serves as a facade for various logging frameworks implementations
+                        <br>
+                        <br>side note: any log4j2 implementation can be adapted to a slf4j api if needed using the log4j-to-slf4j
+                        module
+                    </aside>
+                </section>
+
+                <section id="log4j2">
+                    <div>
+                        <img class="tiny" src="images/2/web/apache_log4j_logo.png">
+                    </div>
+                    <ul>
+                        <li class="fragment">API Separation</li>
+                        <li class="fragment">Support for multiple APIs</li>
+                        <li class="fragment">Automatic Reloading of Configurations</li>
+                        <li class="fragment">Advanced Filtering</li>
+                        <li class="fragment">Plugin Architecture</li>
+                    </ul>
+                    <aside class="notes">
+                        we can program against the Log4j2 API and have a different logging implementation on the backend, meaning we can use the
+                        log4j-api as a facade
+                        <br>
+                        <br>on our log4j2 configuration we can configure a monitorTimeInterval parameter that will make log4j2
+                        check if its configuration changed since the last monitorization, and update it's configuration during
+                        runtime
+                        <br>
+                        <br>plugin architecture -&lt; https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/LoadingCode/Concepts/Plugins.html
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Log4j2 Dependencies</h2>
+                    <pre class="fragment">
+                    <code class="xml" data-trim contenteditable>
+&lt;!-- pom.xml --&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
+        &lt;version&gt;2.10.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j-api&lt;/artifactId&gt;
+        &lt;version&gt;2.10.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j-web&lt;/artifactId&gt;
+        &lt;version&gt;2.10.0&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+                                </code>
+                            </pre>
+                    <aside class="notes">
+                        log4j-core is the implementation
+                        <br>log4j-api is a facade api that lets you switch implementations
+                        <br>log4j-web is needed to properly support and handle the ClassLoader environment and container lifecycle
+                        of a web application
+                    </aside>
+                </section>
+
+                <section id="log-create">
+                    <h2>Creating a Logger with Log4j2</h2>
+                    <p class="fragment">Loggers created with the
+                        <b>LogManager.getLogger()</b> method</p>
+                    <p class="fragment">It's accepted as a common practice to request one logger per class. This way, our log writings are easily
+                        identifiable.
+                    </p>
+
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="java" data-trim contenteditable>
+public class MySpecialClass {
+
+    // getting the class logger
+    // by convention, the property's name is logger
+    private Logger byClass = LogManager.getLogger(MySpecialClass.class);
+    private Logger byName = LogManager.getLogger("org.academiadecodigo.bootcamp.MySpecialClass");
+
+    public static void main(String[] args) {
+
+        // logging different levels
+        byClass.trace("Trace log message");
+        byClass.debug("Debug log message");
+        byClass.info("Info log message");
+        byClass.warn("Warn log message");
+        byClass.error("Error log message");
+        byClass.fatal("Fatal log message");
+    }
+}
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Log4j2 Configuration</h2>
+                    <p class="fragment">
+                        Log4j2 can be configured under various formats:
+                    </p>
+
+                    <ul>
+                        <li class="fragment">Properties File</li>
+                        <li class="fragment">YAML File</li>
+                        <li class="fragment">JSON</li>
+                        <li class="fragment">XML File</li>
+                    </ul>
+
+                    <p class="fragment">
+                        Its two main elements are
+                        <b>Appenders</b> and
+                        <b>Loggers</b>
+                    </p>
+                </section>
+
+                <section id="appenders">
+                    <h2>Appenders</h2>
+                    <p class="fragment">
+                        Appenders write event data to a target location. We can choose to write this data under a given format by using <b>layouts</b>.
+                    </p>
+
+                    <p class="fragment">
+                        A layout allows us to choose which data elements we want to include on each of the records written by a specific appender
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Appenders</h2>
+                    <img src="images/2/web/appender_layout.png">
+                    <small class="fragment">
+                        (%n is simply the new line separator)
+                    </small>
+                    <aside class="notes">
+                        %M (capital M) is used to get the method name, but its performance is extremely slow
+                    </aside>
+                </section>
+
+                <section id="loggers">
+                    <h2>Loggers</h2>
+                    <p class="fragment">
+                        Objects which we have to interact with in order to perform logging.
+                    </p>
+
+                    <p class="fragment">
+                        Each logger can have multiple appenders and will delegate to one of the appenders the operation of writing to an output.
+                    </p>
+
+                    <p class="fragment">
+                        <u>At the very least the Root logger must be configured!</u>
+                    </p>
+                </section>
+
+                <section id="log4j2-config">
+                    <h2>Javabank Log4j2
+                        <br> XML Configuration</h2>
+                    <pre class="fragment" style="font-size: 0.7rem;">
+                    <code class="xml" data-trim contenteditable>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Configuration status="ALL"&gt;
+    &lt;Appenders&gt;
+        &lt;RollingFile name="AccessRollingFile"
+            fileName="${sys:catalina.home}/logs/javabank/access/javabank_access.log"
+            filePattern="${sys:catalina.home}/logs/javabank/access/$${date:yyyy}/$${date:MM}/javabank_access_%d{dd}.log"
+            append="false"&gt;
+            &lt;PatternLayout&gt;
+                &lt;Pattern&gt;%d [%t] - %p - %c - %m%n&lt;/Pattern&gt;
+            &lt;/PatternLayout&gt;
+            &lt;Policies&gt;
+                &lt;TimeBasedTriggeringPolicy interval="1" modulate="true"/&gt;
+            &lt;/Policies&gt;
+            &lt;LevelRangeFilter minLevel="INFO" maxLevel="INFO"/&gt;
+        &lt;/RollingFile&gt;
+
+        &lt;RollingFile name="ErrorRollingFile"
+            fileName="${sys:catalina.home}/logs/javabank/error/javabank_error.log"
+            filePattern="${sys:catalina.home}/logs/javabank/error/$${date:yyyy}/$${date:MM}/javabank_error_%d{dd}.log"
+            append="false"&gt;
+            &lt;PatternLayout&gt;
+                &lt;Pattern&gt;%d [%t] - %p - %c - %m%n&lt;/Pattern&gt;
+            &lt;/PatternLayout&gt;
+            &lt;Policies&gt;
+                &lt;TimeBasedTriggeringPolicy interval="1" modulate="true"/&gt;
+            &lt;/Policies&gt;
+                &lt;ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/&gt;
+            &lt;/RollingFile&gt;
+
+            &lt;RollingFile name="DebugRollingFile" fileName="${sys:catalina.home}/logs/javabank/debug/javabank_debug.log"
+                filePattern="${sys:catalina.home}/logs/javabank/debug/$${date:yyyy}/$${date:MM}/javabank_debug_%d{dd}.log"
+                append="false"&gt;
+                &lt;PatternLayout&gt;
+                    &lt;Pattern&gt;%d [%t] - %p - %c - %m%n&lt;/Pattern&gt;
+                &lt;/PatternLayout&gt;
+                &lt;Policies&gt;
+                    &lt;TimeBasedTriggeringPolicy interval="1" modulate="true"/&gt;
+                &lt;/Policies&gt;
+        &lt;/RollingFile&gt;
+
+    &lt;/Appenders&gt;
+    &lt;Loggers&gt;
+        &lt;Root level="INFO"&gt;
+            &lt;AppenderRef ref="AccessRollingFile"/&gt;
+            &lt;AppenderRef ref="ErrorRollingFile"/&gt;
+        &lt;/Root&gt;
+
+        &lt;Logger name="org.hibernate.SQL" level="DEBUG" additivity="false&gt;
+            &lt;AppenderRef ref="DebugRollingFile"/&gt;
+        &lt;/Logger&gt;
+    &lt;/Loggers&gt;
+&lt;/Configuration&gt;
+                    </code>
+                </pre>
+                    <aside class="notes">
+                        TimeBasedTriggeringPolicy -&lt; the interval is always in reference to the lowest date unit in your filePattern
+                        <br>if it's days, it will rollover once a day, if it's hours, once an hour, if it's months, once a month
+                        <br>
+                        <br>cron expressions can be an alternative policy to TimeBased
+                        <br>
+                        <br>[%t] in the pattern layout stands for thread -&lt; [threadName]
+                    </aside>
+                </section>
+
+            </section>
+            <section>
+
+                <section id="ws">
+                    <img class="logo float-right" src="images/2/web/web-service-icon.png" />
+                    <h1>Web Services</h1>
+                    <img style="max-height: 200px;" class="fragment" src="images/2/web/ws.png" />
+                </section>
+
+                <section id="soa">
+                    <h2>Service Oriented Architecture (SOA)</h2>
+                    <ul>
+                        <li class="fragment">Models an application as a composition of reusable services</li>
+                        <li class="fragment">These services are exposed on the network and reusable by multiple applications</li>
+                    </ul>
+                    <img style="max-height: 200px;" class="fragment" src="images/2/web/soa.png" />
+                    <p class="fragment">Popular Distributed Application Frameworks
+                        <br> used to implement SOA include:</p>
+                    <ul>
+                        <li class="fragment">COM, DCOM - Microsoft Specific</li>
+                        <li class="fragment">EJB, RMI - Java Specific</li>
+                        <li class="fragment">CORBA, XML-RPC, SOAP - Platform and language independent</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Benefits of SOA</h2>
+                    <img style="max-height: 300px;" class="fragment" src="images/2/web/before-after-soa.png" />
+                    <ul>
+                        <li class="fragment">Reusability of new and existing software systems</li>
+                        <li class="fragment">Loose Coupling of software components</li>
+                        <li class="fragment">Flexibility to use a variety of platforms and languages</li>
+                        <li class="fragment">Easy to Scale individual services without affecting others</li>
+                        <li class="fragment">Services can be tested and debugged in isolation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>What is a Web Service?</h2>
+                    <p class="fragment">Usage of the
+                        <u>Web Platform</u> as a connection technology for service-oriented architectures.The benefits are:</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>Exposing of existing function on the network</u>, allowing other applications to remotely invoke
+                            our code</li>
+                        <li class="fragment">
+                            <u>Interoperability</u>, allowing various applications to talk to each other and share data and
+                            services among themselves, independently of their platforms/technologies</li>
+                        <li class="fragment">
+                            <u>Standardized Protocols</u>, by usage of standardized industry protocols for the communication</li>
+                        <li class="fragment">
+                            <u>Low Cost of Communication</u> as existing low-cost internet can be used for implementing web
+                            services rather than proprietary B2B solutions</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/web/soap-vs-rest.png" />
+                    <h2>Types of WebServices</h2>
+                    <ul>
+                        <li class="fragment">
+                            <u>SOAP</u> - exposes business logic operations</li>
+                        <li class="fragment">
+                            <u>RESTful</u> - exposes CRUD operations on data</li>
+                    </ul>
+                    <img class="fragment" style="max-height: 400px;" src="images/2/web/ws-comparison.jpg" />
+                </section>
+
+                <section id="soap">
+                    <img class="logo float-right" src="images/2/web/soap.png" />
+                    <h2>SOAP - Simple Object Access Protocol</h2>
+                    <h3 class="fragment">Contract First Web Services</h3>
+                    <img class="fragment float-right" style="max-height: 300px;" src="images/2/web/soap-architecture.png" />
+                    <ul style="margin-top: 30px;">
+                        <li class="fragment">Powerful</li>
+                        <li class="fragment">Versatile</li>
+                        <li class="fragment">Automated Tools</li>
+                        <li class="fragment">WSDL Contract</li>
+                        <li class="fragment">XML Payloads</li>
+                        <li class="fragment">Too Verbose..</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Powerful - expose any server operation</li>
+                            <li>Versatile - support for different protocols, eg. SMTP</li>
+                            <li>Automated Tools to generate ws code from WSDL contract</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="rest">
+                    <img class="logo float-right" src="images/2/web/rest.gif" />
+                    <h2>REST - Representational State Transfer</h2>
+                    <p>Architectural style in which systems communicate over HTTP using the same verbs that web browsers use
+                        to retrieve web pages and to send data to remote servers. Such systems are called RESTful.</p>
+                    <img class="fragment float-right" style="max-height: 300px;" src="images/2/web/rest-architecture.jpg" />
+                    <ul style="margin-top: 30px;">
+                        <li class="fragment">Not a protocol</li>
+                        <li class="fragment">Uses HTTP</li>
+                        <li class="fragment">Stateless</li>
+                        <li class="fragment">Cacheable</li>
+                        <li class="fragment">Exposes CRUD</li>
+                        <li class="fragment">Legacy XML</li>
+                        <li class="fragment">Modern JSON</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Not a protocol, it's an architectural style</li>
+                            <li>Has to run on top of http</li>
+                            <li>Cacheable by internet infrastructure</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>REST API Design</h2>
+                    <img class="fragment" src="images/2/web/rest-api-design.jpg" />
+                    <small>
+                        <table>
+                            <tr class="fragment">
+                                <th>HTTP Verb</th>
+                                <th>/tasks</th>
+                                <th>/tasks/{id}</th>
+                            </tr>
+                            <tr class="fragment">
+                                <td>GET</td>
+                                <td>200 (OK), list of tasks. Use pagination, sorting and filtering to navigate big lists.</td>
+                                <td>200 (OK), single task. 404 (Not Found), if ID not found or invalid.</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>PUT</td>
+                                <td>404 (Not Found), unless you want to update/replace every resource in the entire collection.</td>
+                                <td>200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>POST</td>
+                                <td>201 (Created). Response also contains a link to the created task (/task/{id}) in its header.</td>
+                                <td>404 (Not Found).</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>DELETE</td>
+                                <td>404 (Not Found), unless you want to delete the whole collection which is not often desirable.</td>
+                                <td>200 (OK). 404 (Not Found), if ID not found or invalid.</td>
+                            </tr>
+                        </table>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Modern Application Design</h2>
+                    <p class="fragment">Services are exposed as a REST API</p>
+                    <p class="fragment">API can be consumed by different types of clients/devices</p>
+                    <img class="fragment" style="max-height: 350px;" src="images/2/web/modern-app-architecture.png" />
+                </section>
+
+                <section id="jsonvsxml">
+                    <img class="float-right" style="max-width: 150px;" src="images/2/web/json-xml.jpg" />
+                    <h2>JSON vs XML</h2>
+                    <small>
+                        <div class="float-left">
+                            <ul>
+                                <li class="fragment">Native to JavaScript</li>
+                                <li class="fragment">Simplicity</li>
+                                <li class="fragment">No Defined Data Structures</li>
+                                <li class="fragment">No Well Defined Standards</li>
+                                <li class="fragment">Higher Performance</li>
+                            </ul>
+                        </div>
+                    </small>
+                    <small>
+                        <div class="float-right">
+                            <ul>
+                                <li class="fragment">Validation</li>
+                                <li class="fragment">Consistency</li>
+                                <li class="fragment">Strongly Typed</li>
+                                <li class="fragment">Strict Structure</li>
+                                <li class="fragment">Lower Performance</li>
+                            </ul>
+                        </div>
+                    </small>
+                    <img style="max-height: 420px;" src="images/2/web/json-vs-xml.png" />
+                    <aside class="notes">
+                        Validation and Consistency possible due to XML Schema Definition (XSD) rules
+                    </aside>
+                </section>
+
+            </section>
+
+            <section>
+                <section id="jackson">
+                    <h2>Jackson</h2>
+                    <h3>Standard JSON library for Java</h3>
+                    <p class="fragment">Provides a framework to serialize custom java objects to a json string and deserialize a json string
+                        back into a java objects.</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;dependency&gt;
+    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+    &lt;version&gt;2.8.0&lt;/version&gt;
+&lt;/dependency&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">How do we use it?</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+// ...
+
+ObjectMapper mapper = new ObjectMapper();
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>JSON to POJO</h2>
+                    <h3>Object Deserialization</h3>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class MyPojo {
+
+    private String name;
+    private int age;
+
+    // Getters and Setters
+
+}
+
+MyPojo myPojo1 = mapper.readValue(new File("data.json"), MyPojo.class);
+MyPojo myPojo2 = mapper.readValue(new URL("http://api.com/data.json"), MyPojo.class);
+MyPojo myPojo3 = mapper.readValue("{\"name\":\"Pedro\", \"age\":23}", MyPojo.class);
+                        </code>
+                    </pre>
+
+                </section>
+
+                <section>
+                    <h2>POJO to JSON</h2>
+                    <h3>Object Serialization</h3>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class MyPojo {
+
+    private String name;
+    private int age;
+
+    // Getters and Setters
+
+}
+
+MyPojo myPojo = new MyPojo();
+myPojo.setName("Pedro");
+myPojo.setAge(23);
+
+mapper.writeValue(new File("result.json"), myPojo);
+byte[] jsonBytes = mapper.writeValueAsBytes(myPojo);
+String jsonString = mapper.writeValueAsString(myPojo);
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Fetch IP information from
+                            <u>ipinfo.io</u> public JSON API</h3>
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/2/web/spring_mvc_rest.png" />
+                </section>
+
+                <section id="springrest">
+                    <h2>Spring REST API</h2>
+                    <p class="fragment">
+                        <u>@RequestBody</u> and
+                        <u>@ResponseBody</u> can be used in a controller to implement smart object serialization and deserialization</p>
+                    <p class="fragment">They extract the logic of message conversion from the code allow multiple data formats for a single resource
+                        without code duplication</p>
+                    <aside class="notes">
+                        <p>The requestBody will bind the JSON on the http request body - deserialization</p>
+                        <p>The response tag will serialize the Object returned</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Rest Controller</h2>
+                    <small>
+                        <ul>
+                            <li class="fragment">If a method parameter is annotated with
+                                <u>@RequestBody</u>, spring will try to convert the content of the incoming request body to
+                                a parameter object on the fly</li>
+                            <li class="fragment">If a method is annotated with
+                                <u>@ResponseBody</u>, spring will try to convert its return value and write it to the http response
+                                automatically
+                            </li>
+                        </ul>
+                    </small>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="java" data-trim contenteditable>
+@Controller
+@ResponseBody
+public class HelloWorldController {
+
+    @RequestMapping(method = RequestMethod.GET, value = "api/hello")
+    public String helloWorld(@RequestParam(value = "name", defaultValue = "World") String str) {
+
+        return "Hello " + str;
+    }
+
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">Annotating a class with
+                        <u>@RestController</u> is the same as annotating it with both
+                        <u>@Controller</u> and
+                        <u>@ResponseBody</u>
+                    </small>
+                    <aside class="notes">
+                        <p>If the method is not annotated with @ResponseBody a 404 will be throw because the string is not known.</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Response Entity</h2>
+                    <p class="fragment">The
+                        <u>ResponseEntity</u> class represents an HTTP response, consisting of headers, body and response code</p>
+                    <p class="fragment">It is used to return a specific http status code from the controller</p>
+                    <pre class="fragment">
+                         <code class="java" data-trim contenteditable>
+@RestController
+public class HelloWorldController {
+
+    @RequestMapping(method = RequestMethod.GET, value = "api/hello")
+    public ResponseEntity&lt;String&gt;
+        helloWorld(@RequestParam(value = "name", defaultValue = "World") String str) {
+
+        return new ResponseEntity&lt;String&gt;("Hello " + str, HttpStatus.I_AM_A_TEAPOT);
+
+    }
+}
+                         </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Hello REST API</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>JSON API</h2>
+                    <p class="fragment">Spring will use Jackson to serialize and deserialize objects automatically if it finds it in the class
+                        path
+                    </p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="java" data-trim contenteditable>
+public class Message {
+
+    private String message;
+
+    // getters and setters
+}
+
+@RestController
+public class HelloWorldController {
+
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "api/hello",
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity&lt;Message&gt;
+        helloWorld(@RequestParam(value = "name", defaultValue = "World") String str) {
+
+        Message message = new Message();
+        message.setMessage("Hello " + str);
+        return new ResponseEntity&lt;&gt;(message, HttpStatus.OK);
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>JSON Validation</h2>
+                    <p class="fragment">Remember the @Valid annotation?
+                        <span class="fragment"> We can validate the deserialized JSON object by adding @Valid to arguments</span>
+                    </p>
+                    <p class="fragment">By using the BindingResult class we can access the evaluation result</p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                        <code class="java" data-trim contenteditable>
+@RestController
+public class UserController {
+
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "api/users",
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity addUser(@Valid @RequestBody User user, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+           return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);
+       }
+
+        // ...
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">The
+                        <strong>BindingResult</strong> argument must
+                        <u>immediately follow</u> the object to be validated</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Add a JSON REST API with Customer CRUD operations
+                            <br>to the JavaBank application</h3>
+                        <p>Test with Postman / curl </p>
+                        <small>
+                            <table>
+                                <tr>
+                                    <th>Http Method</th>
+                                    <th>EndPoint</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td>GET</td>
+                                    <td>/customer</td>
+                                    <td>read all customers, no account info</td>
+                                </tr>
+                                <tr>
+                                    <td>GET</td>
+                                    <td>/customer/{id}</td>
+                                    <td>read a specific customer</td>
+                                </tr>
+                                <tr>
+                                    <td>GET</td>
+                                    <td>/customer/{id}/account</td>
+                                    <td>read all accounts for customer</td>
+                                </tr>
+                                <tr>
+                                    <td>GET</td>
+                                    <td>/customer/{cid}/account/{aid}</td>
+                                    <td>read account for customer</td>
+                                </tr>
+                                <tr>
+                                    <td>POST</td>
+                                    <td>/customer</td>
+                                    <td>create a new customer</td>
+                                </tr>
+                                <tr>
+                                    <td>PUT</td>
+                                    <td>/customer/{id}</td>
+                                    <td>edit an existing customer</td>
+                                </tr>
+                                <tr>
+                                    <td>DELETE</td>
+                                    <td>/customer/{id}</td>
+                                    <td>delete an existing customer</td>
+                                </tr>
+                                <tr>
+                                    <td>DELETE</td>
+                                    <td>/customer/{cid}/account/{aid}</td>
+                                    <td>delete an account</td>
+                                </tr>
+                            </table>
+                        </small>
+                    </div>
+                </section>
+            </section>
+            <section id="spring-security">
+
+                <section>
+                    <img class="float-right logo" src="images/2/web/secure-web-applications.png" />
+                    <h2>Web Application Security</h2>
+                    <p class="fragment clearfix">One of the most misunderstood and misimplemented concepts</p>
+                    <p class="fragment">
+                        <b>Security is like onions, it comes in layers</b>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>TCP/IP stack security</h2>
+                    <p class="fragment">Traditional web applications communicate through
+                        <strong>HTTP</strong>,
+                        <br>
+                        <u>which by nature is insecure</u>
+                    </p>
+                    <p class="fragment">A secure approach to communication between client and server is using
+                        <strong>HTTPS</strong> (
+                        <strong>HTTP</strong> +
+                        <strong>TLS</strong>)</p>
+                    <p class="fragment">This can be provided by your application container e.g:
+                        <strong>Tomcat</strong>
+                    </p>
+                    <p class="fragment">
+                        <a href="https://tomcat.apache.org/tomcat-8.5-doc/ssl-howto.html">Here's a quick how to</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Enterprise Application Security</h2>
+                    <p class="fragment">This an extensive topic and we'll only cover mostly 2 topics:</p>
+                    <ul>
+                        <li class="fragment">
+                            <strong>Authentication</strong> - Determines if the user is who he says he is</li>
+                        <li class="fragment">
+                            <strong>Authorization</strong> - Determines if the user has adequate permissions to perform some action
+                            or access some resource</li>
+                    </ul>
+                </section>
+
+                <section id="authentication">
+                    <h2>Authentication</h2>
+                    <p class="fragment">The most common authentication mechanism is the client providing the server with a combination of a user
+                        and password</p>
+                    <img class="fragment" style="max-height: 300px;" src="images/2/web/github-authentication.png">
+                    <p>
+                        <small class="fragment">Examples of other mechanisms of authentication are: PIN and Hardware</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Authentication</h2>
+                    <p class="fragment">We'll be rolling our authentication mechanisms
+                        <br>with the help of the Spring Framework</p>
+                    <ul>
+                        <li class="fragment">A combination of username and password for each customer has to be stored in the database</li>
+                        <li class="fragment">Before the customer can interact with the application, a valid set of credentials has to be provided
+                        </li>
+                    </ul>
+                    <!-- <p class="fragment">That means we'll store in our database a combination of username and password for each customer</p> -->
+                    <!-- <span class="fragment"><p>And before the customer can interact with our application, it'll have to provide the correct combination</p></span> -->
+                    <p class="fragment">Is storing that information in clear text secure enough?
+                        <br>
+                        <span class="fragment">Probably not, we'll get back to this in a jiffy.</span>
+                    </p>
+                </section>
+
+                <section id="authorization">
+                    <h2>Authorization</h2>
+                    <p class="fragment">Right now, every single user of our application can perform any action, such as transfer funds from an
+                        account that isn't theirs</p>
+                    <p class="fragment">
+                        <b>Of course, we don't want that to happen!</b>
+                    </p>
+                    <p class="fragment">Spring will also help us to configure that</p>
+                </section>
+
+                <section>
+                    <h2>Authorization</h2>
+                    <p class="fragment">Who should be able to access a specific operation in our application?</p>
+                    <p class="fragment">To better answer this question, instead of saying user x, y and z
+                        <br>we can provide each one of them a role</p>
+                    <img class="fragment" style="max-height: 200px;" src="images/2/web/rbac" />
+                    <p class="fragment">Each user can accumulate several roles within an application</p>
+                </section>
+
+                <section>
+                    <img class="float-right logo" src="images/2/web/spring-security.png" />
+                    <h2>Spring Security</h2>
+                    <p class="fragment">
+                        <i>De facto</i> security framework for JVM based languages</p>
+                    <a class="fragment" href="https://docs.spring.io/spring-security/site/docs/4.2.4.RELEASE/reference/htmlsingle/">Reference guide</a>
+                </section>
+
+                <section>
+                    <h2>Dependencies</h2>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="xml" data-trim contenteditable>
+ &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;
+    &lt;version&gt;4.2.4.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-security-config&lt;/artifactId&gt;
+    &lt;version&gt;4.2.4.RELEASE&lt;/version&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+            </code></pre>
+                </section>
+
+                <section>
+                    <h2>Bootstrapping Spring Security</h2>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="xml" data-trim contenteditable>
+<!-- All requests will pass through the Spring Security filter -->
+&lt;filter&gt;
+    &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
+&lt;/filter&gt;
+
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+            </code></pre>
+                </section>
+
+                <section>
+                    <h2>Spring Security configuration</h2>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="xml" data-trim contenteditable>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd"&gt;
+
+    &lt;security:http&gt;
+        &lt;security:form-login/&gt;
+        &lt;security:intercept-url pattern="/**" access="hasAnyRole('ADMIN', 'USER')"/&gt;
+    &lt;/security:http&gt;
+
+    &lt;security:authentication-manager&gt;
+        &lt;security:authentication-provider&gt;
+            &lt;security:user-service&gt;
+                &lt;security:user name="admin" password="password" authorities="ROLE_ADMIN"/&gt;
+                &lt;security:user name="user" password="password" authorities="ROLE_USER"/&gt;
+            &lt;/security:user-service&gt;
+        &lt;/security:authentication-provider&gt;
+    &lt;/security:authentication-manager&gt;
+&lt;/beans&gt;
+</code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Integrate Spring Security into JavaBank</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <img class="float-right logo" src="images/2/web/spring-security-wow.gif" alt="wow" />
+                    <h2>Spring Security</h2>
+                    <p class="clearfix">Has a lot of built-in behaviour but this setup is rarely used
+                        <br>in a production ready application</p>
+                    <p class="fragment">To better match our needs, it is possible to override the default behaviour</p>
+                </section>
+
+                <section id="spring-security-defaults">
+                    <h2>Overriding Spring Security defaults</h2>
+                    <p class="fragment">Application users are declared in configuration
+                        <br>
+                        <u>Good for testing purposes, bad for production</u>
+                    </p>
+                    <p class="fragment">
+                        <b>Create User and Role models and
+                            <br>override the default Spring Security behaviour</b>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>User Model</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "user")
+public class User extends AbstractModel {
+
+    private String name;
+    private String password;
+
+    @OneToOne
+    private Customer customer;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "USER_ROLE",
+        joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+    )
+    private Set&lt;Role&gt; roles;
+
+    // getters and setters
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Role Model</h2>
+                    <pre class="fragment">
+                       <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "role")
+public class Role extends AbstractModel {
+
+    private String name;
+
+    // getters and setters
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="user-service">
+                    <h2>User Service</h2>
+                    <p class="fragment">We need to provide Spring our own UserService implementation</p>
+                    <pre class="fragment">
+                       <code class="xml" data-trim contenteditable>
+&lt;security:authentication-manager&gt;
+    &lt;security:authentication-provider user-service-ref="userServiceImpl" /&gt;
+&lt;/security:authentication-manager&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">The user service will be responsible for
+                        <br>
+                        <b>retrieving the user data from the database</b>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>UserDetailsService</h2>
+                    <p class="fragment">
+                        <b>UserService</b> has to implement the
+                        <strong>UserDetailsService</strong> interface</p>
+                    <p class="fragment">
+                        <strong>loadUserByUsername()</strong> locates a user by its username</p>
+                    <pre class="fragment">
+                       <code class="java" data-trim contenteditable>
+@Component
+public class UserServiceImpl implements UserDetailsService {
+
+    @Override
+    public UserDetails loadUserByUsername(String username)
+        throws UsernameNotFoundException {
+
+            return new User("admin", "password", Arrays.asList(
+                new SimpleGrantedAuthority("ROLE_ADMIN"),
+                new SimpleGrantedAuthority("ROLE_USER")
+        ));
+    }
+}
+                        </code>
+                   </pre>
+                    <p class="fragment">Refer to
+                        <a href="https://docs.spring.io/spring-security/site/docs/4.2.4.RELEASE/apidocs/org/springframework/security/core/userdetails/UserDetailsService.html">UserDetailsService</a>
+                        and
+                        <a href="https://docs.spring.io/spring-security/site/docs/4.2.4.RELEASE/apidocs/org/springframework/security/core/userdetails/User.html">Spring Security User</a> API docs</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Integrate the User and Role entities with Spring Security</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>SELECT * FROM user;</h2>
+                    <p class="fragment">Right now, your user's password is stored in clear text,
+                        <br>
+                        <b>which is NOT secure at all!</b>
+                    </p>
+                    <p class="fragment">Sensitive information should always be hashed before stored</p>
+                    <p>
+                        <span class="fragment">Let's implement our own hashing algorithm!</span>
+                        <span class="fragment">Not really, although this would have been fun. Don't roll your own cryptography!</span>
+                    </p>
+
+                    <aside class="notes">
+                        Also explain the difference between hashing and encrypting Remember that the application seeds are saving a clear text password,
+                        it should now save a hashed password. This hashing can be achieved through creating a new instance
+                        of BCryptPasswordEnconder and using it in another class non related to the JavaBank application.
+                        Optionally you can explain hashing + salting and why salting is necessary (although bcrypt does that
+                        for u).
+                    </aside>
+                </section>
+
+                <section id="bcrypt">
+                    <h2>bcrypt</h2>
+                    <p class="fragment">bcrypt is one of the most famous hashing algorithms and
+                        <br>a good choice for encrypting sensitive information</p>
+                    <pre class="fragment" style="font-size: 0.9rem;"><code class="xml" data-trim contenteditable>
+&lt;security:authentication-manager&gt;
+    &lt;security:authentication-provider user-service-ref="userServiceImpl"&gt;
+        &lt;security:password-encoder ref="bcryptEnconder"/&gt;
+    &lt;/security:authentication-provider&gt;
+&lt;/security:authentication-manager&gt;
+
+&lt;bean
+    name="bcryptEnconder"
+    class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+/&gt;
+        </code></pre>
+                    <p class="fragment">
+                        <b>Voilà!</b>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Request flow chart</h2>
+                    <img style="max-height: 420px;" src="/images/2/web/spring-security-request-flow-chart" />
+
+                    <aside class="notes">
+                        Explain request flow and show what default behaviours can be overriden
+                    </aside>
+                </section>
+
+
+                <section>
+                    <h2>Role based Redirect</h2>
+                    <p class="fragment">A common application requirement is to redirect
+                        <br>different types of users to different pages after login</p>
+                    <p class="fragment">We can achieve this by configuring Spring
+                        <br>to use our
+                        <u>Custom Authentication Success Handler</u>
+                    </p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;security:http&gt;
+    &lt;security:form-login authentication-success-handler-ref="myCustomAuthenticationSuccessHandler"/&gt;
+    &lt;security:intercept-url pattern="/customer/list" access="hasRole('ADMIN')"/&gt;
+&lt;/security:http&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">We can implement our custom authentication success handler by implementing
+                        <strong>SimpleUrlAuthenticationSuccessHandler</strong>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Expression-Based Access Control</h2>
+                    <p class="fragment">
+                        Complex rules can be transformed into a
+                        <u>simple boolean expression</u>
+                        <br> using expression based access control
+                    </p>
+                    <pre class="fragment" style="font-size: 0.9rem;">
+                      <code class="xml" data-trim contenteditable>
+&lt;security:http&gt;
+    &lt;security:intercept-url pattern="/customer/{customerId}/**"
+        access="hasRole('ADMIN') or @permissionEvaluator.hasPermission(authentication, #customerId)"/&gt;
+&lt;/security:http&gt;
+                      </code></pre>
+                    <p class="fragment">This expression prevents customers to access
+                        <br>other customer pages, unless they have the
+                        <b>ADMIN</b> role</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Implement role based access control in the
+                            <br>JavaBank application using Spring Security</h3>
+                    </div>
+
+                    <aside class="notes">
+                        Demo our solution so cadets can better understand what is pretended
+                    </aside>
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 29,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        window.onload = function () {
+            document.getElementById("academiaCodigo").focus();
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body id="body">
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section id="start">
+                <h1>Fundamentals of Electricity</h1>
+            </section>
+
+            <section>
+
+                <section>
+                    <h3>How can programmers
+                        <u>not understand</u> the basics of the machine before coding on it?</h3>
+                    <img class="fragment" style="max-height: 300px;" src="images/0/monkey.png" alt="">
+                    <p class="fragment">Let's start with the very basics then...</p>
+                </section>
+
+                <section>
+                    <h2>Electricity</h2>
+                    <img src="images/0/duracell_matrix.jpg" alt="">
+                    <p class="fragment">Just some basic concepts
+                        <u>for programmers</u>
+                    </p>
+                    <aside class="notes">
+                        ...after all, this is not an electronics bootcamp!
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Electric Current</h2>
+                    <p class="fragment">You cannot see it, but you know it's there...</p>
+                    <img class="fragment" style="max-height: 300px;" src="images/0/9v-current.png" alt="">
+                    <aside class="notes">Who hasn't been shocked by a 9V battery on the tongue?</aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/0/magnet.png" alt="">
+                    <h2>Magnetism</h2>
+                    <p class="fragment">...and somehow related to magnetism!</p>
+                    <img class="fragment" style="max-height: 300px;" src="images/0/coil.jpg" alt="">
+                    <p class="fragment">magnets can induce electric current on a wire...</p>
+                    <p class="fragment">...electric current on a wire can generate a magnetic field</p>
+                    <aside class="notes">The image that is represented is an electro-magnet. Composed by a coil and a piece of a magnetizable material</aside>
+                </section>
+
+                <section>
+                    <h2>What does everybody know about magnets?</h2>
+                    <img class="fragment" src="images/0/magnet-charges.png" alt="">
+                    <p class="fragment">Equal charges (positive or negative) repel</p>
+                    <p class="fragment">Opposite charges attract</p>
+                </section>
+
+                <section>
+                    <h2>Bohr Model of the Copper Atom</h2>
+                    <img class="fragment float-right" style="max-height: 300px;" src="images/0/atom-bohr.png" alt="">
+                    <ul>
+                        <li class="fragment">29 protons (positive charges)</li>
+                        <li class="fragment">29 electrons in 4 shells (negative charges)</li>
+                        <li class="fragment">The valence shell (last) has 1 electron on it</li>
+                    </ul>
+                    <p class="fragment">Charge attraction in Atoms works just like in Magnets</p>
+                    <img class="fragment" style="max-height: 80px;" src="images/0/charge-attraction.png" alt="">
+                    <p class="fragment">Why don't electrons collapse onto the protons?</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                Niels Bohr was a Danish physicist who made foundational contributions to understanding atomic structure and quantum theory,
+                                for which he received the Nobel Prize in Physics in 1922. By having a single electron in the valence
+                                shell the copper atom becomes a good conductor because it's easy to flick him away
+                            </li>
+                            <li>
+                                Answer: due to the centrifugal force caused by circular movement of electrons
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Electric Current</h2>
+                    <p class="fragment">By providing adequate external force, that last and distant electron can jump from one atom to the next
+                        one, producing the phenomena we describe as electric current</p>
+                    <img class="fragment float-right" style="max-height: 250px;" src="images/0/ohms-law-battery.png" alt="">
+                    <ul>
+                        <li class="fragment">Positive pole has missing electrons</li>
+                        <li class="fragment">Negative pole has excessive electrons</li>
+                    </ul>
+                    <p class="fragment">The charge difference between poles is called
+                        <u>Voltage</u>
+                    </p>
+                    <p class="fragment">It basically means how hard the battery pushes electrons across the wire</p>
+                    <aside class="notes">Copper is an excellent conductor, not much force is required to make electrons flow.
+                        <p>Water tank analogy</p>
+                        <p>Show a video on short circuiting a car battery</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Electric Signal</h2>
+                    <p class="fragment">We can increase or decrease the current in a conductor by increasing or decreasing the voltage (push
+                        harder/softer)
+                    </p>
+                    <img class="fragment" style="max-height: 250px;" src="images/0/analog-signal.png" alt="">
+                    <p class="fragment">Information (sound, audio, etc.) can be represented electrically by varying the current over time. We
+                        call this an
+                        <u>Electric Signal</u>
+                    </p>
+                    <aside class="notes">Microphone example</aside>
+                </section>
+
+                <section>
+                    <h2>Analog Signal</h2>
+                    <p class="fragment">If the signal is continuous over time it is called
+                        <u>Analog</u>
+                    </p>
+                    <img class="fragment" style="max-height: 250px;" src="images/0/analog-digital.png" alt="">
+                    <p class="fragment">If we
+                        <u>sample</u> and work with specific discrete values only, the signal is called
+                        <u>Digital</u>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Digital Sampling</h2>
+                    <p class="fragment">The discrete digital values are encoded in a set of 0s and 1s, representing the
+                        <u>two</u> possible voltage levels on a digital signal</p>
+                    <img class="fragment" style="max-height: 200px;" src="images/0/digital-sampling.jpg" alt="">
+                    <p class="fragment">But what sort of
+                        <u>coding scheme</u> is this, capable of transforming decimal numbers into zeros and ones?</p>
+                    <img class="fragment" style="max-height: 75px;" src="images/0/digital-sampling-binary.png" alt="">
+                    <small class="fragment">We need to understand some things about numbers before answering this question...</small>
+                </section>
+
+                <section>
+                    <h2>Digital Signal</h2>
+                    <p class="fragment">Digital Signals have only two possible values of Voltage</p>
+                    <img class="fragment" style="max-height: 250px;" src="images/0/digital-vs-analog.jpg" alt="">
+                    <p class="fragment">Common sense says Digital is better than Analog!</p>
+                    <p class="fragment">How can digital signals with only two values be superior to analog?</p>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/0/analog-vs-digital-logo.jpg" alt="">
+                    <h2>Digital vs Analog</h2>
+                    <p class="fragment">The most important advantage of digital communication is immunity to noise interference</p>
+                    <img class="fragment" style="max-height: 250px;" src="images/0/noise.png" alt="">
+                    <p class="fragment">Even with significant amount of noise, it's easy to distinguish between a 0 and a 1</p>
+                    <aside class="notes">noise severely affects analog signals. Even with noise, it's easy to understand the difference between
+                        the two voltage levels, so digital signals do not change with noise. Old audio/video tapes will look/sound
+                        different with time as the signal will become corrupted. DVD/CDs which are a digital media format
+                        will look/sound the same many years after.
+                    </aside>
+                </section>
+
+                <section id="circuits">
+                    <img class="logo float-right" src="images/0/electronic-circuits.jpg" alt="">
+                    <h2>Electronic Circuits</h2>
+                    <p class="fragment">Analog or digital, they are made of a combination of components allowing various simple and complex operations
+                        to be performed</p>
+                    <p class="fragment">Signals can be amplified, computations performed and data moved from one place to another</p>
+                    <img class="fragment" style="max-height: 150px;" src="images/0/pcb-tracks.jpg" alt="">
+                    <p class="fragment">Electronic circuits are typically built on a
+                        <u>Printed Circuit Board</u> where all the components are connected using conductive tracks</p>
+                    <small class="fragment">But there is one electronic component which is very important...</small>
+                </section>
+
+                <section id="transistor">
+                    <h2>Transistor</h2>
+                    <p class="fragment">Analog signals can be
+                        <u>amplified</u> using semiconductor devices called Transistors.
+                        <span class="fragment">Electronic signals
+                            <u>switch</u> between voltage levels using Transistors.</span>
+                    </p>
+                    <img class="fragment" style="max-height: 250px;" src="images/0/transistors.jpg" alt="">
+                    <p class="fragment">They are the fundamental building block of all modern electronic devices and millions of them can be
+                        found in modern systems</p>
+                </section>
+
+                <section>
+                    <h2>Transistor Operation</h2>
+                    <p>
+                        <img class="fragment float-right" style="max-height: 200px;" src="images/0/transistor-layout.png" alt="">
+                        <p>
+                            <u>Switch</u> the current on/off in a digital signal</p>
+                        <small style="margin: 20px;">
+                            <ul>
+                                <li class="fragment">Made of silicon semiconductor material</li>
+                                <li class="fragment">Fabricated with three separately doped regions</li>
+                                <li class="fragment">Regions are called Base, Emitter and Collector</li>
+                                <li class="fragment">P is positively doped</li>
+                                <li class="fragment">N is negatively doped</li>
+                                <li class="fragment">Small base current controls large emitter current</li>
+                            </ul>
+                        </small>
+                    </p>
+                    <img class="fragment float-left" style="max-height: 220px;" src="images/0/transistor-off.svg" alt="">
+                    <img class="fragment float-right" style="max-height: 220px;" src="images/0/transistor-on.svg" alt="">
+                    <aside class="notes">Silicon valley? Difference between NPN and PNP are the voltages that we need to apply to PN/NP junctions
+                        to make the transistor work (positive or negative)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Integrated Circuits</h2>
+                    <p>An integrated circuit (also referred to as an IC, a chip, or a microchip) is a set of electronic circuits
+                        on one small flat piece of semiconductor material, normally silicon</p>
+                    <img class="fragment" style="max-height:200px" data-src="images/0/transistor.jpg" />
+                    <img class="fragment" style="max-height:200px" data-src="images/0/ic-outside.jpg" />
+                    <img class="fragment" style="max-height:200px" data-src="images/0/ic-inside.jpg" />
+                    <small>
+                        <p class="fragment">As of 2017, the largest transistor count in a commercially IC is over 19.2 billion — the AMD Epyc</p>
+                        <p class="fragment">The CPU, Memory and most computer components are implemented as integrated circuits</p>
+                    </small>
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="drawin/intro.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+            menu: {
+                // Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu
+                custom: false,
+                // Disable themes tab
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+            // Specifies section for limits-app
+            section: 1,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });    </script>
+</body>
+
+</html>

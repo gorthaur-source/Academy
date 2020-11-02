@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Enterprise Java</h1>
+                <p>
+                  <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Java Platforms</h2>
+                    <img src="images/2/spring/java-platforms.jpg">
+                </section>
+
+                <section>
+                    <h2>Java Enterprise Edition</h2>
+                    <small>
+                        <p class="fragment">The Java EE architecture makes enterprise applications easy to write because business logic is organized into reusable components</p>
+                        <p class="fragment">The Java EE server provides underlying services in the form of a container, avoiding handwriting many lines of code to handle transactions, state management, multithreading, resource pooling and other complex low-level details</p>
+                        <img style="max-width: 300px;" class="fragment float-right" src="images/2/spring/java-ee-containers.png">
+                        <ul style="max-width: 600px;" class="float-left">
+                            <li class="fragment"><u>Java EE Server</u> is the runtime portion of a Java EE product and provides EJB and Web containers</li>
+                            <li class="fragment"><u>EJB Container</u> runs on the Java EE Server and manages the execution of Enterprise Java Beans</li>
+                            <li class="fragment"><u>Web Container</u> runs on the Java EE Server and manages the execution of web pages, servlets, and some EJB components</li>
+                            <li class="fragment"><u>EJBs</u> are Java components, containing business logic, that benefit from technical services provided by the container, usually in a declarative way, thanks to annotations</li>
+                        </ul>
+                    </small>
+                </section>
+
+                <section id="container-usage">
+                    <h2>Container Usage in 2017</h2>
+                    <img class="small" class="fragment float-right" src="images/2/spring/application-servers-2017.png">
+                    <div style="max-width: 400px;" class="float-left">
+                        <p class="fragment">Tomcat and Jetty are just <u>servlet containers</u>, they implement only the servlets and jsp specification</p>
+                        <p class="fragment">Glassfish and JBoss are <u>full Java EE servers</u></p>
+                    </div>
+                    <small class="fragment">Glassfish is the Oracle JEE reference implementation</small>
+                </section>
+
+                <section>
+                    <h2>Spring vs Java EE</h2>
+                    <small>
+                        <p class="fragment">Both JavaEE and Spring work on the same core APIs (Servlet, JPA, JMS, etc), the difference is <u>what glues things together</u>, Spring or an AppServer</p>
+                        <p class="fragment">Even though there are some different APIs for things like dependency injection (Spring DI vs CDI), REST (JAX-RS vs SpringMVC) etc., they look and behave pretty similar to each other</p>
+                    </small>
+                    <img style="max-height: 350px;" class="fragment" src="images/2/spring/java-ee-spring.png">
+                </section>
+
+                <section>
+                    <h2>Spring Usage in 2016</h2>
+                    <p class="fragment">Spring is the most widely used web framework in the enterprise:</p>
+                    <img style="max-width: 500px" class="fragment" src="images/2/spring/spring-usage.png">
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/2/spring/spring-logo.png">
+                </section>
+
+                <section id="modules">
+                    <h2>Spring Framework</h2>
+                    <small><p class="fragment">Consists of features organized into about 20 modules, grouped into the Core Container, AOP and Instrumentation, Messaging, Data Access/Integration, Web and Test:</p></small>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/spring/spring-overview.png">
+                </section>
+
+                <section>
+                    <h2>Spring Core</h2>
+                    <p class="fragment">Central part of the Spring Framework, upon which everything else is built on. Its core concepts are:</p>
+                    <ul>
+                        <li class="fragment"><u>Spring Beans</u> - Contrary to EJB, Spring is designed to use POJOs</li>
+                        <li class="fragment"><u>Dependency Injection</u> - Decreases object coupling, reduces boilerplate code and facilitates testing</li>
+                        <li class="fragment"><u>Inversion of Control</u> - Management of software components and their injection into dependent objects</li>
+                        <li class="fragment"><u>Spring Context</u> - Brings everything together, wiring up the whole environment</li>
+                        <li class="fragment"><u>Spring Expression Language</u> - Concise language that provides great flexibility for configuring the Framework</li>
+                    </ul>
+                </section>
+
+                <section id="di">
+                    <img class="logo float-right" src="images/2/spring/injection.jpg">
+                    <h2>Dependency Injection</h2>
+                    <p class="fragment">A Java application consists of a number of objects that collaborate with each other.
+                        <span class="fragment">For this collaboration to take place, objects have dependencies on each other.</span></p>
+                    <p class="fragment">Dependency injection is a software design pattern that implements <u>Inversion of Control</u> for resolving dependencies</p>
+                    <p class="fragment">What this means is that a given class or system is no longer responsible for instantiating their own dependencies,
+                            but moves the responsibility for locating and attaching dependency objects to another class or a DI tool</p>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/spring/decouple.jpg">
+                    <h2>Benefits of DI</h2>
+                    <ul>
+                        <li class="fragment"><u>decreases coupling</u> between a class and its dependencies</li>
+                        <li class="fragment"><u>increases flexibility</u> due to the class capability of working with different implementations of its dependencies</li>
+                        <li class="fragment"><u>increases testability</u> by allowing easy injection of mocks or stubs</li>
+                        <li class="fragment"><u>increases code reuse</u>, external configuration and injection of dependencies facilitates class usage in different contexts</li>
+                    </ul>
+                </section>
+
+                <section id="ioc">
+                    <h2>IoC Container</h2>
+                    <p class="fragment">The Inversion of Control container manages object lifecycle and dependency injection</p>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/spring/traditional-vs-di.gif">
+                </section>
+
+                <section>
+                    <h2>Spring Container</h2>
+                    <p class="fragment">The most important part and the foundation of the Spring framework.
+                        <span class="fragment">Deals with configuration and lifecycle management of Spring Beans (POJOs)</span></p>
+                    <p class="fragment">The container is represented by the <u>ApplicationContext</u> interface and gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata</p>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/spring/spring-ioc.jpg">
+                </section>
+
+                <section id="metadata">
+                    <h2>Configuration Metadata</h2>
+                    <p class="fragment">Tells the container how to instantiate, configure, and assemble the objects that compose the application</p>
+                    <p class="fragment">The following forms of metadata can be used with the Spring container:</p>
+                    <ul>
+                        <li class="fragment">XML-based configuration</li>
+                        <li class="fragment">Annotation-based configuration</li>
+                        <li class="fragment">Java-based configuration</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>XML Metadata</h2>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+<beans xmlns="...">
+
+    <!-- external bean definitions go here -->
+    &lt;import resource="file.xml"/&gt;
+
+    <bean id="..." class="...">
+        <!-- collaborators and configuration for this bean go here -->
+    </bean>
+
+    &lt;bean id="..." class="..."&gt;
+        <!-- collaborators and configuration for this bean go here -->
+    &lt;/bean&gt;
+
+    <!-- more bean definitions go here -->
+
+</beans>
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <img class="float-right logo" src="images/2/spring/spring-container.png">
+                    <h2>Container Instantiation</h2>
+                    <p class="fragment">The container can load bean definitions from the classpath using <u>ClassPathXmlApplicationContext</u></p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+
+ApplicationContext context = new ClassPathXmlApplicationContext(
+    new String[] {"services.xml", "daos.xml"}
+);
+
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Requesting Beans</h2>
+
+                    <img style="max-height: 250px;" class="fragment" src="images/2/spring/ioc-container.jpg">
+                    <pre class="fragment" style="margin: 0px; padding: 0px;">
+                        <code class="java" data-trim contenteditable>
+// retrieve configured instance
+UserService userService = context.getBean("userService", UserService.class);
+
+// use configured instance
+List&lt;String&gt; userList = userService.getUsernameList();
+                        </code>
+                    </pre>
+                    <small class="fragment">This example uses getBean() to retrieve bean instances, which couples this class with the Spring API.
+                        <span class="fragment">Ideally application code should have no dependency on Spring APIs at all, bean dependencies should be specified in the configuration metadata and the container will handle all the necessary wiring.</span>
+                    </small>
+
+                </section>
+
+                <section id="beans">
+                    <img class="logo float-right" src="images/2/spring/spring-beans.jpg">
+                    <h2>Spring Beans</h2>
+                    <p class="fragment">Managed by the IoC Container and created according to their configuration metadata:</p>
+                    <ul>
+                        <li class="fragment"><u>class name</u> name of the actual implementation class of the bean being defined (package-qualified)</li>
+                        <li class="fragment"><u>configuration settings</u> for the newly created object, for example, the number of connections to use in a bean that manages a connection pool, or the size limit of the pool</li>
+                        <li class="fragment"><u>references</u> to other beans that are needed for the bean to do its work (collaborators or dependencies)</li>
+                        <li class="fragment"><u>behavioral configuration</u> elements state how the bean should behave in the container (scope, lifecycle callbacks, etc.)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Bean Instantiation</h2>
+                    <p class="fragment">Most Spring users prefer to work with JavaBeans with only a default (no-argument) constructor and appropriate setters and getters
+                    <span class="fragment">, but the Spring IoC container can manage virtually any class, even more exotic non-bean-style classes</span></p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+// Bean definition
+&lt;bean id="hello" class="org.academiadecodigo.spring.HelloWorld"/&gt;
+                        </code>
+                    </pre>
+
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Bean instantiation using a constructor with no arguments
+HelloWorld h = context.getBean("hello", HelloWorld.class);
+
+h.sayHello();
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>with Static Factory Method</h2>
+                    <p class="fragment">Given the following code:</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class ClientService {
+    private static ClientService clientService = new ClientService();
+    private ClientService() {}
+
+    public static ClientService getInstance() {
+        return clientService;
+    }
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">The bean definition for ClientService is:</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="clientService" class="examples.ClientService" factory-method="getInstance"/&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>with Instance Factory Method</h2>
+                    <p class="fragment">Given the following code:</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class DefaultServiceLocator {
+
+    private static ClientService clientService = new ClientServiceImpl();
+    public DefaultServiceLocator() {}
+
+    public ClientService createClientServiceInstance() {
+        return clientService;
+    }
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">The bean definition for ClientService is:</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+<!-- the factory bean, which contains a method called createClientServiceInstance() -->
+&lt;bean id="serviceLocator" class="examples.DefaultServiceLocator"/&gt;
+
+<!-- the bean to be created via the factory bean -->
+&lt;bean id="clientService" factory-bean="serviceLocator"
+    factory-method="createClientServiceInstance"/&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Bean Dependencies</h2>
+                    <p class="fragment">Even the simplest application has a few objects that work together to achieve the desired functionality.
+                    <span class="fragment">Dependency injection (DI) is a process whereby objects define their dependencies only through:</span></p>
+                    <ul>
+                        <li class="fragment">constructor arguments</li>
+                        <li class="fragment">arguments to a factory method</li>
+                        <li class="fragment">properties set on the object instance after it is instantiated</li>
+                    </ul>
+                    <p class="fragment">The container then injects those dependencies when it creates the bean using one of:</p>
+                    <ul>
+                        <li class="fragment">Constructor-based dependency injection</li>
+                        <li class="fragment">Setter-based dependency injection</li>
+                    </ul>
+                </section>
+
+                <section id="constructor-di">
+                    <h2>Constructor Based DI</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class SimpleMovieLister {
+
+    // the SimpleMovieLister has a dependency on a MovieFinder
+    private MovieFinder movieFinder;
+
+    // a constructor so that the Spring container can inject a MovieFinder
+    public SimpleMovieLister(MovieFinder movieFinder) {
+        this.movieFinder = movieFinder;
+    }
+
+    // business logic that actually uses the injected MovieFinder
+
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">We could wire the above bean dependencies using:</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="movieFinder" class="MovieFinder"/&gt;
+
+&lt;bean id="simpleMovieLister" class="SimpleMovieLister"&gt;
+    &lt;constructor-arg name="movieFinder" ref="movieFinder"/&gt;
+&lt;/bean&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Setter Based DI</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class SimpleMovieLister {
+
+    // the SimpleMovieLister has a dependency on the MovieFinder
+    private MovieFinder movieFinder;
+
+    // a setter method so that the Spring container can inject a MovieFinder
+    public void setMovieFinder(MovieFinder movieFinder) {
+        this.movieFinder = movieFinder;
+    }
+
+    // business logic that actually uses the injected MovieFinder
+
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">We could wire the above bean dependencies using:</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="movieFinder" class="MovieFinder"/&gt;
+
+&lt;bean id="simpleMovieLister" class="SimpleMovieLister"&gt;
+    &lt;property name="movieFinder" ref="movieFinder"/&gt;
+&lt;/bean&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Constructor-based or Setter-based DI?</h2>
+                    <p class="fragment">Since you can mix constructor-based and setter-based DI, it is a good rule of thumb to
+                        <span class="fragment">use constructors for mandatory dependencies</span>
+                        <span class="fragment"> and setter methods for optional dependencies</span></p>
+                </section>
+
+                <section id="bean-configuration">
+                    <h2>Bean Configuration</h2>
+                    <p class="fragment">Besides dependent objects, Spring can also inject configuration properties using the value attribute of the property element</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+<!-- Bootcamp data source using C3P0 -->
+<bean id="bootcampDB" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    &lt;property name="driverClass" value="com.mysql.cj.jdbc.Driver" /&gt;
+    &lt;property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bootcamp" /&gt;
+    &lt;property name="user" value="root" /&gt;
+    &lt;property name="password" value="root" /&gt;
+    &lt;property name="maxPoolSize" value="50" /&gt;
+    &lt;property name="minPoolSize" value="10" /&gt;
+    &lt;property name="maxStatements" value="100" /&gt;
+    &lt;property name="testConnectionOnCheckout" value="true" /&gt;
+</bean>
+                        </code>
+                    </pre>
+                    <small class="fragment">Values are defined as string representations, Spring will convert to the actual type of the property or argument</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Spring Hello World</h3>
+                    </div>
+                </section>
+
+                <section id="collection">
+                    <h2>Collection Injection</h2>
+                    <p class="fragment">Besides references and values, Spring can also inject collection dependencies using the following elements:</p>
+                    <table>
+                        <tr class="fragment">
+                            <th>Tag</th>
+                            <th>Inner Tag</th>
+                            <th>Java Type</th>
+                            <th>Specification</th>
+                        </tr>
+                        <tr class="fragment">
+                            <td>&lt;list&gt;</td>
+                            <td>&lt;value&gt;</td>
+                            <td>java.util.List&lt;E&gt;</td>
+                            <td>Allows duplicate entries</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>&lt;set&gt;</td>
+                            <td>&lt;value&gt;</td>
+                            <td>java.util.Set&lt;E&gt;</td>
+                            <td>Does not allow duplicate entries</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>&lt;map&gt;</td>
+                            <td>&lt;entry&gt;</td>
+                            <td>java.util.Map&lt;K,V&gt;</td>
+                            <td>Key-Value pair of any object type</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>&lt;props&gt;</td>
+                            <td>&lt;prop&gt;</td>
+                            <td>java.util.Properties</td>
+                            <td>Key-Value pair of type String</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Collection Injection</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class Person {
+    private Map&lt;String, Float&gt; accounts;
+    public void setAccounts(Map&lt;String, Float&gt; accounts) {
+        this.accounts = accounts;
+    }
+}
+                        </code>
+                    </pre>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+<beans>
+    <bean id="person" class="Person">
+        <property name="accounts">
+            <map>
+                &lt;entry key="one" value="9.99"/&gt;
+                &lt;entry key="two" value="2.75"/&gt;
+                &lt;entry key="six" value="3.99"/&gt;
+            </map>
+        </property>
+    </bean>
+</beans>
+                        </code>
+                    </pre>
+
+                </section>
+
+                <section>
+                    <h2>Bean Scope</h2>
+                    <p class="fragment">Spring Beans have a scope property that defines how many instances of the bean can Spring instantiate</p>
+                    <p class="fragment">For now, we will use two different bean scopes:</p>
+                    <ul>
+                        <li class="fragment"><u>singleton</u> is the default scope and restricts spring to one single object instance per IoC container</li>
+                        <li class="fragment"><u>prototype</u> allows spring to create any number of object instances</li>
+                    </ul>
+                </section>
+
+                <section id="singleton">
+                    <h2>Singleton Scope</h2>
+                    <small class="fragment">All requests for beans with an id matching the bean definition result in that one specific bean instance being returned by the container</small>
+                    <img style="max-height: 330px;" class="fragment" src="images/2/spring/scope-singleton.png">
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="accountService" class="com.foo.DefaultAccountService"/&gt;
+
+<!-- the following is equivalent (singleton scope is the default) -->
+&lt;bean id="accountService" class="com.foo.DefaultAccountService" scope="singleton"/&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="prototype">
+                    <h2>Prototype Scope</h2>
+                    <small class="fragment">All requests for beans with an id matching the bean definition result in the creation of a new bean instance every time a request for that specific bean is made</small>
+                    <img style="max-height: 330px;" class="fragment" src="images/2/spring/scope-prototype.png">
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="accountService" class="com.foo.DefaultAccountService" scope="prototype"/&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Singleton vs Prototype</h2>
+                    <h3>Which one should I use?</h3>
+                    <p class="fragment">As a rule of thumb, use the prototype scope for all stateful beans and the singleton scope for stateless beans</p>
+                </section>
+
+                <section>
+                    <h2>Lazy Initialization</h2>
+                    <p class="fragment">By default, Spring container eagerly creates and configures all singleton beans as part of the initialization process</p>
+                    <p class="fragment">This default behaviour discovers errors in the configuration or environment immediately, as opposed to hours or even days later</p>
+                    <p class="fragment">When this behavior is not desirable, pre-instantiation of a singleton bean can be prevented by marking the bean definition as lazy-initialized</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="lazy" class="ExpensiveToCreateBean" lazy-init="true"/&gt;
+&lt;bean id="not.lazy" class="SimpleBean"/&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="lifecycle">
+                    <h2>Bean Lifecycle</h2>
+                    <small class="fragment">Spring beans can receive lifecycle callbacks through the implementation of the <u>InitializingBean</u> and <u>DisposableBean</u> interfaces or alternatively,
+                    to avoid coupling objects with Spring APIs, through the bean configuration metadata</small>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/spring/bean-lifecycle.png">
+                </section>
+
+                <section>
+                    <h2>Maven Configuration</h2>
+                    <p><small class="fragment">Add the following dependencies to your pom.</small></p>
+                    <pre style="font-size: 0.5em;" class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;version&gt;4.3.11.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
+    &lt;version&gt;4.3.11.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-c3p0&lt;/artifactId&gt;
+    &lt;version&gt;5.3.6.Final&lt;/version&gt;
+&lt;/dependency&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Metadata</h2>
+                    <pre style="font-size: 0.44em;" class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/&gt;
+
+<!-- c3p0 database connection pool management -->
+&lt;bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"&gt;
+    &lt;property name="driverClass" value="com.mysql.cj.jdbc.Driver"/&gt;
+    &lt;property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ac"/&gt;
+    &lt;property name="user" value="root"/&gt;
+
+    <!-- c3p0 database connection pool management properties -->
+    &lt;property name="minPoolSize" value="1"/&gt;
+    &lt;property name="maxPoolSize" value="10"/&gt;
+    &lt;property name="acquireIncrement" value="1"/&gt;
+    &lt;property name="maxStatements" value="0"/&gt;
+
+    <!-- destroy idle pool after 300ms -->
+    &lt;property name="idleConnectionTestPeriod" value="300"/&gt;
+
+    <!-- destroy db connection if it fails to login after 7200ms -->
+    &lt;property name="loginTimeout" value="7200"/&gt;
+
+&lt;/bean&gt;
+
+<!-- spring jpa entity manager factory configuration -->
+&lt;bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
+    &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;property name="packagesToScan" value="org.academiadecodigo.bootcamp.model"/&gt;
+    &lt;property name="jpaVendorAdapter"&gt;
+        &lt;bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/&gt;
+    &lt;/property&gt;
+    &lt;property name="jpaProperties"&gt;
+        &lt;map&gt;
+            &lt;entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/&gt;
+            &lt;entry key="hibernate.show_sql" value="true" /&gt;
+            <!-- WARNING: Will re-create the database schema, causing data loss -->
+            &lt;entry key="hibernate.hbm2ddl.auto" value="create"/&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+                        </code>
+                    </pre>
+                    <small class="fragment">An EntityManagerFactory can now be injected in the application using the <u>@PersistenceUnit</u> annotation</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Integrate the Spring framework with the JavaBank application</h3>
+                    </div>
+                </section>
+
+            </section>
+            <section>
+
+                <section id="aop">
+                    <h1>Aspect Oriented Programming</h1>
+                    <h2 class="fragment">...but just the basics...</h2>
+                </section>
+
+                <section>
+                    <h2>In the beginning...</h2>
+                    <h3 class="fragment">... we had Procedural Programming</h3>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/spring/procedural-programming.png">
+                </section>
+
+                <section>
+                    <h2>...later we evolved...</h2>
+                    <img style="max-height: 100px;" class="fragment" src="images/2/spring/human-evolution.jpg">
+                    <h3 class="fragment">... into Object Oriented Programming</h3>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/spring/oop-programming.png">
+                </section>
+
+                <section>
+                    <h2>...and now we have AOP</h2>
+                    <img style="max-height: 300px;" class="fragment" src="images/2/spring/aop.jpg">
+                </section>
+
+                <section>
+                    <h2>What is AOP?</h2>
+                    <ul>
+                        <li class="fragment">Software Programming Paradigm</li>
+                        <li class="fragment">Extends Object Oriented Programming</li>
+                        <li class="fragment">Enables Modularization of Cross-cutting Concerns</li>
+                    </ul>
+                    <img style="max-height: 300px;" class="fragment" src="images/2/spring/cross-cutting-concerns.jpg">
+                </section>
+
+                <section>
+                    <h2>What problem does AOP solve?</h2>
+                    <p class="fragment">Let's examine the <u>withdraw</u> method for a banking application</p>
+                </section>
+
+                <section>
+                    <h2>Business Logic</h2>
+                    <img class="fragment" src="images/2/spring/aop-1-business.png">
+                </section>
+
+                <section>
+                    <h2>Authorization</h2>
+                    <img class="fragment" src="images/2/spring/aop-2-security.png">
+                </section>
+
+                <section>
+                    <h2>Logging</h2>
+                    <img class="fragment" src="images/2/spring/aop-3-log.png">
+                </section>
+
+                <section>
+                    <h2>Transaction Management</h2>
+                    <img class="fragment" src="images/2/spring/aop-4-transaction.png">
+                </section>
+
+                <section>
+                    <h2>Service Layer</h2>
+                    <img style="max-height: 450px;" class="fragment" src="images/2/spring/aop-5-many.png">
+                </section>
+
+                <section>
+                    <h2>So... What problem does AOP solve?</h2>
+                    <ul>
+                        <li class="fragment">Addresses cross-cutting concerns</li>
+                        <li class="fragment">Separates business logic</li>
+                        <li class="fragment">Promotes reusability of code</li>
+                    </ul>
+                    <img style="max-height: 350px;" class="fragment" src="images/2/spring/aop-concerns.png">
+                </section>
+
+                <section id="aspects">
+                    <h2>Aspects</h2>
+                    <p class="fragment">An aspect is the cross-cutting functionality that will be modularized in AOP,
+                        such as logging, validation, caching, security, transactions, monitoring, error handling, etc.</p>
+                    <img style="max-height: 350px;" class="fragment" src="images/2/spring/aspects.png">
+                </section>
+
+                <section>
+                    <h2>AOP Terminology</h2>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/spring/aop-terminology.png">
+                    <ul>
+                        <li class="fragment">A <u>Joinpoint</u> is a candidate point in the execution of the application where an aspect can be plugged in</li>
+                        <li class="fragment"><u>Advice</u> is the actual implementation of our aspect</li>
+                        <li class="fragment">A <u>Pointcut</u> defines at what joinpoints advice should be applied</li>
+                    </ul>
+                </section>
+
+                <section id="weaving">
+                    <h2>AOP Weaving</h2>
+                    <p class="fragment">Weaving is the process of applying aspects to a target object to create a new, proxied object</p>
+                    <img style="max-height: 200px;" class="fragment" src="images/2/spring/aop-weaving.png">
+                    <small><p class="fragment">Weaving can be done in different ways:</p>
+                        <ul>
+                            <li class="fragment">Compile time—Aspects are woven in when the target class is compiled. This requires a special compiler</li>
+                            <li class="fragment">Classload time—Aspects are woven in when the target class is loaded into the JVM. This requires a special ClassLoader</li>
+                            <li class="fragment">Runtime—Aspects are woven in sometime during the execution of the application. Typically, an AOP container will dynamically generate a proxy class that will delegate to the target class while weaving in the aspects</li>
+                        </ul></small>
+                </section>
+
+                <section>
+                    <h2>AOP Mechanics</h2>
+                    <img style="max-height: 250px;" class="fragment" src="images/2/spring/aop-mechanics.png">
+                    <ul>
+                        <li class="fragment">An <u>Aspect</u> encapsulates Advices and Pointcuts</li>
+                        <li class="fragment"><u>Target Object</u> is Advised by one or more Aspects</li>
+                        <li class="fragment">The <u>Proxy</u> will manage how Aspects are applied to specific Pointcuts</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <img src="images/2/spring/spring-aop.jpg">
+                </section>
+
+                <section>
+                    <h2>Spring AOP</h2>
+                    <ul>
+                        <li class="fragment">Implemented in pure Java</li>
+                        <li class="fragment">No need for special compilation process</li>
+                        <li class="fragment">Only Spring Beans can be advised</li>
+                        <li class="fragment">Only method joinpoints are supported</li>
+                        <li class="fragment">Uses runtime weaving</li>
+                    </ul>
+                    <p class="fragment">For more powerful AOP features, Spring supports <u>AspectJ</u></p>
+                    <aside class="notes">
+                        field interception is not implemented in Spring, only AspectJ
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Advice Types</h2>
+                    <img src="images/2/spring/spring-aop-advices.png">
+                </section>
+
+                <section>
+                    <h2>Before Advice</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+
+public class HijackBefore  implements MethodBeforeAdvice {
+
+    @Override
+    public void before(Method method, Object[] args, Object target) throws Throwable {
+        System.out.println("Advised method will execute");
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>After Returning Advice</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class HijackAfter implements AfterReturningAdvice {
+
+    @Override
+    public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
+        System.out.println("Advised method has executed");
+    }
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="aop-metadata">
+                    <h2>Metadata</h2>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;bean id="target" class="AdvisedBean"/&gt;
+&lt;bean id="before" class="aop.HijackBefore"/&gt;
+&lt;bean id="after" class="aop.HijackAfter"/&gt;
+
+<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    &lt;property name="target" ref="target"/&gt;
+    <property name="interceptorNames">
+        <list>
+            <value>before</value>
+            <value>after</value>
+        </list>
+    </property>
+</bean>
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Spring AOP</h3>
+                    </div>
+                </section>
+
+                <section id="transactions">
+                    <h2>Spring Transaction Management</h2>
+                    <p class="fragment">Provides a consistent programming model across different transaction APIs such as Java Transaction API (JTA), JDBC, Hibernate, Java Persistence API (JPA), and Java Data Objects (JDO)</p>
+                </section>
+
+                <section>
+                    <h2>Transaction Manager</h2>
+                    <p class="fragment">Create a Spring Hibernate Transaction Manager Bean</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    &lt;property name="entityManagerFactory" ref="emFactory"/&gt;
+</bean>
+                        </code>
+                    </pre>
+                    <p class="fragment">Enable Spring AOP Transaction Management</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+<!-- Activate annotation-driven transactions -->
+&lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Add Transactional Behaviour to Services</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class UserServiceImpl implements UserService {
+
+    // Other user service methods
+
+    @Transactional
+    @Override
+    public void addUser(User user) {
+
+        if (userDao.findByName(user.getUsername()) == null) {
+            userDao.save(user);
+        }
+
+    }
+
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">If all methods require transactional behaviour, the whole class can be annotated with <u>@Transactional</u></p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Add Spring Transactions to the JavaBank Application</h3>
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 27,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function () {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function () {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function () {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function () {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

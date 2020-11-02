@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Documentation and Code Conventions</h1>
+                <p>
+                    <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+            </section>
+
+            <section id="javadoc">
+
+                <section>
+                    <h2>Javadoc</h2>
+                    <p>Javadoc is a tool for generating API documentation in HTML format from comments in source code, keeping the documentation in sync with the software.</p>
+                    <img data-src="images/1/doc/javadoc.png" />
+                </section>
+
+                <section>
+                    <h2>Comments</h2>
+                    <p class="fragment">Javadoc comments begin with /** and end with */. They can appear immediately before a class, field (public class or instance variable), constructor or method definition</p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/** Class Description of MyClass */
+public class MyClass {
+
+    /** Field Description of myIntField */
+    public int myIntField;
+
+    /** Constructor Description of MyClass() */
+    public MyClass() {
+
+        // Do something ...
+
+    }
+
+}
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Tags</h2>
+                    <p class="fragment">The Javadoc tool parses special tags when they are embedded within a Java doc comment. These tags enable you to autogenerate a complete, well-formatted API from your source code. </p>
+                    <pre class="fragment"><code class="java" data-trim contenteditable>
+/** Description of MyClass
+ *
+ * @author John Doe
+ * @version 6.0z Build 9000 Jan 3, 1970.
+*/
+public class MyClass {
+
+    /** Description of myIntField */
+    public int myIntField;
+
+    /** Description of MyClass()
+     *
+     * @throws MyException 		Description of myException
+     */
+    public MyClass() throws MyException {
+        // Blah Blah Blah...
+    }
+
+    /** Description of myMethod(int a, String b)
+     *
+     * @param a			Description of a
+     * @param b			Description of b
+     * @return			Description of c
+    */
+    public Object myMethod(int a, String b) {
+        Object c = null;
+        // Blah Blah Blah...
+        return c;
+    }
+}
+                    </code></pre>
+                </section>
+
+            </section>
+
+            <section id="conventions">
+
+                <section>
+                    <h2>Code Conventions</h2>
+                    <p class="fragment">Set of guidelines for a specific programming language that recommends programming style, practices and methods for each aspect of a program written in this language. </p>
+                    <ul>
+                        <li class="fragment">file organization</li>
+                        <li class="fragment">indentation</li>
+                        <li class="fragment">comments</li>
+                        <li class="fragment">declarations</li>
+                        <li class="fragment">statements</li>
+                        <li class="fragment">white space</li>
+                        <li class="fragment">naming conventions</li>
+                        <li class="fragment">etc.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Why Have Code Conventions?</h2>
+                    <ul>
+                        <li class="fragment">80% of the lifetime cost of a piece of software goes to maintenance</li>
+                        <li class="fragment">Hardly any software is maintained for its whole life by the original author</li>
+                        <li class="fragment">Code conventions improve the readability of the software, allowing engineers to understand new code more quickly and thoroughly.</li>
+                        <li class="fragment">If you ship your source code as a product, you need to make sure it is as well packaged and clean as any other product you create</li>
+                    </ul>
+                    <blockquote class="fragment">
+                        Java Code Conventions, Sun, 1997
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h2>Java Code Conventions</h2>
+                    <ul>
+                        <li class="fragment">Sun Java Code Conventions, dated from 1997 but still relevant</li>
+                        <li class="fragment">Google Java Style Guide</li>
+                        <blockquote class="fragment">
+                            Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project.
+                            <br>
+                            <br>It is much easier to understand a large codebase when all the code in it is in a consistent style.
+                            <br>
+                            <br> Google Style Guides
+                        </blockquote>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        Any fool can write code that a computer can understand.
+                        <br> Good programmers write code that humans can understand.
+                        <br>
+                    </p>
+                    <small>
+                    Martin Fowler, Refactoring: Improving the Design of Existing Code
+                    </small>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 12,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

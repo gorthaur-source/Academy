@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? "css/print/pdf.css"
+                : "css/print/paper.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="header">
+            <img id="logo" src="logo.png" />
+        </div>
+
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="paradigms">
+                    <section>
+                        <h1>Programming Paradigms</h1>
+                        <aside class="notes">
+                            <ul>
+                                Take a moment to think about what is a Paradigm?
+                                <br />
+                                (A set of concepts or thought patterns, examples
+                                and practices which are legitimate contributions
+                                to a field and model its problems and solutions)
+                            </ul>
+                            <b>next:</b> Why does that matter to us? Have you
+                            heard of programming paradigms? What do you think
+                            they are?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/abstract_heart.png"
+                            alt="abstraction vs complexity"
+                        />
+                        <h2>Complexity and Abstractions</h2>
+                        <br />
+                        <p class="fragment">
+                            Many times it is complexity that motivates the
+                            change or introduction of new programming paradigms.
+                        </p>
+                        <p class="fragment">
+                            We still have machine code being executed by a CPU.
+                            Being shielded from complexity by abstraction, has
+                            the tradeoff of losing finer aspects of control over
+                            our code.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                In assembly programmers had the power to write a
+                                GOTO to any memory cell. Very powerful, but also
+                                very dangerous due to possible errors. Also very
+                                hard to manage the program’s complexity.
+                                High-level programming languages abstract that
+                                complexity from programmers, and allow code to
+                                be written in a more expressive way.
+                            </ul>
+                            <b>next:</b> Programming paradigms can be classified
+                            into two loose groups: Declarative and Imperative
+                            Paradigms.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/paradigm_shift.jpg"
+                            alt="paradigm shift"
+                        />
+                        <h2>What is a programming paradigm?</h2>
+                        <br />
+                        <p class="fragment">
+                            An approach to solving a problem, using a
+                            programming language.
+                        </p>
+                        <p class="fragment">
+                            The style with which the structure and elements of a
+                            programming language are built determine its
+                            paradigms.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                A set of concepts or thought patterns, examples
+                                and practices which are legitimate contributions
+                                to a field, modelling its problems and
+                                solutions.
+                            </ul>
+                            <b>next:</b> What do you think is the best
+                            programming paradigm?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Programming Styles</h2>
+                        <br />
+                        <div
+                            class="fragment"
+                            style="float: left; max-width: 45%; margin-top: auto;"
+                        >
+                            <table>
+                                <th>Imperative</th>
+                                <tr class="fragment">
+                                    <td>
+                                        Allow us stricter control over the
+                                        operation.
+                                    </td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>
+                                        Force us to specify <u>how</u> we want
+                                        to perform an operation.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div
+                            class="fragment"
+                            style="float: right; max-width: 45%; margin-top: auto;"
+                        >
+                            <table>
+                                <th>Declarative</th>
+                                <tr class="fragment">
+                                    <td>
+                                        Abstact more complexity.
+                                    </td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>
+                                        Allow us to declare
+                                        <u>what</u> operation we want to
+                                        perform.
+                                    </td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>
+                                        Code is easier to debug and maintain.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <aside class="notes">
+                            <b>next:</b> Communication in the real world can
+                            also be more imperative or more declarative.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Imperative vs Declarative</h2>
+                        <blockquote>
+                            I'm at the &lt;A/C_&gt; campus. Where's the
+                            restaurant?
+                        </blockquote>
+
+                        <div class="float-left" style="width: 50%;">
+                            <img
+                                class="fragment"
+                                style="max-height: 400px;"
+                                src="images/2/design-patterns/imperative.png"
+                                alt=""
+                            />
+                        </div>
+
+                        <div class="float-right" style="width: 50%;">
+                            <img
+                                class="fragment"
+                                style="max-height: 400px;"
+                                src="images/2/design-patterns/declarative.png"
+                                alt=""
+                            />
+                        </div>
+                        <aside class="notes">
+                            Automatic Gears vs Shift Stick &lt;=&gt; Declarative
+                            vs Imperative
+                            <b>next:</b> How would you classify the paradigms
+                            you know so far? Are they more declarative or more
+                            imperative?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Imperative vs Declarative</h2>
+                        <img
+                            class="fragment"
+                            src="images/2/design-patterns/imp_vs_dec.jpeg"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    GoTo languages are completely imperative,
+                                    you can see exactly what instructions will
+                                    be executed.
+                                </li>
+                                <li>
+                                    RegEx is completely declarative the code
+                                    being ran is untraceable while the pattern
+                                    is being executed.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Programming Paradigms</h2>
+                        <img
+                            class="fragment"
+                            style="max-height: 400px;"
+                            src="images/2/design-patterns/paradigms.jpeg"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                Even though programming languages can be
+                                multi-paradigmatic they typically lean towards a
+                                specific programming style. Here are some of
+                                these paradigms.
+                            </ul>
+                            <b>next:</b> Paradigms can lean towards a more
+                            declarative or imperative style.
+                        </aside>
+                    </section>
+                </section>
+
+                <section id="oop-principles">
+                    <section>
+                        <h1>Principles of Object Oriented Programming</h1>
+                    </section>
+
+                    <section>
+                        <h2>Pillars of Object Oriented Programming</h2>
+                        <img
+                            src="images/2/design-patterns/oop-pillars.jpg"
+                            alt=""
+                        />
+                    </section>
+
+                    <section id="abstraction">
+                        <h2>Abstraction</h2>
+                        <blockquote>
+                            A view of a problem that extracts the essential
+                            information relevant to a particular purpose and
+                            ignores the remainder of the information
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [IEEE, 1983]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <h2 class="fragment">Why?</h2>
+                        <p class="fragment">
+                            It's a powerful technique for dealing with
+                            complexity
+                        </p>
+                        <p class="fragment">
+                            Unable to master a complex object, we choose to
+                            ignore its non-essential details, dealing instead
+                            with a generalized and idealized model
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Encapsulation</h2>
+                        <blockquote>
+                            Encapsulation or equivalently information hiding
+                            refers to the practice of including within an object
+                            everything it needs, and furthermore doing this in
+                            such a way that no other object need ever be aware
+                            of this internal structure
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [Graham, 1991]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <h2 class="fragment">Why?</h2>
+                        <p class="fragment">
+                            Encapsulation helps with the
+                            <u>loose coupling</u> between objects, resulting in
+                            more scalable, easier to maintain, software
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Encapsulation vs Abstraction</h2>
+                        <p class="fragment">
+                            Through <u>Abstraction</u> we identify the essential
+                            aspects of a system
+                        </p>
+                        <p class="fragment">
+                            With <u>Encapsulation</u> we expose to the user of
+                            the system a clear and well defined interface,
+                            hiding all the complex implementation details
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 200px;"
+                            src="images/2/design-patterns/abstraction-vs-encapsulation.jpg"
+                            alt=""
+                        />
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/design-patterns/oop-logo.png"
+                            alt=""
+                        />
+                        <h2>Object Interface</h2>
+                        <p class="fragment">
+                            Objects in a software program interact with other
+                            objects through their public interfaces
+                        </p>
+                        <img
+                            class="fragment"
+                            src="images/2/design-patterns/object-api.png"
+                            alt=""
+                        />
+                    </section>
+
+                    <section id="composition">
+                        <h2>Aggregation and Composition</h2>
+                        <p class="fragment">
+                            Define a relationship between classes where one
+                            class <br />
+                            contains or owns another class
+                        </p>
+                        <small
+                            ><ul>
+                                <li class="fragment">
+                                    <u>Aggregation</u> - weak relationship, the
+                                    contained classes can exist without an
+                                    instance of the container class
+                                </li>
+                                <li class="fragment">
+                                    <u>Composition</u> - strong relationship,
+                                    the contained classes are owned and cannot
+                                    exist without the container class
+                                </li>
+                            </ul></small
+                        >
+                        <img
+                            style="margin-top: 40px;"
+                            class="fragment"
+                            src="images/2/design-patterns/composition.jpg"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            <small
+                                >Aggregation or Composition define
+                                <u>HAS-A</u> relationships</small
+                            >
+                        </p>
+                    </section>
+
+                    <section id="inheritance">
+                        <h2>Inheritance</h2>
+                        <p class="fragment">
+                            Relationship between classes where derived (sub)
+                            classes inherit state and behaviour from base
+                            (super) classes
+                        </p>
+                        <p class="fragment">
+                            Allows reuse of existing code with little or no
+                            modification
+                        </p>
+                        <p>
+                            <img
+                                style="max-height: 250px;"
+                                class="fragment"
+                                src="images/2/design-patterns/inheritance.png"
+                                alt=""
+                            />
+                        </p>
+                        <small
+                            ><ul>
+                                <li class="fragment">
+                                    <u>Super Classes</u> contain generic state
+                                    and behaviour
+                                </li>
+                                <li class="fragment">
+                                    <u>Sub Classes</u> contain specific state
+                                    and behaviour
+                                </li>
+                            </ul></small
+                        >
+                        <p class="fragment">
+                            <small
+                                >Inheritance defines
+                                <u>IS-A</u> relationships</small
+                            >
+                        </p>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/design-patterns/favor-composition.jpg"
+                            alt=""
+                        />
+                        <h2>Inheritance vs Composition</h2>
+                        <p class="fragment">
+                            Both mechanisms allow for reusing existing classes
+                        </p>
+                        <table>
+                            <tr class="fragment">
+                                <th>&nbsp;</th>
+                                <th>Inheritance</th>
+                                <th>Composition</th>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Relation</td>
+                                <td>static (compile time)</td>
+                                <td>dynamic (run time)</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Encapsulation</td>
+                                <td>breaks encapsulation</td>
+                                <td>favours encapsulation</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Coupling</td>
+                                <td>high</td>
+                                <td>low</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Cohesion</td>
+                                <td>low</td>
+                                <td>high</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Boilerplate</td>
+                                <td>low</td>
+                                <td>high</td>
+                            </tr>
+                        </table>
+
+                        <small>
+                            <p class="fragment">
+                                <u>Always favor composition over inheritance</u>
+                            </p>
+                            <p class="fragment">
+                                Use inheritance <u>only</u> if there is a clear
+                                hierarchical relationship between classes
+                            </p>
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    cohesion - composition favors classes doing
+                                    only one thing, inheritance leaves classes
+                                    with multiple responsibilities
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="polymorphism">
+                        <h2>Polymorphism</h2>
+                        <p class="fragment">
+                            <small>
+                                Inheritance gives us polymorphism, which
+                                etymologically means <u>many forms</u>
+                                and provides one of the most powerful
+                                programming techniques of the object-oriented
+                                paradigm
+                            </small>
+                        </p>
+                        <p class="fragment">
+                            <small>
+                                Instead of binding the method call to the actual
+                                code at compile time (static binding), the
+                                compiler will defer the decision on which method
+                                to call to runtime. This is known as
+                                <u>dynamic or late binding</u>
+                            </small>
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 200px;"
+                            src="images/2/design-patterns/poli-shape.png"
+                            alt=""
+                        />
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+// References of the base class type can point to the type of the descendent class
+Shape shape1 = new Rectangle();
+Shape shape2 = new Triangle();
+
+// Which methods will be called?
+shape1.getArea();
+shape2.getArea();
+                        </code></pre>
+                    </section>
+
+                    <section id="interfaces">
+                        <h2>Interfaces and Multiple Inheritance</h2>
+                        <p class="fragment">
+                            Java <u>single inheritance</u> severely cripples the
+                            benefits of polymorphism, but a restricted form of
+                            multiple inheritance is supported through
+                            interfaces, unleashing the
+                            <u>full power of polymorphism</u>
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 200px;"
+                            src="images/2/design-patterns/interfaces.png"
+                            alt=""
+                        />
+                    </section>
+                </section>
+
+                <section id="design-patterns">
+                    <section>
+                        <h1>Design Patterns</h1>
+                    </section>
+
+                    <section>
+                        <h2>What is good code?</h2>
+                        <img
+                            class="fragment"
+                            src="images/2/design-patterns/good-code.jpg"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Aim for reusable, scalable, maintainable code</h2>
+                        <p class="fragment">
+                            Designing object-oriented software is hard and
+                            designing reusable object-oriented software is even
+                            harder.
+                        </p>
+                        <p class="fragment">
+                            Design should be specific but also general enough
+                            for future problems and requirements. Avoid
+                            redesign, or at least minimize it.
+                        </p>
+                        <p class="fragment">
+                            Reusable and flexible designs are difficult if not
+                            impossible<br />to get <u>right</u> the first time.
+                        </p>
+                        <p>
+                            <small class="fragment">
+                                Yet, experienced object-oriented designers do
+                                make good designs.
+                            </small>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>What do they know that we don't?</h2>
+                        <p class="fragment">
+                            They reuse solutions that have worked for them in
+                            the past
+                        </p>
+                        <p class="fragment">
+                            When they find a good solution, they use it again,
+                            and again...
+                        </p>
+                        <p class="fragment">
+                            Such experience is part of what makes them experts
+                        </p>
+                        <p>
+                            <small class="fragment">
+                                Wouldn't it be great if this knowledge could be
+                                shared for novice developers?
+                            </small>
+                        </p>
+                        <img
+                            class="fragment"
+                            src="images/2/design-patterns/good_news.jpg"
+                        />
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/2/design-patterns/gof.png"
+                            class="logo float-right"
+                        />
+                        <h2>Design Patterns</h2>
+                        <h4 class="fragment">
+                            <u>What they are</u>
+                        </h4>
+                        <p class="fragment">
+                            A general repeatable solution to a commonly
+                            occurring<br />problem in software design
+                        </p>
+                        <p>
+                            <small class="fragment">
+                                A description or template to solve a problem
+                                that can be used in many different situations
+                            </small>
+                        </p>
+                        <h4 class="fragment">
+                            <u>What they're not</u>
+                        </h4>
+                        <p class="fragment">
+                            A finished design that can be transformed directly
+                            into code
+                        </p>
+
+                        <aside class="notes">
+                            Design patterns gained popularity in computer
+                            science after the book Design Patterns: Elements of
+                            Reusable Object-Oriented Software was published in
+                            1994 by the so-called "Gang of Four"
+                        </aside>
+                    </section>
+
+                    <section id="basics">
+                        <h2>Design Patterns</h2>
+                        <p class="fragment">
+                            Some very simple OOP principles form the basis<br />of
+                            almost every design pattern:
+                        </p>
+                        <ul>
+                            <li class="fragment">Encapsulate what varies</li>
+                            <li class="fragment">
+                                Program to an interface not an implementation
+                            </li>
+                            <li class="fragment">
+                                Favour composition over inheritance
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Encapsulate what varies</h2>
+                        <p class="fragment">
+                            If some aspect of your code is changing or likely to
+                            change, it needs to be pulled out and separated from
+                            the rest
+                        </p>
+                        <p class="fragment">
+                            If a single requirement changes, it should only
+                            require us to change the related code in a single
+                            place
+                        </p>
+                        <p class="fragment">
+                            But if the code base is badly designed, the change
+                            will be difficult and have high risk of causing
+                            unexpected effects
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>
+                            Program to an Interface,<br />not an Implementation
+                        </h2>
+                        <p class="fragment">
+                            Programming to an interface is saying<br />"I need
+                            this functionality and I don't care where it comes
+                            from"
+                        </p>
+                        <p class="fragment">
+                            Interfaces allow a class to use functionality<br />
+                            without depending on the implementing class directly
+                        </p>
+                        <p class="fragment">
+                            If you decide to use a different implementation, you
+                            only<br />
+                            need to change the code where the concrete object is
+                            instantiated
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Favour Composition over Inheritance</h2>
+                        <p class="fragment">
+                            Inheritance is not bad per se and is a very powerful
+                            (and essential) tool in Object Oriented Design
+                        </p>
+                        <p class="fragment">
+                            However when not used properly it creates code that
+                            is<br />
+                            inflexible, tightly coupled and hard to maintain
+                        </p>
+                        <p class="fragment">
+                            Polymorphic behaviour, code reuse and greater
+                            flexibility can be achieved through composition
+                            rather than inheritance
+                        </p>
+                    </section>
+
+                    <section id="types">
+                        <h2>Types of Design Patterns</h2>
+                        <p class="fragment">
+                            The "Gang of Four" divided the design patterns they
+                            documented into three fundamental groups:
+                        </p>
+                        <ul>
+                            <li class="fragment">Creational</li>
+                            <li class="fragment">Structural</li>
+                            <li class="fragment">Behavioral</li>
+                        </ul>
+                    </section>
+
+                    <section id="creational">
+                        <h2>Creational Design Patterns</h2>
+                        <p class="fragment">
+                            Design patterns that abstract the instantiation
+                            process
+                        </p>
+                        <p class="fragment">
+                            They help make a system independent of how its
+                            objects are created, composed and represented
+                        </p>
+                        <p class="fragment">
+                            Examples include the <u>Factory</u>, <u>Builder</u>,
+                            <u>Prototype</u>
+                            <br />or <u>Singleton</u> design patterns
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Structural Design Patterns</h2>
+                        <p class="fragment">
+                            Patterns concerned with how classes and objects
+                            are<br />composed to form larger structures
+                        </p>
+                        <p class="fragment">
+                            Examples include the <u>Decorator</u>,
+                            <u>Facade</u> or <u>Proxy</u> design patterns
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Behavioral Design Patterns</h2>
+                        <p class="fragment">
+                            These patterns are all about how objects<br />communicate
+                            with each other
+                        </p>
+                        <p class="fragment">
+                            Behavioral patterns are concerned with algorithms
+                            and the assignment of responsibilities between
+                            objects
+                        </p>
+                        <p class="fragment">
+                            Examples include the <u>Strategy</u>,
+                            <u>Command</u>,
+                            <u>Template</u>
+                            <br />
+                            or <u>Observer</u> design patterns
+                        </p>
+                    </section>
+
+                    <section id="factory">
+                        <h2>Factory Design Pattern</h2>
+                        <h3>Investigation of a Creational Pattern</h3>
+                    </section>
+
+                    <section>
+                        <h2>What problem does it solve?</h2>
+                        <p class="fragment">
+                            The creation logic for an object or family of
+                            related objects<br /><u
+                                >can quickly become complex</u
+                            >
+                        </p>
+                        <p class="fragment">
+                            The user of such objects
+                            <u>has to be aware</u> of<br />every concrete class
+                            and its respective creation logic
+                        </p>
+                        <p class="fragment">
+                            If you need to remove or add new objects to the
+                            family<br />or make changes to their creation
+                            logic,<br />
+                            <b
+                                >all users of such objects will require
+                                modification!</b
+                            >
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>How?</h2>
+                        <p class="fragment">
+                            Encapsulate all the object creation logic inside a
+                            method
+                            <small
+                                >{ Remember: Encapsulate what changes! }</small
+                            >
+                        </p>
+                        <p class="fragment">
+                            This method is called the
+                            <strong>Factory Method</strong> and replaces the
+                            usage of the <strong>new</strong> operator for each
+                            implementation
+                        </p>
+                        <p class="fragment">
+                            The object user becomes unaware of concrete
+                            implementation or creation logic and can take
+                            advantage of
+                            <strong>polymorphism</strong>
+                            <small
+                                >{ Remember: Program to an interface, not an
+                                implementation! }</small
+                            >
+                        </p>
+                        <p class="fragment">
+                            It's now possible to create new concrete
+                            implementations or modify creation logic
+                            <u
+                                >without changing any code besides the factory
+                                itself</u
+                            >
+                            <img
+                                class="logo-small float-right"
+                                src="images/2/design-patterns/good-job.png"
+                            />
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>How? {show me the diagram}</h2>
+                        <img
+                            src="images/2/design-patterns/factory-pattern-uml.png"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>How? {show me the code}</h2>
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+public interface Shape {
+    void draw();
+}
+
+public class Circle implements Shape {
+    @Override
+    public void draw() { System.out.println("Drawing a circle!"); }
+}
+
+public class Square implements Shape {
+    @Override
+    public void draw() { System.out.println("Drawing a square!"); }
+}
+                           </code>
+                         </pre>
+                        <small
+                            >This is our Shape interface, along with its
+                            concrete implementations</small
+                        >
+                    </section>
+
+                    <section>
+                        <h2>How? {show me more code}</h2>
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+public class ShapeFactory {
+
+    public Shape create(ShapeType type) {
+        switch(type) {
+            case CIRCLE:
+                return new Circle();
+            case SQUARE:
+                return new Square();
+            default:
+                return new Circle();
+        }
+    }
+}
+
+public enum ShapeType {
+    CIRCLE,
+    SQUARE
+}
+                            </code>
+                        </pre>
+                        <small>
+                            ShapeFactory is a class containing the factory
+                            method<br />and logic to select which object to
+                            instantiate
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>How? {enough code, thanks}</h2>
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+public class Main {
+
+    public static void main(String[] args) {
+
+        ShapeFactory shapeFactory = new ShapeFactory();
+        Shape s1 = shapeFactory.create(ShapeType.CIRCLE);
+        Shape s2 = shapeFactory.create(ShapeType.SQUARE);
+
+        s1.draw(); // "Drawing a circle!"
+        s2.draw(); // "Drawing a square!"
+
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section id="builder">
+                        <h2>Builder Design Pattern</h2>
+                        <h3>Investigation of another Creational Pattern</h3>
+                    </section>
+
+                    <section>
+                        <h2>What problem does it solve?</h2>
+                        <br />
+                        <p class="fragment">
+                            Again to do with the complexity of creation logic
+                            for an object or family of related objects
+                        </p>
+                        <p class="fragment">
+                            Composite objects can have a complex construction,
+                            with default and optional parameters in their
+                            constructor calls.
+                        </p>
+                        <p class="fragment">
+                            Creating different representations of said object
+                            can become cumbersome for the user.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    It is possible to create all possible
+                                    variation of constructor.
+                                </li>
+                                <li>
+                                    If many fields in a class have the same
+                                    type, invoking its constructor can become
+                                    error prone for the objects' users.
+                                </li>
+                                <li>
+                                    Using setters to directly set the object's
+                                    properties can leave a complex object in a
+                                    inconsistent state when building.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>How?</h2>
+                        <p class="fragment">
+                            Separate the construction of a complex object from
+                            its representation.
+                            <small
+                                >{ Remember: Encapsulate what changes! }</small
+                            >
+                        </p>
+                        <p class="fragment">
+                            The algorithm for creating the object becomes
+                            independent and the same construction process can
+                            create different representations.
+                        </p>
+                        <p class="fragment">
+                            A Builder capable of representing the object is
+                            first configured according to the user's need.
+                            <span class="fragment"
+                                >From it a complete complex object is
+                                created.</span
+                            >
+                            <img
+                                class="fragment logo-small float-right"
+                                src="images/2/design-patterns/good-job.png"
+                            />
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                We can create our Builder to be abstract and
+                                then offer specific implementations for object
+                                configurations which are often used (Programming
+                                to an Interface).
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>How? {show me the code}</h2>
+                        <pre>
+                        <code class="java" data-trim contenteditable>
+public class Cake {
+
+    private final double flour;
+    private final double sugar;
+    private final int eggs;
+    private final double chocolate;
+    private final double milk;
+
+    public Cake(Builder cakeBuilder) {
+        this.flour = cakeBuilder.getFlour();
+        this.sugar = cakeBuilder.getSugar();
+        this.eggs = cakeBuilder.getEggs();
+        this.chocolate = cakeBuilder.getChocolate();
+        this.milk = cakeBuilder.getMilk();
+    }
+}
+                        </code>
+                    </pre>
+                        <small
+                            >Notice that the Cake constructor takes a Builder as
+                            parameter which is used to set the object's
+                            properties.</small
+                        >
+                    </section>
+
+                    <section>
+                        <h2>How? {show me more code}</h2>
+                        <pre>
+                        <code class="java" data-trim contenteditable>
+public class Builder {
+
+    private double flour = 0d;
+    private double sugar = 0d;
+    private int eggs = 0;
+    private double chocolate = 0d;
+    private double milk = 0d;
+
+    public Cake build() {
+        return new Cake(this);
+    }
+
+    public Builder addFlour(double flour) {
+        this.flour = flour;
+        return this;
+    }
+
+    //  other methods for each property
+}
+                        </code>
+                    </pre>
+                        <small>
+                            Methods which set the properties return the instance
+                            of the Builder.<br />
+                            The build() method returns a fully configured
+                            instance of cake.
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>How? {enough code, thanks}</h2>
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+public class Main {
+
+    public static void main(String[] args) {
+
+        Builder madeleineBuilder = new Builder();
+
+        madeleineBuilder.addFlour(200)
+                .addSugar(150)
+                .addEggs(2);
+
+        Cake madeleine = madeleineBuilder.build();
+
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section id="decorator">
+                        <h2>Decorator</h2>
+                        <h3>Investigation of a Structural Pattern</h3>
+                    </section>
+
+                    <section>
+                        <h2>What problem does it solve?</h2>
+                        <p class="fragment">
+                            Sometimes we want to add features to individual
+                            objects at <strong>runtime</strong>
+                        </p>
+                        <p class="fragment">
+                            Inheritance defines the object functionality at
+                            <u>compile-time</u> and shares it among all
+                            descendants
+                        </p>
+                        <p class="fragment">
+                            If multiple features need to be added, we would need
+                            to<br /><b
+                                >create classes for each possible feature
+                                combination</b
+                            >
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>How?</h2>
+                        <p class="fragment">
+                            Objects are wrapped by objects of the same type
+                            (decorators),<br />
+                            which may add or change functionality
+                            before/after<br />
+                            delegating to the wrapped object.
+                            <br />
+                            <small
+                                >{ Remember: Favour composition over
+                                inheritance! }</small
+                            >
+                        </p>
+                        <p class="fragment">
+                            As they share the same type, it's possible to nest
+                            decorators recursively, allowing an unlimited number
+                            of added responsibilities
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Let's try something</h2>
+                        <p class="fragment">
+                            Imagine you own a car dealer<br />
+                            Every time you sell a car, you want to be able to
+                            add some extras
+                        </p>
+                        <ul class="fragment">
+                            <li>Expandable rooftop</li>
+                            <li>Car care kit</li>
+                            <li>Emergency Hammer</li>
+                            <li>and so on...</li>
+                        </ul>
+                        <p class="fragment">
+                            You want to invoice your sale with the proper
+                            description<br />
+                            and the final price of the car
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Could you use inheritance to do this?</h2>
+                        <p class="fragment">
+                            You could, but how easily would this get out of
+                            control?
+                        </p>
+                        <p class="fragment">
+                            Considering only 4 accessories you would need<br />24
+                            different classes to satisfy all possible
+                            combinations
+                        </p>
+                        <p class="fragment">
+                            Ever heard about class explosion?
+                        </p>
+                        <img
+                            class="fragment"
+                            src="images/2/design-patterns/class-explosion.png"
+                        />
+                        <p>
+                            <small class="fragment"
+                                >And we're not even addressing the problem of a
+                                change of price on one of the
+                                accessories!</small
+                            >
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Step-by-step guide</h2>
+                        <p class="fragment">1. Create your car interface</p>
+                        <pre><code class="fragment java" data-trim contenteditable>
+public interface Car {
+    String getAccessories();
+    int getPrice();
+}
+                            </code></pre>
+                        <p class="fragment">
+                            2. And a concrete class for a car with no extras
+                            whatsoever
+                        </p>
+                        <pre><code class="fragment java">
+public class BasicCar implements Car {
+
+    @Override
+    public String getAccessories() {
+        return "Basic Car";
+    }
+
+    @Override
+    public int getPrice() {
+        return 4000;
+    }
+}
+                            </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Step-by-step guide</h2>
+                        <p class="fragment">
+                            3. Create your abstract decorator (which implements
+                            car)
+                        </p>
+                        <pre><code class="fragment java" data-trim contenteditable>
+public abstract class CarDecorator implements Car {
+
+    private Car decoratedCar;
+
+    public CarDecorator(Car decoratedCar) {
+        this.decoratedCar = decoratedCar;
+    }
+
+    @Override
+    public String getAccessories() {
+        return decoratedCar.getAccessories();
+    }
+
+    @Override
+    public int getPrice() {
+        return decoratedCar.getPrice();
+    }
+}
+                            </code></pre>
+                        <p>
+                            <small class="fragment"
+                                >Have you noticed how your car has-a car?</small
+                            >
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Step-by-step guide</h2>
+                        <p class="fragment">
+                            4. Create your concrete decorators - Expandable
+                            Rooftop
+                        </p>
+                        <pre><code class="fragment java" data-trim contenteditable>
+public class ExpandableRooftop extends CarDecorator {
+
+    public ExpandableRooftop(Car decoratedCar) {
+        super(decoratedCar);
+    }
+
+    @Override
+    public String getAccessories() {
+        return decoratedCar.getAccessories() + " with Expandable Rooftop";
+    }
+
+    @Override
+    public int getPrice() {
+        return decoratedCar.getPrice() + 200;
+    }
+}
+                            </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Step-by-step guide</h2>
+                        <p class="fragment">
+                            4. Create your concrete decorators - Air Conditioner
+                        </p>
+                        <pre><code class="fragment java" data-trim contenteditable>
+public class AirConditioner extends CarDecorator {
+
+    public AirConditioner(Car decoratedCar) {
+        super(decoratedCar);
+    }
+
+    @Override
+    public String getAccessories() {
+        return decoratedCar.getAccessories() + " with Air Conditioner";
+    }
+
+    @Override
+    public int getPrice() {
+        return decoratedCar.getPrice() + 200;
+    }
+}
+                            </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Step-by-step guide</h2>
+                        <p class="fragment">
+                            5. Make a Sale - Test your decorator pattern
+                        </p>
+                        <pre><code class="fragment java" data-trim contenteditable>
+public class Main {
+
+    public static void main(String[] args) {
+
+        Car car = new AirConditioner(new ExpandableRooftop(new BasicCar()));
+
+        System.out.println("Accessories: " + car.getAccessories());
+        // "Accessories: Basic Car with Expandable Rooftop with Air Conditioner"
+
+        System.out.println("Price: " + car.getPrice());
+        // "Price: 4400"
+    }
+}
+                            </code></pre>
+                    </section>
+
+                    <section id="strategy">
+                        <h2>Strategy</h2>
+                        <h3>Investigation of a Behavioral Pattern</h3>
+                    </section>
+
+                    <section>
+                        <h2>What problem does it solve?</h2>
+                        <p class="fragment">
+                            You’ve got multiple algorithms to achieve the same
+                            functionality and they must be interchangeable at
+                            <strong>runtime</strong>
+                        </p>
+                        <p class="fragment">
+                            A single method is edited often in order to fulfill
+                            new requirements, normally leading to a lot of
+                            if/else clauses or switch statements,
+                            <u>introducing complexity in your code</u>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>How?</h2>
+                        <p class="fragment">
+                            Create an interface that declares the behaviour
+                            <br />
+                            <small
+                                >{ Remember: Program to the interface! }</small
+                            >
+                        </p>
+                        <p class="fragment">
+                            Encapsulate each algorithm inside an implementing
+                            class
+                            <br />
+                            <small
+                                >{ Remember: Encapsulate what varies! }</small
+                            >
+                        </p>
+                        <p class="fragment">
+                            All clients that need to perform these operations
+                            interchangeably should refer to the interface and
+                            not to a particular implementation
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>How?</h2>
+                        <img
+                            src="images/2/design-patterns/strategy-pattern-uml.png"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>How? {show me the code}</h2>
+                        <pre>
+                           <code class="java" data-trim contenteditable>
+public interface Transport {
+    void goTo(String place);
+}
+
+public class Taxi implements Transport {
+    @Override
+    public void goTo(String place) {
+        System.out.println("Going to " + place + " by taxi!");
+    }
+}
+
+public class Bus implements Transport {
+    @Override
+    public void goTo(String place) {
+        System.out.println("Going to " + place + " by bus!");
+    }
+}
+                            </code>
+                        </pre>
+                        <small
+                            >This is our Transport interface, along with its
+                            concrete implementations<br />
+                            (different algorithms to achieve the same
+                            end)</small
+                        >
+                    </section>
+
+                    <section>
+                        <h2>How? {show me more code}</h2>
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+public class Person {
+
+    private Transport transport;
+
+    public void goToWork() {
+        transport.goTo("work");
+    }
+
+    public void goHome() {
+        transport.goTo("home");
+    }
+
+    public void setTransport(Transport transport) {
+        this.transport = transport;
+    }
+}
+                            </code>
+                        </pre>
+                        <small>
+                            This is a class with a Transport as a field, which
+                            may store different Transport implementations
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>How? {enough code, thanks}</h2>
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+public class Main {
+
+    public static void main(String[] args) {
+
+        Person person = new Person();
+        Transport taxi = new Taxi();
+        Transport bus = new Bus();
+
+        person.setTransport(taxi);
+        person.goToWork(); // "Going to work by taxi!"
+        person.setTransport(bus);
+        person.goToWork(); // "Going to work by bus!"
+
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>JavaBank</h3>
+                            <p>Apply relevant design patterns of your choice</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="architectural-patterns">
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/design-patterns/architecture.jpg"
+                            alt=""
+                        />
+                        <h2>Architectural Patterns</h2>
+                        <p class="fragment">Patterns occur at many levels</p>
+                        <p class="fragment">
+                            <u>Design Patterns</u> are at the level of several
+                            collaborating objects
+                        </p>
+                        <p class="fragment">
+                            <u>Architectural Patterns</u> are the largest in
+                            scope and cover the fundamental organization of the
+                            system, providing reusable solutions to common
+                            problems in software architecture
+                        </p>
+                    </section>
+
+                    <section>
+                        <img src="images/2/design-patterns/mvc.png" />
+                    </section>
+
+                    <section>
+                        <h2>Model View Controller (MVC)</h2>
+                        <p>
+                            Software architecture pattern that divides a given
+                            software application into three interconnected
+                            parts, separating internal representation of data
+                            from the way data is presented to or accepted from
+                            the user
+                        </p>
+                        <img
+                            class="logo-big float-left"
+                            src="images/2/design-patterns/model.png"
+                        />
+                        <img
+                            class="logo-big float-right"
+                            src="images/2/design-patterns/controller.png"
+                        />
+                        <img
+                            class="logo-big float-center"
+                            src="images/2/design-patterns/view.png"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>The MVC Pattern</h2>
+                        <div>
+                            <img
+                                class="logo-big float-left"
+                                src="images/2/design-patterns/model.png"
+                            />
+                            <img
+                                class="logo-big float-right"
+                                src="images/2/design-patterns/controller.png"
+                            />
+                            <img
+                                class="logo-big float-center"
+                                src="images/2/design-patterns/view.png"
+                            />
+                        </div>
+                        <div>
+                            <div class="float-left caption">
+                                <ul>
+                                    <li class="fragment">
+                                        Representation of domain data
+                                    </li>
+                                    <li class="fragment">Business logic</li>
+                                    <li class="fragment">
+                                        Persistence mechanism
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="float-right caption">
+                                <ul>
+                                    <li class="fragment">
+                                        Intermediary between model and view
+                                    </li>
+                                    <li class="fragment">
+                                        Maps user actions - model actions
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="float-none caption">
+                                <ul>
+                                    <li class="fragment">User interface</li>
+                                    <li class="fragment">
+                                        Interaction elements
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <aside class="notes">
+                            business logic sometimes found in controller
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2 class="float-left">Flow of Events</h2>
+                        <img src="images/2/design-patterns/mvc-flow.png" />
+                    </section>
+
+                    <section id="mvw">
+                        <h2>MV*</h2>
+                        <p class="fragment">
+                            Multiple variations to the classic MVC pattern exist
+                        </p>
+                        <p class="fragment">
+                            <small
+                                >They all build upon the idea to separate the
+                                data (model) from the specific presentation
+                                technology (view) and encapsulating the logic
+                                that hooks the two behind some sort of
+                                controller object</small
+                            >
+                        </p>
+                        <img
+                            class="fragment"
+                            src="images/2/design-patterns/mvw.jpg"
+                            alt=""
+                        />
+                        <small>
+                            <ul>
+                                <li class="fragment">
+                                    <u>MVP</u> evolved as applications became
+                                    larger and testing became more important.
+                                    The Presenter (supervising controller) is
+                                    given complete access to a view that is
+                                    generally very passive, commonly created
+                                    declaratively and that responds to data
+                                    binding but nothing else.
+                                </li>
+                                <li class="fragment">
+                                    <u>MVVM</u> attempts to more clearly
+                                    separate the development of user-interfaces
+                                    from the application behaviour and business
+                                    logic by making use of a declarative view
+                                    with data bindings to the view model,
+                                    allowing a true separation of work on Views
+                                    (designers) from other layers (developers).
+                                </li>
+                            </ul>
+                        </small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Bank Application</h3>
+                            <p>
+                                Refactor and improve existing code base by
+                                applying the MVC architectural pattern
+                            </p>
+                        </div>
+                    </section>
+
+                    <section id="service">
+                        <h2>Service Layer Pattern</h2>
+                        <p class="fragment">
+                            Where should we place the business logic of our
+                            applications?
+                        </p>
+                        <small>
+                            <ul>
+                                <li class="fragment">
+                                    <u>Model</u> - while this is a common
+                                    practice, it does not scale well. Besides
+                                    holding the data to be persisted, models
+                                    will quickly become <u>fat</u> with
+                                    additional responsibilities, possibly
+                                    requiring some coupling to other models.
+                                </li>
+                                <li class="fragment">
+                                    <u>Controller</u> - It is an anti-pattern to
+                                    handle user interface actions, data access
+                                    and business logic all in one place.
+                                    Business logic should be protected at all
+                                    cost from the ever changing user interface
+                                    concerns
+                                </li>
+                            </ul>
+                        </small>
+
+                        <span class="fragment">
+                            <img
+                                class="float-right"
+                                style="max-height: 300px; margin-left: 20px;"
+                                src="images/2/design-patterns/service-layer.png"
+                                alt=""
+                            />
+                            <p style="font-size: 0.9em;">
+                                A <u>cleaner and scalable approach</u> is to
+                                extract business logic and data access code into
+                                a Service Layer
+                            </p>
+                        </span>
+                        <p class="fragment" style="font-size: 0.9em;">
+                            Using a <u>Service Layer Pattern</u>, the Controller
+                            must take request data and pass it into the Service
+                            layer
+                        </p>
+                        <p class="fragment" style="font-size: 0.9em;">
+                            The service layer returns data for the Controller<br />
+                            to <u>inject into a View for rendering</u>
+                        </p>
+                        <aside class="notes">
+                            <p>
+                                Model - Think Customer/Product. Where do you
+                                place the logic of a customer acquiring a
+                                product? we can Customer#buyProduct(Product) or
+                                Product#acquiredBy(Customer). Either way, one
+                                model needs to have a higher coupling with the
+                                other.
+                            </p>
+                            <p>
+                                From a customer service, we can expose a
+                                CustomerService#purchase method that will
+                                orchestrate
+                                <thead>
+                                    required operations on each model, leading
+                                    to a lower coupling amongst models.
+                                </thead>
+                            </p>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Service Interface</h2>
+                        <div class="fragment float-left" style="width: 50%;">
+                            <pre>
+                                <code class="java" data-trim contenteditable>
+public interface CustomerService {
+
+    Customer get(Integer id);
+    List&lt;Customer&gt; list();
+    Set&lt;Integer&gt; listCustomerAccountIds(Integer id);
+    double getBalance(int customerId);
+    void add(Customer customer);
+}
+                                </code>
+                            </pre>
+                        </div>
+
+                        <div class="fragment float-right" style="width: 50%;">
+                            <pre>
+                                <code class="java" data-trim contenteditable>
+public interface AccountService {
+
+    void add(Account account);
+    void deposit(int id, double amount);
+    void withdraw(int id, double amount);
+    void transfer(int srcId, int dstId, double amount);
+
+}
+                                </code>
+                            </pre>
+                        </div>
+
+                        <div
+                            class="fragment clearfix"
+                            style="width: 50%; margin:auto;"
+                        >
+                            <pre>
+                                <code class="java" data-trim contenteditable>
+public interface AuthService {
+
+    boolean authenticate(Integer id);
+    Customer getAccessingCustomer();
+
+}
+                                </code>
+                            </pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>JavaBank Application</h3>
+                            <p>
+                                Refactor and improve existing code by applying
+                                the service layer pattern
+                            </p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                width: 1024,
+                transition: "slide", // none/fade/slide/convex/concave/zoom
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: "left",
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+                // Specifies section for limits-app
+                section: 19,
+                // Optional reveal.js plugins
+                dependencies: [
+                    {
+                        src: "lib/js/classList.js",
+                        condition: function() {
+                            return !document.body.classList;
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/marked.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/markdown.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/highlight/highlight.js",
+                        async: true,
+                        condition: function() {
+                            return !!document.querySelector("pre code");
+                        },
+                        callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+                    {
+                        src: "plugin/zoom-js/zoom.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/notes/notes.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/bootcamp/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/hide-slides/index.js",
+                        async: true
+                    },
+                    {
+                        src: "//cdn.socket.io/socket.io-1.4.5.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/multiplex/client.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/master.js",
+                        async: true
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>

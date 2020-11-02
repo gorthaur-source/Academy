@@ -1,0 +1,1647 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Relational <br> Databases</h1>
+                <p>
+                    <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+            </section>
+
+            <section class="stack present">
+
+                <section>
+                    <h2>Relational Database Management Systems (RDBMS)</h2>
+                </section>
+
+                <section>
+                    <h2>What is a RDBMS?</h2>
+                    <p class="fragment">It's a software package designed to manipulate data in a relational database</p>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/databases/dbms.png" alt="">
+                </section>
+
+                <section>
+                    <h2>But what is a database?</h2>
+                    <p class="fragment">It's nothing more than a set (usually big) of related information, which describes activities of the
+                        real world.</p>
+                    <p class="fragment">Compared to paper, a database system is able to retrieve data more quickly, index it in multiple ways
+                        and deliver up-to-date information to its users</p>
+                    <p class="fragment">Modern database systems can manage terabytes of data spread across many fast-access disk drives, holding
+                        tens of gigabytes of data in high-speed memory</p>
+                    <small><p class="fragment">Examples of Databases:</p>
+				<ul>
+                    <li class="fragment"><u>Telephone books</u> - contains information concerning all the subscribers</li>
+                    <li class="fragment"><u>Student database</u> - contains information concerning all the students in a school</li>
+                    <li class="fragment"><u>Library database</u> - contains information concerning all the books in a library</li>
+				</ul></small>
+                </section>
+
+                <section>
+                    <h2>Is there another way to persist data?</h2>
+                    <p class="fragment">Yes, there are other ways...</p>
+                    <p class="fragment">For example, we could use plain files</p>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/databases/db-vs-files.png">
+                </section>
+
+                <section>
+                    <h2>Advantages of using a DBMS</h2>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/databases/fs-vs-dbs.png">
+                </section>
+
+                <section>
+                    <h2>Disadvantages of using a DBMS</h2>
+                    <p class="fragment">Do not use a DBMS when:</p>
+                    <ul>
+                        <li class="fragment">The DBMS does not support the types of queries or functionality required by the application</li>
+                        <li class="fragment">The advanced DBMS functionality is not needed</li>
+                    </ul>
+                    <p class="fragment">DBMS introduces overhead:</p>
+                    <ul>
+                        <li class="fragment">Installation and configuration overhead</li>
+                        <li class="fragment">Operating overhead - concurrency control, atomicity, etc.</li>
+                        <li class="fragment">Cost - hardware, software, maintenance and support</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section class="stack present">
+
+                <section id="relational">
+                    <h2>What are relational databases?</h2>
+                    <p class="fragment">A database that implements stored data in a series of two dimensional relations (tables) that are related
+                        to one another</p>
+                    <img style="max-height: 400px;" class="fragment" src="images/2/databases/db-relational.png">
+                </section>
+
+                <section>
+                    <h2>Relational vs Non-relational</h2>
+                    <small>
+                <p>
+                    <u>Relational</u>
+                <ul>
+                    <li class="fragment">Data is relational in nature - customer purchases products, products have a supplier and a manufacturer</li>
+                    <li class="fragment">Need to locate relevant information quickly</li>
+                    <li class="fragment">Scalability, reliability, ACID (Atomicity, Consistency, Isolation, Durability) compliance</li>
+                    <li class="fragment">Reporting or intelligence tools to work out business problems</li>
+                    <li class="fragment">Results based on multiple search condition</li>
+                </ul>
+            </p><p>
+                    <u>Non-relational</u>
+                <ul>
+                    <li class="fragment">Lots of unstructured data that needs to be stored</li>
+                    <li class="fragment">Scalability and speed</li>
+                </ul>
+            </p></small>
+                    <p class="fragment">
+                        <u>In a nutshell: Flexibility vs Performance</u>
+                    </p>
+                    <img class="fragment" src="images/2/databases/nosql.png">
+                    <aside class="notes">
+                        More like SQL vs non-SQL
+                    </aside>
+                </section>
+
+                <section id="mysql">
+                    <h2>Most Popular Open Source Database</h2>
+                    <img class="logo float-right" src="images/2/databases/mysql.jpg">
+                    <img style="max-width: 550px;" src="images/2/databases/mysql-server.jpg">
+                    <small>
+                	<ul>
+                    	<li class="fragment">Has connectors for a number of programming languages</li>
+                    	<li class="fragment">Works on just about all operating systems</li>
+                	</ul>
+                </small>
+                    <aside class="notes">
+                        written in C/C++
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Hello Database</h2>
+                    <pre>
+					<code class="sql" data-trim contenteditable>
+// Database connection
+$ mysql -u &lt;username&gt; -h &lt;host&gt; -p &#91;database&#93;
+
+/* SQL STATEMENTS BELOW */
+
+// Database creation
+&gt; CREATE DATABASE boat_booking;
+
+// Start using Database
+&gt; USE boat_booking;
+
+// Delete database #PROCEEDWITHCAUTION
+&gt; DROP DATABASE &#91;if exists&#93; boat_booking;
+
+// List databases
+&gt; SHOW DATABASES;
+						</code>
+					</pre>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Tables</h2>
+                    <img class="" src="images/2/databases/create-table.jpg">
+                    <p>How information is organized in a relational database</p>
+                </section>
+
+                <section id="table">
+                    <h2>Database Relations (Tables)</h2>
+                    <img style="max-height: 350px;" class="fragment" src="images/2/databases/table.jpg">
+                    <ul>
+                        <li class="fragment">
+                            <u>Name</u> - each table should have a unique name</li>
+                        <li class="fragment">
+                            <u>Fields or Attributes</u> - each column in a table</li>
+                        <li class="fragment">
+                            <u>Records or Tuples</u> - each row in a table</li>
+                    </ul>
+                </section>
+
+
+                <section>
+                    <h2>Attribute Data type</h2>
+                    <img style="max-height: 500px;" src="images/2/databases/mysql-java.png">
+                </section>
+
+
+
+                <section>
+                    <h2>Creating a table</h2>
+                    <pre class="fragment" style="box-shadow:none">
+            	<code class="sql" data-trim contenteditable>
+/* SQL STATEMENTS BELOW */
+// Generic table creation
+CREATE TABLE generic_table(
+		column1 DATATYPE [ CONSTRAINT ] ,
+		column2 DATATYPE [ CONSTRAINT ]
+);
+				</code>
+			</pre>
+                </section>
+
+                <section>
+                    <h2>Constraints</h2>
+                    <table>
+                        <tr>
+                            <th>
+                                Constraint
+                            </th>
+                            <th>
+                                Meaning
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                NOT NULL
+                            </td>
+                            <td>
+                                Column will not hold null values
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                UNIQUE
+                            </td>
+                            <td>
+                                Column will not hold already existing values
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                AUTO_INCREMENT
+                            </td>
+                            <td>
+                                Column will automatically increment
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DEFAULT &lt;value&gt;
+                            </td>
+                            <td>
+                                Set the column's default value
+                            </td>
+                        </tr>
+                    </table>
+
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+CREATE TABLE example_table(
+    id INTEGER,
+    name CHAR(15) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE example_table(
+    id INTEGER AUTO_INCREMENT,
+    PRIMARY KEY (id)
+);
+    </code></pre>
+                </section>
+
+                <section>
+                    <h2>The fishing village</h2>
+                    <img style="width:400px" src="images/2/databases/dock.jpg" />
+                    <div class="fragment">
+                        <small>We need to commission a new software to help us register sailors and boats and manage our day to day operations.
+			<span class="fragment">All sailors are registered with a unique number identifier and have a name and age.</span><span class="fragment"> We have a ledger for the boats. They have a name, a color and also a unique number identifier.</span></small>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Creating the sailors table</h3>
+                    </div>
+
+                    <pre class="fragment">
+				<code class="sql" data-trim contenteditable>
+CREATE TABLE sailors(
+    id INTEGER NOT NULL UNIQUE,
+    name CHAR(15) NOT NULL,
+    age INTEGER NOT NULL
+);
+	</code>
+				</pre>
+
+                    <aside class="notes">
+                        Explain that because sid is a primary key, it is also unique. There is no primary key, because constrains will appear after.
+                        To check if they are created show the show table_name command.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Create the boats table</h3>
+                    </div>
+                </section>
+
+                <section id="keys">
+                    <h2>Database Keys</h2>
+                    <img class="logo float-right" src="images/2/databases/key.png">
+                    <p class="fragment">Refers to specific table attributes</p>
+                    <p class="fragment">Used to sort and/or uniquely identify table records</p>
+                    <p class="fragment">Used to establish and identify relationships between tables</p>
+                    <p class="fragment">The most important key types are:</p>
+                    <ul>
+                        <li class="fragment">Primary Key</li>
+                        <li class="fragment">Foreign Key</li>
+                    </ul>
+                </section>
+
+                <section id="primary_key">
+                    <h2>Primary Key</h2>
+                    <p>Every table must have a primary key, a set of attributes that will
+                        <u>uniquely</u> identify a record.</p>
+                    <img class="fragment" src="images/2/databases/cars.png">
+                    <p class="fragment">In this case what would be a good primary key?</p>
+                    <aside class="notes">
+                        <p>Note that the table is not on the normal form on purpose, in order to be fixed later.</p>
+                        <p>The solution is the licence plate</p>
+                    </aside>
+                </section>
+
+                <section id="composite_key">
+                    <h2>Primary Key - Composite</h2>
+                    <p>In case there is no single attribute for a primary key, we can use a composite - several attributes</p>
+                    <img class="fragment" src="images/2/databases/composite_key.png" />
+                    <p class="fragment">In this case what would be the primary key?</p>
+                    <aside class="notes">
+                        <p>The composite key is the name, and birthdate.</p>
+                        <p>Name alone will not work, birthdate alone will not work</p>
+                        <p>If we had a BI it would be only the BI</p>
+                    </aside>
+
+                </section>
+
+                <section>
+                    <h2>Primary Key</h2>
+                    <p>We can add the primary key as a constraint on the attribute or on the table</p>
+
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+CREATE TABLE mytable(
+	column1 DATATYPE [ NOT NULL | UNIQUE | PRIMARY KEY],
+	column2 DATATYPE [ NOT NULL | UNIQUE | PRIMARY KEY]
+);
+					</code>
+					<code class="sql" data-trim contenteditable>
+CREATE TABLE mytable(
+	column1 DATATYPE [ NOT NULL | UNIQUE ],
+	column2 DATATYPE [ NOT NULL | UNIQUE ],
+	PRIMARY KEY (column1,column2)
+);
+					</code>
+				</pre>
+                </section>
+
+                <section id="foreign_key">
+                    <h2>Foreign keys</h2>
+                    <p>A foreign key is an attribute on a table that points to a primary key in another table.</p>
+                    <p>Useful to enforce relationships and to relate information.</p>
+                    <img class="fragment" src="images/2/databases/foreign-key.gif">
+                </section>
+
+                <section>
+                    <h2>Foreign keys setup</h2>
+                    <pre>
+					<code class="sql" data-trim contenteditable>
+CREATE TABLE mytable(
+	column1 DATATYPE [ NOT NULL | UNIQUE | PRIMARY KEY],
+	column2 DATATYPE [ NOT NULL | UNIQUE | DEFAULT &lt;value&gt;
+        | FOREIGN KEY (column2) REFERENCES mytable2(column1) ]
+);
+			        </code>
+					<code class="sql" data-trim contenteditable>
+CREATE TABLE mytable(
+	column1 DATATYPE [ NOT NULL | UNIQUE],
+	column2 DATATYPE [ NOT NULL | UNIQUE | DEFAULT &lt;value&gt;],
+
+	PRIMARY KEY (column1),
+	FOREIGN KEY (column2) REFERENCES mytable2(column1)
+);
+				    </code>
+			</pre>
+                </section>
+
+                <section id="relationships">
+                    <img src="images/2/databases/relationship.jpg" class="logo float-right">
+                    <h2>Table Relationships</h2>
+                    <p class="fragment">A relationship exists between two tables when you associate the records of the first table with those
+                        of the second.</p>
+                    <p class="fragment">Crucial to data integrity because they reduce redundant data and eliminate duplicate data</p>
+                </section>
+
+                <section>
+                    <h2>Cardinality</h2>
+                    <p class="fragment">The type of a relationship between two tables is known as
+                        <u>cardinality</u>
+                    </p>
+                    <p class="fragment">Three specific types of relationship can exist between tables:</p>
+                    <ol>
+                        <li class="fragment">one-to-one</li>
+                        <li class="fragment">one-to-many</li>
+                        <li class="fragment">many-to-many</li>
+                    </ol>
+                    <img src="images/2/databases/cardinality.jpg" class="fragment float-right">
+                </section>
+
+                <section>
+                    <h2>One-to-One</h2>
+                    <p class="fragment">A pair of tables has a
+                        <u>one-to-one</u> relationship when a single record in the first table is related to only one record
+                        in the second table, and a single record in the second table is related to only one record in the
+                        first table</p>
+                    <p class="fragment">In this type of relationship one table serves as a
+                        <u>parent</u> table and the other serves as a
+                        <u>child</u> table</p>
+                    <img style="max-height: 200px;" src="images/2/databases/one-to-one.png" class="fragment">
+                    <small class="fragment">This is a special type of relationship because it is the only one in which both tables <u>may</u> actually share the same primary key</small>
+                </section>
+
+                <section>
+                    <h2>One-to-Many</h2>
+                    <p class="fragment">A pair of tables has a one-to-many relationship when a single record in the first table can be related
+                        to many records in the second table, but a single record in the second table can be related to only
+                        one record in the first table</p>
+                    <p class="fragment">The table on the
+                        <u>one</u> side of the relationship is the
+                        <u>parent</u> table and the table on the
+                        <u>many</u> side is the
+                        <u>child</u> table</p>
+                    <img style="max-height: 200px;" src="images/2/databases/one-to-many.png" class="fragment">
+                    <small class="fragment">This is the most common relationship that exists between a pair of tables in a database</small>
+                </section>
+
+                <section>
+                    <h2>Many-to-Many</h2>
+                    <p class="fragment">A pair of tables has a many-to-many relationship when a single record in the first table can be related
+                        to many records in the second table and a single record in the second table can be related to many
+                        records in the first table</p>
+                    <p class="fragment">This relationship is established using a linking table</p>
+                    <img style="max-height: 200px;" src="images/2/databases/many-to-many.png" class="fragment">
+                </section>
+
+                <section>
+                    <h2>Self-Referencing Relationship</h2>
+                    <p class="fragment">Does not exist between a pair of tables, but between the records within a table</p>
+                    <img style="max-height: 200px;" src="images/2/databases/self-relationship.png" class="fragment">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Update the database to support a reservation system where sailors can book a boat for the whole day</h3>
+                    </div>
+                </section>
+
+                <section id="schema">
+                    <h2>Schema</h2>
+                    <small>
+                <p class="fragment">Logical definition of a table, consisting of the name and type of each attribute</p>
+                <p class="fragment">A database schema is the collection of table schemas for the whole database</p>
+                </small>
+                    <figure class="fragment">
+                        <img style="max-height: 400px;" src="images/2/databases/db-schema.png">
+                        <div class="caption">Database schema for a school management software</div>
+                    </figure>
+                </section>
+
+                <section>
+                    <h2>Changing table schema</h2>
+                    <div class="fragment">
+                        <p>Remove columns</p>
+                        <pre>
+					<code class="sql" data-trim contenteditable>
+ALTER TABLE mytable
+DROP mycolumn
+					</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <p>Insert columns</p>
+                        <pre>
+						<code class="sql" data-trim contenteditable>
+ALTER TABLE mytable
+ADD mycolumn DATATYPE [ CONSTRAINTS ]
+						</code>
+					</pre>
+                        <p>All new records will have a
+                            <u>null</u> value if the attribute is not specified</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Removing tables</h2>
+                    <pre>
+					<code class="sql" data-trim contenteditable>
+DROP TABLE mytable
+                    </code>
+				</pre>
+                    <img class="fragment" src="images/2/databases/simple.jpg" alt="">
+                </section>
+
+            </section>
+
+            <section>
+                <section id="sql">
+                    <h2>Structured Query Language (SQL)</h2>
+                    <p class="fragment">Programming language designed for managing data held in a RDBMS</p>
+                    <p class="fragment">It is declarative (not procedural), which means we just tell what we want without having to supply a
+                        step-by-step procedure on how to do it</p>
+                    <img style="max-height: 150px;" class="fragment" src="images/2/databases/sql_begin.jpg" alt="">
+                </section>
+
+                <section id="crud">
+                    <h2>Table Operations</h2>
+                    <div class="fragment">
+                        <ul>
+                            <li class="fragment">Select</li>
+                            <li class="fragment">Insert</li>
+                            <li class="fragment">Delete</li>
+                            <li class="fragment">Update</li>
+                        </ul>
+                    </div>
+                    <p class="fragment">In computer programming, these four basic functions of persistent storage are called
+                        <u>CRUD</u>
+                    </p>
+                    <img style="max-height: 150px;" class="fragment" src="images/2/databases/crud.png">
+                </section>
+
+                <section id="insert">
+                    <h2>How to insert data in a table?</h2>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+INSERT INTO mytable(column1, column2)
+VALUES (column1_value, column2_value);</code>
+				</pre>
+                    <p class="fragment">Example:</p>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+INSERT INTO sailors(id, name, rating, age)
+VALUES (15, 'Andreia', 55.44, 30);
+                    </code>
+				</pre>
+                </section>
+
+                <section id="select">
+                    <h2>How to query for data in a table?</h2>
+                    <p class="fragment">Basic syntax:</p>
+                    <pre class="fragment">
+                    <code class="sql" data-trim contenteditable>
+SELECT column1, column2 FROM mytable;
+                    </code>
+                </pre>
+                    <p class="fragment">Example selecting all columns:</p>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+SELECT * FROM sailors;
+                    </code>
+				</pre>
+                </section>
+
+                <section>
+                    <h2>How to delete data from a table?</h2>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+DELETE FROM mytable WHERE column=column_value;
+                    </code>
+				</pre>
+                    <p class="fragment">Example:</p>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+DELETE FROM sailors WHERE sailor_id=15;
+</code>
+				</pre>
+                </section>
+
+                <section>
+                    <h2>How to update data in a table?</h2>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+UPDATE table
+SET column1=column1_value
+WHERE column2=column2_value;</code>
+				</pre>
+                    <p class="fragment">Example:</p>
+                    <pre class="fragment">
+					<code class="sql" data-trim contenteditable>
+UPDATE sailors
+SET age=25
+WHERE sailor_id=1;</code>
+				</pre>
+                </section>
+
+                <section>
+                    <h2>Integrity Restrictions</h2>
+                    <p class="fragment">An integrity restriction is a specified condition over the schema in order to restrict the data that
+                        can be stored in a table</p>
+                    <ul>
+                        <li class="fragment">Domain integrity</li>
+                        <li class="fragment">Entity integrity</li>
+                        <li class="fragment">Referential integrity</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Domain Integrity</h2>
+                    <p class="fragment">A domain defines the possible values for an attribute</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>Type</u> - basic data types for numbers, strings, date and time</li>
+                        <li class="fragment">
+                            <u>Length</u> - number of digits or characters in a value</li>
+                        <li class="fragment">
+                            <u>Range</u> - lower and upper boundaries of the values</li>
+                        <li class="fragment">
+                            <u>Constraints</u> - special restrictions on allowable values</li>
+                        <li class="fragment">
+                            <u>Null support</u> - whether the attribute can have a null value</li>
+                        <li class="fragment">
+                            <u>Default value</u> - The value an attribute will have if a value is not supplied</li>
+                    </ul>
+                    <aside class="notes">
+                        Constraints - For example, the LeavingDate for an Employee must always be greater than the HireDate for that Employee.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Entity Integrity</h2>
+                    <img class="logo float-right" src="images/2/databases/the_chosen_one.jpg" alt="">
+                    <p class="fragment">Concerns the concept of a
+                        <u>Primary Key</u>
+                    </p>
+                    <img class="fragment" src="images/2/databases/primary-key.gif">
+                    <ul>
+                        <li class="fragment">Every table must have a primary key</li>
+                        <li class="fragment">The column or columns chosen to be the primary key should be unique and not null.</li>
+                        <li class="fragment">When more than one column makes up the primary key, it is referred to as a concatenated primary key</li>
+                        <li class="fragment">Usually an integer attribute with the name
+                            <u>id</u>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Referential Integrity</h2>
+                    <p class="fragment">Concerns the concept of a
+                        <u>Foreign Key</u>
+                    </p>
+                    <img class="fragment" src="images/2/databases/foreign-key.gif">
+                    <ul>
+                        <li class="fragment">A foreign key must reference another column (usually the primary key from another table)</li>
+                        <li class="fragment">If the data in one table is changed, related tables will be verified to ensure consistency</li>
+                    </ul>
+                    <aside class="notes">
+                        Inserting a new patient or removing a doctor can cause violations
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Referential Integrity</h2>
+                    <p class="fragment">on delete <i>action</i></p>
+                    <p class="fragment">on update <i>action</i></p>
+                    <p class="fragment">
+                        <u>action</u> is one of :</p>
+                    <div class="fragment">
+                        <ul>
+                            <li>cascade - deletes/updates the foreign key entries that point to the referred record;</li>
+                            <li>set null - makes null the foreign key entries that point to the referred record;</li>
+                            <li>set default - sets to the default value the foreign key entries that point to the referred record;</li>
+                            <li>no action - prevents the entry that is being referred to from being deleted/updated. This is
+                                the default behaviour...</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Referential Actions</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+CREATE TABLE reserves(
+	sailor_id INTEGER,
+	boat_id INTEGER,
+	day DATE,
+	PRIMARY KEY(boat_id, day),
+	FOREIGN KEY(sailor_id) REFERENCES sailors(id) ON DELETE CASCADE,
+	FOREIGN KEY(boat_id) REFERENCES boats(id) ON DELETE CASCADE
+);
+				</code></pre>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="query">
+                    <h2>Database Queries</h2>
+                    <h3>How to access the data?</h3>
+                    <p class="fragment">"What's the fraction of students in the DB's discipline that had a grade superior to 16?"</p>
+                    <p class="fragment">It's this type of questions that we will learn how to answer.</p>
+                </section>
+
+                <section>
+                    <h2>Select Queries</h2>
+                    <p>A select always returns a result-set and is composed by two major parts</p>
+                    <ul class="fragment">
+                        <li>Projection - Which columns to return in the result set</li>
+                        <li>Selection - Which rows to return in the result set</li>
+                    </ul>
+
+                    <p class="fragment">Select the name of all sailors with age below 30</p>
+                    <p class="fragment">Projection: name</p>
+                    <p class="fragment">Selection: age &lt 30 </p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT sailor_name FROM sailors WHERE age &lt 30
+				</code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Populate the database with data</h3>
+                    </div>
+                    <aside class="notes">
+                        You can run the script directly in the database, or outside from the command line.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h2>Perform selection queries</h2>
+                    </div>
+                    <p>What are the names of all boats?</p>
+                    <p>List all red boats</p>
+                    <p>List all sailors with age between 20 and 30</p>
+                    <p>List the id and name of sailors with less than 50 years and id higher than 5</p>
+                </section>
+
+                <section>
+                    <h2>Using more tables</h2>
+                    <h3 class="fragment">a join</h3>
+                    <p class="fragment">A join is used to combine rows from two or more tables, based on a common field</p>
+                    <ul class="fragment">
+                        <li>INNER JOIN - all rows when there is at least one match in BOTH tables</li>
+                        <li>RIGHT JOIN - all rows from the right table, and the matched rows from the left table</li>
+                        <li>LEFT JOIN - all rows from the left table, and the matched rows from the right table</li>
+                        <li>FULL JOIN - all rows when there is a match in ONE of the tables</li>
+                    </ul>
+                    <p class="fragment">We will just focus on the INNER JOIN</p>
+                </section>
+
+                <section>
+                    <h2>Using two tables</h2>
+                    <p class="fragment">What are the names of the sailors that reserved the boat 100?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT DISTINCT s.sailor_name
+FROM sailors AS s, reserves AS r
+WHERE s.sailor_id = r.sailor_id AND r.boat_id=100;
+				</code></pre>
+                    <p class="fragment">What are the names of the sailors that reserved at least one boat?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT DISTINCT s.sailor_name
+FROM sailors AS s, reserves AS r
+WHERE s.sailor_id = r.sailor_id;
+				</code></pre>
+                    <aside class="notes">
+                        implicit inner join (simple), there are also outer left and right joins
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Using three tables</h2>
+                    <p class="fragment">What are the names of the sailors that reserved a red boat?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT DISTINCT s.sailor_name
+FROM sailors AS s, boats AS b, reserves AS r
+WHERE s.sailor_id = r.sailor_id AND b.boat_id = r.boat_id AND b.color = 'red';
+				</code></pre>
+                </section>
+
+                <section>
+                    <h2>More examples...</h2>
+                    <p class="fragment">What are the names of the sailors that reserved a green or a red boat?</p>
+                    <p class="fragment">Using a Join of three tables:</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.sailor_name
+FROM sailors AS s, boats AS b, reserves AS r
+WHERE s.sailor_id = r.sailor_id
+AND b.boat_id = r.boat_id
+AND (b.color = 'red' or b.color = 'green');
+				</code></pre>
+                    <p class="fragment">Using a Union:</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.sailor_name
+FROM sailors AS s, boats AS b, reserves AS r
+WHERE s.sailor_id = r.sailor_id AND b.boat_id = r.boat_id AND b.color = 'red'
+UNION
+SELECT s.sailor_name
+FROM sailors AS s, boats AS b, reserves AS r
+WHERE s.sailor_id = r.sailor_id AND b.boat_id = r.boat_id AND b.color = 'green';
+				</code></pre>
+                </section>
+
+                <section id="sub-queries">
+                    <h2>Sub-queries</h2>
+                    <p class="fragment">A select command may contain one or more select commands.</p>
+                    <p class="fragment">They can appear in the WHERE, HAVING, FROM clauses.</p>
+                    <p class="fragment">Example: What are the names of the sailors that reserved the boat 100?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.sailor_name
+FROM sailors AS s
+WHERE s.sailor_id IN(
+	SELECT r.sailor_id
+	FROM reserves AS r
+	WHERE r.boat_id = 100
+);
+				</code></pre>
+                </section>
+
+                <section>
+                    <h2>Another example...</h2>
+                    <p class="fragment">Example: What are the names of the sailors that didn't reserve a red boat?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.sailor_name
+FROM sailors AS s
+WHERE s.sailor_id NOT IN(
+	SELECT r.sailor_id
+	FROM reserves AS r
+	WHERE r.boat_id IN(
+		SELECT b.boat_id
+		FROM boats AS b
+		WHERE b.color = 'red'
+	)
+);
+				</code></pre>
+                </section>
+                <section>
+                    <h2>Aggregation operators</h2>
+                    <div class="fragment">
+                        <ul>
+                            <li class="fragment">COUNT - The number of values in the column.</li>
+                            <li class="fragment">SUM - The sum of all values in the column.</li>
+                            <li class="fragment">AVG - The average of all values in the column.</li>
+                            <li class="fragment">MAX - The maximum value in the column.</li>
+                            <li class="fragment">MIN - The minimum value in the column.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Examples</h2>
+                    <p class="fragment">What is the average age of all the sailors?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT AVG(s.age)
+FROM sailors AS s;
+				</code></pre>
+                    <p class="fragment">What is the age of the oldest sailor?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT MAX(s.age)
+FROM sailors AS s;
+				</code></pre>
+                    <p class="fragment">What is the number of sailors?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT COUNT(*)
+FROM sailors;
+				</code></pre>
+                </section>
+
+                <section>
+                    <h2>Grouping and Filtering</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT [DISTINCT] select-list
+FROM from-list
+[WHERE qualification]
+[GROUP BY grouping-list]
+[HAVING group-qualification];
+				</code></pre>
+                    <p class="fragment">GROUP BY - Operator that gathers lines with equal values in a unique group, in the columns of the grouping-list.</p>
+                    <p class="fragment">HAVING - Filters the groups that don't satisfy the group-qualification.</p>
+                </section>
+
+                <section>
+                    <h2>Grouping and Filtering Examples</h2>
+                    <p class="fragment">What is the age of the youngest sailor for each rating?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.rating, MIN(s.age)
+FROM sailors AS s
+GROUP BY s.rating;
+				</code></pre>
+                    <p class="fragment">What are the ages of the youngest sailors for each rating with more than one sailor?</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.rating, MIN(s.age)
+FROM sailors AS s
+GROUP BY s.rating
+HAVING COUNT(*) &gt; 1;
+				</code></pre>
+                </section>
+
+                <section id="ordering">
+                    <h2>Ordering</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT [DISTINCT] select-list
+FROM from-list
+[ORDER BY grouping-list];
+				</code></pre>
+                    <p class="fragment">The ORDER BY sorts the tuples in ascending order by default. To sort them descending we just have to
+                        add the DESC keyword.</p>
+                    <p class="fragment">Example: List by alphabetical order the names of sailors that reserved the boat 100.</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.sailor_name
+FROM sailors AS s, reserves as r
+WHERE s.sailor_id = r.sailor_id AND r.boat_id = 100
+ORDER BY s.sailor_name;
+				</code></pre>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+SELECT s.sailor_name
+FROM sailors AS s, reserves as r
+WHERE s.sailor_id = r.sailor_id AND r.boat_id = 100
+ORDER BY s.sailor_name DESC;
+				</code></pre>
+                </section>
+
+            </section>
+
+            <section>
+                <section id="design">
+                    <h2>Database Design</h2>
+                    <p class="fragment">How should we organize the data in a database?</p>
+                    <p class="fragment">Which tables should we create? Which columns should each table have?</p>
+                    <p class="fragment">Consider a relation (table) containing the students of a university:
+                        <img src="images/2/databases/students-relation.png">
+                    </p>
+                    <p class="fragment">Is this a good design?</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Why the duplicate lines for Alex Morgan?</li>
+                            <li>He joined the university for math and physics, but later found it's friend Adam Sandler in Biology
+                                and decided to enroll in Biology as well.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Redundancy</h2>
+                    <img class="fragment" src="images/2/databases/students-redundancy.png">
+                    <p class="fragment">Our database design contains a lot of redundant data!</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Red indicates redundant data for a single student</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Design Anomalies</h2>
+                    <p class="fragment">Redundant data introduces multiple design anomalies:</p>
+                    <img class="fragment" src="images/2/databases/students-relation.png">
+                    <p class="fragment">Can you identify what the specific problems are?</p>
+                    <small><ul>
+					<li class="fragment">Insertion anomaly: We can only change the name of a subject, like changing <u>Math</u> to <u>Maths</u>, after a student has enrolled in the class</li>
+					<li class="fragment">Deletion anomaly: When we delete a student coming from a city with no other students, we lose all information regarding that city.</li>
+					<li class="fragment">Update anomaly: When we change the student address, we have to change it for all rows regarding the same student</li>
+			</ul></small>
+                    <aside class="notes">
+                        Math and maths are equally acceptable abbreviations of mathematics. The only difference is that math is preferred in the
+                        U.S. and Canada, and maths is preferred in the U.K., Australia, and most other English-speaking areas
+                        of the world.
+                    </aside>
+                </section>
+
+                <section id="normalization">
+                    <h2>Database Normalization</h2>
+                    <p class="fragment">A set of rules, guidelines and techniques that are used while designing a database</p>
+                    <ul>
+                        <li class="fragment">Remove all the anomalies</li>
+                        <li class="fragment">Distribute the data amongst different related tables</li>
+                        <li class="fragment">Efficient and effective queries</li>
+                        <li class="fragment">Removes all the duplication and incorrect data issues</li>
+                    </ul>
+                    <p class="fragment">Normalization helps us with having a well-designed database!</p>
+                </section>
+
+                <section id="fd">
+                    <h2>Functional Dependencies</h2>
+                    <p class="fragment">Understanding the functional dependencies of our data is an important part of database design and the
+                        normalization process</p>
+                    <p class="fragment">A FD is a constraint between two sets of attributes in a relation:</p>
+                    <img class="fragment" style="max-height:230px; margin-bottom:0;" src="images/2/databases/students-relation-fd1.png">
+                    <p class="fragment">We can say that
+                        <u>birth_date</u> is functionally dependent on
+                        <u>full_name</u> as the birthdate of a student is determined by his name.
+                        <span class="fragment">By knowing the student name, we can determine its birthdate.</span>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Functional Dependencies</h2>
+                    <p class="fragment">The nature of our data in the real world is what determines the functional dependencies</p>
+                    <img class="fragment" style="max-height:250px;" src="images/2/databases/students-relation-fd2.png">
+                    <p class="fragment">Let's decide that for our university only one address will be used for each student, even if they actually
+                        have two homes.
+                        <span class="fragment">Then we can say that <u>street</u>, <u>city</u> and <u>zip</u> are functionally dependent on <u>full_name</u></span>
+                    </p>
+                    <small class="fragment">Can you identify any other functional dependencies in this relation?</small>
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                If we decide that the same zip code can not exist in two cities, we can than say that city is functionally dependent on zip
+                                code. Knowing the zip code is sufficient to know the city!
+                            </li>
+                            <li>If we decide no two students can live on the same address (probably will need a house number
+                                attribute), address is fd on full_name</li>
+                            <li>If we decide that the same street name can not exist in two cities..... Less likely, but you
+                                get the point?</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Transitive Dependencies</h2>
+                    <p class="fragment">Assuming the zip code is unique for a given city and street name:</p>
+                    <img class="fragment" style="margin-bottom:0; max-height:250px;" src="images/2/databases/students-relation-fd3.png">
+                    <p class="fragment">We can say that
+                        <u>zip</u> is functionally dependent on
+                        <u>street, city</u>,
+                        <span class="fragment"> which in turn are functionally dependent on <u>full_name</u></span></p>
+                    <p class="fragment">The attribute
+                        <u>zip</u> is said to be
+                        <u>transitively dependent</u> on
+                        <u>full_name</u>!</p>
+                </section>
+
+                <section id="forms">
+                    <h2>Normal Forms</h2>
+                    <p class="fragment">Normalization is divided into the following normal forms:</p>
+                    <img class="fragment" src="images/2/databases/normal-forms.png" style="max-height: 300px;" />
+                    <p class="fragment">Usually we do not apply all the normal forms to get the database design done. <span class="fragment">The most used form is 3NF, 4NF and 5NF are ignored in most of the cases, but it depends on the design specific needs.</span></p>
+                </section>
+
+                <section id="first-normal-form">
+                    <h2>First Normal Form</h2>
+                    <img src="images/2/databases/students-relation.png">
+                    <ul class="fragment">
+                        <li class="fragment">Each row should be uniquely identified by a primary key<img class="fragment logo" style="vertical-align:middle; max-width:40px"
+                                src="images/2/databases/checked.png" alt="" /></li>
+                        <li class="fragment">There should not be any repeating columns and each column should contain single values only<img class="fragment logo"
+                                style="vertical-align:middle; max-width:40px" src="images/2/databases/not-checked.png" alt=""
+                            /></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>First Normal Form</h2>
+                    <p class="fragment">The first rule is satisfied by the &lt;full_name, subjects&gt; composite key.</p>
+                    <p class="fragment">But the
+                        <u>subjects</u> property breaks the second rule!</p>
+                    <img class="fragment" style="max-height:350px;" src="images/2/databases/before-1nf.png" />
+                </section>
+
+                <section>
+                    <h2>First Normal Form</h2>
+                    <p class="fragment">What if we replace the
+                        <u>subjects</u> column with two columns, named
+                        <u>subject1</u> and
+                        <u>subject2</u>?</p>
+                    <img class="fragment" src="images/2/databases/before-1nf-2.png" />
+                    <ul>
+                        <li class="fragment">
+                            <u>There should not be any repeating columns</u> and each column should contain single values only<img
+                                class="fragment logo" style="vertical-align:middle; max-width:40px" src="images/2/databases/not-checked.png"
+                                alt="" /></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>First Normal Form</h2>
+                    <p>To satisfy 1NF, we must have only one
+                        <u>subject</u> column and for each student create as many rows as the subjects he is enrolled in</p>
+                    <img class="inline-middle" style="width: 75%; margin:0px" src="images/2/databases/after-1nf.png" alt="" />
+                    <p class="fragment">Data redundancy can increase, but each row will be
+                        <u>unique</u>
+                    </p>
+                    <small class="fragment">1NF does not provide a good database design, it is just an intermediate step!</small>
+                </section>
+
+                <section id="second-normal-form">
+                    <h2>Second Normal Form</h2>
+                    <img class="fragment" style="max-height: 300px;" src="images/2/databases/before-2nf.png" />
+                    <ul>
+                        <li class="fragment">Data has to be 1NF <img class="fragment logo" style="vertical-align:middle; max-width: 40px" src="images/2/databases/checked.png"
+                                alt="" /></li>
+                        <li class="fragment">No partial dependencies on the primary key, all non-key attributes have to be dependent on
+                            <u>all</u> key attributes
+                            <img class="fragment logo" style="vertical-align:middle; max-width: 40px" src="images/2/databases/not-checked.png" alt=""
+                            />
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Second Normal Form</h2>
+                    <img class="fragment" style="max-height: 300px;" src="images/2/databases/before-2nf2.png" />
+                    <ul>
+                        <li class="fragment">No partial dependencies on the primary key, all non-key attributes have to be functional dependent on
+                            <u>all</u> key attributes
+                            <img class="fragment logo" style="vertical-align:middle; max-width: 40px" src="images/2/databases/not-checked.png" alt=""
+                            />
+                            <small><ul>
+                        <li class="fragment">
+                        <p>birthdate, street, city and zip are non-key attributes that do not depend on the key-attribute subject</p>
+                        </li>
+                        </ul></small>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Second Normal Form</h2>
+                    <p class="fragment">To satisfy 2NF, we must remove the
+                        <u>subject</u> attribute from the relation..</p>
+                    <img class="fragment" style="margin:0px; max-height: 100px;" src="images/2/databases/after2nf-1.png" />
+                    <p class="fragment">..and create a new subjects relation:</p>
+                    <img class="fragment" style="margin:0px; max-height: 180px;" src="images/2/databases/after2nf-2.png" /><br>
+                    <small class="fragment">2NF still does not provide a good database design, it is just an intermediate step!</small>
+                </section>
+
+                <section id="third-normal-form">
+                    <h2>Third Normal Form</h2>
+                    <img class="fragment" style="margin:0px; max-height: 100px;" src="images/2/databases/before3nf.png" />
+                    <img class="fragment" style="margin:0px; max-height: 180px;" src="images/2/databases/after2nf-2.png" /><br>
+                    <ul>
+                        <li class="fragment">Data has to be 2NF
+                            <img class="fragment logo" style="vertical-align:middle; max-width: 40px" src="images/2/databases/checked.png" alt="" /></li>
+                        <li class="fragment">No transitive dependencies allowed, every attribute has to be dependent
+                            <u>only</u> on key attributes
+                            <img class="fragment logo" style="vertical-align:middle; max-width: 40px" src="images/2/databases/not-checked.png" alt=""
+                            />
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Third Normal Form</h2>
+                    <img class="fragment" style="margin:0px; max-height: 100px;" src="images/2/databases/before3nf2.png" />
+                    <img class="fragment" style="margin:0px; max-height: 180px;" src="images/2/databases/after2nf-2.png" /><br>
+                    <ul>
+                        <li class="fragment">No transitive dependencies allowed, every attribute has to be dependent
+                            <u>only</u> on key attributes
+                            <img class="fragment logo" style="vertical-align:middle; max-width: 40px" src="images/2/databases/not-checked.png" alt=""
+                            />
+                            <small class="fragment"><u>zip</u> depends on non-key attributes <u>city,street</u>, which in turn depend on the key attribute <u>full_name</u></small>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Third Normal Form</h2>
+                    <p class="fragment">To satisfy 3NF, we must remove the
+                        <u>zip</u> attribute from the relation..</p>
+                    <img class="fragment" style="margin:0px; max-height: 100px;" src="images/2/databases/after3nf1.png" />
+                    <p class="fragment">..and create a new zip relation:</p>
+                    <img class="fragment" style="margin:0px; max-height: 180px;" src="images/2/databases/after3nf2.png" /><br>
+                    <small class="fragment">we can not select zip code as a primary key on the zip table if two different streets can have the same zip</small>
+                    <small class="fragment">3NF is a satisfactory database design for this set of data!</small>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>How far should I normalize?</h2>
+                    <p class="fragment">There is no definitive answer and it really depends on the data</p>
+                    <p class="fragment">3NF clearly didn't get rid of all the redundant data:</p>
+                    <span class="fragment">
+                    <img style="margin:0px; max-height: 100px;" src="images/2/databases/beforeBCNF1.png"/>
+                    <img style="margin:0px; max-height: 180px;" src="images/2/databases/beforeBCNF2.png"/>
+                </span>
+                    <p class="fragment">But how often will city and street names change or disappear?</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Database modeling</h3>
+                    </div>
+                    <p>The local library needs a software to manage their book loans.</p>
+                    <p>Typical enquiries include:</p>
+                    <p><small>"Do we have any books by Tolstoi?"</small></p>
+                    <p><small>"How many books are out on loan?"</small></p>
+                    <p><small>"Which company published <i>O Primo Basílio?</i>"</small></p>
+                    <p><small>"Which users have borrowed books published before 1974?"</small></p>
+                </section>
+                <aside class="notes">
+                    <p>Given the description ask for the script creating the database</p>
+                    <p>Ask for the creation of a database composing of books, authors and publishers and their relations. An
+                        exercise script is available with a possible solution.</p>
+                </aside>
+            </section>
+
+            <section>
+
+                <section id="stored-procedure">
+                    <h2>Stored Procedures</h2>
+                    <p class="fragment">It is a program that is executed by a single SQL command.</p>
+                    <p class="fragment">It is executed in the RDBMS, which means:</p>
+                    <ul>
+                        <li class="fragment">An application's logic is encapsulated;</li>
+                        <li class="fragment">It is reusable by several applications;</li>
+                        <li class="fragment">And some other advantages...</li>
+                    </ul>
+                    <p class="fragment">Some disadvantages:</p>
+                    <ul>
+                        <li class="fragment">Harder to implement for complex logic;</li>
+                        <li class="fragment">Harder to maintain;</li>
+                        <li class="fragment">Application's logic becomes separated from the application.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Stored Procedure Syntax</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+USE boat_booking;
+DELIMITER //
+CREATE PROCEDURE get_reserves_by_boat_and_sailor
+(IN boat VARCHAR(255), IN sailor VARCHAR(255))
+BEGIN
+SELECT DISTINCT * FROM reserves
+WHERE reserves.bid = (
+    SELECT id FROM boats WHERE boats.name = boat
+) AND reserves.sid = (
+    SELECT id from sailors WHERE sailors.name = sailor
+);
+END //
+DELIMITER ;
+                </code></pre>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+// Call the procedure
+CALL get_reserves_by_boat_and_sailor('Titanic', 'Nuno');
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Triggers</h2>
+                    <p class="fragment">It is an automatically-invoked procedure in response to specific actions in the database.</p>
+                    <p class="fragment">Example:</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+DELIMITER //
+CREATE TRIGGER before_rating_update
+    BEFORE UPDATE ON sailors
+    FOR EACH ROW
+BEGIN
+    INSERT INTO sailors_rating_history (sid, rating, day)
+    VALUES (NEW.id, NEW.rating, CURDATE());
+END //
+DELIMITER ;
+			</code></pre>
+                </section>
+
+
+                <section id="views">
+                    <h2>Views</h2>
+                    <p>A view is a virtual table based on the result-set of an SQL statement.
+                        <span class="fragment">A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.</span></p>
+                    <img class="fragment" src="images/2/databases/views.jpg" alt="">
+                </section>
+
+                <section>
+                    <h2>Create View Example</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+// Have a look at the mysql server users table
+USE mysql;
+SELECT * from user;
+
+// Create a new view to simplify inspecting users
+USE test;
+CREATE VIEW my_users AS SELECT Host, User, authentication_string FROM mysql.user;
+
+// Have a look at the mysql server users
+SELECT * FROM my_users;
+                </code></pre>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Concurrency</h2>
+                    <p class="fragment">The concurrent execution of programs is essential for a good database performance. The same principles
+                        of parallel computing, that we discussed in the JAVA classes, apply!</p>
+                    <p class="fragment">Where will we have concurrency problems in databases?</p>
+                    <img class="fragment" src="images/2/databases/interrogation meme.png" alt="">
+                </section>
+
+                <section id="transactions">
+                    <h2>Transactions</h2>
+                    <p class="fragment">Transactions provide an all-or-nothing proposition, stating that each work-unit performed in a database
+                        must either complete in its entirety or have no effect whatsoever</p>
+                    <p class="fragment">The system must isolate each transaction from other transactions, results must conform to existing constraints
+                        in the database, and transactions that complete successfully must be written to durable storage</p>
+                    <p class="fragment">Example that should be wrapped in a database transaction: Making a money transfer.</p>
+                    <small class="fragment">
+				<ul>
+					<li>1. read(A)</li>
+					<li>2. A := A - 50</li>
+					<li>3. write(A)</li>
+					<li>4. read(B)</li>
+					<li>5. B := B + 50</li>
+					<li>6. write(B)</li>
+				</ul>
+			</small>
+                </section>
+
+                <section>
+                    <h2>Pattern used by Transactions</h2>
+                    <ul>
+                        <li class="fragment">Begin the transaction</li>
+                        <li class="fragment">Execute a set of data manipulations and/or queries</li>
+                        <li class="fragment">If no errors occur then commit the transaction and end it</li>
+                        <li class="fragment">If errors occur then rollback the transaction and end it</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Auto Commit</h2>
+                    <p class="fragment">MySQL automatically commits all statements that are not part of an explicit transaction, making the results
+                        of any UPDATE or INSERT statement immediately stored to disk to make them permanent</p>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+// Inspect the state of the autocommit session(@@) variable
+SELECT @@autocommit;
+
+// Set the session variable autocommit to false
+SET autocommit=0;
+SELECT @@autocommit;
+            </code></pre>
+                </section>
+
+                <section>
+                    <h2>Successful Transaction</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+// Create a new table using InnoDB engine, which supports transactions
+USE test;
+CREATE TABLE test(num INTEGER NOT NULL) engine=InnoDB;
+
+// Turn off auto commit
+SET autocommit=0;
+
+// Execute transaction, perform queries from other mysql connections
+START TRANSACTION;
+INSERT INTO test VALUES (1, 2, 3);
+INSERT INTO test VALUES (4, 5);
+COMMIT;
+            </code></pre>
+                </section>
+
+                <section>
+                    <h2>Transaction With Errors</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+// Truncate table test
+TRUNCATE test;
+
+// Execute transaction, perform queries from other mysql connections
+START TRANSACTION;
+INSERT INTO test VALUES (1, 2, 3);
+INSERT INTO test VALUES (4, 5);
+
+// Some error occurs.... let's rollback
+
+ROLLBACK;
+            </code></pre>
+                </section>
+
+                <section id="acid">
+                    <h2>ACID Properties of Transactions</h2>
+                    <p class="fragment">Transactions have the following properties:</p>
+                    <div class="fragment">
+                        <ul>
+                            <li class="fragment">Atomicity</li>
+                            <li class="fragment">Consistency</li>
+                            <li class="fragment">Isolation</li>
+                            <li class="fragment">Durability</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Atomicity</h2>
+                    <p class="fragment">State changes are atomic. Either they execute in full or they don't execute at all.</p>
+                    <p class="fragment">Why transactions fail:</p>
+                    <ul>
+                        <li class="fragment">RDBMS finishes it due to an anomaly during execution;</li>
+                        <li class="fragment">System crash (ex: power failure);</li>
+                        <li class="fragment">Unexpected situation occurs and aborts (ex: cannot access the disc).</li>
+                        <li class="fragment">Durability</li>
+                    </ul>
+                    <p class="fragment">Function: Changes made in an active transaction are kept in a transaction log and, in case of abort,
+                        all changes are undone.</p>
+                </section>
+
+                <section>
+                    <h2>Consistency</h2>
+                    <p class="fragment">Ensures that any transaction will bring the database from a valid state to another valid state.</p>
+                    <p class="fragment">Function: Any data that is written to the database must be validated according to all restrictions (keys,
+                        foreign keys, cascades, triggers, etc.).</p>
+                    <p class="fragment">NOTE: It does not guarantee the correct execution of a transaction in the ways that the programmer intended
+                        (at the application level).</p>
+                </section>
+
+                <section>
+                    <h2>Isolation</h2>
+                    <p class="fragment">It guarantees that concurrent execution of transactions results in a system state that would be obtained
+                        if transactions were executed serially</p>
+                    <p class="fragment">Function: Makes transactions only see changes performed by other successfully finished transactions.</p>
+                </section>
+
+                <section>
+                    <h2>Durability</h2>
+                    <p class="fragment">Once a transaction is successfully finished, all changes are immutable, surviving any kind of fault.</p>
+                    <p class="fragment">Function: Data about changes of each committed transaction is kept in a log. In case of any fault, any
+                        changes that were not saved to the disc are remade.</p>
+                </section>
+
+            </section>
+
+            <section id="indexes">
+                <section>
+                    <h2>Database Indexes</h2>
+                </section>
+
+                <section>
+                    <h2>How to make data access more efficient?</h2>
+                    <p class="fragment">If we have a database with many tables, each with thousands of rows, how can we make data access faster?</p>
+                    <p class="fragment">If we know beforehand what will be the most used queries, we can prepare the RDBMS to better perform
+                        such queries</p>
+                    <img class="fragment" src="images/2/databases/prepareIndex.png" alt="">
+                    <p class="fragment">Example: "Who are the sailors that reserved the boat with ID = X?"</p>
+                </section>
+
+                <section>
+                    <h2>Using Indexes</h2>
+                    <p class="fragment">Indexes allow the RDBMS to speed up data access, allowing it to efficiently find all rows that match
+                        a given column in a query. By doing so, the RDBMS only has to walk through a subset of the table
+                        to find the exact matches, instead of walking through the entire table and checking every single
+                        row.
+                    </p>
+                    <p class="fragment">In general, indexes are smaller than the table which they index.</p>
+                    <p class="fragment">It makes reading (
+                        <u>select</u> queries and
+                        <u>where</u> clauses) faster, but the writing (
+                        <u>update</u> and
+                        <u>insert</u> statements) becomes slower.</p>
+                    <aside class="notes">
+                        indexes use btrees (smaller in size than hash table)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Creating Indexes</h2>
+                    <pre class="fragment"><code class="sql" data-trim contenteditable>
+//creating index
+CREATE INDEX index_name ON table_name(column_name);
+
+//dropping index
+DROP index_name ON table_name;
+            </code></pre>
+                    <p class="fragment">Primary keys are already indexed by default</p>
+                </section>
+
+                <section>
+                    <h2>When to avoid indexes?</h2>
+                    <ul>
+                        <li class="fragment">When they concern a small table (few tuples);</li>
+                        <li class="fragment">When they concern tables that have frequent
+                            <u>insert</u> and/or
+                            <u>update</u> operations;</li>
+                        <li class="fragment">When they concern columns of tables with many
+                            <u>NULL</u> values.</li>
+                    </ul>
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 23,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

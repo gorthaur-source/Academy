@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <section>
+                    <h1>Testing</h1>
+                    <img style="max-height: 200px;" src="images/2/testing/testing.png" alt="">
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/testing/test-levels.png" alt="">
+                    <h2>Testing Levels</h2>
+                    <p class="fragment">Software can be tested at different levels</p>
+                    <ol>
+                        <li class="fragment">
+                            <u>Unit Tests</u> - test individual components</li>
+                        <li class="fragment">
+                            <u>Integration Tests</u> - test groups of components</li>
+                        <li class="fragment">
+                            <u>Acceptance Tests</u> - test the client needs</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/testing/unit-test-logo.png" alt="">
+                    <h2>Unit Tests</h2>
+                    <p class="fragment clearfix">The smallest testable part of an application, could be an entire class, a single method or a specific
+                        section of code.&nbsp;
+                        <span class="fragment">
+                            <u>Each test must:</u>
+                        </span>
+                    </p>
+                    <ul>
+                        <li class="fragment">check one assumption, and
+                            <u>one assumption only</u>
+                        </li>
+                        <li class="fragment">execute
+                            <u>quickly</u>
+                        </li>
+                        <li class="fragment">be
+                            <u>independent</u> from other tests</li>
+                        <li class="fragment">produce
+                            <u>consistent</u> results</li>
+                    </ul>
+                    <img class="fragment" style="max-height: 150px" src="images/2/testing/unit-tests.png" />
+                    <p class="fragment">The unit to be tested is referred to as System Under Test -
+                        <u>SUT</u>
+                    </p>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/testing/unit-tests-time.jpg" alt="">
+                    <h2>Value of Unit Testing</h2>
+                    <p class="fragment">Most developers do not like to write tests!</p>
+                    <blockquote class="fragment">
+                        <small>The only certainties in life are death, taxes and bugs in code.</small>
+                    </blockquote>
+                    <ul>
+                        <li class="fragment">Unit tests prove that your code actually works</li>
+                        <li class="fragment">They provide confidence when refactoring</li>
+                        <li class="fragment">You can improve the design without breaking it</li>
+                        <li class="fragment">More fun to code with them than without</li>
+                        <li class="fragment">They demonstrate concrete progress</li>
+                        <li class="fragment">Unit tests are a form of documentation for the code</li>
+                        <li class="fragment">Unit tests make better designs</li>
+                        <li class="fragment">Faster than writing code without tests!</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Faster than writing IF you actually intend the code to run successfully in production</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Integration Tests</h2>
+                    <p class="fragment">Integration tests confirm that two separate units can
+                        <u>work together</u> by testing the interfaces between them</p>
+                    <p class="fragment">Each module should be unit-tested in order to guarantee we are testing their
+                        <u>interaction and not their individual behaviour</u>
+                    </p>
+                    <img style="max-height: 150px;" class="fragment" src="images/2/testing/integration-tests.png">
+                </section>
+
+                <section>
+                    <h2>Acceptance Tests</h2>
+                    <p class="fragment">Often called
+                        <strong>end-to-end</strong> tests,
+                        <br>they validate the application
+                        <u>as a whole</u>
+                    </p>
+                    <p class="fragment">Tightly coupled with
+                        <u>client requirements</u>, concerned mostly about user experience not implementation details</p>
+                    <p class="fragment">High number of variables present,
+                        <u>hard to create and maintain</u>
+                    </p>
+                    <img class="fragment" style="max-height: 150px;" src="images/2/testing/acceptance-tests.png" />
+                    <small class="fragment">Require some kind of user interaction, automated or not, which makes them a lot slower than unit/integration
+                        tests
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Test Distribution</h2>
+                    <p class="fragment">Unit tests are independent, easier to develop and fast to execute</p>
+                    <p class="fragment">They should be fully integrated with the application build process</p>
+                    <p class="fragment">Mike Cohn created a concept called Test Pyramid that distributes the amount of tests you should do for
+                        each scope:</p>
+                    <div class="fragment">
+                        <img src="images/2/testing/test-pyramid.png" />
+                        <ul style="padding-top: 50px;" class="float-right">
+                            <li>Unit Tests: 70%</li>
+                            <li>Integration Tests: 20%</li>
+                            <li>Acceptance Tests: 10%</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Test Structure</h2>
+                    <p class="fragment">Each test should be separated into four distinct segments:</p>
+                    <ol>
+                        <li class="fragment">
+                            <strong>Setup</strong> - instantiates and establishes the state of the system under test prior to any
+                            test-related activities</li>
+                        <li class="fragment">
+                            <strong>Exercise</strong> - invoke methods of the system under test, which represent a certain behavior
+                            the test intends to verify</li>
+                        <li class="fragment">
+                            <strong>Verify</strong> - verify whether the expected outcome of a given behavior has been obtained</li>
+                        <li class="fragment">
+                            <strong>Teardown</strong> - cleaning up, making sure test is fully isolated and does not interfere with
+                            subsequent tests</li>
+                    </ol>
+                </section>
+
+                <section id="tdd">
+                    <h2>Test Driven Development</h2>
+                    <p class="fragment">A style of programming software that relies on the repetition of a very short development cycle: </p>
+                    <div class="fragment">
+                        <img style="max-width: 300px;" class="float-right" src="images/2/testing/tdd.png" alt="">
+                        <small>
+                            <ol>
+                                <li class="fragment">Add a test describing an aspect of the program</li>
+                                <li class="fragment">Run the test, which should fail because the program lacks that feature</li>
+                                <li class="fragment">Write the simplest possible code to make the test pass</li>
+                                <li class="fragment">Refactor the code, making sure:
+                                    <ul>
+                                        <li>the code contains no duplication</li>
+                                        <li>the code expresses separately each distinct idea or responsibility</li>
+                                        <li>the code is composed of the minimum number of components</li>
+                                    </ul>
+                                </li>
+                                <li class="fragment">Repeat, accumulating tests over time</li>
+                            </ol>
+                        </small>
+                    </div>
+                </section>
+
+                <section id="coverage">
+                    <img class="logo float-right" src="images/2/testing/coverage-logo.jpeg" alt="">
+                    <h2>Test Coverage</h2>
+                    <p class="fragment">Measure used to describe the degree to which the source code of a program is executed when tests are
+                        ran
+                    </p>
+                    <div class="fragment">
+                        <img class="float-right" src="images/2/testing/coverage.gif" alt="">
+                        <ul class="fragment">Metrics:
+                            <li class="fragment">Class Coverage</li>
+                            <li class="fragment">Method Coverage</li>
+                            <li class="fragment">Line Coverage</li>
+                            <li class="fragment">Branch Coverage</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+                <section>
+                    <h2>Testing in Java</h2>
+                </section>
+
+                <section id="junit">
+                    <img src="images/2/testing/junit.png" />
+                </section>
+
+                <section>
+                    <h2>JUnit</h2>
+                    <p class="fragment">Testing framework to write and run repeatable tests</p>
+                    <p class="fragment">Provides:</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>Assertions</u> for testing expected results, making test pass or fail</li>
+                        <li class="fragment">
+                            <u>Test Fixtures</u> for sharing common test data, ensuring a well known and fixed environment for
+                            tests
+                        </li>
+                        <li class="fragment">
+                            <u>Test Runners</u> for running tests and outputting results</li>
+                    </ul>
+                </section>
+
+                <section>
+
+                    <h2>Adding JUnit to your maven project</h2>
+                    <pre class="fragment"><code class="xml" data-trim contenteditable>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+
+                    </code>
+
+                </section>
+
+                <section>
+                    <h2>Writing a test</h2>
+                    <p class="fragment">Let's do some extreme TDD</p>
+                    <p class="fragment">Your client needs a calculator that only sums positive numbers. If an operand is negative, a runtime
+                        exception is thrown</p>
+                    <p class="fragment">Before writing the calculator code, let's create some tests for this customer requirement</p>
+                </section>
+
+                <section>
+                    <h2>Sketching the Calculator</h2>
+                    <pre>
+                            <code class="java" data-trim contenteditable>
+public class Calculator {
+
+    public int sum(int a, int b) {
+        return 0;
+    }
+
+}
+                            </code>
+                        </pre>
+                </section>
+
+                <section>
+                    <h2>Writing the tests</h2>
+                    <div style="font-size: 0.8em;">
+                        <pre>
+                        <code class="java" data-trim contenteditable>
+public class CalculatorTest {
+
+    // the Calculator is our SUT
+    private Calculator calculator;
+
+    // this code will run before each test
+    @Before
+    public void setup() {
+        calculator = new Calculator();
+    }
+
+    // this annotates this method as a test, and will be invoked by the Test Runner
+    @Test
+    public void sumTest() {
+
+        int result = calculator.sum(10, 5);
+        int expected = 15;
+
+        // assert if two values are equal. if they are different, the test fails
+        assertEquals(expected, result);
+    }
+
+    // this test expects an IllegalArgumentException, and will fail if it was not thrown
+    @Test(expected = IllegalArgumentException.class)
+    public void sumNegativeTest() {
+        calculator.sum(-10, 10);
+    }
+}
+                        </code>
+                    </pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Be assertive</h2>
+                    <p class="fragment">Have you noticed the method used to compare a result against an expected value?&nbsp;
+                        <span class="fragment">That's right,
+                            <u>assertEquals()!</u>
+                        </span></p>
+                    <p class="fragment">This is one of the various assertions that you can make with JUnit:</p>
+
+                    <small class="fragment">
+                        <table>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>assertTrue(test)</td>
+                                <td>fails if the Boolean test is false</td>
+                            </tr>
+                            <tr>
+                                <td>assertFalse(test)</td>
+                                <td>fails if the Boolean test is true</td>
+                            </tr>
+                            <tr>
+                                <td>assertEquals(expected, actual)</td>
+                                <td>fails if the values are not equal</td>
+                            </tr>
+                            <tr>
+                                <td>assertSame(expected, actual)</td>
+                                <td>fails if the values are not the same (by ==)</td>
+                            </tr>
+                            <tr>
+                                <td>assertNotSame(expected, actual)</td>
+                                <td>fails if the values are the same (by ==)</td>
+                            </tr>
+                            <tr>
+                                <td>assertNull(value)</td>
+                                <td>fails if the given value is not null</td>
+                            </tr>
+                            <tr>
+                                <td>assertNotNull(value)</td>
+                                <td>fails if the given value is null</td>
+                            </tr>
+                            <tr>
+                                <td>fail()</td>
+                                <td>causes current test to immediately fail</td>
+                            </tr>
+                        </table>
+
+                        <p class="fragment">Each method can also receive as a first argument a failure message, clarifying the reason and point
+                            of failure.</p>
+                    </small>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+assertEquals("result is different from expected value", expected, actual);
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Running the test</h2>
+                    <p class="fragment">Although JUnit provides its own console-based
+                        <strong>Test Runner</strong>,
+                        <br> most IDEs include one with a GUI for manually running tests
+                        <br>and analyzing results</p>
+                    <p class="fragment">In order to run tests in IntelliJ IDEA, right-click a test package, class or method and select
+                        <u>Run</u>
+                    </p>
+                    <img class="fragment" height="20" src="images/2/testing/intellij-runtest.png" style="margin-bottom: 0;" />
+                    <div class="fragment">
+                        <img src="images/2/testing/intellij-testrunner.png" style="margin-top: 0;" />
+                        <small>IntelliJ IDEA built-in
+                            <strong>Test Runner</strong>
+                        </small>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Make it work</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class Calculator {
+
+    public int sum(int a, int b) {
+
+        if (a &lt; 0 || b &lt; 0) {
+            throw new IllegalArgumentException();
+        }
+
+        return a + b;
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">Run the tests again and see them pass. Feels good, right? That's TDD for you.</small>
+                    <small class="fragment">You can now make confident changes to the Calculator code,
+                        <br>guaranteeing that new features
+                        <u>will not break</u> existing functionality</small>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Test Isolation</h2>
+                    <p class="fragment">Sometimes the system under test depends on other objects or external components, such as a database driver
+                        or a file system API, that are not part of the SUT</p>
+                    <p class="fragment">These are called depended-on components -
+                        <strong>DOC</strong>
+                    </p>
+                    <small>
+                        <ul>
+                            <li class="fragment">DOC failures may affect the correctness of our tests</li>
+                            <li class="fragment">DOCs may slow down test execution</li>
+                            <li class="fragment">Unexpected changes in DOC behaviour makes tests fragile and unreliable</li>
+                        </ul>
+                    </small>
+                    <img class="fragment" src="images/2/testing/test-unit-doc.png" />
+                    <small class="fragment">In short, we want to test our SUT, not our DOCs</small>
+                </section>
+
+                <section>
+                    <h2>Depended-On Components</h2>
+                    <p class="fragment">In our application, controllers depend on services</p>
+                    <p class="fragment">Services usually query data from a database. Any failure in this connection will affect the controller
+                        tests
+                    </p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class LoginController {
+
+    private UserService userService;
+
+    public void doLogin(String username, String password) {
+
+        if (userService.authenticate(username, password)) {
+            // show success page with logged-in user name
+        } else {
+            // show error page
+        }
+
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Stubs and Mocks</h2>
+                    <p class="fragment">To proper SUT isolation, DOCs are replaced by Stubs or Mocks</p>
+                    <p class="fragment">They are lightweight replacements that we control
+                        <br>and simulate the desired behaviour</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class UserServiceMock implements UserService {
+
+    private Map&lt;String, User&gt; users;
+
+    @Override
+    public boolean authenticate(String username, String password) {
+
+        User u = users.get(username);
+
+        if (u == null) {
+            return false;
+        }
+
+        return password.equals(u.getPassword());
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Stubs and Mocks</h2>
+                    <p class="fragment">This alternative implementation of the same interface will allow us to isolate LoginController in its
+                        tests.
+                    </p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class LoginControllerTest {
+
+    private LoginController loginController;
+
+    public void successLogin() {
+
+        UserService userService = new UserServiceMock();
+        userService.addUser(new User("rui", "ferrao"));
+        loginController.setUserService(userService);
+
+        loginController.doLogin("rui", "ferrao");
+        // check if the success page has been shown
+        // check if it has written "rui" in it
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>There must be a better way</h2>
+                    <p class="fragment">Creating mocks for every single DOC
+                        <br>of our tests can become cumbersome</p>
+                    <p class="fragment">Presenting...</p>
+                    <img class="fragment" height="200" src="images/2/testing/mockito.png" />
+                </section>
+
+                <section>
+                    <h2>Mockito</h2>
+                    <p class="fragment">Tasty mocking framework for unit tests in Java</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class LoginControllerTest {
+
+    private LoginController loginController;
+
+    public void successLogin() {
+        UserService userService = Mockito.mock(UserService.class);
+        loginController.setUserService(userService);
+
+        // if authenticate method is called with "rui" and "ferrao", the mock returns true
+        Mockito.when(userService.authenticate("rui", "ferrao")).thenReturn(true);
+
+        loginController.doLogin("rui", "ferrao");
+
+        // verify that authenticate method has been called with the correct arguments
+        Mockito.verify(userService).authenticate("rui", "ferrao");
+
+        // check if the success page has been shown
+        // check if it has written "rui" in it
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Component Interactions</h2>
+                    <p class="fragment">Although we're able to define each method's return value, Mockito's main focus is the interaction between
+                        objects
+                    </p>
+                    <p class="fragment">Noticed how we verified a method invocation on the mock?</p>
+                    <p class="fragment">Mockito allows us to verify these interactions, which will also make the test pass or fail</p>
+                </section>
+
+                <section>
+                    <h2>Interaction Verification</h2>
+                    <p class="fragment">Mockito's API allows verification of method calls with great detail</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+import static org.mockito.Mockito.*; // import all static methods to this class
+
+Glass glass = mock(Glass.class); // create a mock
+bar.makeMojito(glass); // test a bar
+
+// verify that the add method was called with "Rum" as argument
+verify(glass).add("Rum");
+verify(glass).add("Sugar"); // same for sugar
+
+// verify that add method was called with Lime and a float as arguments
+verify(glass).add("Lime", anyFloat());
+
+// verify that addIce method was called three times
+verify(glass, times(3)).addIce();
+verify(glass).add("Água das Pedras");
+
+// verify that add was never called with "Water" as argument
+verify(glass, never()).add("Water");
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Absolute Control</h2>
+                    <p class="fragment">When your System Under Test depends on data from its DOCs, interaction verification is not enough</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+import static org.mockito.Mockito.*;
+
+Client client = mock(Client.class);
+
+// return 18 when getAge() is called
+when(client.getAge()).thenReturn(18);
+
+// throw an exception when pay is called with an integer
+when(client.pay(anyInt())).thenThrow(new RuntimeException());
+                        </code>
+                    </pre>
+                    <small class="fragment">Mockito's API allows for easy and flexible configuration of method call return values</small>
+                </section>
+
+                <section>
+                    <h2>Adding Mockito to your maven project</h2>
+                    <pre class="fragment"><code class="xml" data-trim contenteditable>
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>2.21.0</version>
+    <scope>test</scope>
+</dependency>
+
+                    </code>
+
+                </section>
+                <section>
+                    <blockquote>
+                        Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live
+                        <p>
+                            <small style="display: block; text-align: right;">[Martin Golding]</small>
+                        </p>
+                    </blockquote>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Unit test JavaBank</h3>
+                        <img height="300" src="images/2/testing/javabank-tests.png" alt="">
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 21,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

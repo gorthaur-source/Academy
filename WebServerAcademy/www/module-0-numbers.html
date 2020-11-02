@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        window.onload = function() {
+            document.getElementById("academiaCodigo").focus();
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body id="body">
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section>
+                    <h2>Numeral Systems</h2>
+                    <h3 class="fragment">What is a Numeral System?</h3>
+                    <p class="fragment">A numeral system is a writing notation to express numbers.</p>
+                    <p><img class="fragment" data-src="images/1/intro/numerals.png" /></p>
+                    <p><small class="fragment">Why is <u>base 10</u> so popular?</small></p>
+                    <aside class="notes">
+                        <ol>
+                            <li>Ask class why so many number systems use base 10</li>
+                            <li>Relate base 10 with 10 fingers</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Hindu-Arabic Numeral System</h2>
+
+                    <img class="float-right logo" data-src="images/1/intro/al-khwarizmi.jpg" />
+                    <p class="fragment">Around A.D. 825, the persian mathematician Muḥammad ibn Mūsā al-Khwārizmī
+                        wrote a book on algebra that introduced one of the most important
+                        inventions in the history of numbers and mathematics.
+                    </p>
+                    <p><img class="fragment" data-src="images/1/intro/zero.png" /></p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>From his name derived Algarismo, in portuguese</li>
+                            <li>Also, algorithm and algorism (a technique for performing basic arithmetic operations)</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Zero Innovations</h2>
+
+                    <p class="fragment">Two major consequences derived from zero coming into play that changed the
+                        way we deal with numbers forever.</p>
+                    <p class="fragment">1. For the first time ever there's no special symbol for number ten</p>
+                    <p class="fragment">2. We now have a positional number system: a particular digit represents a different quantity
+                        depending on where it is found in the number</p>
+                    <p><small class="fragment">That's how we know that 10 represents a much smaller quantity than 1.000.000</small></p>
+                    <p><small class="fragment">or what allows us to differentiate between 93, 309, and 930</small></p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>zero acts as a placeholder</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Count me in <img class="float-right logo" data-src="images/1/intro/counting.png" /></h2>
+                    <br />
+                    <p class="fragment">The system devised by al-Khwārizmī made it really easy to write a count of any size</p>
+                    <p class="fragment">Use all the symbols at your disposal until you run out of them</p>
+                    <p><small class="fragment">0, 1, 2, 3, 4, 5, 6, 7, 8, 9... now what?</small></p>
+                    <p class="fragment">Just add the next available symbol to the left, and repeat the process</p>
+                    <p><small class="fragment">10, 11, 12, 13, 14, 15, 16, 17, 18, 19... now what?</small></p>
+                    <p><small class="fragment">20, 21, 22... ok, you've got the general idea</small></p>
+                    <p class="fragment">This very simple rule will allow you to count up to any number you can conceive. </p>
+
+                    <aside class="notes">
+                        <ul>
+                            <li>ask when will we run out of possible combinations again</li>
+                        </ul>
+                    </aside>
+                </section>
+
+
+                <section>
+                    <h2>Do you read me?<img class="float-right logo" data-src="images/1/intro/mileage.jpg" /></h2>
+                    <p class="fragment">The whole structure of Hindu-Arabic numbers is revealed in the way we pronounce them. Take 4825, for instance. We say "four thousand, eight hundred, twenty-five." That means</p>
+                    <p> <small class="fragment">four thousands<br />
+                            eight hundreds<br />
+                            two tens and<br />
+                            five.</small></p>
+                    <p class="fragment">Or</p>
+                    <p><small class="fragment"> 4000 + 800 + 20 + 5</small></p>
+                    <p class="fragment">Or, even better</p>
+                    <p> <small class="fragment">4 x 1000 +<br />
+                                    8 x 100 +<br />
+                                    2 x 10 +<br />
+                                    5 x 1</small></p>
+                    <aside class="notes">
+                        <ul>
+                            <li>It's best to show the powers of ten when you get to the binary system</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>It all adds up to...</h2>
+                    <p class="fragment">It's as easy for us to add 3 and 4 as it is to add 30 and 40, or 3000 and 4000.</p>
+                    <p class="fragment">And it's also not that harder to multiply 40.000 by 20.000 than it is 4 by 2, is it?</p>
+                    <p class="fragment">Why is that?</p>
+                    <p><img class="fragment" data-src="images/1/intro/adding.jpg" /></p>
+                    <aside class="notes"></aside>
+                </section>
+
+                <section>
+                    <h2>It all adds up to...</h2>
+                    <p>First of all, because we're dealing with a positional number system</p>
+                    <p class="fragment">But mostly because some decades ago, you've memorised these two tables</p>
+                    <p><img class="fragment float-left" data-src="images/1/intro/add-table.png" /></p>
+                    <p><img class="fragment float-right" data-src="images/1/intro/multiply-table.png" /></p>
+                    <p class="fragment"><br />Knowing how to add any two digits is what allows you to add two numbers of any size.</p>
+                    <aside class="notes"></aside>
+                </section>
+
+                <section>
+                        <h2>There's more...</h2>
+                        <p class="fragment">One last and decisive thing that adds up to the beauty of
+                            the positional system is that</p>
+                        <p class="fragment">Its rules apply as nicely for our counting system as for
+                            the ones NOT based on ten</p>
+                        <p><small class="fragment">There's nothing magic about number ten (really, there isn't)</small></p>
+                        <p><img class="fragment" data-src="images/1/intro/santa.jpg" /></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>we're so used to count in decimal systems, we even created special names for its multiples (decade, century, thousand, million, billion, etc.).</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                            <h2>Consider the Lobster</h2>
+                            <p><img data-src="images/1/intro/lobster.jpg" /></p>
+                            <p class="fragment">What would you say the magic number for lobsters is?</p>
+                            <p class="fragment">How many different digits do lobsters have to deal with in order to count?</p>
+                            <p class="fragment">What does 10 mean to a lobster?</p>
+                            <p><small class="fragment">The rules for counting, reading, adding you've been using all your life, still apply for lobsters.</small></p>
+                            <aside class="notes"></aside>
+                        </section>
+
+                        <section>
+                                <div class="exercise">
+                                    <h2>{ Board Exercise }</h2>
+                                    <h3>Write from zero to sixteen in base four</h3>
+                                </div>
+                            </section>
+
+                            <section>
+                                    <div class="exercise">
+                                        <h2>{ Board Exercise }</h2>
+                                        <h3>Base four addition table</h3>
+                                    </div>
+                                </section>
+
+                <section id="binary">
+                    <h2>Now Seriously...</h2>
+                    <h3 class="fragment">Why do we care?</h3>
+                    <p class="fragment">How many fingers does a computer have?</p>
+                    <p><img class="fragment" data-src="images/1/intro/binary.jpg" /></p>
+                    <aside class="notes">
+                        <ol>
+                            <li>Relate binary to presence or absence of electrical current</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Binary to Decimal conversion table</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Number Decomposition</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Powers of Two</h3>
+                    </div>
+                </section>
+
+                <section id="hexadecimal">
+                    <h2>Numeral Systems</h2>
+                    <h3 class="fragment">Computers use binary, can we use something simpler?</h3>
+                    <h4><span class="fragment"><u>Hexadecimal</u></span><span class="fragment"> refers to the base-16 number system, which consists of 16 unique symbols</span></h4>
+                    <p><img class="fragment" data-src="images/1/intro/hexadecimal.png" /></p>
+                    <small><ul>
+        <li class="fragment">Numbers 0 to 9 and letters A to F</li>
+        <li class="fragment">Every byte can be represented as two consecutive hexadecimal digits</li>
+        <li class="fragment">Numbers have either an 0x prefix or an h suffix. For example, 0x3F7A</li>
+        <li class="fragment">Much easier to reason about than binary!</li>
+        </ul></small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Binary/Decimal/Hexadecimal Conversion Table</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Hex - Binary Conversions</h3>
+                    </div>
+                    <aside class="notes">
+                        <ol>
+                            <li>numbers hexadecimal.txt exercises</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Experiment with Desktop Programmer Calculator</h3>
+                    </div>
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="drawin/intro.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+            menu: {
+                // Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu
+                custom: false,
+                // Disable themes tab
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 2,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1654 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section id="www">
+                    <h1>World Wide Web</h1>
+                    <p class="fragment">System developed for information sharing across internationally dispersed teams, originally aimed at the High Energy Physics community</p>
+                    <p class="fragment">Stores documents and other web resources, interlinked with each other and accessed via the Internet</p>
+                </section>
+
+                <section>
+                    <h2>World Wide Web</h2>
+                    <p class="fragment">In 1989, Tim Berners Lee invented the three fundamental technologies that are the foundation of the WWW</p>
+                    <ul class="fragment">
+                        <li>HTTP - HyperText Transfer Protocol</li>
+                        <li>URI - Unique Resource Identifier</li>
+                        <li>HTML - HyperText Markup Language</li>
+                    </ul>
+                    <p class="fragment">Not only that, he wrote the first web browser and first web server</p>
+                    <p class="fragment">After that, he created and still leads the World Wide Web Consortium (W3C)</p>
+                </section>
+
+                <section id="url">
+                    <h2>Uniform Resource Locators</h2>
+                    <p class="fragment">A pointer to a <u>resource</u> on the World Wide Web. Can be something as simple as a file or a directory, or a reference to a more complicated object, such as a query to a database or to a search engine</p>
+                    <p class="fragment">A Web HTML document can contain a number of URLs, pointing to other Web resources (links)</p>
+                    <img class="fragment" src="images/1/network/url.png">
+                </section>
+
+                <section id="http">
+                    <h2>Hypertext Transfer Protocol</h2>
+                    <p>HTTP is a <u>stateless</u>, application-layer protocol for communicating between distributed systems and is the foundation of the modern web. Communication between a host and a client occurs via a request/response pair. The client initiates
+                        an HTTP request message, which is serviced through an HTTP response message in return.</p>
+                    <img style="max-height: 480px;" class="fragment" src="images/1/network/http.png">
+                    <aside class="notes">
+                        Modern web apps use state, but they need to use other mechanisms to store state, as HTTP does not support it: (eg: cookie based sessions)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>HTTP Verbs</h2>
+                    <p class="fragment">HTTP verbs define the action to perform on a specific web resource</p>
+                    <p class="fragment">The most popular verbs are:</p>
+                    <ul>
+                        <li class="fragment"><u>GET</u> Fetch an existing resource. The URL contains all the necessary information the server needs to locate and return the resource</li>
+                        <li class="fragment"><u>POST</u> Create a new resource. POST requests usually carry a payload that specifies the data for the new resource</li>
+                        <li class="fragment"><u>PUT</u> Update an existing resource. The payload may contain the updated data for the resource</li>
+                        <li class="fragment"><u>DELETE</u> Delete an existing resource</li>
+                    </ul>
+                    <img class="fragment" src="images/1/network/http-verb.png">
+                </section>
+
+                <section>
+                    <h2>HTTP Status Codes</h2>
+                    <p class="fragment">With URLs and verbs, the client can initiate requests to the server. In return, the server responds with status codes and message payloads. The status code is important and tells the client how to interpret the server response</p>
+                    <img class="fragment" src="images/1/network/http-status-codes.jpg">
+                </section>
+
+                <section id="wget">
+                    <h2>curl &amp; wget</h2>
+                    <ul>
+                        <li class="fragment">command line tools that can download contents from FTP, HTTP and HTTPS</li>
+                        <li class="fragment">can send HTTP POST requests</li>
+                        <li class="fragment">support HTTP cookies</li>
+                        <li class="fragment">designed to work without user interaction, like from within scripts</li>
+                    </ul>
+                    <pre class="fragment"><code class="bash" data-trim contenteditable>
+// Dump to screen the contents of the index page at www.google.com
+$ curl http://www.google.com
+
+// Create a mirror image of GNU WWW site (same directory structure the original has)
+// with only one try per document, saving the log of the activities to a log file
+$ wget -r -t1 http://www.gnu.com -o mirror.log
+                    </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Perform manual HTTP GETs for popular websites with wget/curl</h3>
+                    </div>
+                    <aside class="notes">
+                        refer to man pages for proper usage
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>java.net.URL</h2>
+                    <p class="fragment">Immutable object representing an abstraction of a Uniform Resource Locator</p>
+                    <p class="fragment">Comes with the capability of retrieving the URL contents and support for proxy servers and multiple protocols, making use of the <u>Strategy</u> design pattern</p>
+                    <p class="fragment"><u>java.net.URLConnection</u> and its subclasses provide advanced features and control. They provide a way to use sockets in your code without having to know any of the underlying socket details</p>
+                    <aside class="notes">
+                        Strategy pattern as homework
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>URL source viewer (curl like behaviour)</h3>
+                    </div>
+                </section>
+
+                <section id="devtools">
+                    <h2>Chrome DevTools</h2>
+                    <p class="fragment">Built into Google Chrome, they provide web developers with deep access to the internals of the browser and web applications</p>
+                    <img class="fragment" style="max-height: 400px;" src="images/1/network/devtools.png">
+                    <small class="fragment"><u>Firebug</u> extension provides similar functionality for Firefox</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Inspect network requests with browser dev tools</h3>
+                    </div>
+                </section>
+
+                <section>
+                     <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Simple Web Server (support for 1 client only)</h3>
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- FRONTEND WEB SECTION START -->
+            <section>
+                <section>
+                    <h1>Frontend Web Development</h1>
+                    <p>
+                      <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Frontend</h2>
+                    <p class="fragment">The part of the Web that we can see and interact with</p>
+                    <img style="max-height: 450px" src="images/2/frontend/frontend.png" alt="" class="fragment">
+                    <aside class="notes">
+                        <ul>
+                            <li>If the web was a restaurant frontend would be the food we get</li>
+                            <li>HTML - Content and Structure</li>
+                            <li>CSS - Appearance and Presentation</li>
+                            <li>JS - Functionality</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>A Little History</h2>
+                    <img style="max-height: 450px" src="images/2/frontend/frontend_history.png" alt="" class="fragment">
+                    <aside class="notes">
+                            <ul>
+                                <li>JS - 1996 - browser incorporation</li>
+                                <li>HTML 4 - 1997 - separating presentation from content with style sheets support</li>
+                                <li>CSS 3 - 1999 (First drafts released) - development started, highly modular</li>
+                                <li>HTML 5 - 2014 - supporting latest multimedia and encouraging interoperable implementations across browsers</li>
+                            </ul>
+                    </aside>
+                </section>
+            </section>
+
+            <!-- HTML -->
+            <section>
+                <section>
+                    <h1>HTML</h1>
+                    <img style="max-height: 300px" src="images/2/frontend/html.png" alt="">
+                </section>
+                    <section id="html">
+                        <h2>HyperText Markup Language</h2>
+                        <p class="fragment">The most basic building block of the Web</p>
+                        <p class="fragment">Used to describe the <u>content and structure</u> of a web page</p>
+                        <p class="fragment">Uses <u>XML Markup</u> to annotate text, images <br> and other content to display in a Web browser</p>
+                        <aside class="notes">
+                            <ul>
+                                <li>Extensible Markup Language - a markup language that defines a set of rules for encoding documents in a format that is both human and machine-readable.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="element">
+                        <h2>HTML 5 Elements</h2>
+                        <small class="fragment">HTML documents consist of a series of elements used to enclose, wrap, or mark up different parts of the content to make it appear or act in a certain way</small>
+                        <img style="max-height: 450px;" src="images/2/frontend/elements.png" alt="" class="fragment">
+                    </section>
+
+                    <section>
+                        <h2>Anatomy of an HTML element</h2>
+                        <img style="max-height: 200px;" src="images/2/frontend/element-anatomy.png" alt="" class="fragment">
+                        <p class="fragment">HTML Elements consist of</p>
+                        <small><ul>
+                            <li class="fragment"><u>Opening Tag</u> - The name of the element wrapped in opening and closing angle brackets. It states where the element begins or starts to take effect</li>
+                            <li class="fragment"><u>Attributes</u> - Modifies the default functionality of an element or provides functionality to certain elements unable to function correctly without them</li>
+                            <li class="fragment"><u>Content</u> - The content of the element</li>
+                            <li class="fragment"><u>Closing Tag</u> - States where the element ends or stops taking effect</li>
+                        </ul></small>
+                    </section>
+
+                    <section>
+                        <h2>Self Closing Elements</h2>
+                        <p class="fragment"><u>Some </u>HTML elements can use a self-closing tag syntax</p>
+                        <img src="images/2/frontend/element-anatomy-self-closing.png" alt="" class="fragment">
+                        <small class="fragment">the forward slash / is <u>optional</u></small>
+                    </section>
+
+                    <section>
+                        <h2>Special Characters</h2>
+                        <p class="fragment">In HTML, the characters &lt;, &gt;,&quot;,&apos; and &amp; are special characters. They are part of the HTML syntax itself and should not appear as content</p>
+                        <p class="fragment">Special codes exist that represent these characters and can be used in these circumstances: </p>
+                        <img style="max-height: 300px;" src="images/2/frontend/special-chars.png" alt="" class="fragment">
+                    </section>
+
+                    <section>
+                        <h2>The Document Tree</h2>
+                        <p class="fragment">HTML elements are organized hierarchically on a document tree, and subsequently rendered on screen by the browser</p>
+                        <img src="images/2/frontend/document-tree.png" alt="" class="fragment">
+                    </section>
+
+                    <section id="box">
+                        <h2>The Box Model</h2>
+                        <p class="fragment">Each element in the HTML document is represented as a rectangular box, with the box's content, padding, border, and margin built up around one another</p>
+                        <img style="max-height: 300px;" src="images/2/frontend/box-model.png" alt="" class="fragment">
+                        <small class="fragment">Each of these box properties can be manipulated for adjusting their format and layout on screen</small>
+                    </section>
+
+                    <section>
+                        <h2>The Box Model</h2>
+                        <p>We can visualize the boxes associated with each HTML element on the Chrome Dev Tools</p>
+                        <img style="height: 400px;" src="images/2/frontend/box-model-chrome.png">
+                    </section>
+
+                    <section id="block">
+                        <h2>Block vs Inline elements</h2>
+                        <p class="fragment">Two important categories of elements in HTML exist:</p>
+                        <small><ul>
+                            <li class="fragment"><u>Block</u> level elements form their own block. They use all available width and have their own rectangle on the browser window</li>
+                            <li class="fragment"><u>Inline</u> level elements do not have their own block. They live inside a containing block</li>
+                        </ul></small>
+                        <p>
+                            <img style="height: 300" src="images/2/frontend/block-inline.png" alt="" class="fragment">
+                        </p>
+                        <small class="fragment">Blocks are formatted vertically one after the other. Inlines are formatted horizontally</small>
+                    </section>
+
+                    <section id="page">
+                        <h2>HTML Page</h2>
+                        <pre class="fragment" style="width:400px;float:right">
+                            <code class="html">
+&lt;!-- This is an HTML comment --&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;title&gt;My Test Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;This is my Page&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                            </code>
+                        </pre>
+                        <div style="float:left;width:550px;">
+                        <br>
+                        <small><ul>
+                            <li class="fragment"><span style="color: #879C7F">&lt;!DOCTYPE html&gt;</span> Tells the browser that we are using valid html 5 markup</li>
+                            <li class="fragment"><span style="color: #E8E18F">&lt;html&gt;</span> Root element for the HTML document that wraps all the other elements</li>
+                            <li class="fragment"><span style="color: #E8E18F">&lt;head&gt;</span> Container for all the meta data associated with the document</li>
+                            <li class="fragment"><span style="color: #E8E18F">&lt;meta&gt;</span> Metadata element specifying the character encoding used</li>
+                            <li class="fragment"><span style="color: #E8E18F">&lt;title&gt;</span> The title of document</li>
+                            <li class="fragment"><span style="color: #E8E18F">&lt;body&gt;</span> Root element for all the content that will be visible (rendered) in the web page</li>
+                        </ul></small>
+                        </div>
+                    </section>
+
+                    <section id="head">
+                        <h2 style="color: #E8E18F">&lt;head&gt;</h2>
+                        <ul>
+                            <li class="fragment">Container for the meta information about the document</li>
+                            <li class="fragment">None of the data under &lt;head&gt; will be displayed on the web page</li>
+                            <li class="fragment">Is meant to be read by the browser (and other html content readers)</li>
+                        </ul>
+                    </section>
+
+                    <section id="title">
+                        <h2 style="color: #E8E18F">&lt;title&gt;</h2>
+                        <ul>
+                            <li class="fragment">Defines the title of the document, shown in a browser title bar or page tab</li>
+                            <li class="fragment">It can only contain text and any contained tags are ignored</li>
+                        </ul>
+                    </section>
+
+                    <section id="link">
+                        <h2 style="color: #E8E18F">&lt;link&gt;</h2>
+                        <ul>
+                            <li class="fragment">Element that defines a relationship to an external resource</li>
+                            <li class="fragment">Page icon is displayed in the browser title bar or page tab</li>
+                            <li class="fragment">This element is mostly used to link to style sheets</li>
+                            <pre class="fragment"><code class="html">
+&lt;head&gt;
+    &lt;link rel="icon" href="resources/yoda-icon.png" type="image/png"&gt;
+    &lt;link rel="stylesheet" href="/css/style.css"&gt;
+&lt;/head&gt;
+                        </code></pre>
+                        </ul>
+                    </section>
+
+                    <section id="script">
+                       <h2 style="color: #E8E18F">&lt;script&gt;</h2>
+                       <ul>
+                           <li class="fragment">Can either contain javascript code or a link to a javascript file</li>
+                           <pre class="fragment"><code>
+&lt;head&gt;
+    &lt;script src="/js/myjs.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+       alert("I hate popup dialogs!");
+    &lt;/script&gt;
+&lt;/head&gt;
+                           </code></pre>
+                       </ul>
+                        <img class="fragment" src="images/2/frontend/alert.png" style="height: 100px;">
+                   </section>
+
+                   <section id="meta">
+                       <h2 style="color: #E8E18F">&lt;meta&gt;</h2>
+                       <ul>
+                           <li class="fragment">Meta information used to describe the content on the web page</li>
+                           <li class="fragment">Is meant to be read by browsers, crawlers or other types of html parsers</li>
+                           <pre class="fragment"><code>
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="description" content="Learning HTML on a thursday morning!" /&gt;
+    &lt;meta name="keywords" content="Academia de código, Bootcamp, HTML, CSS" /&gt;
+    &lt;meta name="author" content="&amp;lt;Academia de Código_&amp;gt;" /&gt;
+    &lt;meta name="copyright" content="&amp;lt;Academia de Código_&amp;gt;" /&gt;
+    &lt;meta name="robots" content="follow"/&gt;
+    &lt;meta http-equiv="expires" content="43200"/&gt;
+&lt;/head&gt;
+                           </code></pre>
+                       </ul>
+                       <aside class="notes">
+                           <ul>
+                               <li>meta tags were heavely used by search engines to categorize and index websites, not so much anymore,
+                                   people abused it and actual page content is now used instead</li>
+                                <li>robots tag tells crowlers wether they should index the page or not</li>
+                                <li>http-equiv tells browsers and caching devices for how long they should cache the page</li>
+                           </ul>
+                       </aside>
+                   </section>
+
+                   <section>
+                       <h2 style="color: #E8E18F">&lt;body&gt;</h2>
+                       <ul>
+                           <li class="fragment">The visible part of the HTML document</li>
+                           <li class="fragment">Can contain text, links, images, videos, etc. </li>
+                           <li class="fragment">There can be only one body element in a document</li>
+                       </ul>
+                   </section>
+
+                   <section id="text">
+                       <h2>Heading and Paragraphs</h2>
+                       <p class="fragment">Most text is comprised of headings and paragraphs</p>
+                       <small><ul>
+                           <li class="fragment">each paragraph has to be wrapped in a <u>&lt;p&gt;</u> element</li>
+                           <li class="fragment">each heading has to be wrapped in a heading element, <u>&lt;h1&gt;</u>, <u>&lt;h2&gt;</u>, <u>&lt;h3&gt;</u>, <u>&lt;h4&gt;</u>, <u>&lt;h5&gt;</u>, <u>&lt;h6&gt;</u></li>
+                           <li class="fragment">horizontal rule, paragraph and headings are <u>block level</u> elements</li>
+                       </ul></small>
+                       <small class="fragment" style="float: right; margin: 20px; font-size: 11px">
+                            <h1>Gangsta Lorem Ipsum</h1>
+                            <p>By Cicero</p>
+                            <h2>Chapter 1: The Hood</h2>
+                            <p>
+                                Sheezy sagittizzle leo non nisi.
+                                Shiznit da bomb, check it out.
+                            </p>
+                            <h2>Chapter 2: The Thug</h2>
+                            <p>
+                                Nunc shiz check out this, vehicula id.
+                            </p>
+                            <h3>He Speaks</h3>
+                            <p>
+                                Etiam the bizzle leo shiz dawg.
+                                Etizzle lobortis fermentizzle.
+                            </p>
+                       </small>
+                       <pre class="fragment"><code class="html">
+&lt;h1&gt;Gangsta Lorem Ipsum&lt;/h1&gt;
+&lt;p&gt;By Cicero&lt;/p&gt;
+&lt;h2&gt;Chapter 1: The Hood&lt;/h2&gt;
+&lt;p&gt;
+    Sheezy sagittizzle leo non nisi.
+    Shiznit da bomb, check it out.
+&lt;/p&gt;
+&lt;h2&gt;Chapter 2: The Thug&lt;/h2&gt;
+&lt;p&gt;
+    Nunc shiz check out this, vehicula id.
+&lt;/p&gt;
+&lt;h3&gt;He Speaks&lt;/h3&gt;
+&lt;p&gt;
+    Etiam the bizzle leo shiz dawg.
+    Etizzle lobortis fermentizzle.
+&lt;/p&gt;
+                       </code></pre>
+                   </section>
+
+                   <section id="break">
+                       <h2>Line and Paragraph Breaks</h2>
+                       <ul>
+                           <li class="fragment">the <u>&lt;br&gt;</u> element represents a line break</li>
+                           <li class="fragment">the <u>&lt;hr&gt;</u> element represents a break between paragraph-level elements (horizontal rule)</li>
+                       </ul>
+                       <div class="fragment" style="float: right; margin: 20px;">
+                            <p>
+                                Paragraph 1 text
+                                <br>
+                                some more text
+                            </p>
+                            <hr>
+                            <p>
+                                Paragraph 2 text
+                                <br>
+                                some more text
+                            </p>
+                       </div>
+                       <pre class="fragment"><code class="html">
+&lt;p&gt;
+    Paragraph 1 text
+    <br>
+    some more text
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;
+    Paragraph 2 text
+    <br>
+    some more text
+&lt;/p&gt;
+                       </code></pre>
+                   </section>
+
+                    <section id="table">
+                        <h2>Tables</h2>
+                        <pre class="fragment"><code class="html">
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;First Header&lt;/th&gt;
+        &lt;th&gt;Second Header&lt;/th&gt;
+        &lt;th&gt;Third Header&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;First Cell&lt;/td&gt;
+        &lt;td&gt;Second Cell&lt;/td&gt;
+        &lt;td&gt;Third Cell&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                        </code></pre>
+                        <table class="fragment">
+                            <tr>
+                                <th>First Header</th>
+                                <th>Second Header</th>
+                                <th>Third Header</th>
+                            </tr>
+                            <tr>
+                                <td>First Cell</td>
+                                <td>Second Cell</td>
+                                <td>Third Cell</td>
+                            </tr>
+                        </table>
+
+                   </section>
+
+                   <section id="inine-text">
+                       <h2>Additional Text Elements</h2>
+                       <ul>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;strong&gt;</span> For <strong>strong</strong> importance text</li>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;small&gt;</span> For <small>smaller</small> size text</li>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;em&gt;</span> To give <em>emphasis</em> to text</li>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;b&gt;</span> For <b>bold</b> text</li>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;i&gt;</span> For <i>italic</i> text</li>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;u&gt;</span> For <u>underline text</u></li>
+                           <li class="fragment"><span style="color: #E8E18F">&lt;code&gt;</span> For computer <code>code</code></li>
+                       </ul>
+                       <p class="fragment">These are all <u>inline level</u> elements</p>
+                       <aside class="notes">
+                           <ul>
+                               <li><b>&lt;b&gt;</b> and <i>&lt;i&gt;</i> are used to represent styles</li>
+                               <li><strong>&lt;strong&gt;</strong> and <em>&lt;em&gt;</em> are used to represent structure, how something should be understood</li>
+                               <li>Separate style from structure</li>
+                           </ul>
+                       </aside>
+                   </section>
+
+                   <section id="lists">
+                      <h2>Lists</h2>
+                      <small><ul>
+                          <li class="fragment"><u>Unordered</u> lists are used to mark up lists of items for which the order of the items doesn't matter</li>
+                          <li class="fragment"><u>Ordered</u> lists are lists in which the order of the items does matter</li>
+                          <li class="fragment">Every unordered list starts with a <u>&lt;ul&gt;</u> element that wraps around all the list items</li>
+                          <li class="fragment">Every ordered list starts with an <u>&lt;ol&gt;</u> element that wraps around all the list items</li>
+                          <li class="fragment">Each list item is wrapped in a <u>&lt;li&gt;</u> element</li>
+                          <li class="fragment">lists and list items are <u>block level</u> elements</li>
+                      </ul></small>
+                      <small class="fragment" style="margin: 20px; float: right">
+                            <ul style="margin-top: 40px;">
+                                 <li>C</li>
+                                 <li>C++</li>
+                                 <li>Java</li>
+                                 <li>JavaScript</li>
+                            </ul>
+                            <br><br>
+                            <ol>
+                                <li>Get Up</li>
+                                <li>Code</li>
+                                <li>Sleep</li>
+                            </ol>
+                      </small>
+                      <pre class="fragment"><code class="html">
+&lt;ul&gt;
+    &lt;li&gt;C&lt;/li&gt;
+    &lt;li&gt;C++&lt;/li&gt;
+    &lt;li&gt;Java&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Get Up&lt;/li&gt;
+    &lt;li&gt;Code&lt;/li&gt;
+    &lt;li&gt;Sleep&lt;/li&gt;
+&lt;/ol&gt;
+                      </code></pre>
+                   </section>
+
+                   <section id="image">
+                       <h2 style="color: #E8E18F">&lt;img&gt;</h2>
+                       <ul>
+                           <li class="fragment">Represents an image in the document</li>
+                           <li class="fragment">Alternative text can be displayed with the <u>alt</u> attribute</li>
+                           <li class="fragment"><u>Inline level</u> element</li>
+                       </ul>
+                           <pre class="fragment"><code class="html">
+&lt;img src="/images/myimage.jpg" height="100" width="100" alt="my image"/&gt;
+&lt;img src="http://www.academiadecodigo.com/images/myimage.jpg" alt="my image"/&gt;
+&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA..." alt="my image"/&gt;
+                       </code></pre>
+                   </section>
+
+                   <section id="anchor">
+                       <h2 style="color: #E8E18F">&lt;a&gt;</h2>
+                       <ul>
+                           <li class="fragment">A link (or anchor) to another web page</li>
+                       </ul>
+
+                           <pre class="fragment"><code class="html">
+&lt;a href="www.academiadecodigo.org" target="_blank"&gt;An anchor!&lt;/a&gt;
+                           </code></pre>
+
+                       <span class="fragment">target attribute:</span>
+                       <table class="w3-table-all notranslate">
+                           <tr class="fragment">
+                               <td>_self</td>
+                               <td>Opens the linked document in the same frame as it was clicked (default)</td>
+                           </tr>
+                           <tr class="fragment">
+                               <td>_blank</td>
+                               <td>Opens the linked document in a new window or tab</td>
+                           </tr>
+
+                        </table>
+                   </section>
+
+                   <section>
+                       <h2>What about an image link?</h2>
+                           <pre class="fragment"><code class="html">
+&lt;a href="www.academiadecodigo.org" target="_blank"&gt;
+    &lt;img src="/images/myimage.jpg" alt="my image"/&gt;
+&lt;/a&gt;
+                           </code></pre>
+                   </section>
+
+                   <section id="form">
+                       <h2 style="color: #E8E18F">&lt;form&gt;</h2>
+                       <ul>
+                           <li class="fragment">Form elements are used to collect user input</li>
+                           <li class="fragment">A form can have multiple input fields from various types</li>
+                           <li class="fragment">Usually the last element of a form is a submit button</li>
+                       </ul>
+                       <img class="fragment" src="images/2/frontend/form.gif">
+                   </section>
+
+                   <section>
+                       <h2 style="color: #E8E18F">&lt;form&gt;</h2>
+                           <pre class="fragment"><code class="html">
+&lt;form action="/mypage_action_page" method="post"&gt;
+    &lt;input type="text" name="text_field_name_1" /&gt;
+    &lt;input type="text" name="text_field_name_2" /&gt;
+    &lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;
+                       </code></pre>
+
+                       <ul>
+                           <li class="fragment">Action: The URL of a web application that processes the form data</li>
+                           <li class="fragment">Method: HTTP verb that will be used to send the data, <u>post</u> and <u>get</u> are the possible values</li>
+                       </ul>
+
+                   </section>
+
+                   <section id="input">
+                       <h2 style="color: #E8E18F">&lt;input&gt;</h2>
+                       <pre class="fragment"><code class="html">
+&lt;input type="text" name="text_field_name_1" /&gt;
+                       </code></pre>
+                       <ul>
+                           <li class="fragment">Each input tag represents a field for user input</li>
+                           <li class="fragment">The attribute name is a reference for each input field</li>
+                           <li class="fragment">The type of input can be defined with the type attribute</li>
+                           <li class="fragment">There are several types of inputs in HTML. They can be simple text fields, radio buttons, color pickers and more:</li>
+                       </ul>
+
+                           <br>
+                           <br>
+                           <small><table class="fragment">
+                               <tr>
+                                   <td>text</td>
+                                   <td>datetime-local</td>
+                                   <td>date</td>
+                                   <td>search</td>
+                               </tr>
+                               <tr>
+                                   <td>password</td>
+                                   <td>email</td>
+                                   <td>datetime</td>
+                                   <td>tel</td>
+                               </tr>
+                               <tr>
+                                   <td>radio</td>
+                                   <td>month</td>
+                                   <td>time</td>
+                                   <td>url</td>
+                               </tr>
+                               <tr>
+                                   <td>checkbutton</td>
+                                   <td>number</td>
+                                   <td>week</td>
+                               </tr>
+                               <tr>
+                                   <td>color</td>
+                                   <td>range</td>
+                                   <td>submit</td>
+                               </tr>
+                           </table></small>
+                   </section>
+
+                   <section class="input">
+                       <h2 style="color: #E8E18F">&lt;input&gt;</h2>
+                       <pre class="fragment"><code class="html">
+&lt;input type="submit" value="Submit" /&gt;
+                       </code></pre>
+                       <ul>
+                           <li class="fragment">The submit input type is a special type of input</li>
+                           <li class="fragment">Its purpose is to submit the form to the form-handler application</li>
+                       </ul>
+                   </section>
+
+                   <section class="html5">
+                       <h2>HTML5 Elements</h2>
+                       <p class="fragment">HTML5 introduced a set of new tags and concepts:</p>
+                       <ul class="fragment">
+                           <li class="fragment">Semantic elements: &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, and &lt;section&gt;</li>
+                           <li class="fragment">New input types: &lt;number&gt;, &lt;date&gt;, &lt;time&gt;, &lt;calendar&gt;, and &lt;range&gt;</li>
+                           <li class="fragment">New graphic elements: &lt;svg&gt; and &lt;canvas&gt; (bye bye Flash)</li>
+                           <li class="fragment">New multimedia elements: &lt;audio&gt; and &lt;video&gt;</li>
+                       </ul>
+                   </section>
+
+                   <section>
+                       <div class="exercise">
+                           <h2>{ Exercise }</h2>
+                           <h3>Building a personal profile page</h3>
+                           <p>Create an <u>index.html</u> file and a <u>resources</u> folder</p>
+                           <p>Add HTML elements to the web document</p>
+                           <img style="max-height: 270px;" src="images/2/frontend/yoda-profile.png">
+                       </div>
+                   </section>
+            </section>
+
+            <!-- CSS -->
+            <section>
+                    <section>
+                            <h1>CSS</h1>
+                            <img style="min-height: 300px; max-height:300px" src="images/2/frontend/css3.png" alt="">
+                    </section>
+
+                    <section id="css">
+                        <h2>Cascading Style Sheets</h2>
+                        <p class="fragment">Allows the structure of a web page to be separated from its presentation and styling</p>
+                        <p class="fragment">Specifies how documents are styled, laid out and presented</p>
+                        <p class="fragment">Web browsers apply CSS rules to HTML elements to affect how they are displayed</p>
+                    </section>
+
+                    <section id="css3">
+                        <h2>CSS3</h2>
+                        <p class="fragment">CSS3 was started in 1998 and is the latest standard for CSS</p>
+                        <p class="fragment">Unlike the monolithic CSS2, it was split into independent modules</p>
+                        <small><ul>
+                            <li class="fragment">Selectors</li>
+                            <li class="fragment">Media Queries</li>
+                            <li class="fragment">Box Model</li>
+                            <li class="fragment">Backgrounds and Borders</li>
+                            <li class="fragment">Image Values and Replaced Content</li>
+                            <li class="fragment">Text Effects</li>
+                            <li class="fragment">2D/3D Transformations</li>
+                            <li class="fragment">Animations</li>
+                            <li class="fragment">Multiple Column Layout</li>
+                            <li class="fragment">User Interface</li>
+                        </ul></small>
+                        <p class="fragment">Dozens of other modules exist, most of them are still in draft</p>
+                        <aside class="notes">
+                            http://www.css3.info/modules/
+                        </aside>
+                    </section>
+
+                     <section>
+                        <h2>Basic structure of a CSS rule</h2>
+                        <img class="fragment" src="images/2/frontend/selector.gif">
+                        <ul>
+                            <li class="fragment">The selector specifies the html elements that will be affected by the rule</li>
+                            <li class="fragment">The declaration is a set of key/value pairs</li>
+                            <li class="fragment">Each key is an element property</li>
+                            <li class="fragment">Updating the element properties will update how the HTML content is displayed</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Element Selectors</h2>
+                        <p>Select elements based on their type</p>
+                        <pre class="fragment"><code class="css">
+/* Selects all p elements  */
+p {
+    border: 1px solid black;
+}
+
+/* Selects all h1 and h2 elements  */
+h1, h2 {
+    color: blue;
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Class Selectors</h2>
+                        <p class="fragment">The <u>class</u> attribute specifies one or more class names for an element</p>
+                        <pre class="fragment"><code class="html">
+&lt;p class="border"&gt;
+    Lorem Ipsum
+&lt;/p&gt;
+
+&lt;h1 class="border header"&gt;
+    HTML Styles
+&lt;/h1&gt;
+                        </code></pre>
+                        <p class="fragment">Select elements based on their class</p>
+                        <pre class="fragment"><code class="css">
+/* Selects all elements with class border */
+.border {
+    border: 1px solid black;
+}
+
+/* Selects all elements that contain both the border and header classes */
+.border.header {
+    color: blue;
+    border: 1px solid blue;
+}
+                        </code></pre>
+                        <small class="fragment">more specific class selectors have precedence over less specific ones</small>
+                        <aside class="notes">
+                            it's because of the more specific precedence rule that elements with class border and header show up in blue and not black
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>ID Selectors</h2>
+                        <p class="fragment">The <u>id</u> attribute specifies the id for an element, which needs to be <u>unique</u> in the document</p>
+                        <pre class="fragment"><code class="html">
+&lt;p id="border"&gt;
+    Lorem Ipsum
+&lt;/p&gt;
+                        </code></pre>
+                        <p class="fragment">Select elements based on their id</p>
+                        <pre class="fragment"><code class="css">
+/* Selects the element with a border id */
+#border {
+    border: 1px solid black;
+}
+                        </code></pre>
+                        <small class="fragment">selectors have precedence over class selectors</small>
+                    </section>
+
+                    <section id="descendent">
+                        <h2>Descendant Selectors</h2>
+                        <small><ul>
+                            <li class="fragment">Selectors that utilize a <u>descendant combinator</u> to separate two other selectors are called descendant selectors</li>
+                            <li class="fragment">The descendant combinator is represented by a <u>single space</u> character</li>
+                            <li class="fragment">Elements matched by the second selector are selected if they have an <u>ancestor element</u> matching the first selector</li>
+                        </ul></small>
+                        <pre class="fragment"><code class="html">
+&lt;h1 class="title"&gt;
+    &lt;p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Java&lt;/li&gt;
+            &lt;li&gt;JavaScript&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/p&gt;
+&lt;/h1&gt;
+                        </code></pre>
+                        <p class="fragment">Add a red border around all list items that descend from elements of class title</p>
+                        <pre class="fragment"><code class="css">
+.title li {
+    border: 1px solid red;
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Child Selectors</h2>
+                        <small><ul>
+                            <li class="fragment">Selectors that utilize a <u>child combinator</u> to separate two other selectors are called child selectors</li>
+                            <li class="fragment">The child combinator is represented by a <u>&gt;</u> character</li>
+                            <li class="fragment">Elements matched by the second selector are selected if they are <u>direct descendants</u> of elements matching the first selector</li>
+                        </ul></small>
+                        <pre class="fragment"><code class="html">
+&lt;h1 class="title"&gt;
+    &lt;p&gt;
+        &lt;ul class="title"&gt;
+            &lt;li&gt;Java&lt;li&gt;
+        &lt;/ul&gt;
+    &lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;JavaScript&lt;li&gt;
+    &lt;/ul&gt;
+&lt;/h1&gt;
+                        </code></pre>
+                        <small class="fragment">Add a red border around all list items that are direct descendants from elements of class title (Java only)</small>
+                        <pre class="fragment"><code class="css">
+.title &gt; li {
+    border: 1px solid red;
+}
+                        </code></pre>
+                    </section>
+
+                    <section id="pseudo">
+                        <h2>Pseudo-classes</h2>
+                        <small class="fragment">Keywords added to selectors that specify a special state of the selected elements</small>
+                        <pre class="fragment"><code class="html">
+&lt;h1 id="element1"&gt;&lt;/h1&gt;
+&lt;h2 id="element2"&gt;&lt;/h2&gt;
+&lt;input id="element3"&gt;
+                        </code></pre>
+                        <small class="fragment">We can add styles to our elements <u>only</u> when those elements are in a specific state</small>
+                        <pre class="fragment"><code class="css">
+/* color element1 in red when mouse goes over it */
+#element1:hover {
+    color: red;
+}
+
+/* color element2 in green when mouse clicks on it */
+#element2:active {
+    color: green;
+}
+
+/* color element3 in yellow when focus is given to this element */
+#element3:focus {
+    color: yellow;
+}
+                        </code></pre>
+                    </section>
+
+
+                    <section>
+                        <h2>Inserting CSS into a web page</h2>
+                        <p>There are 3 ways of inserting CSS into a web page</p>
+                        <ul>
+                            <li class="fragment">External stylesheet</li>
+                            <li class="fragment">Internal stylesheet</li>
+                            <li class="fragment">Inline style</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>External stylesheet</h2>
+                        <p class="fragment">The CSS rules are packed in its own file with the .css extension</p>
+                        <p class="fragment">The file should only contain CSS rules and no HTML</p>
+                        <p class="fragment">Changing a property on an external stylesheet will affect all webpages that import that stylesheet</p>
+                        <pre class="fragment"><code class="html">
+&lt;head&gt;
+    &lt;link rel="stylesheet" type="text/css" href="mystyle.css"&gt;
+&lt;/head&gt;
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Internal stylesheet</h2>
+                        <p class="fragment">CSS rules included in the HTML file, enclosed by a &lt;style&gt; tag</p>
+                        <p class="fragment">The rules apply only to that specific HTML page</p>
+                        <pre class="fragment"><code class="html">
+&lt;head&gt;
+    &lt;style&gt;
+
+        p {
+            color: blue;
+        }
+
+        h1 {
+            color: red;
+            border: 1px;
+        }
+
+    &lt;/style&gt;
+&lt;/head&gt;
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Inline</h2>
+                        <p class="fragment">The CSS rules are included as an attribute on an HTML element</p>
+                        <p class="fragment">The rules will apply only to that specific HTML element</p>
+                        <p class="fragment">Using inline css prevents the separation of style from structure and reutilization across elements and pages</p>
+                        <pre class="fragment"><code class="html">
+&lt;h1 style="color: red;"&gt;Hey I'm a red colored title&lt;/h1&gt;
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Rule priority</h2>
+                        <p class="fragment">If you define different values to the same element's property the browser will determine its value based on this priority list:</p>
+                        <ol>
+                            <li class="fragment">Inline style</li>
+                            <li class="fragment">Internal stylesheet</li>
+                            <li class="fragment">External stylesheet</li>
+                            <li class="fragment">Browser defaults</li>
+                        </ol>
+                    </section>
+
+                      <section>
+                        <h2>Background property</h2>
+                        <p class="fragment">Defines a background color or image for an element</p>
+                         <pre class="fragment"><code class="css">
+background-color: red;
+background-image: url("paper.gif");
+background-repeat: no-repeat;
+background-position: center;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Width and Height properties</h2>
+                        <p class="fragment">Defines an element's size</p>
+                         <pre class="fragment"><code class="css">
+width: 100px;
+height: 100px;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Border property</h2>
+                        <p class="fragment">Defines the color and style of the border of an element</p>
+                         <pre class="fragment"><code class="css">
+border: 1px solid black;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Margin and Padding properties</h2>
+                        <p class="fragment">Defines the space around an element</p>
+                        <p class="fragment">Defined by 4 values (top, right, bottom, left)</p>
+                        <ul>
+                        <li class="fragment">The padding is the space between the content and the border of the element</li>
+                        <li class="fragment">The margin is the space between the border and other elements</li>
+                        </ul>
+                         <pre class="fragment"><code class="css">
+padding: 10px 10px 10px 10px; /* top, right, bottom, left (clockwise) */
+padding: 5px 10px; /* top and bottom 5px, right and left 10px */
+margin: 10px; /* all margin properties set to 10px */
+margin: 0; /* no need to specify unit for no margin */
+padding-left: 10px;
+padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 10px;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Color property</h2>
+                        <p class="fragment">Defines the color of a text section</p>
+                        <p class="fragment">It can be defined by a color name, an hexadecimal or rgb color</p>
+                         <pre class="fragment"><code class="css">
+color: red;
+color: #FF0000;
+color: rgb(255, 0, 0);
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Display property</h2>
+                        <p class="fragment">HTML elements are usually <u>inline</u> or <u>block</u> level elements</p>
+                        <p class="fragment">This element behaviour can be altered using the display property</p>
+                         <pre class="fragment"><code class="css">
+display: block;
+display: inline;
+display: inline-block;
+display: none;
+                        </code></pre>
+                        <ul>
+                            <li class="fragment">block: The element is always placed in a new line and takes as much horizontal space as it can</li>
+                            <li class="fragment">inline: The element is placed right next to the previous element and only takes the horizontal space that it needs</li>
+                            <li class="fragment">inline-block: layout block elements horizontally</li>
+                            <li class="fragment">none: The element is not displayed at all</li>
+                        </ul>
+                    </section>
+
+                    <section id="span">
+                        <h2 style="color: #E8E18F">&lt;span&gt;</h2>
+                        <ul>
+                            <li class="fragment">Generic <u>Inline</u> container</li>
+                            <li class="fragment">Holds no semantic meaning</li>
+                            <li class="fragment">Commonly used to wrap small portions of text or images</li>
+                        </ul>
+                        <pre class="fragment"><code class="html">
+&lt;p&gt;Some text is colored &lt;span style="color:blue"&gt;blue&lt;/span&gt;&lt;/p&gt;
+                        </code></pre>
+                        <p class="fragment">Some text is colored <span style="color:blue">blue</span></p>
+                        <aside class="notes">
+                            span and div html tags have no special meaning (semantics) and are used for style purposes mainly
+                        </aside>
+                    </section>
+
+                    <section id="div">
+                        <h2 style="color: #E8E18F">&lt;div&gt;</h2>
+                        <ul>
+                            <li class="fragment">Generic <u>Block</u> container</li>
+                            <li class="fragment">Holds no semantic meaning</li>
+                            <li class="fragment">Commonly used to divide an html document into logical sections</li>
+                        </ul>
+                        <pre class="fragment"><code class="html">
+&lt;div style="color:blue; border: 1px solid;"&gt;
+    &lt;p&gt;Some blue text&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style="color:red; border: 1px solid"&gt;
+    &lt;p&gt;Some red text&lt;/p&gt;
+&lt;/div&gt;
+                        </code></pre>
+                        <div class="fragment">
+                            <div style="color:blue; border: 1px solid;">
+                                <p>Some blue text</p>
+                            </div>
+                            <div style="color:red; border: 1px solid">
+                                <p>Some red text</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="fonts">
+                        <h2>Google Fonts</h2>
+                        <p>Extensive catalog of open source designer web fonts</p>
+                        <small class="fragment">Add a stylesheet link to request the desired web fonts</small>
+                        <pre class="fragment"><code class="html">
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine"&gt;
+                        </code></pre>
+                        <small class="fragment">Style the element with the requested web font</small>
+                        <pre class="fragment"><code class="css">
+p {
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
+  text-shadow: 4px 4px 4px #aaa;
+}
+                        </code></pre>
+                        <img class="fragment" style="max-height: 75px;" src="images/2/frontend/google-font.png">
+                    </section>
+
+                    <section id="fontawesome">
+                        <img src="images/2/frontend/font-awesome.png" alt="" class="logo float-right">
+                        <h2>Font Awesome</h2>
+                        <p class="fragment">Scalable vector icons using a single font and css</p>
+                        <p class="fragment">The font awesome css can be loaded using a cdn link</p>
+                        <pre class="fragment"><code class="html">
+&lt;link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"&gt;
+                        </code></pre>
+
+                        <p class="fragment">Insert icons easily with the <u>i</u> element</p>
+                        <pre class="fragment"><code class="html">
+&lt;!-- github icon --&gt;
+&lt;i class="fa fa-github"&gt;&lt;/i&gt;
+                        </code></pre>
+                        <aside class="notes">
+                            A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other Web content
+                            to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.
+                        </aside>
+                    </section>
+
+                    <section id="mdn">
+                        <img src="images/2/frontend/mdn.png" alt="" class="logo float-right">
+                        <h2>Mozilla Developer Network</h2>
+                        <p>The MDN is the official website for development documentation of web standards, explore it to take full advantage of the web's capabilities</p>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Add some styling to your profile page</h3>
+                            <img style="max-height: 400px;" src="images/2/frontend/yoda-profile-css.png">
+                        </div>
+                    </section>
+
+                    <section id="static">
+                        <h2>Static Positioning</h2>
+                        <small><ul>
+                            <li class="fragment">The <u>default</u> positioning, element is positioned according to normal browser flow</li>
+                            <li class="fragment"><u>top</u>, <u>right</u>, <u>bottom</u>, <u>left</u> and <u>z-index</u> properties DO NOT apply</li>
+                        </ul></small>
+                        <pre class="fragment" style="margin-top: 0;">
+                            <code class="html">&lt;style&gt;
+    .box {
+        display: inline-block; /* layout boxes horizontally */
+        background: red;
+    }
+    #two {
+        background: green;
+    }
+&lt;/style&gt;
+
+&lt;div class="parent"&gt;
+    &lt;div id="one" class="box"&gt;1&lt;/div&gt;
+    &lt;div id="two" class="box"&gt;2&lt;/div&gt;
+    &lt;div id="three" class="box"&gt;3&lt;/div&gt;
+&lt;/div&gt;
+
+</code>
+</pre>
+<div class="fragment">
+    <div style="display: inline-block; background: red; width: 100px;">1</div>
+    <div style="display: inline-block; background: green; width: 100px;">2</div>
+    <div style="display: inline-block; background: red; width: 100px;">3</div>
+</div>
+                    </section>
+
+                    <section id="relative">
+                        <h2>Relative Positioning</h2>
+                        <small><ul>
+                            <li class="fragment">Element is positioned (moved) <u>relative to itself</u></li>
+                            <li class="fragment">The page layout <u>does not</u> change, as if the element was not positioned</li>
+                            <li class="fragment">Commonly used as <u>parent container</u> for absolute positioning</li>
+                        </ul></small>
+                        <pre class="fragment" style="margin-top: 0;">
+                            <code class="html">&lt;style&gt;
+.box {
+    display: inline-block; /* layout boxes horizontally */
+    background: red;
+}
+#two {
+    position: relative;
+    background: green;
+    left: 20px;
+    top: 10px;
+}
+&lt;/style&gt;
+
+&lt;div class="parent"&gt;
+    &lt;div id="one" class="box"&gt;1&lt;/div&gt;
+    &lt;div id="two" class="box"&gt;2&lt;/div&gt;
+    &lt;div id="three" class="box"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="fragment">
+                            <div style="display: inline-block; background: red; width: 100px;">1</div>
+                            <div style="display: inline-block; background: green; width: 100px; position: relative; left: 20px; top: 10px;">2</div>
+                            <div style="display: inline-block; background: red; width: 100px;">3</div>
+                        </div>
+                    </section>
+
+                    <section id="absolute">
+                        <h2>Absolute Positioning</h2>
+                        <small><ul>
+                            <li class="fragment">Element is positioned <u>relative to the first parent</u> that has been positioned</li>
+                            <li class="fragment">If no parent has been positioned, element is positioned <u>relative to the HTML element</u></li>
+                            <li class="fragment">The page layout <u>changes</u></li>
+                        </ul></small>
+                        <pre class="fragment" style="margin-top: 0;">
+                            <code class="html">&lt;style&gt;
+    .box {
+        display: inline-block; /* layout boxes horizontally */
+        position: relative; /* use as a container for positioning child elements */
+        background: red;
+    }
+    #two {
+        position: absolute;
+        background: green;
+        left: 20px;
+        top: 10px;
+    }
+&lt;/style&gt;
+
+&lt;div class="parent"&gt;
+    &lt;div id="one" class="box"&gt;1&lt;/div&gt;
+    &lt;div id="two" class="box"&gt;2&lt;/div&gt;
+    &lt;div id="three" class="box"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="fragment" style="margin: auto; max-width: 330px; position: relative;">
+                            <div style="display: inline-block; background: red; width: 100px;">1</div>
+                            <div style="display: inline-block; background: green; width: 100px; position: absolute; left: 20px; top: 10px;">2</div>
+                            <div style="display: inline-block; background: red; width: 100px;">3</div>
+                        </div>
+                    </section>
+
+                    <section id="zindex">
+                        <h2>z-index</h2>
+                        <small><ul>
+                            <li class="fragment">Positioned elements can be moved to the front or to the back using the <u>z-index</u> property</li>
+                            <li class="fragment">A positive value will move the element to the <u>front</u></li>
+                            <li class="fragment">A negative value will move the element to the <u>back</u></li>
+                        </ul></small>
+                        <pre class="fragment" style="margin-top: 0;">
+                            <code class="html">&lt;style&gt;
+    .box {
+        display: inline-block; /* layout boxes horizontally */
+        position: relative; /* use as a container for positioning child elements */
+        background: red;
+    }
+    #two {
+        position: absolute;
+        z-index: -100;
+        background: green;
+        left: 20px;
+        top: 10px;
+    }
+&lt;/style&gt;
+
+&lt;div class="parent"&gt;
+    &lt;div id="one" class="box"&gt;1&lt;/div&gt;
+    &lt;div id="two" class="box"&gt;2&lt;/div&gt;
+    &lt;div id="three" class="box"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="fragment" style="margin: auto; max-width: 330px; position: relative;">
+                            <div style="display: inline-block; background: red; width: 100px;">1</div>
+                            <div style="display: inline-block; background: green; width: 100px; position: absolute; z-index: -100; left: 20px; top: 10px;">2</div>
+                            <div style="display: inline-block; background: red; width: 100px;">3</div>
+                        </div>
+                    </section>
+
+                    <section id="float">
+                        <h2>Floats</h2>
+                        <p class="fragment">Elements with the float CSS property applied allow other elements to wrap around them</p>
+                        <img class="fragment" style="float: right; padding-left: 10px;" src="images/2/frontend/flow-text-wrap.png" alt="">
+                        <p class="fragment" style="color: blue;">Blue text wraps around an image which is floated to the right</p>
+                        <pre style="z-index: -100" class="fragment"><code class="css">
+&lt;img style="float: right;" src="..."&gt;
+&lt;p&gt;
+    Blue text wraps around an image
+    which is floated to the right
+&lt;/p&gt;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Float Layouts</h2>
+                        <p class="fragment">Floats can also be used to create entire web layouts</p>
+                        <img class="fragment" src="images/2/frontend/float-layout.png" alt="">
+                    </section>
+
+                    <section>
+                        <h2>Clearing the Float</h2>
+                        <small class="fragment">When using floats for web page layout, sometimes it is not desired
+                            to have certain elements wrapping around the floated element</small>
+                        <img class="fragment" style="max-height: 200px;" src="images/2/frontend/uncleared-footer.png" alt="">
+                        <small class="fragment">The sidebar is floated to the right and is shorter than the main content area, which causes the footer to wrap around it.
+                            <span class="fragment">This problem can be fixed by <u>clearing</u> the footer, ensuring it stays beneath both floated columns</span></small>
+                        <img class="fragment" style="float: right; padding-left: 20px; max-height: 200px;" src="images/2/frontend/cleared-footer.png" alt="">
+                        <pre style="z-index: -100" class="fragment"><code class="css">
+/*
+    clears floats coming from the
+    left and from the right
+ */
+#footer {
+  clear: both;
+}
+                        </code></pre>
+                    </section>
+
+                    <section id="layout">
+                        <img class="logo float-right" src="images/2/frontend/layout.png" alt="">
+                        <h2>Web Layouts</h2>
+                        <p class="fragment">Besides floats, other techniques can be used to layout HTML elements on a page</p>
+                        <ul>
+                            <li class="fragment"><u>tables</u> are an ancient and outdated way of doing it, use modern css based alternatives instead</li>
+                            <li class="fragment"><u>inline-block</u> elements solve some of the problems with using floats, such as the need to clear them</li>
+                            <li class="fragment"><u>flexbox</u> is a modern css based layout technique, allowing the rapid creation of complex and flexible layouts</li>
+                            <li class="fragment"><u>cssgrid</u> is a modern css based layout technique that enables element alignment into columns and rows</li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>tables should be used for tabular data and not layouts</li>
+                                <li>Flexbox is essentially for laying out items in a single dimension – in a row OR a column</li>
+                                <li>Grid is for layout of items in two dimensions – rows AND columns</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Improve the layout and positioning of the elements in your profile page</h3>
+                            <img style="max-height: 350px;" src="images/2/frontend/yoda-profile-layout.png">
+                        </div>
+                    </section>
+
+                    <section>
+                        <img src="images/2/frontend/responsive.png" class="logo float-right">
+                        <h2>Responsive Design</h2>
+                        <p class="fragment">Comes from the necessity of designing websites that can be displayed on multiple devices with different screen sizes</p>
+                        <p class="fragment">Content must adapt and change its user interface depending on the browser or device accessing the site</p>
+                        <ul class="fragment">The techniques used to achieve a responsive web design are:<br><br>
+                            <li class="fragment"><u>CSS3 Media Queries</u> to use different styles based on screen size</li>
+                            <li class="fragment"><u>Fluid Grid</u>, a two-dimensional structure made up of a series of intersecting vertical and horizontal axes used to structure content</li>
+                            <li class="fragment"><u>Flexible Images</u>, which resize together with the design</li>
+                        </ul>
+                        <aside class="notes">
+                            Responsive designs can be tested with chrome dev tools
+                        </aside>
+                    </section>
+
+                    <section id="bootstrap">
+                        <img src="images/2/frontend/bootstrap.png" class="logo float-right">
+                        <h2>Bootstrap</h2>
+                        <p class="fragment">The most popular front-end framework</p>
+                        <ul>
+                            <li class="fragment">HTML/CSS/JavaScript framework</li>
+                            <li class="fragment">Mobile first responsive layouts and grids</li>
+                            <li class="fragment">Tools for typography, forms, buttons, navigation and other interface components</li>
+                            <li class="fragment">Developed at Twitter but open sourced since 2011</li>
+                        </ul>
+                        <img src="images/2/frontend/bootstrap-template.png" class="fragment" style="max-height: 250px;">
+                    </section>
+
+                    <section>
+                        <h2>Using Bootstrap</h2>
+                        <p class="fragment">Bootstrap can be downloaded from their website <u>getbootstrap.com</u>,
+                            <br><span class="fragment">or alternatively used via a CDN:</span></p>
+                        <pre class="fragment"><code class="html">
+<!-- Bootstrap depends on the jQuery JavaScript library -->
+&lt;script src="https://code.jquery.com/jquery-latest.js"&gt;&lt;/script&gt;
+
+<!-- Latest compiled and minified CSS -->
+&lt;link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
+
+<!-- Latest compiled and minified JavaScript -->
+&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"&gt;
+&lt;/script&gt;
+                        </code></pre>
+                        <small class="fragment">To support small screens, the responsive design html5 meta tag should be used</small>
+                        <pre class="fragment"><code class="html">
+<!-- tells the browser to scale the page down so it fits the screen -->
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                        </code></pre>
+                        <aside class="notes">
+                            A content delivery network(CDN) is a geo distributed network of proxy servers and their data centers.<br>
+                            The goal is to distribute service (page assets) spatially relative to end-users to provide high availability and high performance.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Containers</h2>
+                        <p class="fragment">Bootstrap requires a containing element to wrap the site contents</p>
+                        <p class="fragment">Two types of containers are available</p>
+                        <ul>
+                            <li class="fragment">Responsive fixed width container</li>
+                            <li class="fragment">Full-width fluid container</li>
+                        </ul>
+                        <pre class="fragment"><code class="html">
+&lt;div class="container"&gt;
+    <!-- has one fixed width for each screen size -->
+&lt;/div&gt;
+
+&lt;div class="container-fluid"&gt;
+    <!-- constantly resize as browser width changes -->
+&lt;/div&gt;
+                        </code></pre>
+                    </section>
+
+                    <section id="grid">
+                        <h2>Grid System</h2>
+                        <p class="fragment">Is a responsive mobile-first grid system that scales up to 12 columns as the viewport size increases</p>
+                        <img style="max-height: 350px;" src="images/2/frontend/grid.png" class="fragment">
+                        <small class="fragment">Content can span a different number of columns</small>
+                    </section>
+
+                    <section>
+                        <h2>Grid Classes</h2>
+                        <p class="fragment">Screen sizes are divided into 4 types with different css prefixes</p>
+                        <small><ul>
+                            <li class="fragment"><u>col-xs-*</u> - extra small devices (phones, less than 768px, bootstrap default)</li>
+                            <li class="fragment"><u>col-sm-*</u> - small devices (tablets, 768px and up)</li>
+                            <li class="fragment"><u>col-md-*</u> - medium devices (desktops, 992px and up)</li>
+                            <li class="fragment"><u>col-lg-*</u> - large devices (large desktops, 1200px and up)</li>
+                        </ul></small>
+                        <pre class="fragment"><code class="html">
+<!-- grid needs to be wrapped in a container div -->
+&lt;div class="container-fluid"&gt;
+    <!-- every row must have 12 columns -->
+    &lt;div class="row"&gt;
+        &lt;div class="col-sm-6 col-lg-4"&gt;
+            <!-- content -->
+        &lt;/div&gt;
+        &lt;div class="col-sm-6 col-lg-4"&gt;
+            <!-- content -->
+        &lt;/div&gt;
+        &lt;div class="col-sm-6 col-lg-4"&gt;
+            <!-- content wraps to new row if number of columns > 12 -->
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                        </code></pre>
+                        <small class="fragment">one column on phones (default), two columns on tablets/desktops (size cascades up) and 3 on large desktops</small>
+                    </section>
+
+                    <section>
+                        <h2>Bootstrap visibility</h2>
+                        <ul>
+                        <li class="fragment">Bootstrap allows you to set the visibility of an element depending on screen size</li>
+                        <li class="fragment">An element can either be shown or hidden with the help of <u>visible</u> and <u>hidden</u> class prefixes</li>
+                        </ul>
+                        <pre class="fragment"><code>
+&lt;div class="container-fluid"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="hidden-xs"&gt;hide this on phones&lt;/div&gt;
+        &lt;div class="visible-lg"&gt;show this on large desktops&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Typography</h2>
+                        <p class="fragment">By default, Bootstrap offers great looking fonts and size ratios of headers and paragraphs</p>
+                        <img style="max-height: 350px;" src="images/2/frontend/typography.png" class="fragment">
+                    </section>
+
+                    <section>
+                        <h2>Tables</h2>
+                        <p class="fragment">Bootstrap provides various table styles and functionalities</p>
+                        <img style="max-height: 350px;" src="images/2/frontend/table.png" class="fragment">
+                    </section>
+
+                    <section>
+                        <h2>Forms</h2>
+                        <p class="fragment">Bootstrap delivers various form control styles, layout features and custom made components for setting up a variety of forms</p>
+                        <img style="max-height: 350px;" src="images/2/frontend/bs-form.png" class="fragment">
+                    </section>
+
+                    <section id="components">
+                        <h2>Components</h2>
+                        <p class="fragment">Many reusable components are available, proving iconography, dropdowns, input groups, navigation, alerts and much more</p>
+                        <img style="max-height: 350px;" src="images/2/frontend/components.png" class="fragment">
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Improve the styling and responsiveness of the profile page with bootstrap</h3>
+                            <img style="margin: auto; max-height: 350px;" src="images/2/frontend/bs-xs.png">
+                            <img style="margin: auto; max-height: 350px;" src="images/2/frontend/bs-md.png">
+                        </div>
+                    </section>
+
+                </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+              // Specifies which side of the presentation the menu will
+              // be shown. Use 'left' or 'right'.
+              side: 'left',
+
+              // Add slide numbers to the titles in the slide list.
+              // Use 'true' or format string (same as reveal.js slide numbers)
+              numbers: false,
+
+              // Hide slides from the menu that do not have a title.
+              // Set to 'true' to only list slides with titles.
+              hideMissingTitles: true,
+
+              // Add markers to the slide titles to indicate the
+              // progress through the presentation
+              markers: false,
+
+              // Specify custom panels to be included in the menu, by
+              // providing an array of objects with 'title', 'icon'
+              // properties, and either a 'src' or 'content' property.
+              custom: false,
+
+              // Specifies the themes that will be available in the themes
+              // menu panel. Set to 'false' to hide themes panel.
+              themes: false,
+
+              // Specifies if the transitions menu panel will be shown.
+              transitions: true,
+
+              // Adds a menu button to the slides to open the menu panel.
+              // Set to 'false' to hide the button.
+              openButton: true,
+
+              // If 'true' allows the slide number in the presentation to
+              // open the menu panel. The reveal.js slideNumber option must
+              // be displayed for this to take effect
+              openSlideNumber: false,
+
+              // If true allows the user to open and navigate the menu using
+              // the keyboard. Standard keyboard interaction with reveal
+              // will be disabled while the menu is open.
+              keyboard: true
+          },
+
+            // Specifies section for limits-app
+            section: 14,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

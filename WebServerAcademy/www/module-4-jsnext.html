@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section>
+                    <h1 class="clearfix">Modern JavaScript</h1>
+                    <img src="images/3/jsnext/js-evolution.png" class="logo-big">
+                </section>
+
+                <section id="es6">
+                    <img src="images/3/jsnext/es6-logo.png" class="logo float-right">
+                    <h2>ES6/ES2015</h2>
+                    <p class="fragment clearfix">ES6 is not just a modest set of new APIs but a
+                        <u>radical jump</u>!</p>
+                    <small>
+                        <ul style="columns: 2; list-style-position: inside;" class="fragment clearfix">
+                            <li>Constants</li>
+                            <li>Scoping</li>
+                            <li>Arrow Functions</li>
+                            <li>Extended Parameter Handling</li>
+                            <li>Template Literals</li>
+                            <li>Extended Literals</li>
+                            <li>Enhanced Regular Expression</li>
+                            <li>Enhanced Object Properties</li>
+                            <li>Destructuring Assignment</li>
+                            <li>Modules</li>
+                            <li>Classes</li>
+                            <li>Symbol Type</li>
+                            <li>Iterators</li>
+                            <li>Generators</li>
+                            <li>Map/Set/WeakMap/WeakSet</li>
+                            <li>Typed Arrays</li>
+                            <li>New Built-In Methods</li>
+                            <li>Promises</li>
+                            <li>Meta-Programming</li>
+                            <li>Internationalization &amp; Localization</li>
+                        </ul>
+                    </small>
+                    <img src="images/3/jsnext/es-compat.png" class="logo-big float-right fragment">
+                    <p class="fragment clearfix">Despite an impressive set of new features,
+                        <br> ES6 is
+                        <u>backwards compatible</u>
+                    </p>
+                    <small class="fragment">
+                        <a target="_blank" href="http://es6-features.org/">ES6 - New Features: Overview &amp; Comparison</a>
+                    </small>
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+
+                <section id="browser-support">
+                    <img src="images/3/jsnext/es6-logo2.png" class="logo float-right">
+                    <h2>Browser Support</h2>
+                    <p class="fragment clearfix">ES6 support varies substantially
+                        <br>across browsers and JS environments</p>
+                    <img src="images/3/jsnext/es6-browser.png" class="fragment">
+                    <p class="fragment">ES6 performance is getting better, but still catching up...</p>
+                    <img src="images/3/jsnext/es6-perf.png" class="fragment tiny">
+                </section>
+
+                <section>
+                    <p>
+                        <img src="images/3/jsnext/babel-logo.png" class="logo">
+                    </p>
+                    <p class="fragment clearfix">Use ES6+ syntax without waiting for browser support</p>
+                    <img src="images/3/jsnext/transpiling.png" class="fragment">
+                    <p class="fragment">
+                        <u>Transpiling</u> is the process of compiling
+                        <br>ES6 source code into ES5 source code</p>
+                </section>
+
+                <section id="node">
+                    <img src="images/3/jsnext/node-logo.png" class="logo float-right">
+                    <h2>Node Support</h2>
+                    <p class="fragment clearfix">ES6 and ES2016(ES7) are already mainstream on Node.js</p>
+                    <p class="fragment">
+                        <img src="images/3/jsnext/node-es6-support.png" class="logo float-right">
+                        <small>Node.JS ES2015 support</small>
+                    </p>
+                    <p class="fragment">
+                        <img src="images/3/jsnext/node-es7-support.png" class="logo float-right">
+                        <small>Node.JS ES2016 support</small>
+                    </p>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="block-scope">
+                    <img src="images/3/jsnext/minecraft-block.png" class="logo float-right">
+                    <h2>Block Scoped Declarations</h2>
+                    <p class="fragment clearfix">In ES5, the fundamental unit of variable scoping was the
+                        <u>function</u>
+                        <br>
+                    </p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; line-height: 0.9rem;">
+var a = 2;
+(function iife() {
+    var a = 3;
+    console.log(a); // 3
+})();
+
+console.log(a); // 2
+						</code>
+					</pre>
+                    <p class="fragment">But in ES6 we can declare variables bounded to any code block</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; line-height: 0.9rem;">
+var a = 2;
+{
+    let a = 3;
+    console.log(a); // 3
+}
+
+console.log(a); // 2
+						</code>
+					</pre>
+                    <small class="fragment">No more reason to use function scope,
+                        <u>block scoping</u> is the way to go!</small>
+                </section>
+
+                <section id="let">
+                    <img src="images/3/jsnext/var-let-logo.png" class="logo float-right">
+                    <h2>let</h2>
+                    <p class="fragment">let declarations
+                        <u>attach to the block scope</u>
+                    </p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em;">
+{
+    console.log(a); // undefined
+    var a = 1;
+
+    console.log(b); // ReferenceError thrown
+    let b = 2;
+}
+
+console.log(a); // 1
+console.log(b); // ReferenceError thrown
+						</code>
+					</pre>
+                    <p class="fragment">block scoped variables are
+                        <u>not initialized</u> until they appear in the block</p>
+                </section>
+
+                <section>
+                    <img src="images/3/jsnext/lambdas-logo.png" class="logo float-right">
+                    <h2>let and closures</h2>
+                    <p class="fragment">If used in the header of a
+                        <b>for</b> loop,
+                        <br>let will create a
+                        <u>new variable binding</u> per loop iteration</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em;">
+var funcs = [];
+
+for (let i = 0; i &lt; 5; i++) {
+    funcs.push(function() {
+        console.log(i);
+    });
+}
+
+funcs[1]();  // 1
+funcs[3]();  // 3
+						</code>
+					</pre>
+                    <p class="fragment">Closures created inside the loop iteration
+                        <br>close over each iteration binding</p>
+                </section>
+
+                <section id="const">
+                    <img src="images/3/jsnext/pi.png" class="logo float-right">
+                    <h2>const</h2>
+                    <p class="fragment">Read-only block scoped variable declaration</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em;">
+{
+    const a = 2;
+    console.log(a); // 2
+
+    a = 3;  // TypeError!
+}
+						</code>
+					</pre>
+                    <p class="fragment">If the value of a constant is complex such as an object or an array, the objects themselfs are mutable</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em;">
+{
+    const p = { x: 1, y: 0};
+    p.y = 1; // mutation of the referenced object is not a problem
+
+    p = { x: 1, y: 0}; // TypeError thrown
+}
+						</code>
+					</pre>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="rest-spread">
+                    <img src="images/3/jsnext/rest-spread.png" class="logo float-right">
+                    <h2>
+                        <b>...</b> REST/SPREAD</h2>
+                    <p class="fragment">When used as a function argument, it will gather the
+                        <i>rest</i>
+                        <br>of the arguments into an array</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; line-height: 0.9rem;">
+function foo(a, ...args) {
+    console.log(a); // 1
+    console.log(args); // [2,3,4,5]
+}
+
+foo(1, 2, 3, 4, 5);
+						</code>
+					</pre>
+                    <p class="fragment">When used in front of an array it will
+                        <i>spread</i> out into its individual values</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; line-height: 0.9rem;">
+function foo(a, b, c, d, e, f) {
+    console.log(a, b, c, d, e, f);
+}
+
+const values = [1, 2, 3, 4, 5];
+
+foo(...values); // 1 2 3 4 5
+						</code>
+					</pre>
+                    <small class="fragment">No more need to use the
+                        <b>[].slice.call(arguments)</b> hack to convert arguments into an array</small>
+                </section>
+
+                <section id="default-values">
+                    <img src="images/3/jsnext/default-avatar.png" class="logo float-right">
+                    <h2>Default Parameter Values</h2>
+                    <p class="fragment clearfix">A new syntax exists for setting a default value on a function parameter</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+// ES5 way
+function foo(x, y) {
+    x = x || 10;
+    y = y || 30;
+    return x + y;
+}
+
+console.log(foo(5, 6)); // 11
+console.log(foo(5)); // 35
+console.log(foo(0, 1)); // oops... what is the problem here?
+
+// ES6 way
+function bar(x = 10, y = 30) {
+    return x + y;
+}
+
+console.log(bar(5, 6)); // 11
+console.log(bar(5)); // 35
+console.log(bar(0, 1)); // 1
+						</code>
+					</pre>
+                    <p class="fragment tight">Much simpler and less error prone</p>
+                </section>
+
+                <section id="destructuring">
+                    <img src="images/3/jsnext/destructuring.png" class="logo float-right">
+                    <h2>Destructuring Assignment</h2>
+                    <p class="fragment clearfix">Unpacks
+                        <u>selected</u> values from arrays, or properties from objects,
+                        <br>into distinct variables</p>
+                    <div class="float-left" style="width: 40%;">
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.9em; line-height: 0.9rem;">
+// ES5 style
+var results, company, companyDetails;
+
+results = Promise.all([
+    companyService.get(id),
+    companyService.getDetail(id)
+]);
+company = results[0];
+companyDetails = results[1];
+						</code>
+					</pre>
+                    </div>
+                    <div class="float-right" style="width: 55%;">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable style="font-size: 0.9em; line-height: 0.9rem;">
+// ES6 style
+const [company, companyDetail] = Promise.all([
+    companyService.get(id),
+    companyService.getDetail(id)
+]);
+							</code>
+						</pre>
+                    </div>
+                    <p class="fragment clearfix">Discarding
+                        <u>non interesting</u> properites form objects is easy</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.9em; line-height: 0.9rem;">
+function getUser() {
+    return { name: 'Rui', hobby: 'surf' };
+}
+
+let { name } = getUser(); // don't really care about hobbies...
+console.log(name);
+						</code>
+					</pre>
+                </section>
+
+                <section>
+                    <img src="images/3/jsnext/light-logo.png" class="logo float-right">
+                    <h2>Object Enhancements</h2>
+                    <p class="fragment clearfix">A number of important convenience extensions
+                        <br>to the object literal exist in ES6</p>
+                    <div class="float-left" style="max-width: 50%;">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// ES5
+var color = 'red';
+var speed = '10';
+var computedProp = 'hand brake';
+
+var car = {
+    color: color,
+    speed: speed,
+    start: function() {
+        console.log('Vruuuum!');
+    }
+};
+
+car[computedProp] = true;
+							</code>
+						</pre>
+                    </div>
+                    <div class="float-right" style="max-width: 50%;">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// ES6
+const color = 'red';
+const speed = '10';
+const computedProp = 'hand break';
+
+let car = {
+    color,
+    speed,
+    start() {
+        console.log('Vruuuum!');
+    },
+    [computedProp]: true
+}
+							</code>
+						</pre>
+                    </div>
+                    <p class="fragment clearfix">object enhancements help you write
+                        <u>less code</u>
+                        <br>and easily create complex Objects</p>
+                </section>
+
+                <section id="getters">
+                    <img src="images/3/jsnext/getter-setter.png" class="logo float-right">
+                    <h2>Getters and Setters</h2>
+                    <p class="fragmen clearfix">Syntax to
+                        <u>bind an object property to a function</u> to be called
+                        <br>when there is an attempt to get or set the property</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+let person = {
+
+    firstName: 'Rui',
+    lastName: 'Ferrão',
+
+    get fullName() {
+        return this.firstName + ' ' + this.lastName;
+    },
+
+    set fullName(value) {
+        [this.firstName, this.lastName] = value.split(' ');
+    }
+};
+
+console.log(person.fullName); // Rui Ferrão
+
+person.fullName = 'Pedro Antoninho';
+console.log(person.fullName); // Pedro Antoninho
+						</code>
+					</pre>
+                </section>
+
+                <section id="template">
+                    <img src="images/3/jsnext/string.jpg" class="logo float-right">
+                    <h2>Template Literals</h2>
+                    <p class="fragment clearfix">String templates provide interpolation,
+                        <br>giving us a lot more control over creating strings</p>
+                    <div class="float-left" style="max-width: 50%">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// ES5
+var name = 'Pedro';
+var greeting = "Hello " + name + "!";
+
+console.log(greeting); // Hello Pedro!
+console.log(typeof greeting); // string
+							</code>
+						</pre>
+                    </div>
+                    <div class="float-right" style="max-width: 50%">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// ES6
+let name = 'Pedro';
+let greeting = `Hello ${name} !`;
+
+console.log(greeting); // Hello Pedro!
+console.log(typeof greeting); // string
+							</code>
+						</pre>
+                    </div>
+                    <small class="fragment">A great benefit of interpolated string literals is they are allowed to span across multiple lines</small>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="line-height: 0.9rem">
+let test = `Blessed is he who, in the name of charity and goodwill,
+shepherds the weak through the valley of darkness,
+for he is truly his brother's keeper, and the finder of lost children.
+And I will strike down upon thee with great vengeance
+and furious anger those who attempt to poison and destroy my brothers.`
+
+console.log(text);
+						</code>
+					</pre>
+                    <small class="fragment tight">The line breaks in the interpolated string literal
+                        <u>are preserved</u> in the string value</small>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="arrow">
+                    <img src="images/3/jsnext/arrow.jpg" class="logo float-right">
+                    <h2>Arrow Functions</h2>
+                    <p class="fragment clearfix">Shortcut for creating anonymous functions with
+                        <br>
+                        <b>this</b> bounded to lexical scope</p>
+                    <div class="float-left" style="max-width: 50%">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// How can we fix this?
+let person = {
+    name: 'Rui',
+    delayedHello(delay) {
+        setTimeout(function() {
+            console.log(this.name);
+        }, delay);
+    }
+};
+
+person.delayedHello(1000); // undefined
+							</code>
+						</pre>
+                    </div>
+                    <div class="float-right" style="max-width: 50%">
+                        <pre class="fragment" style="margin: 0;">
+								<code class="javascript" data-trim contenteditable>
+// ES6
+let person = {
+    name: 'Rui',
+    delayedHello(delay) {
+        setTimeout(() =&gt; {
+            console.log(this.name);
+        }, delay);
+    }
+};
+
+person.delayedHello(1000); // Hello Rui!
+								</code>
+							</pre>
+                    </div>
+                    <small class="fragment">Before ES6 we could solve this using
+                        <b>bind</b> to set the this context or grab the context on a closure (
+                        <i>that</i>)</small>
+                    <small class="fragment">The
+                        <b>arguments</b> object is
+                        <u>not available</u> with arrow functions, the
+                        <b>...rest</b> operator
+                        <u>has to be used</u> instead</small>
+                    <aside class="notes">
+                        <ul>
+                            <li>use bind/call/apply</li>
+                            <li>use a me/that variable set to this and close over it</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <img src="images/3/jsnext/short-tall.gif" class="logo float-right">
+                    <h2>Shorter Syntax</h2>
+                    <p class="fragment">Arrow functions provide for a compact syntax</p>
+                    <div class="float-left" style="max-width: 50%">
+                        <pre class="fragment" style="margin: 0;">
+								<code class="javascript" data-trim contenteditable>
+// ES5
+var math = {
+    product: function(x, y) {
+        return x * y;
+    },
+    square: function(x) {
+        return x * x;
+    }
+};
+								</code>
+							</pre>
+                    </div>
+                    <div class="float-right" style="max-width: 50%">
+                        <pre class="fragment" style="margin: 0;">
+									<code class="javascript" data-trim contenteditable>
+// ES6
+let math = {
+    product: (x, y) =&gt; x * y,
+    square: x =&gt; x * x
+}
+									</code>
+								</pre>
+                    </div>
+                    <p class="clearfix">
+                        <span class="fragment">
+                            we got rid of function brackets and return statement for
+                            <u>one liners</u>,
+                            <br> as well as parentheses if the function receives only
+                            <u>one argument</u>
+                        </span>
+                    </p>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="class">
+                    <img src="images/3/jsnext/sugar.png" class="logo float-right">
+                    <h2>Classes</h2>
+                    <p class="fragment clearfix">ES6 Classes are
+                        <u>syntactic sugar</u> over prototype-based inheritance</p>
+                    <div class="float-left" style="max-width: 55%">
+                        <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// ES5
+
+// constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// static method
+Person.greet = function() {
+    console.log('Hi!');
+}
+
+// instance method
+Person.prototype.getFakeAge = function(years) {
+    return this.age - years;
+}
+								</code>
+							</pre>
+                    </div>
+                    <div class="float-right" style="max-width: 45%">
+                        <pre class="fragment" style="margin: 0;">
+								<code class="javascript" data-trim contenteditable>
+// ES6
+class Person {
+
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    static greet() {
+        console.log('Hi!');
+    }
+
+    fakeAge(years) {
+        return this.age - years;
+    }
+}
+								</code>
+							</pre>
+                    </div>
+                </section>
+
+                <section id="subclass">
+                    <img src="images/3/jsnext/subclass.png" class="logo float-right">
+                    <h2>Subclassing</h2>
+                    <p class="fragment clearfix">
+                        <b>extends</b> keyword can be used to create a class as a child of another class</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(this.name + ' makes a noise.');
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log(this.name + ' barks.');
+    }
+}
+						</code>
+					</pre>
+                    <small class="fragment">It is now possible to
+                        <u>extend natives</u> such as
+                        <b>Array</b> or
+                        <b>Error</b>
+                    </small>
+                </section>
+
+                <section>
+                    <img src="images/3/jsnext/constructor.png" class="logo float-right">
+                    <h2>Default Constructors</h2>
+                    <p class="fragment">A default constructor is created for
+                        <u>all</u> classes if omitted</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+class Animal {
+
+    // default constructor for classes
+    constructor() { }
+
+};
+
+class Dog extends Animal {
+
+    // default constructor for subclasses
+    constructor(...args) {
+
+        super(...args);
+
+        // this is now available
+    }
+};
+
+
+						</code>
+					</pre>
+                    <small class="fragment">In a constructor of a subclass,
+                        <b>this</b>
+                        <u>cannot be accessed</u> until
+                        <b>super</b> is called</small>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="modules">
+                    <img src="images/3/jsnext/modules.png" class="logo float-right">
+                    <h2>Modules</h2>
+                    <p class="fragment">ES6 introduced a new standardized
+                        <u>module format</u>
+                    </p>
+                    <small>
+                        <ul>
+                            <li class="fragment">One module per file</li>
+                            <li class="fragment">Module API is static</li>
+                            <li class="fragment">Modules are singletons and mantain state</li>
+                            <li class="fragment">Importing a module implies a blocking load</li>
+                        </ul>
+                    </small>
+                    <p class="fragment">The mechanism for
+                        <u>module loading</u> is provided by
+                        <br>the hosting environment (browser, node, webpack, etc.)</p>
+                    <img src="images/3/jsnext/browser-modules.png" class="fragment tiny">
+                    <small class="fragment">ES6 module loading is one of the
+                        <u>latest feature to arrive</u> to browsers</small>
+                </section>
+
+                <section id="module-exports">
+                    <img src="images/3/jsnext/export.png" class="logo float-right">
+                    <h2>Module Exports</h2>
+                    <p class="fragment clearfix">The
+                        <b>export</b> keyword can be used
+                        <u>in front of a declaration</u>
+                        <br>or
+                        <u>as an operator</u> with a list of bindings to export </p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+// all API members as named exports
+
+export function add() { } // export add binding
+export let multiplier = 100; // export multiplier binding
+
+let odds = [1, 3, 5];
+let evens = [2, 4, 6]
+let zero = 0;
+export { odds, evens }; // export odds and evens bindings
+export zero as nil; // export nil as alias to zero binding
+
+// one default export per module
+export default function substract() { } // default export
+						</code>
+					</pre>
+                    <small class="fragment">ES6 modules export immutable bindings, not values or references</small>
+                    <aside class="notes">
+                        http://2ality.com/2015/07/es6-module-exports.html
+                    </aside>
+                </section>
+
+                <section id="imports">
+                    <img src="images/3/jsnext/import.png" class="logo float-right">
+                    <h2>Module Imports</h2>
+                    <p class="fragment clearfix">The
+                        <b>import</b> keyword can be used to load a module from another one</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+// loads, compiles and evaluates the module without actually importing any of its bindings
+import "module";
+
+// import the default export as sub
+import sub from 'module';
+
+// import the named exports add and multiplier (aliased to mul)
+import { add, multiplier as mul } from 'module';
+
+// import the entire module API to the single math namespace
+import * as math from 'module';
+						</code>
+					</pre>
+                    <p class="fragment">import only the specific bindings from a module that are required</p>
+                </section>
+
+                <section>
+                    <img src="images/3/jsnext/loading.png" class="logo float-right">
+                    <h2>Browser Module Loading</h2>
+                    <p class="fragment clearfix">The latest browsers are already supporting module loading</p>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="html" data-trim contenteditable>
+// index.html
+&lt;script type="module"&gt;
+  import {addTextToBody} from './utils.js';
+
+  addTextToBody('Modules without babel/webpack!!!');
+&lt;/script&gt;
+						</code>
+					</pre>
+                    <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+// utils.js
+export function addTextToBody(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    document.body.appendChild(div);
+}
+						</code>
+					</pre>
+                    <small class="fragment">
+                        <b>type=module</b> makes the browser treat the inline or external script as an ES6 module</small>
+                    <aside class="notes">
+                        <ul>
+                            <li>es6 modules load without blocking, contraring to reguar script tags</li>
+                        </ul>
+                    </aside>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="async">
+                    <img src="images/3/jsnext/async.png" class="logo float-right">
+                    <h2>Async/Await</h2>
+                    <p class="fragment clearfix">Abstraction
+                        <u>built on top of Promises/Generators</u> that allows writing
+                        <br>asynchronous code in a readable and synchronous looking fashion</p>
+                    <div class="float-left" style="max-width: 48%; font-size: 0.95em;">
+                        <pre class="fragment" style="margin: 0;">
+								<code class="javascript" data-trim contenteditable>
+// With ES6 Promises
+function fetchUser(login) {
+
+  const api = 'https://api.github.com/users';
+
+  return fetch(`${api}/${login}`)
+      .then(response =&gt; response.json())
+      .then(user =&gt; ({
+          name: user.name,
+          location: user.location
+      }));
+}
+									</code>
+								</pre>
+                    </div>
+                    <div class="float-right" style="max-width: 52%; font-size: 0.94em;">
+                        <pre class="fragment" style="margin: 0;">
+									<code class="javascript" data-trim contenteditable>
+// With ES2017 async/await
+async function fetchUser(login) {
+
+  const api = 'https://api.github.com/users';
+  const response = await fetch(`${api}/${login}`);
+  const user = await response.json();
+
+  return {
+      name: user.name,
+      location: user.location
+  };
+}
+									</code>
+								</pre>
+                    </div>
+                    <p class="fragment clearfix">
+                        <b>async</b> functions
+                        <u>always</u> return a Promise!
+                        <br>
+                        <span class="fragment">
+                            <b>await</b>
+                            <u>schedules the execution</u> of the remaining of the function
+                            <br>to
+                            <u>when the promise is fulfilled</u>!</span>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>body of async function reads like sync sequential code</li>
+                            <li>async works on function expressions, arrow functions and class methods too</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="await">
+                    <img src="images/3/jsnext/await.png" class="logo float-right">
+                    <h2>Awaiting asynchronous functions</h2>
+                    <p class="fragment clearfix">We can only
+                        <b>await</b> on an async function
+                        <u>inside another</u> async function</p>
+                    <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+async function sleep(timeout) {
+    return new Promise((resolve) =&gt; setTimeout(resolve, timeout));
+}
+
+(async function() {
+    await sleep(1000); // wait for 1 second
+    console.log('Done!');
+})();
+							</code>
+					</pre>
+                    <small class="fragment tight">Top level
+                        <b>await</b>
+                        <u>has to be wrapped</u> in an
+                        <b>async</b> IIFE</small>
+                    <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+// non-Promise values are wrapped in a Promise
+let value1 = (async () =&gt; { return await 42; })();
+let value2 = (async () =&gt; { return 42; })();
+
+console.log(value1 instanceof Promise); // true
+console.log(value2 instanceof Promise); // true
+							</code>
+					</pre>
+                    <small class="fragment tight">We can
+                        <b>await</b> on
+                        <u>any thenable</u> or
+                        <u>non Promise</u> value</small>
+                </section>
+
+                <section id="sequential">
+                    <img src="images/3/jsnext/sequential.png" class="logo float-right">
+                    <h2>Sequential Flows</h2>
+                    <p class="fragment clearfix">Mutiple promises can be executed sequentially using the
+                        <b>await</b> operator</p>
+                    <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+async function fetchGitHub(endpoint) {
+
+    const api = `https://api.github.com/${endpoint}`;
+
+    const response = await fetch(api);
+    return response.json(); // return the promise, no need to await
+}
+
+async function showRepos(login) {
+
+    const user = await fetchGitHub(`users/${login}`);
+    const repos = await fetchGitHub(`users/${login}/repos`);
+
+    console.log(`${user.name} repositories:`);
+    repos.forEach((repo) =&gt; console.log(repo.name));
+}
+							</code>
+					</pre>
+                    <small class="fragment">How can the
+                        <i>showRepos</i> function be optimized?</small>
+                    <aside class="notes">
+                        <ul>
+                            <li>By firing both AJAX requests in parallel</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="parallel">
+                    <img src="images/3/jsnext/parallel.png" class="logo float-right">
+                    <h2>Parallel Flows</h2>
+                    <p class="fragment clearfix">The
+                        <b>Promise.all</b> method can be used to fire
+                        <u>multiple promises in parallel</u>
+                    </p>
+                    <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+async function fetchGitHub(endpoint) {
+
+    const api = `https://api.github.com/${endpoint}`;
+
+    const response = await fetch(api);
+    return response.json(); // return the promise, no need to await
+}
+
+async function showRepos(login) {
+
+    const [user, repos] = await Promise.all([
+        fetchGitHub(`users/${login}`),
+        fetchGitHub(`users/${login}/repos`)
+    ]);
+
+    console.log(`${user.name} repositories:`);
+    repos.forEach((repo) =&gt; console.log(repo.name));
+}
+							</code>
+					</pre>
+                    <small class="fragment">As soon as
+                        <u>one promise</u> gets rejecteds,
+                        <i>Promise.all</i> will reject</small>
+                </section>
+
+                <section id="error">
+                    <img src="images/3/jsnext/error.png" class="logo float-right">
+                    <h2>Error Handling</h2>
+                    <p class="fragment clearfix">Async functions return a
+                        <u>rejected</u> promise when an error is thrown</p>
+                    <pre class="fragment" style="margin: 0; font-size: 0.95rem;">
+							<code class="javascript" data-trim contenteditable>
+async function fetchGitHubUser(login) {
+    const api = `https://api.github.com/users/${login}`;
+    const response = await fetch(api);
+    const body = await response.json();
+
+    if (!response.ok) {
+        throw new Error(body.message); // throwing inside async rejects the returned promise
+    }
+
+    return body;
+}
+						</code>
+					</pre>
+                    <p class="fragment tight">try/catch blocks
+                        <u>can be used</u> to handle errors in asynchronous functions</p>
+                    <pre class="fragment" style="margin: 0; font-size: 0.95rem;">
+							<code class="javascript" data-trim contenteditable>
+async function showGitHubUser(login) {
+    try {
+        const user = await fetchGitHubUser(login);
+        console.log(`${user.name} is from ${user.location}`);
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+							</code>
+					</pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>We can now catch synchronous and asynchronous errors within the same block of code</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="loops">
+                    <img src="images/3/jsnext/loop.png" class="logo float-right">
+                    <h2>Looping with async/await</h2>
+                    <p class="fragment">We can use async/await inside regular for loops</p>
+                    <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+async function randomNums(howMany) {
+    let results = [];
+    for (let i = 0; i &lt; howMany; i++) {
+        await sleep(1000);
+        results.push(Math.random());
+    }
+    return results;
+}
+
+console.log(await randomNums(10)); // 10 random numbers after 10 seconds
+						</code>
+					</pre>
+                    <small class="fragment tight">But things
+                        <u>do not work</u> quite as expected inside a
+                        <b>forEach</b> or other array methods...</small>
+                    <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable>
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(async (num) =&gt; {
+    await sleep(1000)
+    console.log(num)
+});
+
+console.log('Finished!');
+						</code>
+					</pre>
+                    <small class="fragment">What do you believe the output to be? Why?</small>
+                    <aside class="notes">
+                        <li>callback function in forEach array native implementation is executed without await</li>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>AJAX with async/await</h3>
+                        <img class="big tight" src="images/3/jsnext/launch-exercise.png">
+                        <p class="clearfix"></p>
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+                <div class="exercise">
+                    <h2>{ Exercise }</h2>
+                    <h3>
+                        <span style="color: green;">
+                            <b>&#10003;</b>
+                        </span>&nbsp;&nbsp;you should get a green check mark on all tests</h3>
+                    <img class="big tight" src="images/3/jsnext/next-tests.png">
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        /*jshint -W117 */
+
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            width: 1024,
+            overview: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 35,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

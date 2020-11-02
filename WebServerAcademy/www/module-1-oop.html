@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? "css/print/pdf.css"
+                : "css/print/paper.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="header">
+            <img id="logo" src="logo.png" />
+        </div>
+
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Object Oriented Programming</h1>
+                    <p>
+                        <small
+                            >Created by
+                            <a>&lt;Academia de Código_&gt;</a></small
+                        >
+                    </p>
+                </section>
+
+                <section class="stacked present" id="composition">
+                    <section>
+                        <h2>Composition</h2>
+                        <p>
+                            Design technique to implement
+                            <u>HAS-A</u> relationship in classes
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    The act of composing a class out of
+                                    references to other objects;
+                                </li>
+                                <li>
+                                    With composition, references to the
+                                    constituent objects become fields of the
+                                    containing object.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_composition_calc.png"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            The calculator HAS-A Brain and HAS-A Display.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    All the calculator behaviour is on the same
+                                    class;
+                                </li>
+                                <li>
+                                    Let's create some additional classes to
+                                    divide responsibilities.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Let's create the Brain</h2>
+                        <p>
+                            Will be responsible for performing all the math
+                            calculator operations
+                        </p>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Brain.java
+ */
+
+public class Brain {
+
+    public int getResult(Operation operation, int number1, int number2) {
+
+            // ...
+        }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Let's create the Display</h2>
+                        <p>
+                            The calculator Display will be responsible for
+                            showing all the output.
+                        </p>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Display.java
+ */
+
+// Create a new class
+public class Display {
+
+    public void showResult(int result) {
+        System.out.println(result);
+    }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>The Calculator has-a Brain and a Display</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Calculator.java
+ */
+
+public class Calculator {
+
+    // ...
+
+    private Brain brain;     // responsible for performing the math
+    private Display display; // responsible for showing results
+
+    public Calculator(String brand, String color) {
+
+        // ...
+
+        brain = new Brain();
+        display = new Display();
+    }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Make use of the new classes</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Calculator.java
+ */
+
+// perform chosen operation on provided numbers
+public void executeOperation(Operation operation, int number1, int number2) {
+
+    // ask the brain to compute the result
+    int result = brain.getResult(operation, number1, number2);
+
+    // ask the display to show the result
+    display.showResult(result);
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Composition and Delegation</h2>
+                        <p class="fragment">
+                            Design Pattern where an object exposes behaviour to
+                            the outside
+                        </p>
+                        <p class="fragment">
+                            Object delegates the responsibility for implementing
+                            the behaviour<br />to a composed object
+                        </p>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>
+                                Hotel Simulation using Composition and
+                                Delegation
+                            </h3>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section>
+                        <h2>Inheritance</h2>
+                        <p>
+                            Inheritance is the design technique to implement
+                            <u>IS-A</u> relationship in classes. It allows
+                            classes to be derived from other classes, thereby
+                            inheriting their fields and methods.
+                        </p>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_inheritance2.png"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    For example, we belong to the mammals
+                                    category. But so do dogs and cats.
+                                </li>
+                                <li>
+                                    This means that all of us share same
+                                    properties and behaviours of the mammal
+                                    class but we also have our own properties
+                                    and behaviours which set us apart from each
+                                    other.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_inheritance1.png"
+                            alt=""
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Why inheritance?</h2>
+                        <p>
+                            Allows you to reuse the fields and methods of the
+                            existing class without having to write them again
+                            (easier to use and modify).
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Well because using inheritance in
+                                    programming, mostly prevents you from
+                                    repeating code and also provides more
+                                    scalable solutions.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_inheritance_calculator1.png"
+                            alt=""
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Let’s think about the calculator. On the
+                                    last example, the calculator had a brand and
+                                    a color and was able to add numbers.
+                                </li>
+                                <li>
+                                    If we think about a basic calculator it can
+                                    also subtract, divide and multiply numbers.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_inheritance_calculator2.png"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            The Scientific Calculator IS-A Calculator.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    But now imagine we have a scientific
+                                    calculator.
+                                </li>
+                                <li>
+                                    In addition to everything the basic
+                                    calculator does it also performs exponents,
+                                    logarithms, trigonometry functions and so
+                                    on.
+                                </li>
+                                <li>
+                                    Both calculators share the same basic
+                                    functionality.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_inheritance_calculator3.png"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            The Scientific Calculator can do everything a
+                            Calculator does and more.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    So basically, the scientific calculator can
+                                    inherit everything from the basic one and
+                                    just add its specific behaviours.
+                                </li>
+                                <li>
+                                    In Java we use the extends keyword to
+                                    indicate that a class inherits all
+                                    properties and behaviours from another more
+                                    general class.
+                                </li>
+                                <li>
+                                    The more general class is usually called
+                                    superclass or parent class, while the one
+                                    extending is usually called the subclass or
+                                    child class.
+                                </li>
+                                <li>
+                                    So the advantage of using inheritance is
+                                    that we are sharing the same base class to
+                                    provide equal functionality to more specific
+                                    classes by reusing the code.
+                                </li>
+                                <li>
+                                    We implement the shared functionality on the
+                                    superclass and on each subclass we just add
+                                    the specific properties and behaviours.
+                                </li>
+                                <li>
+                                    And moreover If we need to modify or add new
+                                    behaviours or properties to all our child
+                                    classes we just need to modify the parent
+                                    class, instead of changing each class
+                                    individually.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Use Inheritance when</h2>
+                        <ul>
+                            <li class="fragment">
+                                The subclass is a more specific type of the
+                                superclass;
+                            </li>
+                            <li class="fragment">
+                                Share behaviours among classes of the same
+                                general type;
+                            </li>
+                            <li class="fragment">
+                                The subclass and the superclass pass the IS-A
+                                test.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Do <u>not</u> use Inheritance</h2>
+                        <ul>
+                            <li class="fragment">
+                                Reuse code from another class without existing a
+                                proper relationship among the classes;
+                            </li>
+                            <li class="fragment">
+                                The subclass and the superclass do not pass the
+                                IS-A test;
+                            </li>
+                            <li class="fragment">
+                                The relationship is better described using the
+                                HAS-A test.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Inheritance vs Composition</h2>
+                        <p class="fragment">
+                            Composition and delegation can be used as an
+                            alternative to inheritance.
+                        </p>
+                        <p class="fragment">
+                            Inheritance is a good strategy when a close
+                            relationship exists in between parent and child
+                            object
+                        </p>
+                        <p class="fragment">
+                            Inheritance couples objects very close
+                        </p>
+
+                        <small class="fragment"
+                            ><b
+                                >Composition and Delegation is
+                                <u>the more flexible way</u> to express a
+                                relationship between classes</b
+                            ></small
+                        >
+                    </section>
+
+                    <section>
+                        <h2>Extending the Calculator Class</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * ScientificCalculator.java
+ */
+
+// The Scientific Calculator IS-A Calculator
+public class ScientificCalculator extends Calculator {
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Adding Methods</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * ScientificCalculator.java
+ */
+
+// The Scientific Calculator IS-A Calculator
+public class ScientificCalculator extends Calculator {
+
+    // Returns the value of the first argument
+    // raised to the power of the second argument
+    public double pow(double number, double power) {
+        return Math.pow(number, power);
+    }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Method Overriding</h2>
+                        <p class="fragment">
+                            Declaring a method in a subclass which is already
+                            present in a parent class is known as method
+                            overriding
+                        </p>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * ScientificCalculator.java
+ */
+
+// The Scientific Calculator IS-A Calculator
+public class ScientificCalculator extends Calculator {
+
+    @Override
+    public void powerOn() {
+
+        super.powerOn(); // call the power method on the superclass
+        display.showMessage("And I can also do some more advanced operations such as powers");
+    }
+
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Default Constructor</h2>
+                        <p class="fragment">
+                            The Java compiler will insert a default constructor
+                            on a class<br />
+                            if no constructor is found
+                        </p>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+// Calculator Class
+public class Calculator {
+
+    // default constructor contains no arguments and an empty body
+    public Calculator() {}
+
+}
+                    </code></pre>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+// ScientificCalculator class
+public class ScientificCalculator extends Calculator {
+
+    // default constructor includes a call to super if inheriting
+    public ScientificCalculator() {
+        super();
+    }
+
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Non-default Constructor</h2>
+                        <p class="fragment">
+                            The superclass default constructor is always
+                            implicitly called from any subclass constructor
+                        </p>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+public class ScientificCalculator extends Calculator {
+
+    private String brand;
+
+    public ScientificCalculator() {
+        super(); // implicict constructor call will be added by compiler if not present
+        this.brand = brand;
+    }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>No Default Constructor</h2>
+                        <p class="fragment">
+                            What if the super class has no default constructor?
+                        </p>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+public class Calculator {
+
+    private String brand;
+
+    public Calculator(String brand) {
+        this.brand = brand;
+    }
+
+}
+
+public class ScientificCalculator extends Calculator {}
+                    </code></pre>
+                        <p class="fragment">
+                            Program will not compile, default subclass
+                            constructor calls non existing super class default
+                            constructor
+                        </p>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+public class ScientificCalculator extends Calculator {
+
+    public ScientificCalculator(String brand) {
+        super(brand); // superclass has no default constructor, explicit call to super is required
+    }
+
+}
+                    </code></pre>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section id="arabiannights">
+                        <img
+                            class="large"
+                            src="images/1/java/arabian-nights.jpg"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Magic Lamp</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/arabian-nights-lamp.png"
+                        />
+                        <ul>
+                            <li class="fragment">
+                                Releases a new genie every time it is rubbed
+                            </li>
+                            <li class="fragment">
+                                When enchanted (instantiated), the maximum
+                                number of genies is set
+                            </li>
+                            <li class="fragment">
+                                Genies can be Friendly (even) or Grumpy (odd)
+                            </li>
+                            <li class="fragment">
+                                When the number of genies is exhausted, it
+                                releases a recyclable demon
+                            </li>
+                            <li class="fragment">
+                                Has the ability to recharge itself by recycling
+                                a demon
+                            </li>
+                            <li class="fragment">
+                                We can compare two lamps by their capacity,
+                                number of remaining genies and number of times
+                                it has been recharged
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Friendly Genie</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/arabian-nights-happy.jpg"
+                        />
+                        <ul>
+                            <li class="fragment">
+                                When released from the lamp (instantiated), the
+                                maximum number of wishes is set
+                            </li>
+                            <li class="fragment">
+                                It can only grant one wish at a time
+                            </li>
+                            <li class="fragment">
+                                It can grant wishes if the maximum has not been
+                                reached
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Grumpy Genie</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/arabian-nights-grumpy.jpg"
+                        />
+                        <ul>
+                            <li class="fragment">
+                                When released from the lamp (instantiated), the
+                                maximum number of wishes is set
+                            </li>
+                            <li class="fragment">
+                                It can only grant one wish at a time
+                            </li>
+                            <li class="fragment">
+                                Grants ONLY ONE wish, even if the maximum has
+                                not been reached
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Recyclable Demon</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/arabian-nights-demon.jpg"
+                        />
+                        <ul>
+                            <li class="fragment">
+                                When released from the lamp (instantiated), the
+                                maximum number of wishes is set
+                            </li>
+                            <li class="fragment">
+                                It can only grant one wish at a time
+                            </li>
+                            <li class="fragment">
+                                Grants ALL wishes, even if the maximum has
+                                already been reached
+                            </li>
+                            <li class="fragment">
+                                It can recharge a magic lamp, if recycled
+                            </li>
+                            <li class="fragment">
+                                It will not grant any more wishes after being
+                                recycled
+                            </li>
+                            <li class="fragment">
+                                It can only be recycled once
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>UML Class Diagram</h2>
+                        <img src="images/1/java/arabian-nights-uml.jpg" />
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section>
+                        <h2>Polymorphism</h2>
+                        <p>
+                            The ability to use superclass variables to refer to
+                            subclass objects, and using overridden methods of
+                            the subclass even though the subclass isn’t known
+                            when the program is compiled.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Polymorphism</h2>
+                        <img
+                            src="images/1/java/java_oop_polymorphism.jpg"
+                            alt=""
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Let's create a collection of Calculators</h2>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        Calculator calculator = new Calculator("Casio", "White");
+        Calculator calculatorChinese = new Calculator("Chinese", "Red");
+
+        ScientificCalculator calculatorSci = new ScientificCalculator("Texas Instruments", "Black");
+    }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Let's group all Calculators</h2>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Calculator calculator = new Calculator("Casio", "White");
+        Calculator calculatorChinese = new Calculator("Chinese", "Red");
+
+        ScientificCalculator calculatorSci = new ScientificCalculator("Texas Instruments", "Black");
+
+        // we can store all calculators on an array of the superclass type
+        Calculator[] myCalculators = { calculator, calculatorChinese, calculatorSci };
+    }
+}
+                    </code></pre>
+                        <p class="fragment">
+                            The reference type can be the superclass of the
+                            actual object.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Give them some power</h2>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        // ...
+
+        // we can store all calculators on an array of the superclass type
+        Calculator[] myCalculators = { calculator, calculatorChinese, calculatorSci };
+
+        for(int i = 0; i &lt; myCalculators.length; i++) {
+
+            // the method on the right class (super or sub) will be called at runtime
+            myCalculators[i].powerOn();
+        }
+    }
+}
+                    </code></pre>
+                        <p class="fragment">
+                            At runtime, the correct method will be called
+                            according to the object instance (super or
+                            subclass).
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Why Polymorphism?</h2>
+                        <ul>
+                            <li>
+                                Write code that will work without knowing
+                                specifically which subclass instance will be
+                                chosen
+                            </li>
+                            <li>
+                                Possibility to add more subclasses without
+                                breaking the existing code
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/1/java/java_oop_polymorphism_exercise.png"
+                            alt=""
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Get them all talking</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        Yoda yoda = new Yoda();
+        R2D2 r2d2 = new R2D2();
+        DarthVader darthVader = new DarthVader();
+
+        // we can assign subclass object types to an array of superclass objects
+        Character[] characters = { yoda, r2d2, darthVader };
+    }
+}
+                    </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Get them all talking</h2>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.9rem;"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        Yoda yoda = new Yoda();
+        R2D2 r2d2 = new R2D2();
+        DarthVader darthVader = new DarthVader();
+
+        Character[] characters = { yoda, r2d2, darthVader };
+
+        for(int i = 0; i &lt; characters.length; i++) {
+
+            // at compile time we don't know which method will be called
+            // the method on the right class (super or sub) will be called at runtime
+            characters[i].talk(message);
+        }
+    }
+}
+                    </code></pre>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section>
+                        <h2>Abstract Classes</h2>
+                        <p class="fragment">
+                            Conceptual classes that cannot be instantiated, but
+                            can be subclassed
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Why Abstract Classes?</h2>
+                        <p class="fragment">
+                            Providing a base skeleton with properties and
+                            methods with the sole purpose of being extended
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Character Class</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Character.java
+ */
+
+public abstract class Character {
+
+    private String name;
+
+    public abstract void talk(String message);
+
+}
+
+                    </code></pre>
+                        <p class="fragment">
+                            There is no point in creating Character object
+                            instances.
+                            <br />The class must be <u>extended</u>.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Abstract methods</h2>
+                        <p class="fragment">
+                            Methods that ensure the existence of a specific
+                            behaviour without declaring an implementation
+                        </p>
+                        <p class="fragment">
+                            A class with an abstract method must be abstract as
+                            well
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Declaring an Abstract method</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Character.java
+ */
+
+public abstract class Character {
+
+    private String name;
+
+    // I want my characters to talk but I have no idea how each one will do it
+    public abstract void talk(String message);
+
+}
+                    </code></pre>
+                        <p class="fragment">
+                            An abstract method has no body.
+                            <br />The method must be <u>overriden</u>.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Overriding the Abstract method</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Yoda.java
+ */
+
+public class Yoda extends Character {
+
+    @Override
+    public void talk(String message) {
+        System.out.println(message);
+    }
+}
+                    </code></pre>
+                        <p class="fragment">
+                            A subclass must implement all the abstract
+                            methods,<br />otherwise it must be abstract as well.
+                        </p>
+                    </section>
+                </section>
+
+                <section class="stacked present">
+                    <section>
+                        <h2>The Object Class</h2>
+                        <ul>
+                            <li class="fragment">
+                                Every class, in Java, extends class Object;
+                            </li>
+                            <li class="fragment">
+                                When you don't explicitly extend another class,
+                                you are implicitly extending the Object class.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Object Methods</h2>
+                        <ul>
+                            <li class="fragment">equals(Object o);</li>
+                            <li class="fragment">getClass();</li>
+                            <li class="fragment">toString();</li>
+                            <li class="fragment">hashCode();</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Object instanceof</h2>
+                        <pre
+                            class="fragment"
+                        ><code class="java" data-trim contenteditable>
+/**
+ * Main.java
+ */
+
+public static void main(String[] args) {
+
+    // saving the yoda as an object
+    Object o = new Yoda();
+
+    // the compiler checks the class of the reference variable and not the actual object
+    // o.talk("hello");
+
+    // we need to cast back to the original type in order to use its methods
+    if(o instanceof Yoda) {
+        Yoda yoda = (Yoda)o;
+        yoda.talk("The force is strong in this one");
+    }
+}
+                    </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="carcrash">
+                        <h2>Car Crash</h2>
+                        <img
+                            style="max-width:600px;"
+                            src="images/1/java/car-crash.jpg"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Field</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/car-crash-grid.jpg"
+                        />
+                        <ul>
+                            <li class="fragment">Grid for placing cars</li>
+                            <li class="fragment">
+                                Knows how to draw a bunch of cars
+                            </li>
+                            <li class="fragment">
+                                Usage of the lanterna lib for writing to screen
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Position</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/car-crash-position.png"
+                        />
+                        <ul>
+                            <li class="fragment">
+                                Describes where a Car lives on the Grid
+                            </li>
+                            <li class="fragment">
+                                Updating position results in moving the Car
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Cars</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/car-crash-cars.jpg"
+                        />
+                        <ul>
+                            <li class="fragment">
+                                Different types of cars exist
+                            </li>
+                            <li class="fragment">
+                                Cars move at different speeds and in different
+                                ways
+                            </li>
+                            <li class="fragment">
+                                A car can crash at any time
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Game</h2>
+                        <img
+                            class="logo float-right"
+                            src="images/1/java/car-crash.jpg"
+                        />
+                        <ul>
+                            <li class="fragment">Creates cars</li>
+                            <li class="fragment">Makes all the cars move</li>
+                            <li class="fragment">
+                                Checks for collisions between cars
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>UML Class Diagram</h2>
+                        <img
+                            style="max-width:400px;"
+                            src="images/1/java/car-crash-uml.png"
+                        />
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                width: 1024,
+                transition: "slide", // none/fade/slide/convex/concave/zoom
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: "left",
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+                // Specifies section for limits-app
+                section: 10,
+                // Optional reveal.js plugins
+                dependencies: [
+                    {
+                        src: "lib/js/classList.js",
+                        condition: function() {
+                            return !document.body.classList;
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/marked.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/markdown.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/highlight/highlight.js",
+                        async: true,
+                        condition: function() {
+                            return !!document.querySelector("pre code");
+                        },
+                        callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+                    {
+                        src: "plugin/zoom-js/zoom.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/notes/notes.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/bootcamp/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/hide-slides/index.js",
+                        async: true
+                    },
+                    {
+                        src: "//cdn.socket.io/socket.io-1.4.5.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/multiplex/client.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/master.js",
+                        async: true
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>

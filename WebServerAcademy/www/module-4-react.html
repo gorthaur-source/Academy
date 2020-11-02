@@ -1,0 +1,1772 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="&lt;Academia de Código_&gt;">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <img src="images/3/react/react.png" alt="" class="large">
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/3/react/react-logo.png" class="logo float-right" alt="">
+                    <h1 class="clearfix">React Core Principles</h1>
+                    <aside class="notes">
+                        <b>next:</b> lets start learning react by understanding what can React do for us, and what are the main
+                        concepts/philosophy behind it. Understanding these principles is crucial to be a successful react
+                        programmer
+                    </aside>
+                </section>
+
+                <section>
+                    <img src="images/3/react/ui.png" class="logo float-right" alt="">
+                    <h2 style="font-size: 3em;">User Interfaces</h2>
+                    <h3 class="fragment">Hard to build because there is so much
+                        <b style="color: red;">state</b>
+                    </h3>
+                    <h3 class="fragment">Data changing over time is the
+                        <b style="color: red;">root of all evil</b>
+                    </h3>
+                    <aside class="notes">
+                        <ul>
+                            <li>State is one of the most difficult things to reason about in your application because it flows
+                                and changes over time</li>
+                        </ul>
+                        <b>next: </b>React is supposed to help us with this problem somehow..., so what exactly is React? What
+                        do you think it is?
+                    </aside>
+                </section>
+
+                <section id="what-react">
+                    <img src="images/3/react/mvc-logo.png" class="logo float-right" alt="">
+                    <h2>What is React?</h2>
+                    <ul>
+                        <li class="fragment">A Library for creating
+                            <u>User Interfaces</u>
+                        </li>
+                        <li class="fragment">Uses a Virtual DOM that
+                            <u>selectively renders</u> subtrees of nodes based upon state changes
+                        </li>
+                        <li class="fragment">Renders UI and
+                            <u>responds to events</u>
+                        </li>
+                        <li class="fragment">People say it is the
+                            <u>V</u> in MVC...
+                            <ul>
+                                <li class="fragment">I agree the
+                                    <b>Model is missing</b>
+                                </li>
+                                <li class="fragment">And it is
+                                    <b>mostly about the View</b>
+                                </li>
+                                <li class="fragment">But my
+                                    <b>Controller is somewhere</b> in there!
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        <b>next: </b>But why do we break our app into M-V-C?
+                    </aside>
+                </section>
+
+                <section id="separation-concerns">
+                    <img src="images/3/react/concerns-tech-logo.png" class="logo-small float-right" alt="">
+                    <h2>Separation of Concerns</h2>
+                    <div style="font-size: 0.8em;">
+                        <p class="fragment clearfix">
+                            Design principle for separating a computer program into distinct sections, such that each section addresses a separate concern
+                        </p>
+                        <div class="fragment">
+                            <img src="images/3/react/model.png" class="logo float-left" alt="">
+                            <p class="fragment float-left">
+                                Models are usually plain JavaScript objects
+                            </p>
+                        </div>
+                        <div class="fragment clearfix">
+                            <img src="images/3/react/view.png" class="logo float-right" alt="">
+                            <p class="fragment float-right">
+                                Views are usually implemented using
+                                <br>some sort of HTML template system
+                            </p>
+                        </div>
+                        <div class="fragment clearfix">
+                            <img src="images/3/react/controller.png" class="logo float-left" alt="">
+                            <p class="fragment float-left">
+                                Controllers contain view related logic
+                                <br>tightly coupled with Views
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix" style="padding-top: 50px;">
+                        <small class="fragment">
+                            <b>Most JavaScript MVC frameworks end up
+                                <u>separating by technology</u> and not by concerns!</b>
+                        </small>
+                        <small class="fragment">
+                            <b>View and Controllers are tightly coupled, making it difficult to change one without the changing
+                                the other</b>
+                        </small>
+                    </div>
+                    <aside class="notes">
+                        <b>next:</b> react does it in a different way
+                    </aside>
+                </section>
+
+                <section id="separation-components">
+                    <img src="images/3/react/concerns-logo.png" class="logo-small float-right" alt="">
+                    <h2>Separation of Components</h2>
+                    <p class="fragment clearfix">React uses
+                        <u>Components</u> to separate concerns,
+                        <br>written with the full power of JavaScript.</p>
+                    <img src="images/3/react/separation-of-concerns.png" class="fragment medium" alt="">
+
+                    <p>
+                        <small class="fragment">
+                            <b>In React everything is a Component!</b>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <b>next: </b>so what is a react component?
+                    </aside>
+                </section>
+
+                <section id="component-based">
+                    <img src="images/3/react/lego-bricks.png" class="logo float-right" alt="">
+                    <h2>Component Based</h2>
+                    <p class="fragment clearfix">
+                        React is all about
+                        <u>building components</u>, not templates
+                        <br>
+                        <span class="fragment">They split the UI into independent reusable pieces</span>
+                    </p>
+                    <img src="images/3/react/components.png" alt="" class="fragment medium">
+                    <p class="">
+                        <small class="fragment">
+                            Components are
+                            <u class="fragment">reusable,</u>
+                            <u class="fragment">composable,</u>
+                            <u class="fragment">maintainable,</u>
+                            <u class="fragment">testable</u>
+                        </small>
+                        <small class="fragment">
+                            and know how to
+                            <u>render</u> themselves into the DOM
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <b>next: </b> this idea of designing the UI by composing individual components is a core principle of
+                        react
+                    </aside>
+                </section>
+
+                <section id="composition">
+                    <img src="images/3/react/dolls-logo.png" alt="" class="logo float-right">
+                    <h2>Composition</h2>
+                    <p class="fragment clearfix">Just like regular functions, React components can be composed together</p>
+                    <img src="images/3/react/react-composition.png" alt="" class="fragment medium">
+                    <small class="fragment">
+                        <b>This principle is a key feature of React and present at the core of how react applications are developed</b>
+                    </small>
+                    <aside class="notes">
+                        <ul>
+                            <li>uppercase is to differentiate react components from regular dom elements</li>
+                        </ul>
+                    </aside>
+                    <aside class="notes">
+                        <b>next: </b> we compose components in react in a declarative way, just like we do with HTML templates
+                    </aside>
+                </section>
+
+                <section id="declarative">
+                    <img src="images/3/react/imperative-vs-declarative.png" alt="" class="logo float-right">
+                    <h2>Declarative User Interface</h2>
+                    <ul>
+                        <li class="fragment">
+                            <b>Imperative Programming</b>&nbsp; - sequence of instructions telling the machine exactly how to
+                            do something
+                        </li>
+                        <li class="fragment">
+                            <b>Declarative Programming</b>&nbsp; - telling the machine what should happen and let it work out
+                            how to do it
+                        </li>
+                    </ul>
+                    <div class="fragment float-left" style="width: 50%;">
+                        <pre>
+							<code class="javascript" data-trim contenteditable>
+// Imperative jQuery code
+// to create a header section
+function createHeaderSection(text) {
+    let element = $('&lt;div/&gt;');
+    let header = $('&lt;h1/&gt;');
+    header.text(text);
+    element.append(header);
+    return element;
+}
+							</code>
+						</pre>
+                    </div>
+                    <div class="fragment float-right" style="width: 50%;">
+                        <pre>
+								<code class="javascript" data-trim contenteditable>
+// Declarative React code to
+// create a header section component
+function HeaderBlock(props) {
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;{props.text}&lt;/h1&gt;
+        &lt;/div&gt;
+    );
+}
+								</code>
+							</pre>
+                    </div>
+                    <small class="fragment">
+                        <b>Reacts declarative style leads to more readable code and with less bugs</b>
+                    </small>
+                    <aside class="notes">
+                        <ul>
+                            <li>we tell react how the UI should look like and it takes care of all the DOM api calls for us</li>
+                        </ul>
+                        <b>next: </b> constructing the UI declaratively is another core principal of react, let's have a look
+                        at another one, which is extremely important
+                    </aside>
+                </section>
+
+                <section id="data-flow">
+                    <img src="images/3/react/data-flow-logo.png" alt="" class="logo float-right">
+                    <h2>Unidirectional Data Flow</h2>
+                    <p class="fragment">React implements one-way reactive data flow</p>
+                    <img src="images/3/react/react-data-flow.png" alt="" class="fragment">
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                Components are rendered as a
+                                <u>function of the application state</u>
+                            </li>
+                            <li class="fragment">
+                                User events can trigger
+                                <u>explicit state mutations</u>
+                            </li>
+                            <li class="fragment">
+                                State mutations
+                                <u>will re-render components</u>
+                            </li>
+                        </ul>
+                    </small>
+                    <p>
+                        <small class="fragment">
+                            <b>One way data flow is deterministic, making it easier to predict and reason about state changes
+                                and data flows</b>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>React one-way and Angular two-way seem similar, but automatic vs explicit makes all the difference</li>
+                            <li>Angular two way data bind means view and model automatically update each other, making it less
+                                predictable
+                            </li>
+                            <li>React one way means that when an event fires, state is only updated explicitly from inside component's
+                                own methods</li>
+                        </ul>
+                        <b>next: </b> when state changes, instead of updating the dom React re-renders the componentes. This
+                        seems slow.... but it's not, due to this concept of VDOM
+                    </aside>
+                </section>
+
+                <section id="vdom">
+                    <img src="images/3/react/vdom.png" class="logo float-right" alt="">
+                    <h2>Virtual DOM</h2>
+                    <p class="fragment clearfix">Re-render on every state change seems expensive,
+                        <br>but is
+                        <b>fast</b> because it happens on a
+                        <b>Virtual DOM.</b>
+                    </p>
+                    <p class="fragment">On
+                        <u>every update</u> the following process takes place:</p>
+                    <ol style="font-size: 0.8em;">
+                        <li class="fragment">New virtual DOM subtree is built</li>
+                        <li class="fragment">Diff between new and old is performed</li>
+                        <li class="fragment">Minimal set of DOM mutations is calculated</li>
+                        <li class="fragment">DOM mutations are queued</li>
+                        <li class="fragment">All updates are executed together in a single batch</li>
+                    </ol>
+                    <p class="fragment">
+                        <b>The DOM is slow, but React is fast!</b>
+                    </p>
+                    <aside class="notes">
+                        <b>next: </b> in summary...
+                    </aside>
+                </section>
+
+                <section>
+                    <img src="images/3/react/react-backpack.png" class="logo float-right" alt="">
+                    <h2>The React Way</h2>
+                    <ul>
+                        <li class="fragment">
+                            <b>Components</b>, not templates</li>
+                        <li class="fragment">
+                            <b>Re-render</b>, don't mutate</li>
+                        <li class="fragment">
+                            Virtual DOM is
+                            <b>simple</b> and
+                            <b>fast</b>
+                        </li>
+                    </ul>
+
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/3/react/react-ecosystem.png" class="logo float-right" alt="">
+                    <h1 class="clearfix">React Ecosystem</h1>
+                    <aside class="notes">
+                        <b>next: </b> lets have a look at the most important tools from the react ecosystem
+                    </aside>
+                </section>
+
+                <section id="dev-tools">
+                    <h2>React Developer Tools</h2>
+                    <p class="fragment">An extension that allows inspection of React component hierarchy
+                        <br>in the Chrome and Firefox Developer Tools
+                    </p>
+                    <img src="images/3/react/react-dev-tools.png" class="medium fragment" alt="">
+                    <small class="fragment">
+                        <b>Its easy to inspect component hierarchy of existing React applications</b>
+                    </small>
+                    <aside class="notes">
+                        <b>next: </b> the build system is always an important port of every javascript framework. React does
+                        not come with a build system, so most of the time we have to roll our own...
+                    </aside>
+                </section>
+
+                <section id="webpack">
+                    <img src="images/3/react/webpack-logo.png" alt="" class="logo float-right">
+                    <h2>WebPack</h2>
+                    <p class="fragment">Static module bundler for modern JavaScript applications</p>
+                    <p class="fragment">Recursively builds a dependency graph that includes every module in the application and packages them
+                        into one or more bundles
+                    </p>
+                    <img src="images/3/react/webpack-bundler.jpg" alt="" class="fragment small">
+                    <aside class="notes">
+                        <ul>
+                            <li>requirejs gave us modules, but webpack takes this concept further, allowing to bundle everything
+                                from js to css and images. It also knows about ES6 modules, which is not the case with requirejs</li>
+                        </ul>
+                        <b>next: </b> so how do we configure webpack?
+                    </aside>
+                </section>
+
+                <section id="configuration">
+                    <img src="images/3/react/webpack-logo2.png" alt="" class="logo float-right">
+                    <h2>Webpack Configuration</h2>
+                    <p class="fragment">Webpack can be configured around four core concepts:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <b>Entry</b> point indicates which module webpack use to begin building its dependency graph</li>
+                            <li class="fragment">
+                                <b>Output</b> property tells webpack where to emit the bundles</li>
+                            <li class="fragment">
+                                <b>Loaders</b> enable webpack to convert to modules
+                                <br>and process all types of files</li>
+                            <li class="fragment">
+                                <b>Plugins</b> can be used to perform a wide variety of tasks such as optimization and minification</li>
+                        </ul>
+                    </small>
+                    <pre class="tight fragment" style="font-size: 0.9rem;">
+						<code class="javascript" contenteditable data-trim>
+// webpack config uses common.js node modules, not ES6
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist') // absolute path required
+    },
+
+    // module transformations to apply on files
+    module: {
+        // loaders to apply if files match the test regex
+        rules: [
+        // css-loader: transform all css files in valid modules
+        // style-loader: add css to dom
+        { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+        ]
+    },
+
+    // plugins to be invoked by webpack
+    plugins: [new HtmlWebpackPlugin({ template: 'public/index.html' })]
+};
+						</code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Webpack Build System</h3>
+                    </div>
+                    <aside class="notes">
+                        <b>next: </b> webpack is not sufficient for building a react app, we also need babel
+                    </aside>
+                </section>
+
+                <section id="babel">
+                    <img src="images/3/jsnext/babel-logo.png" alt="" class="logo">
+                    <p class="fragment">Requires
+                        <b>plugins</b> to perform transformations on code</p>
+                    <pre class="tight fragment" style="font-size: 0.8rem;">
+							<code class="javascript" contenteditable data-trim>
+{
+    // webpack config file
+    module: {
+        rules: [
+            // Babel webpack plugin
+            { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel-loader" }
+        ]
+    }
+}
+						</code>
+					</pre>
+                    <p class="fragment">Babel
+                        <b>presets</b> apply a predefined set of plugins</p>
+                    <pre class="tight fragment" style="font-size: 0.8rem;">
+						<code class="bash" contenteditable data-trim>
+# react dependencies
+$ npm install --save react react-dom
+
+# webpack babel dependencies
+$ npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react
+
+{
+    // babel config in package.json file
+    "babel": { "presets": ["env", "react"] }
+}
+						</code>
+                    </pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>We saw babel was used to transform ES6 into ES5 before, but it is also useful to react</li>
+                        </ul>
+                    </aside>
+                    <aside class="notes">
+                        <b>next: </b> although react has no cli, many tools showed up to help us taking react apps from the ground.
+                        One of these tools got adopted as official
+                    </aside>
+                </section>
+
+                <section id="create-react-app">
+                    <img src="images/3/react/cli-logo.png" alt="" class="logo float-right">
+                    <h2>Create React App</h2>
+                    <p class="fragment">Official CLI for creating react applications with no setup</p>
+                    <img src="images/3/react/create-react-app.png" alt="" class="fragment small tight">
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+						<code class="bash" contenteditable data-trim>
+# Execute directly from the NPM registry
+$ npx create-react-app my-app
+
+# Run the application in development mode
+$ cd my-app
+$ npm start
+						</code>
+                    </pre>
+                    <aside class="notes">
+                        <b>next: </b> React is not a full featured framework, and thinks we take for granted, like an abstraction
+                        over AJAX requests (angular $http...) are not present, you have to bring in your own...
+                    </aside>
+                </section>
+
+                <section>
+                    <img src="images/3/react/axios-logo.png" alt="" class="logo float-right">
+                    <h2>Axios</h2>
+                    <p class="fragment">Promise based HTTP client for the browser and Node.js</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">Automatic JSON transforms</li>
+                            <li class="fragment">XSRF protection</li>
+                            <li class="fragment">Request canceling</li>
+                        </ul>
+                    </small>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+                        <code class="bash" contenteditable data-trim>
+async function getUser() {
+    try {
+        const response = await axios.get('/user?ID=12345');
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
+						</code>
+                    </pre>
+                    <small class="fragment">
+                        <b>Quite popular on the React community and a
+                            <u>better alternative to fetch</u>
+                        </b>
+                    </small>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/3/react/react-basics-logo.png" class="logo float-right" alt="">
+                    <h1 class="clearfix">React Basics</h1>
+                    <aside class="notes">
+                        <b>next: </b> react does not work with dom nodes, it works mostly with what is called a react element
+                    </aside>
+                </section>
+
+                <section id="element">
+                    <img src="images/3/react/element-logo.png" alt="" class="logo float-right">
+                    <h2>React Elements</h2>
+                    <p class="fragment clearfix">Immutable object
+                        <u>describing</u> what should be rendered to the screen
+                        <br>and containing
+                        <b>two</b> main properties:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <b>type</b> -
+                                <u>String</u> for DOM node or
+                                <u>ReactClass</u> for a react component</li>
+                            <li class="fragment">
+                                <b>props</b> - element attributes</li>
+                        </ul>
+                    </small>
+                    <div class="float-left" style="width: 50%;">
+                        <pre class="fragment tight" style="font-size: 0.8rem;">
+							<code class="javascript" contenteditable data-trim>
+{
+    type: 'div',
+    props: {
+        className: 'container',
+        children: '&lt;Academia de Código_&gt;'
+  }
+}
+							</code>
+						</pre>
+                        <pre class="fragment tight">
+							<code class="html" contenteditable data-trim>
+<!-- DOM Node -->
+&lt;div class="container"&gt;
+    &amp;lt;Academia de Código_&amp;gt;
+&lt;div&gt;
+							</code>
+						</pre>
+                    </div>
+                    <div class="float-right" style="width: 50%;">
+                        <pre class="fragment tight" style="font-size: 0.8rem;">
+							<code class="javascript" contenteditable data-trim>
+{
+    type: Button,
+    props: {
+        className: 'ui primary button',
+        children: 'Login'
+    }
+}
+							</code>
+						</pre>
+                        <pre class="fragment tight">
+							<code class="html" contenteditable data-trim>
+<!-- React Component -->
+&lt;Button className="ui primary button"&gt;
+    Login
+&lt;/Button&gt;
+							</code>
+						</pre>
+                    </div>
+                    <small class="fragment">Elements can be created calling
+                        <b>React.createElement(node, props)</b>
+                    </small>
+                    <small class="fragment">Child props can be passed as arguments
+                        <b>React.createElement(node, props, child1, child2, ...)</b>
+                    </small>
+                    <aside class="notes">
+                        <ul>
+                            <li>Elements are not component/node instances, but they describe them</li>
+                            <li>Creating plain objects is not enough, we have use react api to create elements</li>
+                            <li>Elements are the VDOM nodes</li>
+                        </ul>
+                        <b>next: </b>but we said in react everything is about components..
+                    </aside>
+                </section>
+
+                <section id="component">
+                    <h2>React Components</h2>
+                    <p class="fragment">A React Component is a
+                        <u>function or a class</u>
+                        <br>which
+                        <u>accepts input properties</u> and
+                        <u>returns</u> a React Element</p>
+                    <pre class="fragment tight" style="width: 80%;">
+						<code class="javascript" contenteditable data-trim>
+// Button Component
+function Button(props) {
+    return React.createElement('button', props);
+}
+						</code>
+					</pre>
+                    <small class="fragment">React Components can be rendered by calling
+                        <b>ReactDOM.render(Component(), node)</b>
+                    </small>
+                    <pre class="fragment tight" style="width: 80%;">
+						<code class="javascript" contenteditable data-trim>
+// properties to pass to the Button component
+const props = { className: 'ui button primary', children: 'Login' };
+
+// create element from Button component
+const element = React.createElement(Button, props);
+
+// render element to the root div
+ReactDOM.render(element, document.getElementById('root'));
+						</code>
+					</pre>
+                    <small class="fragment">
+                        React Components must act like pure functions with respect to their props and
+                        <u>do not attempt to change them</u>
+                    </small>
+                    <img src="images/3/react/react-render.png" class="fragment" style="position: absolute; top: 50px; right: -80px;">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Rendering React Components</h3>
+                    </div>
+                    <aside class="notes">
+                        <b>next: </b> we also said in react ui was declarative, this looks very imperative to me...
+                    </aside>
+                </section>
+
+                <section id="jsx">
+                    <img src="images/3/react/jsx-logo.png" alt="" class="logo-small float-right">
+                    <h2>JSX</h2>
+                    <p class="fragment">Syntax extension to JavaScript to
+                        <u>describe React Elements</u>
+                    </p>
+                    <p class="fragment" style="font-size: 0.9em;">Syntactic sugar for
+                        <b>React.createElement(component, props, ...children)</b>
+                    </p>
+                    <pre class="fragment tight float-left" style="width: 35%;">
+					<code class="jsx" contenteditable data-trim>
+// required for jsx
+import React from 'react';
+
+const type = 'section';
+const element = (
+    &lt;div className="{type}"&gt;
+        &lt;h1&gt;I am a component!&lt;/h1&gt;
+        &lt;h2&gt;I am a sub title!&lt;/h2&gt;
+    &lt;/div&gt;
+);
+						</code>
+					</pre>
+                    <pre class="fragment tight float-right" style="width: 60%;">
+						<code class="javascript" contenteditable data-trim>
+// required for createElement
+import React from 'react';
+
+const element = React.createElement('div',
+    { className: 'section',
+    React.createElement('h1', null, 'I am a component!'),
+    React.createElement('h1', null, 'I am a sub title!')
+    }
+);
+						</code>
+					</pre>
+                    <small class="fragment">Instead of
+                        <u>artificially separating technologies</u> by putting markup and logic in separate files,
+                        <br>
+                        <b>React separates concerns with loosely coupled components that contain both</b>
+                    </small>
+                    <aside class="notes">
+                        <b>next: </b> declarative means telling react what we want, not how. Describing what we want in the UI
+                        requires styles, and react as its own way of doing that too
+                    </aside>
+                </section>
+
+                <section id="styles">
+                    <h2>Inline Styles</h2>
+                    <p class="fragment">The
+                        <b>style</b> attribute can be used to style a React component</p>
+                    <p class="fragment">An
+                        <u>object with camelCased</u> properties is used, not strings</p>
+                    <pre class="fragment tight float-right">
+						<code class="jsx" contenteditable data-trim>
+// paragraph style object
+const pStyle = {
+    color: 'red'
+};
+
+// styled react element
+const alertText = &lt;p style={pStyle} /&gt;;
+&nbsp;
+// render red paragraph with no CSS
+ReactDOM.render(alertText, document.getElementById('root'));
+						</code>
+					</pre>
+                    <small class="fragment">Inline styles are normally used for dynamic computed styles as
+                        <u>CSS classes are generally more efficient</u>
+                    </small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Rendering JSX Components</h3>
+                    </div>
+                    <aside class="notes">
+                        <b>next: </b> much exists to be said about react components, considering they are the core pieces of
+                        a react application
+                    </aside>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/3/react/create-react-app-logo.png" alt="" class="logo float-right">
+                    <h1 class="clearfix">React Components</h1>
+                    <aside class="notes">
+                        <b>next: </b> two ways exist in react to declare a component, lets look at the simplest one, functional
+                        components
+                    </aside>
+                </section>
+
+                <section id="functional-components">
+                    <img src="images/3/react/functional-components-logo.png" alt="" class="logo float-right">
+                    <h2>Functional Components</h2>
+                    <p class="fragment">Contain
+                        <u>no state</u> and expressed as a single pure function which
+                        <br>
+                        <u>accepts a
+                            <b>props</b> object</u> and
+                        <u>returns a React
+                            <b>element</b>
+                        </u>
+                    </p>
+                    <pre class="fragment">
+						<code class="jsx" contenteditable data-trim>
+// Declare the React Welcome Component
+function Welcome(props) {
+    return &lt;h2&gt;Welcome {props.name}&lt;/h2&gt;;
+}
+
+// Instantiate and render a React Element
+ReactDOM.render(&lt;Welcome name="Rui" /&gt;, document.getElementById('root'));
+
+// Same as above
+const element = Welcome({name: 'Rui'});
+ReactDOM.render(element, document.getElementById('root'));
+						</code>
+					</pre>
+                    <small class="fragment">
+                        <b> Functional components are stateless and pure, for the same props they always return the same element</b>
+                    </small>
+                    <small class="fragment">
+                        React components should start with uppercase (
+                        <b>&lt;Welcome /&gt;</b>) to distinguish them from regular DOM tags(
+                        <b>&lt;div /&gt;
+                        </b>)
+                    </small>
+                    <aside class="notes">
+                        <b>next: </b> we said react was all about composing components together, how do we do that?
+                    </aside>
+                </section>
+
+                <section id="composing-components">
+                    <img src="images/3/react/composing-components-logo.png" alt="" class="logo float-right">
+                    <h2>Composing Components</h2>
+                    <p class="fragment">Complex UI does not fit in a single function and needs to
+                        <br>be
+                        <u>abstracted into reusable pieces</u>, hiding implementation details</p>
+                    <p class="fragment">JSX makes it really easy to
+                        <u>compose components</u> together</p>
+                    <pre class="fragment tight">
+						<code class="jsx" contenteditable data-trim>
+function ListItem(props) {
+    return &lt;li&gt;{props.item}&lt;/li&gt;;
+}
+
+function Popular() {
+    return (
+        &lt;ul&gt;
+            &lt;ListItem item="JavaScript" /&gt;
+            &lt;ListItem item="Java" /&gt;
+            &lt;ListItem item="Ruby" /&gt;
+        &lt;/ul&gt;
+    );
+}
+
+ReactDOM.render(&lt;Popular /&gt;, document.getElementById('root'));
+						</code>
+					</pre>
+                    <small class="fragment">When a part of the UI is used
+                        <u>several times</u> or is
+                        <u>complex enough</u> on its own,
+                        <br>
+                        <b>it should be extracted into a reusable component</b>.</small>
+                    <aside class="notes">
+                        <b>next: </b> this is not the only way to compose components together, lets look at another way
+                    </aside>
+                </section>
+
+                <section id="children">
+                    <img src="images/3/react/children-logo.png" alt="" class="logo-small float-right">
+                    <h2>Compositional Components</h2>
+                    <p class="fragment clearfix">
+                        <u>Wrapper Components</u> can be created using the
+                        <b>children</b> property</p>
+                    <div class="fragment float-left" style="width: 50%;">
+                        <pre>
+                            <code class="javascript" data-trim contenteditable>
+// compose by passing props down
+function PrimaryButton(props) {
+    return (
+        &lt;button&gt;
+            {props.icon}{props.text}
+        &lt;/button&gt;
+    )
+}
+
+// usage:
+&lt;PrimaryButton
+    icon={IconFile} text="Login"
+/&gt;
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="fragment float-right" style="width: 50%;">
+                        <pre>
+                            <code class="javascript" data-trim contenteditable>
+// compose using children
+function PrimaryButton(props) {
+    return (
+        &lt;button&gt;
+            {props.children}
+        &lt;button&gt;
+    )
+}
+
+// usage:
+&lt;PrimaryButton&gt;
+    &lt;IconFile/&gt; Login
+&lt;/PrimaryButton&gt;
+                            </code>
+                        </pre>
+                    </div>
+                    <p class="fragment clearfix">This technique provides a more
+                        <u>robust and flexible way</u> of composing than passing props down the component hierarchy
+                    </p>
+                    <small class="fragment">Specially useful when
+                        <u>components do not know their children ahead of time</u>,
+                        <br>such as generic Modal, Sidebar or Dialog boxes for example.</small>
+                    <aside class="notes">
+                        <b>next: </b> what happens when we make a mistake passing properties to a component? It might break
+                        our app and as js developers we have to deal with it, as JS is dynamically typed and all of that,
+                        but guess what?
+                    </aside>
+                </section>
+
+                <section id="types">
+                    <img src="images/3/react/type-checking-logo.png" alt="" class="logo float-right">
+                    <h2>Property Typechecking</h2>
+                    <p class="fragment clearfix">React includes a property typechecking library to help
+                        <br>catching bugs during development</p>
+                    <pre class="fragment tight">
+                            <code class="javascript" contenteditable data-trim>
+import PropTypes from 'prop-types';
+
+function ListItem({ item , color }) {
+    return &lt;li style={color: color}&gt;{item}&lt;/li&gt;;
+}
+
+ListItem.propTypes = {
+    item: PropTypes.string.isRequired,
+    color: PropTypes.string
+};
+
+// optional properties should have defaults
+ListItem.defaultProps = {
+    color: 'red'
+};
+                            </code>
+                        </pre>
+                    <small class="fragment">
+                        <b>prop types</b> and
+                        <b>default values</b> checks are enforced during development but
+                        <u>removed from production code</u>
+                    </small>
+                    <aside class="notes">
+                        <b>next: </b> all frameworks and view templates give you their own way to render lists (ng-repeat directive?),
+                        how do we do this in react?
+                    </aside>
+                </section>
+
+                <section id="lists">
+                    <img src="images/3/react/list-logo.png" alt="" class="logo float-right">
+                    <h2>Lists in React</h2>
+                    <p class="fragment">We can create lists in React using JSX and
+                        <br> plain JavaScript array methods such as
+                        <b>map</b> or
+                        <b>filter</b>
+                    </p>
+                    <pre class="fragment tight">
+						<code class="jsx" contenteditable data-trim>
+function ListItem({ item }) {
+    return &lt;li&gt;{item}&lt;/li&gt;;
+}
+
+function Popular() {
+    const languages = ['All', 'JavaScript', 'Java', 'HTML', 'CSS', 'C', 'C++'];
+    return (
+        &lt;ul&gt;
+	        { languages.map(lang =&gt; &lt;ListItem key={lang} item={lang} /&gt;) }
+        &lt;/ul&gt;
+    );
+}
+
+ReactDOM.render(&lt;Popular /&gt;, document.getElementById('root'))}
+						</code>
+					</pre>
+                    <small class="fragment">
+                        <u>Array items</u> require special unique
+                        <b>key</b> attribute for react to identify items changed, added or removed</small>
+                    <small class="fragment">
+                        <b>Contrary to other JavaScript frameworks, there is no special syntax,
+                            <u>its all JavaScript with JSX sugar on top</u>
+                        </b>
+                    </small>
+                    <aside class="notes">
+                        <b>next: </b> our UIs seem pretty static so far, to make them dynamic we need to change state, but where
+                        dos state live? Should it leave in global/module variables? Time to look at a new type of components..
+                    </aside>
+                </section>
+
+                <section id="class-components">
+                    <img src="images/3/react/stateful-components-logo.png" alt="" class="logo float-right">
+                    <h2>Class Components</h2>
+                    <p class="fragment">A Class component can be created by
+                        <u>extending from
+                            <b>React.Component</b>
+                        </u>
+                    </p>
+                    <pre class="fragment tight">
+						<code class="jsx" contenteditable data-trim>
+class Popular extends React.Component {
+    render() {
+        return (
+            &lt;ul&gt;
+            { languages.map(lang =&gt; &lt;ListItem key={lang} item={lang} /&gt;) }
+        &lt;/ul&gt;
+        );
+    }
+}
+
+ReactDOM.render(&lt;Popular /&gt;, document.getElementById('root'));
+						</code>
+					</pre>
+                    <small class="fragment">Class components
+                        <u>without state</u> can be transformed in functional components
+                        <br> by moving the contents of the
+                        <b>render()</b> method into a separate function
+                    </small>
+                    <p>
+                        <small class="fragment">
+                            The Render method needs to act as a
+                            <u>pure function</u>, it should
+                            <b>only read state and props and render a UI</b>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <b>next: </b> can you guess were should we store state related to this component?
+                    </aside>
+                </section>
+
+                <section id="state">
+                    <img src="images/3/react/component-state-logo.png" alt="" class="logo float-right">
+                    <h2>Component State</h2>
+                    <p class="fragment">State allows React components to change their output over time</p>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+						<code class="jsx" contenteditable data-trim>
+function ListItem({ item, color }) {
+    return &lt;li style={{ color }}&gt;{item}&lt;/li&gt;;
+}
+
+class Popular extends React.Component {
+    static languages = ['All', 'JavaScript', 'Java', 'HTML', 'CSS', 'C', 'C++'];
+    state = { selected: 'All' };
+
+    selectLanguage(lang) {
+        this.setState({ selected: lang });
+    }
+
+    render() {
+        return (
+            &lt;ul&gt;
+                {Popular.languages.map(lang =&gt; {
+                    let color = lang === this.state.selected ? 'red' : 'black';
+                    return &lt;ListItem color={color} key={lang} item={lang} /&gt;;
+                })}
+            &lt;/ul&gt;
+        );
+    }
+}
+						</code>
+					</pre>
+                    <small class="fragment">Component state lives in a special
+                        <b>state</b> property, explicitly updated by invoking the
+                        <b>setState()</b> method</small>
+                    <small class="fragment">
+                        <b>Updating the state causes the component to re-render</b>
+                    </small>
+                    <aside class="notes">
+                        <ul>
+                            <li>we need state (should be kept minimal) in some components, otherwise our app would be static</li>
+                        </ul>
+                        <b>next: </b> If our UI is a function of the state, how do we keep our UI in sync with stage changes?
+                    </aside>
+                </section>
+
+                <section id="state-update">
+                    <img src="images/3/react/update-state-logo.png" alt="" class="logo float-right">
+                    <h2>Updating State</h2>
+                    <p class="fragment clearfix">Updates to the UI are achieved through state updates,
+                        <br>which are
+                        <u>enqueued, batched and delayed</u> by React</p>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+						<code class="javascript" contenteditable data-trim>
+class Counter extends React.Component {
+    state = { value: 0 };
+
+    stateUpdateCb() { console.log('New state is ', this.state); }
+
+    // new state does not depend on previous state, shallow merge is performed
+    reset() {
+        this.setState({ value: 0}, this.stateUpdateCb);
+    }
+
+    // new state depends on previous state, state updater function is recommended
+    increment() {
+        this.setState(
+            prevState =&gt; ({ value: prevState.value + 1 }),
+            this.stateUpdateCb
+        );
+    }
+
+    render() {
+        return &lt;h2&gt;{this.state.value}&lt;/h2&gt;;
+    }
+}
+						</code>
+					</pre>
+                    <small class="fragment">
+                        <b>State updates have to be explicitly triggered through setState(),
+                            <u>it is not possible to update this.state directly</u>
+                        </b>
+                    </small>
+                    <aside class="notes">
+                        <b>next: </b> to update state on the ui, what do we need? We need to catch and handle user events
+                    </aside>
+                </section>
+
+                <section id="events">
+                    <img src="images/3/react/event-logo.png" alt="" class="logo float-right">
+                    <h2>Event Handling</h2>
+                    <p class="fragment clearfix">Event handlers receive instances of
+                        <b>SyntheticEvent</b>,
+                        <br>a
+                        <u>cross-browser wrapper</u> around the native events</p>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+						<code class="javascript" contenteditable data-trim>
+class Counter extends React.Component {
+    state = { value: 0 };
+
+    stateUpdateCb() { console.log('New state is ', this.state); }
+
+    increment = () =&gt; {
+        this.setState(
+            prevState =&gt; ({ value: prevState.value + 1 }),
+            this.stateUpdateCb
+        );
+    };
+
+    render() {
+        return &lt;h2 onClick={this.increment}&gt;{this.state.value}&lt;/h2&gt;;
+    }
+}
+						</code>
+					</pre>
+                    <small class="fragment">
+                        <b>React events are named using
+                            <u>camelCase</u> and not lowercase like DOM events</b>
+                    </small>
+                    <small class="fragment">SyntheticEvent is reused and all properties nullified for performance, making it unusable in asynchronous
+                        callbacks
+                    </small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <p>Clickable React Counter</p>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <p>Popular Programming Languages Clickable Menu</p>
+                        <img src="images/3/react/code-awards-step1.png" class="medium">
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="lifecycle">
+                    <img src="images/3/react/lifecycle-logo.png" alt="" class="logo float-right">
+                    <h2>Component Life Cycle</h2>
+                    <p class="fragment clearfix">React components provide
+                        <u>special methods</u> for
+                        <br>
+                        <u>hooking into the component life cycle</u>
+                    </p>
+                    <p class="fragment">Most life cycle methods follow into one of these categories:</p>
+                    <small style="margin-top: 50px;">
+                        <ol>
+                            <li class="fragment">Component gets mounted into the DOM</li>
+                            <li class="fragment">Component receives new data</li>
+                            <li class="fragment">Component gets unmounted from the DOM</li>
+                        </ol>
+                        <img src="images/3/react/lifecycle-phases.png" style="position: relative; top: -50px; left: 50px;" class="fragment xsmall float-right">
+                    </small>
+                </section>
+
+                <section id="mounting">
+                    <img src="images/3/react/mounting-logo.png" alt="" class="logo float-right">
+                    <h2>Mounting Phase</h2>
+                    <p class="fragment clearfix">Component is
+                        <u>instantiated and inserted into the DOM</u>
+                    </p>
+                    <img src="images/3/react/mounting.png" class="fragment medium">
+                    <p>
+                        <small class="fragment">
+                            <b>componentDidMount()</b> is the correct place to put any
+                            <u>initialization code</u>
+                            <br>such as starting timers or fetching data using AJAX
+                        </small>
+                    </p>
+                </section>
+
+                <section id="updating">
+                    <img src="images/3/react/updating-logo.png" alt="" class="logo float-right">
+                    <h2>Updating</h2>
+                    <p class="fragment clearfix">Component is being re-rendered due to
+                        <u>changes in props or state</u>
+                    </p>
+                    <img src="images/3/react/updating.png" class="fragment medium">
+                    <p>
+                        <small class="fragment">
+                            <b>shouldComponentUpdate()</b> can prevent unnecessary re-rendering and
+                            <u>boost performance</u>
+                        </small>
+                    </p>
+                </section>
+
+                <section id="performance">
+                    <img src="images/3/react/speed-logo.png" alt="" class="logo float-right">
+                    <h2>Component Re-render</h2>
+                    <p class="fragment clearfix">When the rendering process finds a difference in a component
+                        <br>it re-renders the whole subtree</p>
+                    <pre class="fragment tight" style="font-size: 0.75rem;">
+                        <code class="javascript" contenteditable data-trim>
+function NothingChanges() {
+    console.log('Will render one more time...');
+    return &lt;h3&gt;Nothing changed here...&lt;/h3&gt;;
+}
+
+class Counter extends React.Component {
+    state = { value: 0 };
+
+    increment = () =&gt; {
+        this.setState(
+            prevState =&gt; ({ value: prevState.value + 1 })
+        );
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;h2 onClick={this.increment}&gt;{this.state.value}&lt;/h2&gt;
+                &lt;NothingChanges /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment tight">
+                        <b>NothingChanges</b> component will be render every time its parent component renders</small>
+                    <small class="fragment">How do we avoid these
+                        <u>unnecessary re-renders</u>?</small>
+                    <aside class="notes">
+                        we need to modify shouldComponentUpdate to return false, or extend from React.PureComponent, which provides a shallow equals
+                        on props/state
+                    </aside>
+                </section>
+
+                <section>
+                    <img src="images/3/react/unmounting-logo.png" alt="" class="logo float-right">
+                    <h2>Unmounting</h2>
+                    <p class="fragment">Component is being
+                        <u>removed from the DOM</u>
+                    </p>
+                    <img src="images/3/react/unmounting.png" class="fragment medium">
+                    <p>
+                        <small class="fragment">
+                            <b>componentWillUnmount()</b> is where
+                            <u>cleanup code</u> such as invalidating timers and canceling ajax requests should go
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <p>Popular Programming Languages on GitHub</p>
+                        <img src="images/3/react/code-awards-step2.png" class="small">
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="forms">
+                    <img src="images/3/react/form-logo.png" alt="" class="logo float-right">
+                    <h2>Forms in React</h2>
+                    <p class="fragment clearfix">HTML form elements such as
+                        <b>input</b>,
+                        <b>textarea</b> or
+                        <b>select</b>,
+                        <br>maintain their state -
+                        <u>user input</u> - in the DOM</p>
+                    <p class="fragment">React provides
+                        <u>two different approaches</u> to form handling:</p>
+                    <ul>
+                        <li class="fragment">
+                            <b>Uncontrolled Components</b> - they work just like traditional HTML forms, keeping and updating
+                            state in the DOM
+                        </li>
+                        <li class="fragment">
+                            <b>Controlled Components</b> - form state is managed by React just like every other piece of state
+                            in the application</li>
+                    </ul>
+                </section>
+
+                <section id="uncontrolled">
+                    <img src="images/3/react/pop-logo.png" alt="" class="logo float-right">
+                    <h2>Uncontrolled Components</h2>
+                    <p class="fragment clearfix">
+                        <u>The browser stores and updates</u> the value for each form input element</p>
+                    <p class="fragment">Whenever the value is needed it has to be
+                        <u>pulled</u> from the field</p>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+                        <code class="javascript" contenteditable data-trim>
+class Form extends React.Component {
+    handleSubmit = () =&gt; {
+        const value = this.input.value;
+        // do something with value
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;input type="text" ref={input =&gt; (this.input = input)} /&gt;
+                &lt;button onClick={this.handleSubmit}&gt;Sign Up&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">The
+                        <b>ref</b> attribute receives a callback which is called
+                        <br> with a
+                        <u>reference to the DOM node</u> when the component is mounted</p>
+                    <small class="fragment">Uncontrolled inputs should be used when
+                        <u>converting a preexisting codebase</u> to React
+                        <br> or when
+                        <u>integrating with a non-React library</u>
+                    </small>
+                </section>
+
+                <section id="controlled">
+                    <img src="images/3/react/push-logo.png" alt="" class="logo float-right">
+                    <h2>Controlled Components</h2>
+                    <p class="fragment clearfix">The
+                        <b>React way</b> for doing form handling,
+                        <br>where the React state
+                        <u>is the single source of truth</u>
+                    </p>
+                    <small class="fragment">Input values are
+                        <u>pushed</u> into form fields using a value from state or props
+                    </small>
+                    <pre class="fragment tight" style="font-size: 0.8rem;">
+                        <code class="javascript" contenteditable data-trim>
+class Form extends React.Component {
+    state = { text: '' };
+
+    handleChange = event =&gt; {
+        this.setState({ text: event.target.value });
+    };
+
+    handleSubmit = () =&gt; {
+        // do something with this.state.text
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;input type="text" value={this.state.text} onChange={this.handleChange} /&gt;
+                &lt;button onClick={this.handleSubmit}&gt;Sign up&lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">Every state mutation will have an
+                        <u>associated handler function</u>, making it really
+                        <u>easy to modify or validate</u>
+                        user input
+                    </small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <p>Developer Profile on GitHub</p>
+                        <img src="images/3/react/code-awards-step3.png" class="small">
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="router">
+                    <img src="images/3/react/react-router-logo.png" alt="" class="logo-small float-right">
+                    <h2>React Router</h2>
+                    <p class="fragment clearfix">Provides a collection of navigational components,
+                        <br>
+                        <u>composed declaratively</u> in React applications</p>
+                    <p class="fragment">
+                        <u>Everything is a component</u> in React Router,
+                        <br> which means routing occurs
+                        <u>when the app is rendering</u>
+                    </p>
+                    <p class="fragment">In static routing, routes are declared before rendering takes place,
+                        <br>which is exactly the opposite of React Router
+                        <b>dynamic routing</b>
+                    </p>
+                </section>
+
+                <section id="router-render">
+                    <img src="images/3/react/router-logo.png" alt="" class="logo float-right">
+                    <h2>Rendering a Router</h2>
+                    <p class="fragment clearfix">The Router receives a single child component
+                        <br>which should render the rest of the application</p>
+                    <pre class="fragment">
+                        <code class="javascript" contenteditable data-trim>
+// use the browser based version
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render((
+    &lt;BrowserRouter&gt;
+        &lt;App /&gt;
+    &lt;/BrowserRouter&gt;
+), document.getElementById('root'));
+                        </code>
+                    </pre>
+                    <p class="fragment">A
+                        <b>history</b> object is
+                        <u>available to child components</u> and used to keep track of the current location and
+                        <u>re-render the application when it changes</u>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                history and others are passed through props to Route child elements..
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="route">
+                    <img src="images/3/react/route-logo.png" alt="" class="logo float-right">
+                    <h2>Route Matching</h2>
+                    <p class="fragment clearfix">A
+                        <b>Route</b> component will
+                        <u>render its content</u> when
+                        <br>its
+                        <b>path</b> prop
+                        <u>matches the current location pathname</u>
+                    </p>
+                    <pre class="fragment">
+                        <code class="javascript" contenteditable data-trim>
+import { Route } from 'react-router-dom';
+
+// when location = { pathname: '/about' }
+&lt;Route path='/' component={Header}/&gt; // renders &lt;Header/&gt;
+&lt;Route exact path='/' component={Home}/&gt; // renders null
+&lt;Route path='/about' component={About}/&gt; // renders &lt;About/&gt;
+&lt;Route path='/contact' component={Contact}/&gt; // renders null
+&lt;Route component={Footer}/&gt; // renders &lt;Footer/&gt;
+                        </code>
+                    </pre>
+                    <small class="fragment">The
+                        <b>exact</b> property will make the route match if the
+                        <u>path property is exactly equal to the pathname</u>
+                    </small>
+                    <small class="fragment">It makes sense to list a number of possible Routes next to each other,
+                        <br>but a
+                        <b>Route</b> component can be used anywhere to
+                        <u>render content based on location</u>
+                    </small>
+                    <aside class="notes">
+                        <ul>
+                            <li>when a component render method returns null, react renders nothing</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="switch">
+                    <img src="images/3/react/route-group.png" alt="" class="logo float-right">
+                    <h2>Grouping Routes</h2>
+                    <p class="fragment clearfix">Routes can be grouped using a
+                        <b>Switch</b> component</p>
+                    <pre class="fragment">
+                        <code class="jsx" contenteditable data-trim>
+&lt;Switch&gt;
+    &lt;Route exact path='/' component={Home}/&gt;
+    &lt;Route path='/about' component={About}/&gt;
+    &lt;Route path='/contact' component={Contact}/&gt;
+    {/* when none of the above match, &lt;NoMatch&gt; will be rendered */}
+    &lt;Route component={NoMatch}/&gt;
+&lt;/Switch&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">Switch iterates over its
+                        <b>children</b> elements and
+                        <br>
+                        <u>renders only the first matching Route</u>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>js comments inside jsx need {}, there is no other way...</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="path-params">
+                    <img src="images/3/react/url-variable.png" alt="" class="logo float-right">
+                    <h2>Path Parameters</h2>
+                    <p class="fragment clearfix">It is possible to capture path parameters within a pathname</p>
+                    <p class="fragment">Named parameters are defined by
+                        <u>prefixing
+                            <b>:</b> to the parameter name</u> and accessed through the
+                        <b>match.params</b> prop
+                    </p>
+                    <pre class="fragment">
+                        <code class="jsx" contenteditable data-trim>
+// route config
+&lt;Route path='/users/:id' component={User}/&gt;
+
+// component rendered by route
+function User({ match }) (
+    return &lt;h3&gt;User ID: {match.params.id}&lt;/h3&gt;;
+);
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="query-string">
+                    <img src="images/3/react/query-string.png" alt="" class="logo float-right">
+                    <h2>Query String</h2>
+                    <p class="fragment clearfix">The query string is available through the
+                        <b>location.search</b> prop</p>
+                    <p class="fragment">Any query string library such as the popular
+                        <b>qs</b> can be used to parse it</p>
+                    <pre class="fragment">
+                        <code class="jsx" contenteditable data-trim>
+// import the popular qs library
+import qs from 'qs';
+
+// route config
+&lt;Route path='/users' component={User}/&gt;
+
+// component rendered by route
+function User({ location }) (
+
+    const queryParams = qs.parse(location.search);
+
+    // /users?username=rui
+    return &lt;h3&gt;User Name: {queryParams.username}&lt;/h3&gt;;
+);
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="navigation">
+                    <img src="images/3/react/navigation-logo.png" alt="" class="logo float-right">
+                    <h2>Navigation</h2>
+                    <p class="fragment clearfix">Special components are required for navigation as
+                        <br>standard anchor tags
+                        <u>would cause a page refresh</u>
+                    </p>
+                    <p class="fragment">The
+                        <b>Link</b> component updates the URL and
+                        <br>changes the rendered content
+                        <u>without reloading the page</u>
+                    </p>
+                    <pre class="fragment">
+                        <code class="jsx" contenteditable data-trim>
+// location = { pathname: '/react' }
+
+// renders &lt;a href='/'&gt;Home&lt;/a&gt;
+&lt;Link to='/'&gt;Home&lt;/Link&gt;
+
+// location = { pathname: '/react' }
+// renders &lt;a href='/react' className='hurray'&gt;React&lt;/a&gt;
+&lt;NavLink to='/react' activeClassName='hurray'&gt;React&lt;/NavLink&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">The
+                        <b>NavLink</b> component can be
+                        <u>styled when active</u>
+                    </p>
+                </section>
+
+                <section id="redirect">
+                    <img src="images/3/react/redirect-logo.png" alt="" class="logo float-right">
+                    <h2>Redirect</h2>
+                    <p class="fragment clearfix">Navigation can be forced by rendering a
+                        <b>Redirect</b> component</p>
+                    <pre class="fragment">
+                        <code class="jsx" contenteditable data-trim>
+function Admin({token}) {
+    if (!token) {
+        return &lt;Redirect to='/login'/&gt;;
+    }
+
+    return &lt;h2&gt;Admin Section&lt;/h2&gt;;
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <p>Code Awards</p>
+                        <img src="images/3/react/code-awards-step4.png" class="small">
+                    </div>
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        /*jshint -W117 */
+
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            width: 1024,
+            overview: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 36,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

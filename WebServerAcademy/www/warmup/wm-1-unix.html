@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>&lt;Academia de Código_&gt;</title>
+
+	<meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+	<meta name="keyword" content="academia,código,startup lisboa">
+	<meta name="author" content="<Academia de Código_>">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/ac_white.css" id="theme">
+	<link rel="stylesheet" href="css/theme/warmup.css">
+
+	<!-- Use for presentation specific styling -->
+	<link rel="stylesheet" href="css/presentation.css">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<div class="header">
+		<img id="logo" src="logo.png" />
+	</div>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+			<section>
+				<h1>UNIX Warmup</h1>
+				<p>
+					<small>Created by
+						<a>&lt;Academia de Código_&gt;</a>
+					</small>
+				</p>
+				<ul style="list-style-type: none;">
+					<small>
+						<p style="margin:0px 0px 5px 0px">
+							Road Map:
+						</p>
+						<ol>
+							<li>
+								<a href="#/unix">UNIX/Shell theory</a>
+							</li>
+							<li>
+								<a href="#/ssh">Meet the bootcamp server</a>
+							</li>
+							<li>
+								<a href="#/passwd">Change &#60;Code Cadet&#62; user account password</a>
+							</li>
+							<li>
+								<a href="#/file-management">UNIX filesystem</a>
+							</li>
+							<li>
+								<a href="#/cp">Meet the shared folder</a>
+							</li>
+							<li>
+								<a href="#/environment">UNIX environment</a>
+							</li>
+							<li>
+								<a href="#/meta-characters">Meta Characters</a>
+							</li>
+							<li>
+								<a href="#/which">Which</a>
+							</li>
+							<li>
+								<a href="#/shell-initialization">Shell Initialization</a>
+							</li>
+							<li>
+								<a href="#/file-security">Filesystem Security</a>
+							</li>
+						</ol>
+					</small>
+				</ul>
+
+				<aside class="notes">
+					<ol>
+					</ol>
+				</aside>
+			</section>
+
+			<section id="unix">
+				<section>
+					<h2>What is UNIX?</h2>
+					<p class="fragment">
+						UNIX is a family of operating systems. An operating system is a set of programs that act as a link between the computer and
+						the user.
+					</p>
+					<p class="fragment">
+						Of all the computer programs, the subset that allocates the system resources and coordinates all the details of the computer's
+						internals,
+						<br> is called the kernel.
+					</p>
+					<p class="fragment">
+						Users
+						<b>communicate with the kernel</b> through a program known as the
+						<u>shell</u>. The shell is a command line interpreter; it translates commands entered by the user and converts them into
+						a language that is understood by the kernel.
+					</p>
+				</section>
+
+				<section>
+					<h2>UNIX Structural Diagram</h2>
+					<div>
+						<p>
+							Here is a basic block diagram of a UNIX system
+						</p>
+						<img src="resources/images/unix_architecture.jpg" alt="UNIX architecture picture" />
+					</div>
+				</section>
+
+				<section>
+					<h2>UNIX Architecture Elements</h2>
+					<ul>
+						<li class="fragment small-text">
+							<b>Kernel:</b> The kernel is the heart of the operating system. It interacts with hardware and most of the tasks like
+							memory management, task scheduling and file management.</li>
+						<li class="fragment small-text">
+							<b>Shell:</b> The shell is the utility that processes your requests. When you type in a command at your terminal, the
+							shell interprets the command and calls the program that you want. The shell uses standard syntax for all commands.
+							C Shell, Bourne Again Shell and Korn Shell are most famous shells which are available with most of the Unix variants.</li>
+						<li class="fragment small-text">
+							<b>Commands and Utilities:</b> There are various commands and utilities which you would use in your day to day activities.
+							<b>cp</b>,
+							<b>mv</b>,
+							<b>cat</b> and
+							<b>grep</b> etc. are few examples of commands and utilities. There are over 250 standard commands plus numerous others
+							provided through 3rd party software. All the commands come along with various optional options.</li>
+						<li class="fragment small-text">
+							<b>Files and Directories:</b> All data in UNIX is organized into files. All files are organized into directories. These
+							directories are organized into a tree-like structure called the filesystem.</li>
+					</ul>
+				</section>
+			</section>
+
+			<section id="ssh">
+				<h2>Remote Server Connection</h2>
+				<div class="unix-code">
+					<p>
+						Connect to your campus' server (aka <i>campusname</i>.codecadets). Your account username is the concatenation of
+						your first and last names, and the password will be provided by your Master Coders.
+					</p>
+					<pre><code data-trim contenteditable>
+$ ssh nunocampelo@lisboa.codecadets.academiadecodigo.org
+                            ZZZ               ZZ
+                           ZZ ZZ            ZZ  ZZ
+                         ZZZZ ZZZZ        ZZZ   ZZ
+                       ZZZ  ZZZ  ZZ      ZZ   ZZ
+                      ZZ   ZZ ZZ   ZZ  ZZ ZZ ZZ
+                     ZZ   ZZ   ZZ   ZZZZZ  ZZZ
+                       ZZZ       ZZZ    ZZZZ ZZZ
+                        Z         Z       ZZ   ZZ
+                                           ZZ    ZZ
+                                             ZZZZ
+                                              ZZ
+Welcome to the &#60;Academia de Código_&#62; challenge server, have fun!
+Last login: Fri Jan  8 19:02:31 2016 from 62.28.12.174
+						</code>
+					</pre>
+				</div>
+				<div class="unix-code">
+					<p class="left">
+						Use
+						<b>logout</b> to return to a local shell session:
+					</p>
+					<pre><code data-trim contenteditable>
+$ logout
+Connection to lisboa.codecadets.academiadecodigo.org closed.
+						</code>
+					</pre>
+				</div>
+			</section>
+
+			<section>
+				<section>
+					<h2>UNIX Accounts</h2>
+					<h3>Understanding user account management</h3>
+				</section>
+
+				<section id="logged-users">
+					<h2>Logged Users</h2>
+					<div class="unix-code">
+						<p>
+							Connect to the bootcamp server:
+						</p>
+						<pre><code data-trim contenteditable>
+$ ssh campelo@lisboa.codecadets.academiadecodigo.org
+							</code>
+						</pre>
+					</div>
+
+					<div class="unix-code">
+						<p>
+							Find shell currently logged user (who am I):
+						</p>
+						<pre><code data-trim contenteditable>
+$ whoami
+campelo
+								</code>
+							</pre>
+					</div>
+
+					<div class="unix-code">
+						<p>
+							Find the users logged in the computer at this time:
+						</p>
+						<pre><code data-trim contenteditable>
+$ users
+campelo mafaldacarvalho
+
+$ who
+campelo  pts/0        Jan  9 23:42 (81.84.14.82)
+mafaldacarvalho pts/1        Jan  9 23:43 (81.84.14.82)
+
+$ w
+23:56:18 up 5 days, 13:45,  2 users,  load average: 0.00, 0.01, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+campelo  pts/0    81.84.14.82      23:42    0.00s  0.00s  0.00s w
+mafaldac pts/1    81.84.14.82      23:43   12:41   0.00s  0.00s -bash
+									</code>
+								</pre>
+					</div>
+				</section>
+
+				<section id="passwd">
+
+					<h2>Change Password</h2>
+					<p class="left">All UNIX systems require passwords to help ensure that your files and data remain your own and the system itself is
+						secure from malicious users.</p>
+					<div class="unix-code">
+						<p class="left">
+							Change the currently logged user's password with
+							<b>passwd</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ passwd
+Changing password for campelo.
+(current) UNIX password:
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+							</code>
+						</pre>
+					</div>
+				</section>
+
+			</section>
+
+			<section>
+				<section id="file-management">
+					<h2>UNIX FileSystem</h2>
+					<h3>File management 101</h3>
+					<img class="float-right" src="resources/images/unix_filesystem.png" alt="UNIX filesystem image" />
+					<p class="left">
+						All data in UNIX is organized into files. All files are organized into directories. These directories are organized into
+						a hierarchical tree-like structure called the filesystem.
+					</p>
+					<p class="left">
+						A directory is a file whose sole job is to store file names and related information. All files, whether ordinary, special,
+						or directories, are contained within a directory.
+					</p>
+				</section>
+				<section>
+					<h2>Root Directory</h2>
+					<p class="left">
+						Directories are arranged in a hierarchy with root (/) at the top.
+					</p>
+					<div class="unix-code">
+						<p>
+							Navigate to the root folder of the bootcamp server using
+							<b>cd</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ cd /
+							</code>
+						</pre>
+					</div>
+					<div class="unix-code">
+						<p>
+							Check where you are within the filesystem hierarchy at any time with
+							<b>pwd</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ pwd
+/
+							</code>
+						</pre>
+					</div>
+					<div class="unix-code">
+						<p>
+							Try listing the files within the root folder with
+							<b>ls</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ ls
+bin   dev  home        lib    lost+found  mnt  proc  run   srv  tmp  var
+boot  etc  initrd.img  lib64  media       opt  root  sbin  sys  usr  vmlinuz
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Home Directory</h2>
+					<p class="left">
+						The directory in which you find yourself when you first login is called your home directory.
+					</p>
+					<p class="left">
+						You will be doing much of your work in your home directory and subdirectories that you'll be creating to organize your files.
+					</p>
+					<div class="unix-code">
+						<p>
+							Navigate back to your home folder:
+						</p>
+						<pre><code data-trim contenteditable>
+$ cd ~
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Absolute/Relative pathnames</h2>
+					<p class="left">
+						Again, directories are arranged in a hierarchy tree with root (/) at the top. The position of any file within the hierarchy
+						is described by its pathname.
+					</p>
+					<p class="left">
+						Elements of a pathname are separated by a /. A pathname is absolute if it is described in relation to root, so
+						<b>absolute</b> pathnames always begin with a /.
+					</p>
+					<div class="unix-code">
+						<p>
+							Here are some examples of absolute pathnames:
+						</p>
+						<pre><code data-trim contenteditable>
+/etc/apache2/apache2.conf
+/var/www/warmup/
+							</code>
+						</pre>
+					</div>
+
+					<div class="unix-code">
+						<p>
+							A pathname can also be relative to your current working directory.
+							<b>Relative</b> pathnames never begin with /. Relative to campelo's home directory, some pathnames might look like this:
+						</p>
+						<pre><code data-trim contenteditable>
+Development/warmups
+codecadets/resources/unix-tutorial.txt
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Creating Directories</h2>
+					<div class="unix-code">
+						<p>
+							In the bootcamp server, within your home directory, create a new folder named warmup:
+						</p>
+						<pre><code data-trim contenteditable>
+$ mkdir warmup
+							</code></pre>
+					</div>
+					<p class="left">
+						The
+						<b>mkdir</b> command produces no output if it successfully creates the requested directory.
+					</p>
+					<div class="unix-code">
+						<p>
+							Sometimes when you want to create a directory, its parent directory or directories might not exist. In this case, mkdir issues
+							an error message as follows:
+						</p>
+						<pre><code data-trim contenteditable>
+$ mkdir temp/resources/
+mkdir: cannot create directory 'temp/resources/': No such file or directory
+							</code></pre>
+					</div>
+
+					<div class="unix-code">
+						<p>
+							In such cases, you can specify the
+							<b>-p</b> option to the
+							<b>mkdir</b> command. It creates all the necessary directories for you:
+						</p>
+						<pre><code data-trim contenteditable>
+$ mkdir -p temp/resources/
+							</code></pre>
+					</div>
+				</section>
+
+				<section id="rmdir">
+					<h2>Removing Directories</h2>
+					<div class="unix-code">
+						<p>
+							Use
+							<b>rmdir</b> to remove the
+							<u>empty</u> directory temp/resources:
+						</p>
+						<pre><code data-trim contenteditable>
+$ rmdir temp/resources
+							</code>
+						</pre>
+					</div>
+
+					<div class="unix-code">
+						<p>
+							With
+							<b>rmdir</b> (and
+							<b>mkdir</b>), you can remove (create) multiple directories at the same time as follows:
+						</p>
+						<pre><code data-trim contenteditable>
+$ mkdir development code-breaks temp-folder
+$ rmdir code-breaks
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Moving/Renaming Files</h2>
+					<p class="left">
+						The
+						<b>mv</b> (move) command can be used both to
+						<u>move</u> or
+						<u>rename</u> files (and directories in particular).
+					</p>
+					<p class="left">
+						You will be renaming/moving a file depending on if you use
+						<b>mv</b> to the same/different parent folder.
+					</p>
+					<div class="unix-code">
+						<p>
+							Rename the temp directory to tmp:
+						</p>
+						<pre><code data-trim contenteditable>
+$ mv temp tmp
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Listing Files</h2>
+					<div class="unix-code">
+						<p>
+							Use the
+							<b>ls</b> command to list the files of your home folder:
+						</p>
+						<pre><code data-trim contenteditable>
+$ ls ~/
+codecadets  tmp  unixstuff  warmup
+							</code>
+						</pre>
+					</div>
+					<div class="unix-code">
+						<p>
+							The
+							<b>ls</b> command supports the
+							<b>-l</b> option which will give you more information about the listed files:
+						</p>
+						<pre><code data-trim contenteditable>
+$ ls -l ~/
+drwxr-xr-x 2 campelo campelo 4096 Jan  8 18:35 codecadets
+drwxr-xr-x 2 campelo campelo 4096 Jan 10 12:27 tmp
+drwxr-xr-x 2 campelo campelo 4096 Jan  6 19:10 unixstuff
+drwxr-xr-x 2 campelo campelo 4096 Jan 10 12:11 warmup
+							</code></pre>
+					</div>
+					<div class="left-table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>
+										Column
+									</th>
+									<th>
+										Meaning
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										1
+									</td>
+									<td>
+										File type and permissions
+									</td>
+								</tr>
+								<tr>
+									<td>
+										2
+									</td>
+									<td>
+										Number of memory blocks taken by the file
+									</td>
+								</tr>
+								<tr>
+									<td>
+										3
+									</td>
+									<td>
+										The owner of the file (who created it)
+									</td>
+								</tr>
+								<tr>
+									<td>
+										4
+									</td>
+									<td>
+										The group of the owner
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="left-table-container" style="position:relative">
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										5
+									</td>
+									<td>
+										Bytes size of the file
+									</td>
+								</tr>
+								<tr>
+									<td>
+										6
+									</td>
+									<td>
+										Creation (modification) date and time
+									</td>
+								</tr>
+								<tr>
+									<td>
+										7
+									</td>
+									<td>
+										File name
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</section>
+
+				<section id="meta-characters">
+					<h2>Metacharacters</h2>
+					<p class="fragment">
+						Metacharacters are a group of characters that have special meanings to the UNIX operating system. For instance,
+						<b>*</b> represents 0 or more characters, and
+						<b>?</b> represents (any) single character.
+					</p>
+
+					<table class="fragment" style="font-size:20px;">
+						<thead>
+							<tr>
+								<th>
+									Symbol
+								</th>
+								<th>
+									Meaning
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									*
+								</td>
+								<td>
+									Matches any number of any characters
+								</td>
+							</tr>
+							<tr>
+								<td>
+									?
+								</td>
+								<td>
+									Matches any single character
+								</td>
+							</tr>
+							<tr>
+								<td>
+									\
+									<i>char</i>
+								</td>
+								<td>
+									Ignore shell's special meaning of
+									<i>char</i>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<i>command</i> &lt;
+									<i>file</i>
+								</td>
+								<td>
+									Input the content of
+									<i>file</i> to the
+									<i>command</i>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<i>command</i> &gt;
+									<i>file</i>
+								</td>
+								<td>
+									Send the output of
+									<i>command</i> to the end of the
+									<i>file</i>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<i>command_1</i> |
+									<i>command_2</i>
+								</td>
+								<td>
+									Sends the output of
+									<i>command_1</i> as the input of
+									<i>command_2</i>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</section>
+
+				<section>
+					<h2>The . &amp; .. Directories</h2>
+					<p class="left">
+						The . (dot) filename represents the current working directory;
+						<br> and the .. (dot dot) filename represents the directory one level above the current working directory, often referred
+						to as the parent directory.
+					</p>
+					<p class="left">
+						Every directory on the UNIX filesystem contains both the . and the .. filenames.
+					</p>
+					<p class="left">
+						Every file (or folder) that has a name starting with . is hidden.
+					</p>
+					<div class="unix-code">
+						<p>
+							To list all files (including hidden ones) inside the tmp directory you just created use the
+							<b>-a</b>(all) option of
+							<b>ls</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ ls -a tmp/
+.  ..
+							</code>
+						</pre>
+					</div>
+				</section>
+
+				<section id="creatingFiles">
+					<h2>Creating Empty Files</h2>
+
+					<div class="unix-code">
+						<p>
+							Create the ~/tmp/to-delete.txt file, using
+							<b>touch</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ touch ~/tmp/to-delete.txt
+							</code></pre>
+					</div>
+
+					<div>
+						<p class="left" style="margin:0px">
+							The previous command will create the empty file. Then follow the steps bellow:
+						</p>
+					</div>
+
+				</section>
+
+				<section id="rm">
+					<h2>Deleting Files</h2>
+					<div class="unix-code">
+						<p>
+							Delete the file you just created with
+							<b>rm</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ rm ~/tmp/to-delete.txt
+							</code></pre>
+					</div>
+
+				</section>
+
+				<section id="cp">
+					<h2>Copying Files</h2>
+					<p class="left">
+						We will use the directory /var/cadets/&lt;location&gt;/ in the bootcamp server to share files with our beloved &#60;Code
+						Cadets&#62;. &lt;location&gt; is a placeholder for your bootcamp's location (eg. lisboa, fundao).
+					</p>
+					<div class="unix-code">
+						<p class="left">
+							Use the
+							<b>cp</b> command to copy the cheat-sheet.txt file from the shared folder into warmup/unix/ in your home folder:
+						</p>
+						<pre><code data-trim contenteditable>
+$ cd ~
+$ mkdir -p warmup/unix/
+$ cp /var/cadets/warmup/unix/cheat-sheet.txt ~/warmup/unix/cheat-sheet.txt
+							</code>
+						</pre>
+					</div>
+
+					<div class="unix-code">
+						<p class="left">
+							Make sure the file has in fact been copied to the correct folder, by listing the folder:
+						</p>
+						<pre><code data-trim contenteditable>
+$ ls warmup/unix/
+cheat-sheet.txt
+							</code>
+						</pre>
+					</div>
+
+				</section>
+
+				<section id="which">
+					<h2>Which</h2>
+					<p class="left fragment">
+						As you know, in UNIX everything is a file. The commands we type on the command line (which are not part of the
+						<b>bash</b> shell) are no exception.
+					</p>
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							The
+							<b>which</b> command identifies the location of executables. Locate the binary of the
+							<b>cp</b> and
+							<b>which</b> commands:
+						</p>
+						<pre><code data-trim contenteditable>
+$ which cp
+/bin/cp
+
+$ which which
+/usr/bin/which
+							</code></pre>
+					</div>
+
+				</section>
+
+				<section id="getting-help">
+					<h2>Getting Help</h2>
+					<p class="fragment left">
+						The shell has a couple of commands that can be very helpful
+						<br> (don't lean solely on google &gt;&gt; use the shell) and so are definitively worth knowing about.
+					</p>
+					<p class="fragment left">
+						When you are not sure about the name of a command
+						<br>(or if it exists), use
+						<b>apropos</b> to search for a keyword.
+					</p>
+
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Let's try finding a command for counting the number of words in our ~/warmup/unix/cheat-sheet.txt (there is a command for
+							everything):
+						</p>
+						<pre><code data-trim contenteditable>
+$ apropos count
+...
+wc (1)               - print newline, word, and byte counts for each file
+							</code></pre>
+					</div>
+
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							We then use
+							<b>man</b> to get familiar with the command usage and use it to our purpose:
+						</p>
+						<pre><code data-trim contenteditable>
+$ man wc
+wc [OPTION]... [FILE]...
+$ wc ~/warmup/unix/cheat-sheet.txt
+ 177 1460 8638 /home/campelo/warmup/unix/cheat-sheet.txt
+							</code></pre>
+					</div>
+
+				</section>
+
+				<section id="secure-copy">
+					<h2>Secure Copy</h2>
+					<p class="fragment left">
+						<b>scp</b> copies files over a secure, encrypted network connection.
+					</p>
+					<p class="fragment left">
+						If you are familiar with
+						<b>cp</b>,
+						<b>scp</b> is easy to understand. Both commands require a source and a destination filesystem location. The big difference
+						is that with
+						<b>scp</b>, one or both of the locations are on a remote server.
+					</p>
+
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Lets use
+							<b>scp</b> to send a vim cheat sheet file to our bootcamp server. First locate and download you personal favorite cheat
+							sheet file from the web. The
+							<b>scp</b> command will then look something like this
+							<br>(do yourself a favor and use tab completion):
+						</p>
+						<pre><code data-trim contenteditable>
+# on the remote server
+// create the destination folder
+$ mkdir ~/warmup/vim/
+
+# on a local shell session
+// scp command syntax:
+// $ scp source user@host:destination
+$ scp ~/vim/cheat-sheet.txt campelo@lisboa.codecadets.academiadecodigo.org:~/warmup/vim/cheat-sheet.txt
+cheat-sheet.txt                                               100% 2957     2.9KB/s   00:00
+							</code></pre>
+					</div>
+
+				</section>
+
+			</section>
+
+			<section>
+				<section id="environment">
+					<h2>UNIX Environment</h2>
+					<p class="fragment">
+						An important UNIX concept is the
+						<b>environment</b>, which is defined by
+						<b>environment variables</b>. Some environment variables are set by the system, others by you, yet others by the shell,
+						or any program that loads another program.
+					</p>
+
+					<p class="fragment">
+						A variable is a character string to which we assign a value. The value assigned could be a number, text, filename, device,
+						or any other type of data.
+					</p>
+				</section>
+
+
+				<section id="variables">
+					<h2>Variables</h2>
+					<div class="unix-code fragment">
+						<p class="left">
+							Set your first UNIX environment variable and print its value using
+							<b>echo</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ TEST="UNIX tutorial"
+$ echo $TEST
+UNIX tutorial
+								</code></pre>
+					</div>
+					<p class="left fragment">
+						Note that environment variables are set without using $ sign but while accessing them we use $ sign as a prefix. These variables
+						retain their values until we come out of the shell.
+					</p>
+					<div class="fragment">
+						<p class="left">
+							When you login to the system, the shell undergoes a phase called initialization to set up the environment. This is usually
+							a two step process that involves the shell reading the following files:
+						</p>
+						<ul>
+							<li>/etc/profile</li>
+							<li>~/.profile</li>
+						</ul>
+					</div>
+				</section>
+
+				<section id="shell-initialization">
+					<h2>Shell Initialization</h2>
+					<div class="fragment">
+						<p class="left" style="margin:20px 0px 0px 0px">
+							These are the steps involved in the shell initialization:
+						</p>
+						<ul>
+							<li>The shell checks to see whether the file /etc/profile exists;</li>
+							<li>If it exists, the shell reads it. Otherwise, this file is skipped and no error message is displayed;</li>
+							<li>The shell checks to see whether the file .profile exists in your home directory;</li>
+							<li>If it exists, the shell reads it; otherwise, the shell skips it and no error message is displayed.</li>
+						</ul>
+					</div>
+
+					<div class="unix-code fragment">
+						<p class="left">
+							As soon as these steps are done, the shell displays the command line prompt:
+						</p>
+						<pre><code data-trim contenteditable>
+$
+								</code></pre>
+					</div>
+				</section>
+
+				<section id="profile-files">
+					<h2>Profile Files</h2>
+					<p class="fragment left">
+						The file
+						<b>/etc/profile</b> is maintained by the system administrator of your UNIX machine and contains shell initialization information
+						required by all users on a system.
+					</p>
+					<p class="fragment left" style="margin:10px 0px 0px 0px">
+						The file
+						<b>.profile</b> is under your control. You can add as much shell customization information as you want to this file. The
+						minimum set of information that you need to configure includes:
+					</p>
+					<ul class="fragment left">
+						<li>The type of terminal you are using;</li>
+						<li>A list of directories in which to locate commands;</li>
+						<li>A list of variables affecting the look and feel of your terminal.</li>
+					</ul>
+
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Check your
+							<b>.profile</b> using
+							<b>vim</b>:
+						</p>
+						<pre><code data-trim contenteditable>
+$ vim ~/.profile
+								</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>PATH Variable</h2>
+					<p class="fragment left">
+						The
+						<b>PATH</b> variable specifies the location in which the shell looks for commands.
+					</p>
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Try printing your
+							<b>PATH</b> variable in the console:
+						</p>
+						<pre><code data-trim contenteditable>
+$ echo $PATH
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+								</code>
+							</pre>
+					</div>
+				</section>
+
+				<section id="ps1">
+					<h2>PS1 Variable</h2>
+					<p class="fragment left">
+						The characters that the shell displays as your command prompt are stored in a environment variable called PS1. You can change
+						this variable to be anything you want. As soon as you change it, it'll be used in the current shell session from that
+						point on.
+					</p>
+
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Try changing the PS1 to the following:
+						</p>
+						<pre><code data-trim contenteditable>
+$ PS1="\u@\h \w\$ "
+campelo@guincho ~$
+								</code></pre>
+					</div>
+
+					<p class="fragment left">
+						If all went well, the command prompt of your current shell session has become something like campelo@guincho ~$.
+					</p>
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Now make that change load automatically when the shell initializes by adding the PS1 variable to ~/.profile.
+						</p>
+						<pre><code data-trim contenteditable>
+campelo@guincho ~$ vim ~/.profile
+								</code></pre>
+					</div>
+				</section>
+			</section>
+
+			<section id="file-security">
+				<section>
+					<h2>Filesystem security (access rights)</h2>
+					<p>
+						Access rights is an important component of UNIX that provides a secure method for storing files. Every file in UNIX has the
+						following attributes:
+					</p>
+					<ul>
+						<li>
+							<u>Owner permissions</u>: The owner's permissions determine what actions the owner of the file can perform on the file;</li>
+						<li>
+							<u>Group permissions </u>: The group's permissions determine what actions a user, who is a member of the group that a
+							file belongs to, can perform on the file;</li>
+						<li>
+							<u>Other (world) permissions</u>: The permissions for others indicate what action all other users can perform on the
+							file.
+						</li>
+					</ul>
+				</section>
+
+
+
+				<section>
+					<h2>File Permissions</h2>
+					<div class="unix-code fragment" style="margin-top:10px">
+						<p class="left">
+							Try long listing the unix cheat-sheet.txt file you copied before:
+						</p>
+						<pre><code data-trim contenteditable>
+campelo@guincho:~$ cd warmup/unix/
+campelo@guincho:~/warmup/unix$ ls -l cheat-sheet.txt
+-rw-r--r-- 1 campelo campelo 8638 Jan 11 15:11 cheat-sheet.txt
+									</code></pre>
+					</div>
+					<img class="fragment" style="float:left" src="resources/images/unix/file_permissions.png" alt="File Permissions Diagram"
+					/>
+					<p class="fragment left">
+						Here the first column (with the exception of the first character) represents different access modes (permissions) associated
+						with the file.
+					</p>
+					<p class="fragment left">
+						The permissions are broken into groups of threes. Each position in a group denotes a specific permission. In this order,
+						read (r), write(w) and execute(x).
+					</p>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+
+			controls: true,
+			keyboard: true,
+			center: true,
+			help: true,
+			progress: true,
+			slideNumber: true,
+			history: false,
+			width: 1024,
+			overview: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			menu: {
+				// Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+				side: 'left',
+
+				// Add slide numbers to the titles in the slide list.
+				// Use 'true' or format string (same as reveal.js slide numbers)
+				numbers: false,
+
+				// Hide slides from the menu that do not have a title.
+				// Set to 'true' to only list slides with titles.
+				hideMissingTitles: true,
+
+				// Add markers to the slide titles to indicate the progress through the presentation
+				markers: false,
+
+				// Specify custom panels to be included in the menu
+				custom: false,
+				// Disable themes tab
+				themes: false,
+
+				// Specifies if the transitions menu panel will be shown.
+				transitions: true,
+
+				// Adds a menu button to the slides to open the menu panel.
+				// Set to 'false' to hide the button.
+				openButton: true,
+
+				// If 'true' allows the slide number in the presentation to
+				// open the menu panel. The reveal.js slideNumber option must
+				// be displayed for this to take effect
+				openSlideNumber: false,
+
+				// If true allows the user to open and navigate the menu using
+				// the keyboard. Standard keyboard interaction with reveal
+				// will be disabled while the menu is open.
+				keyboard: true
+			},
+
+			// Optional reveal.js plugins
+			dependencies: [{
+				src: 'plugin/menu/menu.js'
+			}, {
+				src: 'lib/js/classList.js',
+				condition: function () {
+					return !document.body.classList;
+				}
+			}, {
+				src: 'plugin/markdown/marked.js',
+				condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src: 'plugin/markdown/markdown.js',
+				condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src: 'plugin/highlight/highlight.js',
+				async: true,
+				condition: function () {
+					return !!document.querySelector('pre code');
+				},
+				callback: function () {
+					hljs.initHighlightingOnLoad();
+				}
+			}, {
+				src: 'plugin/zoom-js/zoom.js',
+				async: true
+			}, {
+				src: 'plugin/notes/notes.js',
+				async: true
+			}, {
+				src: '//cdn.socket.io/socket.io-1.4.5.js',
+				async: true
+			}, {
+				src: 'plugin/multiplex/config.js',
+				async: false
+			}, {
+				src: 'plugin/multiplex/client.js',
+				async: true
+			}, {
+				src: 'plugin/multiplex/master.js',
+				async: true
+			}]
+		});
+	</script>
+
+</body>
+
+</html>

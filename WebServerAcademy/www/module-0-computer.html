@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        window.onload = function() {
+            document.getElementById("academiaCodigo").focus();
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body id="body">
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section>
+                    <h2>Computer Architecture</h2>
+                </section>
+
+                <section id="computer">
+                    <h2>What is a Computer?</h2>
+                    <div class="logo">
+                        <img class="fragment logo" data-src="images/1/intro/iphone.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/ipad.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/macbook.jpg" />
+                    </div>
+                    <div class="logo">
+                        <img class="fragment logo" data-src="images/1/intro/television.png" />
+                        <img class="fragment logo" data-src="images/1/intro/fridge.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/washing-machine.png" />
+                        <img class="fragment logo" data-src="images/1/intro/mercedes.png" />
+                    </div>
+                    <p class="fragment">It is an electronic device, composed of any digital circuits</p>
+                    <p class="fragment">Stores and processes data according to instructions given to it by a program stored in memory</p>
+
+                    <aside class="notes">
+                        <li>Ask cadets for the definitions of a computer and a software program.</li>
+                        <li>Are digital calculators (made with logic gates like we saw before) computers?</li>
+                        <li>Digital Circuits with inputs and outputs do not make a computer</li>
+                        <li>Focus on the notion that computers are capable of storing data and instructions in memory for later
+                            execution</li>
+                        <li>Calculators, like other simple devices, have dedicated electronics, but we can not change or modify
+                            their behaviour through a program like on a generic computing device</li>
+                        <p>Make the transition by referring the revolutionary notion of having the same machine execute a different
+                            behaviour by executing a different program</p>
+                    </aside>
+                </section>
+
+                <section id="touring">
+                    <img class="logo float-right" data-src="images/1/intro/alan.jpg" />
+                    <h2>Alan Turing</h2>
+                    <p class="fragment">Father of Computer Science, Mathematician, Logician, Wartime Codebreaker, Victim of Prejudice</p>
+                    <p>
+                        <small class="fragment">The basic principle of the modern computer - the idea of controlling the machine's operations by
+                            means of a program of coded instructions stored in the computer memory — was conceived by Alan
+                            Turing</small>
+                    </p>
+                    <h3 class="fragment">The Universal Computing Machine</h3>
+                    <img class="fragment" style="max-height: 250px;" data-src="images/1/intro/touring_bombe.jpg" />
+                    <small class="fragment">Turing's Colossus was a general purpose electromechanical computer used in the World War II effort</small>
+                    <aside class="notes">
+                        <ol>
+                            <li>Ask cadets why is the turing machine Universal?</li>
+                            <li>Reference the movie "The imitation Game", second world war and prejudice</li>
+                            <li>UTM mathematical model in 1936, conceived for the war in 1940</li>
+                            <li>Pardoned by the queen on 23 December 2013</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" data-src="images/0/ascc-program.jpg" />
+                    <h2>Electromechanical Computers</h2>
+                    <p class="fragment">In the earliest computers, switches were opened and closed by magnetic fields produced by relays</p>
+                    <img class="fragment" style="max-height: 250px;" data-src="images/0/mark1.jpg" alt="">
+                    <p>
+                        <small class="fragment">The IBM ASCC was a general purpose electromechanical computer used in the World War II effort and
+                            built by a team representing Harvard, the U.S. Navy and IBM</small>
+                    </p>
+                    <p>
+                        <small class="fragment">Instructions and Data were provided via two separate punched paper tapes</small>
+                    </p>
+                    <p>
+                        <small class="fragment">One of the first programs to run on the Mark I was initiated on 29 March 1944 by
+                            <u>John von Neumann</u>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Automatic Sequence Controlled Calculator</li>
+                            <li>Relay (Relé) - Switch that is opened or closed through an electromagnet (magnetic field generated
+                                by electronic current)</li>
+                            <li>The program was to determine if an implosion was a viable way of detonating the atomic bomb</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Modern Computers</h2>
+                    <h3>How does the modern computer work?</h3>
+                    <p class="fragment">The Von Neumann architecture</p>
+                    <div class="logo">
+                        <img class="fragment logo" data-src="images/1/intro/neumann.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/ibmpc.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/nextcube.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/macbook.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/ipad.jpg" />
+                        <img class="fragment logo" data-src="images/1/intro/iphone.jpg" />
+                    </div>
+                    <small>
+                        <p class="fragment">All computers based on the same basic design</p>
+                        <p class="fragment">Flexibility to execute different types of programs like the Turing machine</p>
+                        <p class="fragment">Program and Data both stored in the same memory</p>
+                    </small>
+                    <aside class="notes">
+                        enough with old computers...
+                        <ol>
+                            <li>Invented by John Von Neumann in 1945 </li>
+                            <li>IBM PC from 80s</li>
+                            <li>Next Cube from the 90s</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="von-neumann">
+                    <h2>The Von Neumann architecture</h2>
+                    <p>
+                        <img class="fragment" data-src="images/1/intro/architecture.png" />
+                        <small>
+                            <ul>
+                                <li class="fragment">Stored-Program computer system</li>
+                                <li class="fragment">Memory holds both the program data and the instructions processing it</li>
+                                <li class="fragment">Control Unit manages moving data and program instructions into and out of memory</li>
+                                <li class="fragment">Control Unit executes program instructions sequentially</li>
+                                <li class="fragment">ALU is responsible for calculation tasks on the data</li>
+                                <li class="fragment">Input/Output makes program interactive</li>
+                                <li class="fragment">All these units are linked to each other via a computer bus</li>
+                            </ul>
+                        </small>
+                    </p>
+                    <p>
+                        <small class="fragment">What is a computer bus?</small>
+                    </p>
+                </section>
+
+                <section id="bus">
+                    <h2>Computer Bus</h2>
+                    <p>A bus, in computing, is a set of physical connections (cables, printed circuits, etc.) which can be shared
+                        by multiple hardware components in order to communicate with one another</p>
+                    <p class="fragment">
+                        <img style="max-height:200px" data-src="images/0/pcb-bus.jpg" />
+                        <img style="max-height:200px" data-src="images/1/intro/bus-wires.jpg" />
+                    </p>
+                    <p class="fragment">Each wire in a computer bus will carry a
+                        <u>single bit</u> of information</p>
+                </section>
+
+                <section>
+                    <h2>Memory Subsystem</h2>
+                    <img style="max-height:200px" data-src="images/0/punched-tape.jpg" />
+                    <img style="max-height:200px" data-src="images/0/punched-card-deck.jpg" />
+                    <img style="max-height:200px" data-src="images/0/core-ram.jpg" />
+                    <aside class="notes">
+                        after vacuum tubes and mercury delay lines came core memory. It uses tiny magnetic rings, the cores, through which wires
+                        are threaded to write and read information.
+                    </aside>
+                </section>
+
+                <section id="flipflop">
+                    <img class="logo float-right" data-src="images/0/flip-flop.jpg" />
+                    <h2>Flip-Flops</h2>
+                    <p class="fragment">In digital electronics, a flip-flop or latch is a circuit that has two stable states and can be used
+                        to store one bit of information</p>
+                    <img class="fragment" data-src="images/0/sr-flip-flop.png" />
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Draw the truth table for an SR Flip-Flop</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Memory Organisation</h3>
+                    <p class="fragment">
+                        <u>Main Memory</u> is organised as a matrix of bits, where each row represents a memory location and
+                        is capable of storing a number of a specific width, typically multi-byte in length (8, 16, 32 or
+                        64 bits)</p>
+                    <img class="fragment" style="max-height: 300px;" data-src="images/0/memory-cells.png" />
+                    <small class="fragment">Assume that data within memory can only be read or written a single row (memory location) at a time</small>
+                    <aside class="notes">
+                        Memory as per the von neumman is called Main Memory. Storage is the Secondary memory and works in different ways
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Memory Architecture</h3>
+                    <img class="fragment" style="max-height: 250px;" data-src="images/1/intro/memory-arch.gif" />
+                    <ul>
+                        <li class="fragment">Address Bus - carries the address of a memory cell</li>
+                        <li class="fragment">Data Bus - used to transfer data to and from a memory cell</li>
+                        <li class="fragment">Control Bus - selects read or write operations between memory and cpu or I/O devices</li>
+                    </ul>
+                </section>
+
+                <section id="ram">
+                    <h3>Random Access Memory</h3>
+                    <p>
+                        <img class="fragment" data-src="images/1/intro/ram.jpg" />
+                    </p>
+                    <ul>
+                        <li class="fragment">Many memory cells of fixed size</li>
+                        <li class="fragment">Each cell has an address associated with it</li>
+                        <li class="fragment">The time it takes to fetch/store is the same for all cells</li>
+                        <li class="fragment">Contents are lost if power fails</li>
+                    </ul>
+                    <aside class="notes">
+                        <ol>
+                            <li>Memory - many cells, cell length is memory width eg. 8 or 16 bits</li>
+                            <li>Access - cells are addressable, address width determines memory size, eg. 64M</li>
+                            <li>Random - constant time, not sequential</li>
+                            <li>Volatile - needs power</li>
+                            <li>Is this the only memory our computers need?</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Read Only Memory</h3>
+                    <p>
+                        <img class="fragment" data-src="images/1/intro/rom.jpg" />
+                    </p>
+                    <ul>
+                        <li class="fragment">Contents written during production</li>
+                        <li class="fragment">Supports read operations only</li>
+                        <li class="fragment">Contents are NOT lost if power fails</li>
+                        <li class="fragment">Later evolved into PROMs, EPROMs and EEPROMs</li>
+                    </ul>
+                    <aside class="notes">
+                        <ol>
+                            <li>Monitor code, today referred to as BIOS</li>
+                            <li>PROM - programmable only once</li>
+                            <li>EPROM - erasable via ultra violet, very slow writes</li>
+                            <li>EEPROM - electrical erasable</li>
+                            <li>Common flash memory are EEPROMs with very fast write speeds, which make them usable as HDD replacements</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="char">
+                    <h2>Memory stores numbers, but what about letters?</h2>
+                    <p class="fragment">Data in our programs can consist of both
+                        <u>Numbers</u> and
+                        <u>Characters</u>
+                    </p>
+                    <p class="fragment">But how can a computer represent Characters?</p>
+                    <p class="fragment">Using a character encoding scheme</p>
+                    <aside class="notes">
+                        <li>we represent them with numbers, several systems exist</li>
+                        <li>Reinforce notion that all data can be represented with numbers, even instructions and programs</li>
+                    </aside>
+                </section>
+
+                <section id="ascii">
+                    <img class="float-right logo-big" src="images/1/intro/ascii.png" />
+                    <h2>ASCII</h2>
+                    <h3 class="fragment">American Standard Code for Information Interchange</h3>
+                    <ul>
+                        <li class="fragment">Most common character-encoding scheme on the Web until 2008</li>
+                        <li class="fragment">Surpassed by UTF-8, which includes ASCII as a subset</li>
+                        <li class="fragment">Based on the English alphabet, uses 7 bits and is capable of encoding:
+                            <ol>
+                                <li class="fragment">numbers 0 to 9</li>
+                                <li class="fragment">lowercase letters a to z</li>
+                                <li class="fragment">uppercase letters A to Z</li>
+                                <li class="fragment">basic punctuation symbols</li>
+                                <li class="fragment">control codes that were originated with Teletype machines</li>
+                            </ol>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Consult ASCII Man Page</h3>
+                    </div>
+                    <aside class="notes">
+                        <ol>
+                            <li>man ascii</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="memory-diagram">
+                    <h2>The Memory Subsystem</h2>
+                    <h3>Storing Data in Memory</h3>
+                    <iframe id="memDiagram" frameborder="0" height="400" width="650" scrolling="no" src="interactive/intro/Memory_Diagram.html"></iframe>
+                    <aside class="notes">
+                        <li>what are we storing in position 0xFFFF?</li>
+                        <li>It is not ASCII chars, which are limited to 7F, so it must be native cpu code (or rubish..)</li>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>What about more complex things?</h2>
+                    <p class="fragment">
+                        <u>Anything</u> can be represented in memory using numbers, we just need some structure and/or encoding
+                        mechanism</p>
+                    <p class="fragment">
+                        <b>.gif | .mp3 | .wav | .avi | .psd | .jpeg</b>
+                    </p>
+                </section>
+
+                <section id="cpu">
+                    <h2>The Central Processing Unit</h2>
+                    <ul>
+                        <li class="fragment">Executes a program of instruction cycles</li>
+                        <li class="fragment">Each instruction cycle has a number of steps</li>
+                        <p class="center">
+                            <img class="fragment" style="max-height: 230px;" data-src="images/1/intro/cpu-cycle.png" />
+                        </p>
+                        <p>
+                            <ol>
+                                <li class="fragment">
+                                    <u>Fetch</u> an instruction from memory</li>
+                                <li class="fragment">
+                                    <u>Decode</u> it, determine what has to be done</li>
+                                <li class="fragment">
+                                    <u>Execute</u> the instruction</li>
+                                <li class="fragment">
+                                    <u>Go back to step 1</u>
+                                </li>
+                            </ol>
+                        </p>
+                    </ul>
+                    <aside class="notes">
+                        <ol>
+                            <li>Clock drives each step of the cycle</li>
+                            <li>CU fetches instruction (and data if required) from memory</li>
+                            <li>Control Unit signals ALU, memory and I/O during execution </li>
+                            <li>Special instruction (halt) tells CPU to stop executing code</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="alu">
+                    <h2>ALU</h2>
+                    <img class="float-right" style="max-width: 40%;" data-src="images/0/logic-gate-alu.jpg">
+                    <img class="float-left" style="max-width: 50%;" data-src="images/0/alu-table.jpg">
+                    <small class="fragment float-left">
+                        <br>4 bit Cascadable ALU with 16 different
+                        <br> Operations, implemented using 75 Logic Gates.</small>
+                    <aside class="notes">http://www.esi.uclm.es/www/isanchez/apuntes/ci/74181.pdf
+                        <p>This alu is the 74LS181 ALU. The PDP-11 was the computer on which the C programming language was
+                            developed and the unix C port as well</p>
+                    </aside>
+                </section>
+
+                <section id="registers">
+                    <h2>CPU Registers</h2>
+                    <p class="fragment">Used to store and transfer data and instructions, they are the fastest type of memory available.</p>
+                    <img class="fragment" style="max-height: 300px;" data-src="images/0/cpu-registers.png" />
+                    <small>
+                        <p class="fragment">Some registers are general purpose, others have specific functions.
+                            <span class="fragment">The accumulator register, for example, is located inside the ALU and used during arithmetical &amp;
+                                logical operations</span>
+                        </p>
+                    </small>
+                    <aside class="notes">
+                        registers can be 8, 16, 32 or 64 bit, depending on the processor type
+                    </aside>
+                </section>
+
+                <section id="assembly">
+                    <h2>Machine Code and Assembly</h2>
+                    <small class="fragment">Machine code or machine language is a set of instructions
+                        <u>executed directly</u> by a computer's CPU. Each instruction performs a very specific task, such as
+                        a load, a jump, or an ALU operation on a unit of data in a CPU register or memory.</small>
+                    <img class="fragment" style="max-height: 200px;" data-src="images/1/intro/assembly.png" />
+                    <small class="fragment">Because strings of 0s and 1s are so hard for people to read, assembly languages were invented. An assembly
+                        language is essentially a human readable
+                        <u>direct translation</u> of machine language.</small>
+                </section>
+
+                <section>
+                    <h2>Program Execution</h2>
+                    <img class="fragment" style="max-height: 400px;" data-src="images/1/intro/vn-registers.png" />
+                    <ul>
+                        <li class="fragment">Data flows inside the CPU using an internal bus</li>
+                        <li class="fragment">IR holds the next instruction to be decoded and executed</li>
+                        <li class="fragment">PC holds the address of the next instruction to be fetched</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Board Exercise }</h2>
+                        <h3>Simulate the machine code execution in the Von Neumann architecture</h3>
+                    </div>
+                    <aside class="notes">
+                        <pre>
+                        var a = 2;
+                        var b = 5;
+                        var c = a + b;
+                        </pre>
+                    </aside>
+                </section>
+
+                <!--<section id="cpu-diagram">
+                    <h2>The Central Processing Unit</h2>
+                    <h3>Fetch instruction from memory</h3>
+                    <iframe id="cpuDiagram" frameborder="0" height="400" width="900" scrolling="no" src="interactive/intro/Memory_CPU_Diagram.html"></iframe>
+                </section>-->
+
+                <section class="io">
+                    <h2>I/O</h2>
+                    <p class="fragment">There are different types of I/O</p>
+                    <img class="float-right" style="max-height: 350px" data-src="images/0/io-devices.jpg" />
+                    <ul>
+                        <li class="fragment">Input Devices
+                            <ul>
+                                <small>
+                                    <li>Keyboard</li>
+                                    <li>Mouse</li>
+                                    <li>Microphone</li>
+                                </small>
+                            </ul>
+                        </li>
+                        <li class="fragment">Output Devices
+                            <ul>
+                                <small>
+                                    <li>Monitor</li>
+                                    <li>Printer</li>
+                                    <li>Speakers</li>
+                                </small>
+                            </ul>
+                        </li>
+                        <li class="fragment">Secondary Memory
+                            <ul>
+                                <small>
+                                    <li>Hard Drive</li>
+                                    <li>Floppy Disk Drive</li>
+                                    <li>CD/DVD</li>
+                                </small>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="io">
+                    <h2>Terminal Evolution</h2>
+                    <figure class="fragment">
+                        <img class="logo-big" data-src="images/1/intro/terminal1.jpg" />
+                        <div class="caption">teletype</div>
+                    </figure>
+                    <figure class="fragment">
+                        <img class="logo-big" data-src="images/1/intro/terminal2.jpg" />
+                        <div class="caption">old terminal</div>
+                    </figure>
+                    <figure class="fragment">
+                        <img class="logo-big" data-src="images/1/intro/terminal3.jpg" />
+                        <div class="caption">modern terminal</div>
+                    </figure>
+                    <aside class="notes">
+                        <ol>
+                            <li>Terminal - session which can receive and send input and output for command-line programs</li>
+                            <li>Console - special kind of terminal, the primary interface for managing a computer, eg while it
+                                is still booting up</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="storage">
+                    <h3>Storage Memory</h3>
+                    <p class="fragment">Also called
+                        <u>Secondary</u> memory, can be Removable or Persistent</p>
+                    <p>
+                        <div class="logo">
+                            <img class="fragment logo" data-src="images/1/intro/punchcard.gif" />
+                            <img class="fragment logo" data-src="images/1/intro/tape.jpg" />
+                            <img class="fragment logo" data-src="images/1/intro/hdd.jpg" />
+                            <img class="fragment logo" data-src="images/1/intro/floppy.jpg" />
+                            <img class="fragment logo" data-src="images/1/intro/optical.jpg" />
+                            <img class="fragment logo" data-src="images/1/intro/flash.jpg" />
+                            <img class="fragment logo" data-src="images/1/intro/sdd.jpg" />
+                            <img class="fragment logo" data-src="images/1/intro/cloud.png" />
+                        </div>
+                    </p>
+                    <p style="margin-top: 100px;">
+                        <small>
+                            <ul>
+                                <li class="fragment">Much slower than RAM/ROM</li>
+                                <li class="fragment">Much bigger than RAM/ROM</li>
+                                <li class="fragment">Much cheaper than RAM/ROM</li>
+                                <li class="fragment">Used by the OS through filesystems</li>
+                                <li class="fragment">Can be used by the OS as virtual memory</li>
+                            </ul>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <ol>
+                            <li>Ask about filesystem, UNIX tutorial</li>
+                            <li>Mention possibility for raw devices</li>
+                            <li>Explain virtual memory = RAM + Disk</li>
+                            <li>Explain Swap is section of disk used when RAM is full</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="disk">
+                    <h2>Hard Disk Structure</h2>
+                    <img class="fragment" style="max-height: 250px;" data-src="images/1/intro/partitions.jpg" />
+                    <ul>
+                        <li class="fragment">MBR is used in the computer boot process</li>
+                        <li class="fragment">Drives can be split into logical volumes called partitions</li>
+                        <li class="fragment">Sectors for a disk partition are marked during low level formatting</li>
+                        <li class="fragment">An empty file system is installed on a disk partition during the high level formatting</li>
+                    </ul>
+                    <aside class="notes">modern computers use sdd, but for teaching purposes - volumes, partitions, the boot sequence, etc., hdd
+                        serves just fine as the same concepts are valid</aside>
+                </section>
+
+                <section id="boot">
+                    <h1>Computer Boot Sequence</h1>
+                </section>
+
+                <section>
+                    <h2>Power On</h2>
+                    <p class="fragment">The PC is set to an address 16 bytes below the processor’s uppermost physical address. Eg: 0xFFFF0 for
+                        a 1M of address space</p>
+                    <p class="fragment">ROM containing the software initialization code must be located at this address</p>
+                    <img class="fragment" style="max-height: 300px;" data-src="images/1/intro/memory-map.png" />
+                </section>
+
+                <section id="bios">
+
+                    <aside class="notes">
+                        POST is Power-on-self-test which testes for hardware malfunction
+                        <p>Uefi allows:</p>
+                        <li> Graphics and mouse interaction </li>
+                        <li> boot on safe mode to check for malware while booting </li>
+                        <li> networking firmware to allow remote configuration and troubleshooting </li>
+                    </aside>
+
+                    <img class="logo float-right" data-src="images/1/intro/bios.jpg" />
+                    <h2>Basic Input/Output System</h2>
+                    <p class="fragment">BIOS is a Boot Firmware built into PCs and the first software to be run at power on</p>
+                    <p class="fragment">Performs hardware initialization (POST) and loads a <u>Bootloader</u> from a mass memory device</p>
+                    <small class="fragment">Unified Extensible Firmware Interface (UEFI) was designed as a successor to BIOS, aiming to address its
+                        technical shortcomings. New PC hardware predominantly ships with UEFI firmware</small>
+                </section>
+
+                <section>
+                    <img class="logo float-right" data-src="images/1/intro/grub.jpg" />
+                    <h2>The Boot Process</h2>
+                    <img class="fragment" style="max-height: 250px;" data-src="images/1/intro/boot-sequence.png" />
+                    <img class="fragment" style="max-height: 250px;" data-src="images/1/intro/boot-loader.png" />
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="drawin/intro.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            menu: {
+                // Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+                side: "left",
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu
+                custom: false,
+                // Disable themes tab
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 4,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+</body>
+
+</html>

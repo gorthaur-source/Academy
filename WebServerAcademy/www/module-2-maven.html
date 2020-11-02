@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? 'css/print/pdf.css'
+                : 'css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]> <script src="lib/js/html5shiv.js"></script> <![endif]-->
+    </head>
+
+    <body>
+        <div class="header"><img id="logo" src="logo.png" /></div>
+
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1><img src="images/1/maven/maven.png" alt="Maven" /></h1>
+                    <p>
+                        <small>Created by <a>&lt;Academia de Código_&gt;</a> </small>
+                    </p>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What is Maven?</h2>
+                        <ul>
+                            <li class="fragment">Tool for building and managing Java projects</li>
+                            <li class="fragment">Manages project dependencies and lifecycle</li>
+                            <li class="fragment">
+                                Compile, test, package and distribute source code
+                            </li>
+                            <li class="fragment">Project web site and reports</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Why should I move from Ant to Maven?</h2>
+                        <p class="fragment">
+                            <b>Ant</b> needs to be told exactly what to do and when to do it,
+                            everything has to be explicitly configured
+                        </p>
+                        <p class="fragment">
+                            <b>Maven</b> dependency management system is the reason <br />
+                            most people move away from Ant.
+                        </p>
+
+                        <p class="fragment">
+                            Maven uses convention over configuration<br />
+                            and has lots of implicit functionalities
+                        </p>
+                        <img class="fragment" src="images/1/maven/maven-cli.png" />
+                    </section>
+
+                    <section>
+                        <h2>Project Object Model</h2>
+                        <p class="fragment">
+                            A Maven project is simply a directory containing a <u>pom.xml</u> file
+                        </p>
+                        <p class="fragment">
+                            It is an XML file that contains information about the project and
+                            configuration details used to build it
+                        </p>
+                        <p class="fragment">
+                            All POMs extend from a default <u>Super POM</u> and describe the
+                            project:
+                        </p>
+                        <ul>
+                            <li class="fragment">name and version</li>
+                            <li class="fragment">source code locations</li>
+                            <li class="fragment">dependencies</li>
+                            <li class="fragment">plugins</li>
+                            <li class="fragment">artifact type</li>
+                        </ul>
+                    </section>
+
+                    <section id="artifact">
+                        <h2>Maven Artifact</h2>
+                        <p class="fragment">
+                            An artifact is a file that is produced by the build process and
+                            represents an application binary.
+                            <span class="fragment">A Maven artifact can be:</span>
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                <u>Binary Package</u> such as a jar, war, ear, zip, tarball, etc.
+                            </li>
+                            <li class="fragment">
+                                <u>Maven Plugin</u> can be of type build or reporting and are
+                                executed during the maven lifecycle
+                            </li>
+                            <li class="fragment">
+                                <u>Maven Archetype</u> used as a project template
+                            </li>
+                            <li class="fragment"><u>Project Metafile</u>, a pom.xml file</li>
+                        </ul>
+                    </section>
+
+                    <section id="plugin">
+                        <h2>Maven Plugins</h2>
+                        <ul>
+                            <li class="fragment">Collection of <u>one or more goals</u></li>
+                            <li class="fragment">
+                                A goal is a <u>specific task</u> that can be executed
+                            </li>
+                        </ul>
+                        <p class="fragment">
+                            <img class="tiny" src="images/1/maven/maven-plugins.png" />
+                        </p>
+                        <aside class="notes">
+                            mvn compiler plugin will compile all our unit tests
+                        </aside>
+                    </section>
+
+                    <section id="lifecycle">
+                        <h2>Maven Lifecycle</h2>
+                        <p class="fragment">
+                            Ordered list of phases which are executed sequentially
+                        </p>
+                        <img class="fragment" src="images/1/maven/maven-lifecycle.png" />
+                        <pre class="fragment"><code data-trim contenteditable>
+// Execute all phases up to and including package
+$ mvn package
+                </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Plugins and Lifecycle</h2>
+                        <img src="images/1/maven/maven-lifecycle-plugins.png" />
+                    </section>
+
+                    <section>
+                        <h2>Maven Coordinates</h2>
+                        <p class="fragment">
+                            Define a set of identifiers which can be used to uniquely identify a
+                            project
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                <u>groupId</u> - project group identifier, loosely based on the Java
+                                package
+                            </li>
+                            <li class="fragment"><u>artifactId</u> - name of the project</li>
+                            <li class="fragment">
+                                <u>version</u> - version of the project in format
+                                {major}.{minor}.{patch}, add -SNAPSHOT suffix if in development
+                            </li>
+                        </ul>
+                        <img class="fragment tiny" src="images/1/maven/maven-coordinates.png" />
+                    </section>
+
+                    <section>
+                        <h2>Directory Structure</h2>
+                        <img class="float-left small" src="images/1/maven/maven-files.png" />
+                        <p class="fragment">
+                            Maven defines a standard directory structure, allowing users familiar
+                            with one Maven project to immediately understand another one
+                        </p>
+                        <small>
+                            <ul>
+                                <li class="fragment">
+                                    <u>src/main/java</u> - Application/Library sources
+                                </li>
+                                <li class="fragment">
+                                    <u>src/main/resources</u> - Application/Library resources
+                                </li>
+                                <li class="fragment"><u>src/test/java</u> - Test sources</li>
+                                <li class="fragment"><u>src/test/resources</u> - Test resources</li>
+                                <li class="fragment"><u>target</u> - output of the build</li>
+                            </ul>
+                        </small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Maven Hello World</h3>
+                        </div>
+                    </section>
+
+                    <section id="repositories">
+                        <h2>Maven Repositories</h2>
+                        <p class="fragment">
+                            In Maven, artifacts and plugins are loaded from remote repositories when
+                            needed.
+                            <span class="fragment">
+                                Downloaded software is then saved in a local repository for use by
+                                all maven projects</span
+                            >
+                        </p>
+                        <img
+                            style="max-height: 400px;"
+                            class="fragment"
+                            src="images/1/maven/maven-workflow.png"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Dependency Management</h2>
+                        <p class="fragment">
+                            We specify in the POM file what external libraries the project depends
+                            on, and which version, that Maven will download them into the local
+                            repository
+                        </p>
+                        <p class="fragment">
+                            If any of these external libraries need other libraries, then these
+                            other libraries are also downloaded into the local Maven repository
+                        </p>
+                        <pre class="fragment"><code class="xml" data-trim contenteditable>
+<dependencies>
+    <dependency>
+        &lt;groupId&gt;com.googlecode.lanterna&lt;/groupId&gt;
+        &lt;artifactId&gt;lanterna&lt;/artifactId&gt;
+        <version>2.1.9</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+                </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Dependency Scope</h2>
+                        <p class="fragment">
+                            Not all dependencies are needed in all situations. Do we really need to
+                            package our test code?
+                            <span class="fragment">
+                                Dependency scope allows the inclusion of appropriate dependencies
+                                for the current stage of the build process
+                            </span>
+                        </p>
+                        <ol>
+                            <li class="fragment">
+                                <u>compile</u> - default scope and available on the entire lifecycle
+                            </li>
+                            <li class="fragment">
+                                <u>provided</u> - available on compile and test, provided by the JDK
+                                or container at runtime
+                            </li>
+                            <li class="fragment">
+                                <u>runtime</u> - not required during compile, only on runtime
+                            </li>
+                            <li class="fragment"><u>test</u> - compile and run tests</li>
+                            <li class="fragment">
+                                <u>system</u> - provided locally, for rare cases
+                            </li>
+                            <li class="fragment"><u>import</u> - from another pom</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2>Assembly Plugin</h2>
+                        <p class="fragment">
+                            Aggregates the project binaries along with its dependencies, modules,
+                            site documentation and other files into a single distributable archive
+                        </p>
+                        <pre class="fragment"><code class="xml" data-trim contenteditable>
+<build>
+    <plugins>
+        <plugin>
+            &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            <version>2.6</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        &lt;mainClass&gt;org.academiadecodigo.LantHelloWorld&lt;/mainClass&gt;
+                    </manifest>
+                </archive>
+                &lt;descriptorRefs&gt;
+                    &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+                &lt;/descriptorRefs&gt;
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+                </code></pre>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h2>Maven Jar with Dependencies</h2>
+                            <h3>Lanterna Hello World</h3>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Convert JavaBank into a Maven Project</h3>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: 'left',
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+            // Specifies section for limits-app
+            section: 20,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,2871 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? "css/print/pdf.css"
+                : "css/print/paper.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="header">
+            <img id="logo" src="logo.png" />
+        </div>
+
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section id="functional">
+                    <section>
+                        <h1>Functional Programming</h1>
+                        <img
+                            style="max-height: 400px;"
+                            src="images/2/functional/lambda.png"
+                            alt="Lambda Logo"
+                        />
+                    </section>
+                </section>
+
+                <section id="why functional?">
+                    <section>
+                        <h2>A <em>new</em> paradigm appears</h2>
+                        <p class="fragment">
+                            Since the early 2000s Functional Programming has
+                            seen a huge rise in popularity.
+                        </p>
+                        <p class="fragment">
+                            New languages, built with Functional Programming in
+                            mind, are coming into play:
+                        </p>
+                        <ul>
+                            <li
+                                class="fragment float-left"
+                                style="display: inline;"
+                            >
+                                <img
+                                    src="images/2/functional/clojure-logo.png"
+                                    alt="Clojure Logo"
+                                />
+                            </li>
+                            <li
+                                class="fragment float-right"
+                                style="display: inline;"
+                            >
+                                <img
+                                    src="images/2/functional/scala-logo.png"
+                                    alt="Scala Logo"
+                                />
+                            </li>
+                        </ul>
+                        <ul>
+                            <li
+                                class="fragment float-left"
+                                style="display: inline-block;"
+                            >
+                                <img
+                                    src="images/2/functional/haskell-logo.png"
+                                    alt="Haskell Logo"
+                                />
+                            </li>
+                            <li
+                                class="fragment float-right"
+                                style="display: inline;"
+                            >
+                                <img
+                                    src="images/2/functional/elixir-logo.png"
+                                    alt="Elixir Logo"
+                                />
+                            </li>
+                        </ul>
+                        <p class="fragment">
+                            Older ones like JavaScript, Python, and Java are
+                            adapting and bringing Functional Programming
+                            constructs to their feature list.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Clojure: Inspired by LISP. Runs on JVM.
+                                    Endorsed as the language of the future by
+                                    Uncle Bob.
+                                </li>
+                                <li>
+                                    Scala: Not LISP based. Runs on JVM. Like
+                                    Java but Functional (multi-paradigm) and
+                                    less verbose.
+                                </li>
+                                <li>
+                                    Haskell: The most functionally pure of the
+                                    four.
+                                </li>
+                                <li>
+                                    Elixir: Syntactically similar to Ruby. Runs
+                                    on Beam, the Erlang VM (built for highly
+                                    concurrent distributed systems).
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Not so new...</h2>
+                        <div class="fragment">
+                            <p>
+                                Functional Programming has been around since
+                                1958, when LISP was specified by John McCarthy,
+                                a year before procedural programming appeared.
+                            </p>
+                            <img
+                                style="max-height: 200px;"
+                                src="images/2/functional/lisp-logo.png"
+                                alt="LISP logo"
+                            />
+                        </div>
+                        <p class="fragment">
+                            For decades Functional Programming and several LISP
+                            dialects were confined to academic settings, mostly
+                            related with AI research.
+                        </p>
+                        <small class="fragment">
+                            <em>What</em> changed in the last years and
+                            <em>why</em> the fresh popularity?
+                        </small>
+                        <aside class="notes">
+                            LISP Languages have a specific notation which is not
+                            very user-friendly
+                            (quite(a(lot(of(parenthesis(()))). This played a
+                            role in their rate of adoption. Now the advantages
+                            of functional programming are being explored by
+                            multi-paradigm languages with a more familiar
+                            syntax.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/moore-law.png"
+                            alt="Moore's law is no more"
+                        />
+                        <h2>The demise of Moore's Law</h2>
+                        <blockquote>
+                            the number of transistors in a dense integrated
+                            circuit doubles about every two years
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [Gordon Moore, 1965]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <p class="fragment">
+                            For 50 years this observation proved itself right,
+                            but we've reached its limits with the current
+                            technology.
+                        </p>
+                        <p class="fragment">
+                            In the last 15 years the trend is to add computing
+                            power by doubling the cores of the CPU.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Scaling</h2>
+                        <img
+                            class="fragment"
+                            style="max-height: 250px;"
+                            src="images/2/functional/scaling.png"
+                            alt="vertical vs horizontal"
+                        />
+                        <div>
+                            <p
+                                class="fragment"
+                                style="float: left; max-width: 45%;"
+                            >
+                                Vertical scaling relies on improving the
+                                performance of a single core or machine.
+                            </p>
+                            <p
+                                class="fragment"
+                                style="float: right; max-width: 45%;"
+                            >
+                                Horizontal scaling distributes computation
+                                across several cores or machines.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>The Breakdown</h2>
+                        <div class="fragment">
+                            <div class="float-left" style="margin-bottom: 10px">
+                                <img
+                                    style="max-height: 175px; margin-bottom:0px"
+                                    src="images/2/functional/cores-trend.png"
+                                    alt="Evolution of cores in time"
+                                />
+                                <small style="display: block;">
+                                    CPU cores trend (cores/year)
+                                </small>
+                            </div>
+                            <div
+                                class="float-right"
+                                style="margin-bottom: 10px;"
+                            >
+                                <img
+                                    style="max-height: 175px; margin-bottom: 0px;"
+                                    src="images/2/functional/cores-gpu-trend.png"
+                                    alt="Evolution of GPU cores in time"
+                                />
+                                <small style="display: block;">
+                                    GPU cores trend (cores/year)
+                                </small>
+                            </div>
+                        </div>
+                        <br />
+                        <p class="fragment">
+                            In order to optimise these multiple cores we must
+                            slice our program into parallel parts.
+                            <span class="fragment">
+                                Which is not a simple task.
+                            </span>
+                        </p>
+                        <p class="fragment">
+                            The burden of added complexity lies on the developer
+                            (synchronized blocks, locks, volatile variables,
+                            etc.)
+                        </p>
+                        <small class="fragment">Should it?...</small>
+                        <aside class="notes">
+                            <ul>
+                                Functional Programming is going to help us.
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="float-right logo"
+                            src="images/2/functional/super-fp.png"
+                            alt="Super hero flying"
+                        />
+                        <h2>Functional Programming!</h2>
+                        <p class="fragment">
+                            Parallelism is where it can play a major role by:
+                        </p>
+                        <ul class="font-medium">
+                            <li class="fragment">
+                                relying more on expressions than statements
+                            </li>
+                            <li class="fragment">
+                                using pure functions with no side effects
+                            </li>
+                            <li class="fragment">
+                                avoiding shared, mutable state, instead of
+                                dealing with it
+                            </li>
+                        </ul>
+                        <p class="fragment">
+                            The compiler decides when and in what order these
+                            pure functions will be run.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    While an expression evaluates to a value a
+                                    statement performs an action.
+                                </li>
+                                <li>
+                                    Being free of the complexity required to run
+                                    parallel code is the dream. How do we
+                                    achieve that?
+                                </li>
+                            </ul>
+                            <b>next:</b> How would a piece of code which
+                            achieves this look?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What fresh hell is this?</h2>
+                        <pre>
+                        <code class="java" data-trim contenteditable>
+Stream.of("Sérgio", "Rui", "Ruben", "Soraia", "Filipe", "Zé")
+    .filter(name -&gt; name.length() &lt;= 3)
+    .map(name -&gt; name + " has three letters or less")
+    .forEach(System.out::println);
+                        </code>
+                    </pre>
+                        <small class="fragment">
+                            Is this Java? Is it some new language?
+                        </small>
+                        <p class="fragment">
+                            Despite the unfamiliar syntax of this block of code,
+                            it doesn't take long to guess what it does.
+                        </p>
+                        <p class="fragment">
+                            It's very <span class="fragment">declarative.</span>
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    You might think a for loop is more easily
+                                    readable, but consider that is only true due
+                                    to familiarity.
+                                </li>
+                                <li>
+                                    Consider how easy it is to know
+                                    <b>what</b> the snippet of code does.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>I do declare.</h2>
+                        <img
+                            style="max-height: 185px;"
+                            src="images/2/functional/declarative-joke.png"
+                            alt="declarative joke"
+                        />
+                        <p class="fragment">
+                            Declarative code like this spends time expressing
+                            the intent of its business logic -
+                            <em>what it does</em> - rather than the mechanics of
+                            how it’s achieved - <em>how it does it</em>.
+                        </p>
+                        <small class="fragment">
+                            It’s much easier to read, hence
+                            <span class="fragment">easier to maintain</span>
+                            <span class="fragment">, more reliable</span>
+                            <span class="fragment">, less error-prone.</span>
+                        </small>
+                    </section>
+                </section>
+
+                <section id="pillars">
+                    <section>
+                        <h1>Principles of Functional Programming</h1>
+                    </section>
+
+                    <section>
+                        <h2>Pillars of Functional Programming</h2>
+                        <img
+                            style="max-height: 450px;"
+                            src="images/2/functional/pillars.png"
+                            alt="Four pillars of Functional Programming"
+                        />
+                        <aside class="notes">
+                            <ul>
+                                These are the functional programming paradigm
+                                pillars we consider to be fundamental. You may
+                                find different sources give you different
+                                perspectives.
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Purity</h2>
+                        <blockquote>
+                            The quality or state of not being mixed with
+                            anything else.
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [Cambridge Dictionary]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <p class="fragment">
+                            A pure function is a function which operates only on
+                            its input parameters and produces a result.
+                        </p>
+                        <p class="fragment">Pure functions:</p>
+                        <ul>
+                            <li class="fragment">
+                                <p>
+                                    <strong>always</strong> produce the same
+                                    result given the same input;
+                                </p>
+                            </li>
+                            <li class="fragment">
+                                <p>have <strong>no</strong> side effects;</p>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                Modifying an object passed as argument makes a
+                                function not pure.
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/side-effects.png"
+                            alt="Side Effects pill case"
+                        />
+                        <h2>Wait, side effects?</h2>
+                        <p class="fragment">
+                            A function has side effects if it:
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                modifies a data structure or variable outside
+                                its scope
+                            </li>
+                            <li class="fragment">uses I/O</li>
+                            <li class="fragment">throws an exception</li>
+                        </ul>
+                        <br />
+                        <small class="fragment">
+                            Actually the proper name for a function with side
+                            effects would be a procedure...
+                        </small>
+                        <p class="fragment">
+                            It would be impossible to write a program without
+                            side effects. Functional programming tries to
+                            minimise and segregate side effects from the rest of
+                            the program, not eliminate them.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                The importance of segregating side effects lies
+                                in avoiding shared mutable state.
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Limits are good</h2>
+                        <p class="fragment">
+                            Using only pure functions greatly limits complexity
+                            since functions can only have a local effect.
+                            <span class="fragment">
+                                This helps developers naturally decompose their
+                                solutions.
+                            </span>
+                        </p>
+                        <p class="fragment">Also:</p>
+                        <ul>
+                            <li class="fragment">
+                                unit testing is simplified
+                            </li>
+                            <li class="fragment">
+                                thread-safety for free (as in free beer)
+                            </li>
+                            <li class="fragment">
+                                perfect scenario for caching, in case of
+                                expensive computations
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Immutability</h2>
+                        <br />
+                        <div style="float: left; width: 75%">
+                            <p class="fragment">
+                                Data immutability is a core concept of
+                                Functional Programming.
+                            </p>
+                            <div class="fragment">
+                                <p>
+                                    All variables and data structures must be
+                                    immutable, making it impossible to change an
+                                    object state once it was created.
+                                </p>
+                            </div>
+                        </div>
+                        <img
+                            class="fragment"
+                            style="float: right; width: auto;"
+                            src="images/2/functional/wait-what.gif"
+                            alt="confused scott pilgrim"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>State Management</h2>
+                        <blockquote>
+                            The true constant is change. Mutation hides change.
+                            Hidden change manifests chaos. Therefore, the wise
+                            embrace history.
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [The Dao of Immutability]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <p class="fragment">
+                            Proper state management should be the most important
+                            concern in regard to the reliability of your code.
+                        </p>
+                        <p class="fragment">
+                            The very notion of encapsulation in OOP is already
+                            an attempt to make the flow of state more
+                            predictable.
+                        </p>
+                        <small class="fragment">
+                            With functional programming we're taking state
+                            management to the extreme
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                What do you understand by state?
+                                <li>
+                                    The state of a program is defined as its
+                                    condition regarding stored inputs. A
+                                    stateful program is designed to remember
+                                    preceding events or user interactions.
+                                </li>
+                                <li>
+                                    Why do we restart our applications and
+                                    machines when they freeze? A Corrupt State.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Data immutability, not just reference</h2>
+                        <p class="fragment">
+                            <small>
+                                Java already provides the
+                                <code>final</code> keyword to guarantee that a
+                                reference cannot be changed after its
+                                initialization.
+                            </small>
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+final Square square = new Square(); // variable square will always point to the same object
+// square = new Square(); -&gt; compile time error
+                            </code></pre>
+                        </div>
+                        <br />
+                        <p class="fragment">
+                            <small>
+                                But <code>final</code> is not enough to ensure
+                                data immutability
+                            </small>
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+square.setColor("Blue");
+square.setColor("Pink");
+
+// unless all properties from Square are also marked as final, their values can be changed
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Recursion</h2>
+                        <blockquote>
+                            To iterate is human, to recurse, divine.
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [L. Peter Deutsch]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <p class="fragment">
+                            How could you construct <code>while</code> or
+                            <code>for</code> loops, which depend on a counter,
+                            if data is immutable?
+                        </p>
+                        <p class="fragment">
+                            Even making an exception <em>just this once</em>,
+                            one could be tempted to create some side effect
+                            within these loops.
+                        </p>
+                        <p class="fragment">
+                            In the functional world the idiomatic way to handle
+                            repetitive operations is recursion.
+                        </p>
+                        <aside class="notes">
+                            Performance of recursive code can be improved using
+                            tail call optimization, allowing recursive code to
+                            use the same amount of memory as a loop.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What's in the box?</h2>
+                        <img
+                            style="max-height: 260px;"
+                            src="images/2/functional/recursive-iterative.png"
+                            alt="recursive vs iterative examples"
+                        />
+                        <p class="fragment">
+                            <small>
+                                If we look at the image above, which programming
+                                paradigm comes to mind, associated with each
+                                approach?
+                            </small>
+                        </p>
+                        <p class="fragment">
+                            <small>
+                                <b>
+                                    <u>
+                                        Iterative approach looks very
+                                        imperative.
+                                    </u>
+                                </b>
+                            </small>
+                        </p>
+                        <p class="fragment">
+                            <small>
+                                <b>
+                                    <u>
+                                        Recursive approach looks very
+                                        declarative.
+                                    </u>
+                                </b>
+                            </small>
+                        </p>
+                        <aside class="notes">
+                            The iterative approach can typically feel easier
+                            simply because of a matter of familiarity.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>First Class Functions</h2>
+                        <p class="fragment">
+                            In functional programming, a function is a
+                            first-class citizen. In other words, we're able to
+                            work with <u>code as data</u>.
+                        </p>
+                        <img
+                            style="max-height: 280px;"
+                            src="images/2/functional/ho-function.png"
+                            alt="High order functions"
+                            class="fragment"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Functions as values</h2>
+                        <p class="fragment">
+                            Being able to treat a function as a value, means you
+                            can store it in a variable or data structure, pass
+                            it as an argument of another function or use it as a
+                            return value.
+                        </p>
+                        <small class="fragment">
+                            This allows great flexibility and code reuse.
+                        </small>
+                        <p class="fragment">
+                            Stand-alone functions like these are called
+                            <em>Higher-Order Functions</em> and they're often
+                            used to:
+                        </p>
+                        <ul class="font-medium">
+                            <li class="fragment">
+                                Abstract or isolate actions, effects, or
+                                asynchronous flow control using callback
+                                functions
+                            </li>
+                            <li class="fragment">
+                                Create functionality to act on a variety of data
+                                types
+                            </li>
+                            <li class="fragment">
+                                Take a list of functions and return some
+                                composition of those input functions
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            You might not be able to see this in Java right now
+                            but it should be simpler when you start writing
+                            code.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/legos.jpg"
+                            alt="a bunch of legos"
+                        />
+                        <h2>Function composition</h2>
+                        <br />
+                        <p class="fragment">
+                            Composition allows programmers to assemble functions
+                            and reuse functionality that they or others have
+                            built in a pipeline where data flows from one
+                            function to the next.
+                        </p>
+                        <div class="fragment" style="float: left;">
+                            <small style="margin-top: 20%; margin-left: 20%;">
+                                Maybe you're familiar with UNIX pipes?...
+                            </small>
+                        </div>
+                        <img
+                            class="fragment"
+                            style="float: right; margin: auto;"
+                            src="images/2/functional/pipeline.gif"
+                            alt="unix pipeline"
+                        />
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/business.jpg"
+                            alt="Businessman pointing"
+                        />
+                        <h2>Contact your local programming language now</h2>
+                        <p class="fragment">
+                            Pure functions and immutability are mainly a matter
+                            of discipline, a decision by the programmer.
+                        </p>
+                        <p class="fragment">
+                            As for first-class functions, its availability is
+                            determined by the language. Some programming
+                            languages have this feature built-in.
+                        </p>
+                        <p class="fragment">
+                            Within Java there’s no way of passing an action as
+                            an argument of a method.
+                        </p>
+                    </section>
+
+                    <section>
+                        <small>Or is there?...</small>
+                    </section>
+                </section>
+
+                <section id="lambda">
+                    <section>
+                        <h1>Lambda Expressions</h1>
+                        <img src="images/2/functional/lambda_java.png" />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    How can we take advantage of the functional
+                                    paradigm in Java if there are no Functions
+                                    (a case could be made for static methods)?
+                                </li>
+                                <li>
+                                    Ultimately we want a way to modulate
+                                    functionality, and the ability to pass it
+                                    around.
+                                </li>
+                            </ul>
+                            <b>next:</b> What do you think is a lambda
+                            expression?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What is a Lambda Expression?</h2>
+                        <p class="fragment">
+                            In mathematics and computing in general, a lambda
+                            expression is a function:
+                            <span class="fragment">
+                                for some or all combinations of input values it
+                                specifies an output value.
+                            </span>
+                        </p>
+                        <aside class="notes">
+                            <ul></ul>
+                            <b>next:</b> How have we passed functionality to a
+                            method in Java so far?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Anonymous Classes</h2>
+                        <p class="fragment">
+                            Anonymous inner classes already allowed us to pass
+                            functionality to a method. It was the closest to
+                            code as data in Java.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+private List&lt;Integer&gt; numbers = Arrays.asList(8, 9, 200, 0, -1, 345);
+
+public void sortNumbers() {
+    Collections.sort(numbers, new Comparator&lt;Integer&gt;() {
+        @Override
+        public int compare (Integer i1, Integer i2) {
+            return i1 - i2;
+        }
+    });
+};
+                        </code></pre>
+                        <p class="fragment">
+                            But they add a lot of boilerplate, and can disguise
+                            the programmer's intent.
+                        </p>
+                        <small class="fragment">
+                            Now there's be a better way of passing behavior to a
+                            method!
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Ask cadets what in the code snippet is
+                                    really necessary and what ends up being just
+                                    pollution.
+                                </li>
+                                <li>
+                                    Modify code snippet until only the lambda
+                                    expression is left.
+                                </li>
+                                <li>
+                                    Make sure they understand what is essential
+                                    for the compiler and for whomever reads the
+                                    code
+                                </li>
+                            </ul>
+                            <b>next:</b> Lambda expressions offer a cleaner
+                            syntax to do the same.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Lambda Expressions</h2>
+                        <p class="fragment">
+                            Lambdas have a cleaner syntax and provide the same
+                            functionality as anonymous classes.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+private List&lt;Integer&gt; numbers = Arrays.asList(8, 9, 200, 0, -1, 345);
+
+public void sortNumbers() {
+    Collections.sort(numbers, (i1, i2) -&gt; i1 - i2);
+}
+                        </code></pre>
+                        <p class="fragment">
+                            Instead of passing an object which implements an
+                            interface, we pass a block of code.
+                        </p>
+                        <p class="fragment">
+                            They let you treat functionality as a method
+                            argument.
+                        </p>
+                        <aside class="notes">
+                            <b>next:</b> So how can I write a lambda expression?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Lambda Syntax</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+(i1, i2) -&gt; {
+    System.out.println("Comparing...");
+    return i1 - i2;
+}
+                        </code></pre>
+                        <p class="fragment">
+                            If the lambda body asks for more than one line, you
+                            must include brackets and the return keyword.
+                        </p>
+                        <p class="fragment">
+                            Lambdas like these are called lambda statements. Use
+                            them judiciously.
+                        </p>
+                        <blockquote class="fragment">
+                            Lambdas lack names and documentation; if a
+                            computation isn’t self-explanatory, or exceeds a few
+                            lines, don’t put it in a lambda.
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [Joshua Block, Effective Java]
+                                </small>
+                            </p>
+                        </blockquote>
+                        <aside class="notes">
+                            <ul>
+                                It is not possible to create a Javadoc for a
+                                lambda expression.
+                            </ul>
+                            <b>next:</b> What if the lambda expression is a one
+                            liner?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Lambda Expressions Syntax</h2>
+                        <br />
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+(num1, num2) -&gt; num1 - num2; // two parameters, mandatory parentheses
+
+() -&gt; 42; // no parameters, mandatory parentheses
+
+// only one parameter, you may omit the parentheses for better readability
+position -&gt; position.move(Direction.RIGHT, 3);
+                        </code></pre>
+                        <br />
+                        <p class="fragment">
+                            With one-liner bodies brackets may be ommitted, as
+                            well as the <code>return</code> keyword.
+                        </p>
+                        <aside class="notes">
+                            <b>next:</b> So what are the differences between
+                            lambda expressions and anonymous classes?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Lambda scope - Variable Capture</h2>
+                        <p class="fragment">
+                            Lambdas' variable capture obey the same general
+                            principles of anonymous classes.
+                        </p>
+                        <ul class="font-medium">
+                            <li class="fragment">
+                                both can <u>obtain</u> and <u>set</u> instance
+                                or static variables from their
+                                <u>enclosing class</u>.
+                            </li>
+                            <li class="fragment">
+                                both can call methods defined by their
+                                <u>enclosing class</u>.
+                            </li>
+                            <li class="fragment">
+                                both may use <u>local variables</u> from their
+                                enclosing scope, <u>IF</u> they're final or
+                                effectively final.
+                            </li>
+                        </ul>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+public class Client {
+
+    private static int PORT = 3000;
+    private Socket socket;
+
+    public void start() {
+
+        String message = "Connected to server";
+
+        Thread t = new Thread(() -> {
+            socket = new Socket("localhost", PORT); // modifying and accessing fields
+            System.out.println(message); // accessing local variable
+            // message = "Connected to localhost"
+            // compile error if setting local variable
+        });
+
+    }
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Lambda scope - Block</h2>
+                        <p class="fragment">
+                            Just like any other method, the body of an anonymous
+                            class method defines a scope.
+                        </p>
+                        <small class="fragment">
+                            Lambda's body doesn't. The body of a lambda
+                            expression is part of the scope in which it's
+                            declared.
+                        </small>
+                        <pre class="fragment float-left" style="width: 49%;">
+                            <code class="java" data-trim contenteditable>
+public void printPort() {
+
+    int port = 3000;
+
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            int port = 9000;
+            System.out.println(port) // 9000
+        }
+    });
+}
+                        </code></pre>
+                        <pre class="fragment float-right" style="width: 49%;">
+                            <code class="java" data-trim contenteditable>
+public void printPort() {
+
+    int port = 3000;
+
+    Thread t = new Thread(() -> {
+            // Compile time error
+            // int port = 9000;
+            System.out.println(port) // 3000
+        });
+}
+                        </code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    ERROR:
+                                    'Variable message is already defined in the scope'
+                                </li>
+                                <li>
+                                    Having a fresh new pair of curly brackets
+                                    does not create a new scope when we're
+                                    dealing with lambda expressions!
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Lambda Scope - Is this it?</h2>
+                        <p class="fragment">
+                            Anonymous classes and lambdas also have access to
+                            <code>this</code> (both implicitly and explicitly).
+                        </p>
+                        <p class="fragment">
+                            Inside an anonymous class, <code>this</code> refers
+                            to the instance created by it.
+                        </p>
+                        <p class="fragment">
+                            Not with lambdas. Inside a lambda expression,
+                            <code>this</code> refers to the invoking instance of
+                            its enclosing class.
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 230px;"
+                            src="images/2/functional/this.gif"
+                            alt="big fan of... this"
+                        />
+                        <aside class="notes">
+                            <b>next:</b> If lambdas are "better" when will I use
+                            anonyous classes?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>The end of anonymous classes?</h2>
+                        <p class="fragment">
+                            Some situations will always require the use of a
+                            good, old-fashioned, anonymous class.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@Override
+public Iterator iterator() {
+    return new Iterator() {
+
+        @Override
+        public boolean hasNext() {...}
+
+        @Override
+        public Integer next() {...}
+    };
+}
+                        </code></pre>
+                        <p class="fragment">
+                            <small>
+                                <b>
+                                    In this case, we couldn't have used a lambda
+                                    expression.
+                                </b>
+                            </small>
+                        </p>
+                        <p class="fragment">
+                            The target of a lambda expression must
+                            <b><u>ALWAYS</u></b> be a functional interface.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Going for lambda expressions, makes our code
+                                    more concise and easier to read.
+                                </li>
+                                <li>
+                                    If we tried to use a lambda expression in
+                                    this example, we'd have a clear problem:
+                                </li>
+                                <li>
+                                    which method would the body of the lambda
+                                    expression be implementing?
+                                </li>
+                                <li>And what about the other method?</li>
+                            </ul>
+                            <b>next:</b> How can I store lambda expressions?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Functional Interfaces</h2>
+                        <p>
+                            Java interfaces that have exactly one
+                            <u>abstract method</u>.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+public interface Runnable {
+    void run(); // also called functional method
+}
+                        </code></pre>
+                        <p class="fragment">
+                            <small>
+                                Any interface that has more than one abstract
+                                method
+                                <u>IS NOT</u> a functional interface.
+                            </small>
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Java 8 new interfaces will have a section
+                                    ahead
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Storing Lambda Expressions</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+public interface MyComparator {
+    boolean compare(int i1, int i2);
+}
+
+MyComparator mc = (i1, i2) -&gt; i1 > i2;
+
+boolean result = mc.compare(3,7);
+                        </code></pre>
+                        <p class="fragment">
+                            We can use Functional Interface type variables to
+                            store and use lambda expressions.
+                        </p>
+                        <aside class="notes">
+                            You cannot store a lambda expression in a Object
+                            type reference without explicit casting, after
+                            having stored the lambda in a functional interface
+                            type.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h3>
+                            Wait, but?...
+                        </h3>
+                        <p class="fragment">
+                            How can the compiler recognize the argument and
+                            return types of a lambda expression, if they are not
+                            specified in the lambda expression itself?
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 150px;"
+                            src="images/2/functional/deep_thoughts.png"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            The answer lies in a concept called...
+                            <u class="fragment">Type inference!</u>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Type Inference</h2>
+                        <p>
+                            Type inference is a Java compiler's ability to look
+                            at each method invocation and corresponding
+                            declaration to determine the type argument (or
+                            arguments) that make the invocation applicable.
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 150px;"
+                            src="images/2/functional/inference.png"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            <small>
+                                This concept isn't exactly new. It's been
+                                present since we first started working with
+                                generics.
+                            </small>
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    An inference algorithm is applied, and the
+                                    compiler is able to check if the types of
+                                    the arguments passed to a lambda expression
+                                    are compliant with that method's signature.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>
+                                $.C.U.M. - A Somewhat Contrived Useful Machine
+                            </h3>
+                            <br />
+                            <ul>
+                                <li class="fragment">
+                                    Create two Functional Interfaces:
+                                    MonoOperation and BiOperation.
+                                </li>
+                                <br />
+                                <li class="fragment">
+                                    Create a Machine capable of performing these
+                                    operations on operands of any type passed as
+                                    arguments.
+                                </li>
+                                <br />
+                                <li class="fragment">
+                                    Write lambda expressions to perform some
+                                    operations with numbers, strings and objects
+                                    of your choice.
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Method References</h2>
+                        <p class="fragment">
+                            More succinct way of generating function objects.
+                            <span class="fragment">
+                                Lambdas on the left can be replaced by their
+                                corresponding method reference on the right.
+                            </span>
+                        </p>
+                        <div class="fragment float-left" style="width: 50%;">
+                            <pre><code class="java" data-trim contenteditable>
+name -&gt; System.out.println(name);
+word -&gt; word.toUpperCase();
+(num1, num2) -&gt; Integer.sum(num1, num2);
+                            </code></pre>
+                        </div>
+                        <div class="fragment float-left" style="width: 50%;">
+                            <pre><code class="java" data-trim contenteditable>
+System.out::println;
+String::toUpperCase;
+Integer::sum;
+                            </code></pre>
+                        </div>
+                        <p class="fragment">
+                            It is also possible to use method references with
+                            constructors.
+                        </p>
+                        <div class="fragment clearfix" style="margin: auto;">
+                            <pre><code class="java" data-trim contenteditable>
+// with lambda expression
+CarFactory coolFactory = (col, row) -&gt; new Car(col, row);
+
+// with constructor reference;
+CarFactory coolerFactory = Car::new;
+
+// array with lambda expression
+length -&gt; new String[length];
+
+// with constructor reference
+String[]::new
+                            </code></pre>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Ask cadets to think about the previous
+                                    exercise and how our solution utilizes
+                                    Method References.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section id="util.function">
+                    <section>
+                        <h3><code>java.util.function</code></h3>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/wheel.jpeg"
+                            alt=""
+                        />
+                        <h2>Functional Interfaces... <i>again</i></h2>
+                        <br />
+                        <p class="fragment">
+                            We've seen how Functional Interfaces can give us a
+                            lot of flexibility using lambda expressions.
+                            <i class="fragment">
+                                Remember the $.C.U.M. exercise?
+                            </i>
+                        </p>
+                        <p class="fragment">
+                            It doesn't make a lot of sense to declare Functional
+                            Interfaces for every possible variation of argument
+                            and return type of its methods.
+                        </p>
+                        <p class="fragment">
+                            Of course the JDK already supplies us tools for all
+                            our Functional Interface needs.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Functional Interfaces</h2>
+                        <table class="fragment">
+                            <tr>
+                                <th>Interface</th>
+                                <th>Arguments</th>
+                                <th>Returns</th>
+                                <th>Use Case Example</th>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Supplier&lt;T&gt;</td>
+                                <td>None</td>
+                                <td>T</td>
+                                <td>A factory method.</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Consumer&lt;T&gt;</td>
+                                <td>T</td>
+                                <td>void</td>
+                                <td>Printing a value.</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Predicate&lt;T&gt;</td>
+                                <td>T</td>
+                                <td>boolean</td>
+                                <td>Is <code>cell</code> painted?</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Function&lt;T,R&gt;</td>
+                                <td>T</td>
+                                <td>R</td>
+                                <td>
+                                    Get the id of an
+                                    <code>Account</code> object.
+                                </td>
+                                <br />
+                            </tr>
+                        </table>
+
+                        <p class="fragment">
+                            These are part of the
+                            <code>java.util.function</code> package, and are all
+                            functional interfaces.
+                        </p>
+                    </section>
+                    <!--
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/supplier.png"
+                            alt=""
+                        />
+                        <h2>Supplier</h2>
+                        <p class="fragment">
+                            Represents a supplier of results.
+                        </p>
+                        <p class="fragment">
+                            This functional interface has an abstract method
+                            get() that takes no arguments, and always returns a
+                            value of type T.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@FunctionalInterface
+public interface Supplier&lt;T&gt; {
+    T get();
+}
+                        </code></pre>
+                        <aside class="notes">
+                            it is natural to forget the name of the methods
+                            declared in these functional interfaces as will will
+                            be using them with lambda expressions.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/consumer.png"
+                            alt=""
+                        />
+                        <h2>Consumer</h2>
+                        <p class="fragment">
+                            Represents an operation that accepts a single input
+                            argument and returns no result.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@FunctionalInterface
+public interface Consumer&lt;T&gt; {
+    void accept(T t);
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/predicate.png"
+                            alt=""
+                        />
+                        <h2>Predicate</h2>
+                        <p class="fragment">
+                            Represents a predicate (something which is affirmed
+                            or denied concerning an argument of a proposition).
+                        </p>
+                        <p class="fragment">
+                            This functional interface has an abstract method
+                            test(), that takes an argument, evaluates it, and
+                            returns either true or false.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@FunctionalInterface
+public interface Predicate&lt;T&gt; {
+    boolean test(T t);
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/function.png"
+                            alt=""
+                        />
+                        <h2>Function</h2>
+                        <p class="fragment">
+                            Represents a function that accepts one argument, and
+                            produces a result.
+                        </p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@FunctionalInterface
+public interface Function&lt;T, R&gt; {
+    R apply(T t);
+}
+                        </code></pre>
+                    </section>
+-->
+                    <section>
+                        <h2>Paradox of Choice</h2>
+                        <img
+                            src="images/2/functional/util.function.png"
+                            style="height: 500px;"
+                            alt=""
+                        />
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>
+                                Add filter and map methods to your LinkedList
+                            </h3>
+                        </div>
+                    </section>
+                </section>
+
+                <section id="interfaces">
+                    <section>
+                        <h1>Java 8 Interfaces</h1>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/java8.jpg"
+                            alt="Java stirs and grows"
+                        />
+                        <br />
+                        <h2>Java 8 Interfaces</h2>
+                        <p class="fragment">
+                            To bring functional programming to the Java
+                            language, several changes within the Collections API
+                            were in order.
+                        </p>
+                        <p class="fragment">
+                            Prior to Java 8, updating a published API could
+                            create backward incompatibilities.
+                        </p>
+                        <p class="fragment">
+                            Evolving such a core library component like
+                            Collections - a strongly interface-based framework -
+                            was until Java 1.8 nearly impossible.
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Almost all Java projects in production will
+                                    use Collections (Core Library)
+                                </li>
+                                <li>
+                                    Some companies have their own
+                                    implementations of Collection framework
+                                    (Google: Guava; Apache: Commons). (Strongly
+                                    Interfaced)
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/default.jpg"
+                            alt="Default"
+                        />
+                        <h2>Default Methods</h2>
+                        <br />
+                        <p class="fragment">
+                            Interfaces in Java 8 can now declare methods with
+                            implementation code.
+                        </p>
+                        <p class="fragment">
+                            Existing classes implementing an interface
+                            automatically inherit the default implementation if
+                            they don’t provide one.
+                        </p>
+                        <small class="fragment">
+                            This allows programmers to evolve APIs non
+                            intrusively.
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>Default Methods</h2>
+                        <p class="fragment">
+                            Default methods added to Collection are built with
+                            high-quality general-purpose implementations. In
+                            most cases there’s no need for overriding.
+                        </p>
+                        <p class="fragment">
+                            <small>
+                                An example: since Java 8, the List interface
+                                provides a sort method defined as follows:
+                            </small>
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+default void sort(Comparator&lt;? super E&gt; c) {
+    Collections.sort(this, c);
+}
+                            </code></pre>
+                        </div>
+                        <p class="fragment">
+                            <small>
+                                Note the new default modifier before the return
+                                type. This is mandatory in order to declare a
+                                default method within an interface. Thanks to
+                                this new method you can sort a list by calling
+                                the method directly:
+                            </small>
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+List&lt;Integer&gt; numbers = Arrays.asList(3, 5, 6, 33, 12, 1);
+numbers.sort((n1, n2) -> n1 - n2);
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>The diamond problem</h2>
+                        <p class="fragment">
+                            Having implementation in interfaces makes it look
+                            like multiple inheritance is now possible in Java,
+                            and with it, the dreaded diamond problem.
+                        </p>
+                        <p class="fragment">
+                            If a class inherits two methods with the same
+                            signature which one is executed?
+                        </p>
+                        <img
+                            class="fragment"
+                            style="height: 300px;"
+                            src="images/2/functional/diamond_problem.jpeg"
+                            alt="Diamond problem"
+                        />
+                        <aside class="notes">
+                            we can explicitly invoke a superinterface’s methods
+                            with the syntax: Rectangle.super.equals();
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>The three rules</h2>
+                        <p class="fragment">
+                            Java provides resolution rules to solve the diamond
+                            problem:
+                        </p>
+                        <div class="fragment">
+                            <p><u>1. Classes always win</u></p>
+                            <small>
+                                A method declaration in the class or a
+                                superclass takes priority over any default
+                                method implementation;
+                            </small>
+                        </div>
+                        <div class="fragment">
+                            <p><u>2. Subtype wins over supertype</u></p>
+                            <small>
+                                If we have a situation in which two interfaces
+                                are competing to provide a default method and
+                                one interface extends the other, the subclass
+                                wins;
+                            </small>
+                        </div>
+                        <div class="fragment">
+                            <p>
+                                <u>3. <em>No rule 3</em></u>
+                            </p>
+                            <small>
+                                If the previous two rules don’t give us the
+                                answer, the subclass must either implement the
+                                method or declare it abstract.
+                            </small>
+                        </div>
+                        <br />
+                        <small class="fragment">
+                            Rule 1 is what bring us compatibility with old code.
+                        </small>
+                        <aside class="notes">
+                            Default methods should be used for
+                            retro-compatibility issues. Using abstract classes
+                            for new projects should still be the way to go!
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="clearfix logo float-right"
+                            src="images/2/functional/static.jpg"
+                            alt="Static Methods"
+                        />
+                        <h2>Static Methods</h2>
+                        <br />
+                        <p class="fragment">
+                            Another way of providing implementation code to
+                            interfaces is static methods.
+                        </p>
+                        <div class="fragment">
+                            <pre>
+                            <code class="java" data-trim contenteditable>
+List&lt;Integer&gt; numbers = Arrays.asList(3, 5, 6, 33, 12, 1);
+numbers.sort(Comparator.naturalOrder());
+                            </code>
+                        </pre>
+                        </div>
+                        <small class="fragment">
+                            Notice how we’ve called
+                            <code>Comparator.naturalOrder</code> directly from
+                            the <s>class</s> interface.
+                        </small>
+                        <small class="fragment">
+                            <code>naturalOrder</code> is a new static method in
+                            the <code>Comparator</code> interface that returns a
+                            <code>Comparator</code> object to sort the elements
+                            in natural order.
+                        </small>
+                        <aside class="notes">
+                            Oracle wants to get rid of utility classes with
+                            static methods, they can now be implemented directly
+                            on the interface, creating a simpler API.
+                        </aside>
+                    </section>
+                </section>
+
+                <section id="streams">
+                    <section>
+                        <h1>Stream API</h1>
+                        <aside class="notes">
+                            Make sure to explain the difference between the
+                            stream library in the java I/O package (java.io) and
+                            the Stream API (java.util.stream)
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Let's get functional</h2>
+                        <p class="fragment">
+                            Java 8 most important core library changes were
+                            focused around the Collections API.
+                        </p>
+                        <p class="fragment">
+                            The way we iterate over a collection is about to
+                            change dramatically.
+                        </p>
+                        <p class="fragment">
+                            But what's wrong with the way we iterate?
+                        </p>
+                        <img
+                            src="images/2/functional/for-loop.gif"
+                            alt="Girl doing 500 phrases on board with for loop"
+                            class="fragment"
+                        />
+                        <aside class="notes">
+                            What is the problem with the way we iterate over
+                            collections at the moment?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>The case against <code>for</code></h2>
+                        <p class="fragment">
+                            Let's start by performing a simple operation over
+                            some collection.
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+for(String name : names) {
+    System.out.println(name);
+}
+                            </code></pre>
+                        </div>
+                        <p class="fragment">
+                            This very simple loop is still better than the
+                            traditional <code>for loop</code>.
+                            <span class="fragment">
+                                but we know it is just syntactic sugar for
+                                another construct. Let's show it like it is:
+                            </span>
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+Iterator&lt;String&gt; iterator = names.iterator();
+while(iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+                        </code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/why-so-cereals.jpg"
+                            alt="Why so cereals?"
+                        />
+                        <h2>Why so serial?</h2>
+                        <br />
+                        <p class="fragment">
+                            Both the traditional for loop and the iterator are
+                            inherently sequential and hard to parallelize.
+                        </p>
+                        <p class="fragment">
+                            Iterating over a Collection using a
+                            <code>for</code> obscures meaning: to understand
+                            what's happening one must read through the body of
+                            the loop.
+                        </p>
+                        <p class="fragment">
+                            Instead we could ask the Collection itself to
+                            perform a polymorphic operation on its elements.
+                        </p>
+                        <small class="fragment">
+                            For a simple loop, it doesn't seem too hard, but it
+                            could become a burden on a large code base full of
+                            them (even worse with nested loops).
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Remember nested for loops in Car Crash?
+                                </li>
+                                <li>
+                                    Higher order functions are polymorphic
+                                    operations as they can take different
+                                    argument at runtime!
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>A better way</h2>
+                        <br />
+                        <p class="fragment">
+                            The way we iterate until now is known as external
+                            iteration.
+                        </p>
+                        <p class="fragment">
+                            Since Java 8 it's possible to ask the collection to
+                            do the iteration for us. We just focus on
+                            <i>what</i> we need and not on <i>how</i> we do it.
+                        </p>
+                        <div class="fragment">
+                            <pre><code class="java" data-trim contenteditable>
+names.forEach(name -&gt; System.out.println(name));
+                        </code></pre>
+                        </div>
+                        <small class="fragment">
+                            <code>forEach</code> is a new default method in the
+                            <code>Iterable</code> interface, thus allowing every
+                            Collection to use it. It takes a
+                            <code>java.util.function.Consumer</code> instance as
+                            its argument.
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>Internal vs External Iteration</h2>
+                        <p class="fragment">
+                            With internal iteration we turn over most of the
+                            <em>how's</em> to the underlying library so we can
+                            focus on the essential <em>what's</em>
+                        </p>
+                        <div class="fragment">
+                            <div class="float-left">
+                                <img
+                                    style="max-height: 280px; display: block;"
+                                    src="images/2/functional/external-iteration.png"
+                                    alt="External Iteration"
+                                />
+                                <small>External Iteration</small>
+                            </div>
+                            <div class="float-right">
+                                <img
+                                    style="max-height: 280px; display:block"
+                                    src="images/2/functional/internal-iteration.png"
+                                    alt="Internal Iteration"
+                                />
+                                <small>Internal Iteration</small>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>An even better way</h2>
+                        <p class="fragment">
+                            The <code>forEach</code> method is great for simple
+                            operations in a declarative fashion, but for more
+                            complex computations it's not enough.
+                        </p>
+                        <p class="fragment">
+                            Enter Java 8 Streams, the internal iteration
+                            analogue of iterators.
+                        </p>
+                        <img
+                            class="fragment"
+                            style="max-height: 280px;"
+                            src="images/2/functional/distracted-code-cadet.png"
+                            alt="Distracted boyfriend meme"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Streams</h2>
+                        <p class="fragment">
+                            A Stream is an abstraction for a
+                            <strong>sequence of elements</strong> from a
+                            <strong>source</strong>, supporting
+                            <strong>aggregate operations</strong> leading to a
+                            desired <strong>result</strong>.
+                        </p>
+                        <img
+                            src="images/2/functional/confused.gif"
+                            alt="Wait, what?"
+                            class="fragment"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Source -> Aggregated operations -> Result</h2>
+                        <p class="fragment">
+                            Working with streams, you'll need:
+                        </p>
+                        <ol class="font-medium">
+                            <li class="fragment">
+                                A data source (a collection, I/O resource, and
+                                whatnot) on which to perform operations;
+                            </li>
+                            <li class="fragment">
+                                A chain of intermediate aggregated operations,
+                                which form a stream pipeline (how many of these
+                                operations? zero to many);
+                            </li>
+                            <li class="fragment">
+                                One and only one terminal operation, which
+                                executes the stream pipeline
+                                <em>on demand</em>, produces a result, and
+                                exhausts the stream.
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2>Do I have to draw you a picture?</h2>
+                        <img
+                            src="images/2/functional/streams.png"
+                            alt="Stream Pipeline"
+                            class="fragment"
+                            style="max-height: 400px;"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>A sequence of elements</h2>
+                        <p class="fragment">
+                            Unlike collections, streams don't store any data.
+                        </p>
+                        <p class="fragment">
+                            A collection is an in-memory data structure, which
+                            holds all the elements.
+                        </p>
+                        <p class="fragment">
+                            Collections are all about data, while streams are
+                            all about computations.
+                        </p>
+                        <p class="fragment">
+                            Stream elements are computed <u>on demand</u>.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>From a source</h2>
+                        <p class="fragment">
+                            Being an abstraction over a sequence of elements
+                            does not mean that a stream's source must be a
+                            Collection.
+                        </p>
+                        <p class="fragment">
+                            The source must provide data to the stream, be it a
+                            container, an I/O resource, a range, or some
+                            function that generates values.
+                        </p>
+                        <small class="fragment">
+                            It may even be another stream.
+                        </small>
+                        <div class="fragment">
+                            <p style="float: left; max-width: 75%;">
+                                The underlying data source is never modified by
+                                the stream.
+                            </p>
+                            <img
+                                style="float: right; max-height: 180px;"
+                                src="images/2/functional/wow.png"
+                                alt="doge with functional"
+                            />
+                        </div>
+                    </section>
+
+                    <section id="aggregated">
+                        <h2>Aggregated operations producing a result</h2>
+                        <div class="fragment">
+                            <img
+                                style="max-height: 145px;"
+                                class="float-right"
+                                src="images/2/functional/operations.png"
+                                alt="Word Cloud of Operations from Collections"
+                            />
+                            <p>
+                                <br />Think about the operations we usually
+                                perform on a collection of data.
+                            </p>
+                        </div>
+                        <p class="fragment clearfix">
+                            The Stream API will provide a lot of these
+                            operations and will do them for you.
+                        </p>
+                        <small class="fragment">
+                            Individual stream operations are not very powerful
+                            on their own. The power of the Stream API lies in
+                            the possibilities created by composing those
+                            operations together.
+                        </small>
+                    </section>
+
+                    <section>
+                        <img
+                            class="float-right logo"
+                            src="images/2/functional/pipeline.png"
+                            alt="Unix Pipeline"
+                        />
+                        <h2>The Pipeline</h2>
+                        <small class="clearfix">
+                            <blockquote>
+                                The power of a system comes more from the
+                                relationships among programs than from the
+                                programs themselves. Many UNIX programs do quite
+                                trivial things in isolation, but, combined with
+                                other programs, become general and useful tools.
+                                <p>
+                                    <small
+                                        style="display: block; text-align: right;"
+                                    >
+                                        [Brian Kernighan and Rob Pike - The Unix
+                                        Programming Environment]
+                                    </small>
+                                </p>
+                            </blockquote>
+                        </small>
+                        <p class="fragment">
+                            <u> Stream Intermediate Operations</u>: return a
+                            stream themselves, allowing to chain operations in
+                            order to create a pipeline.
+                        </p>
+                        <p class="fragment">
+                            <u> Stream Terminal Operations</u>: return a new
+                            non-stream value, exhausting the stream.
+                        </p>
+                        <small class="fragment">
+                            Intermediate and terminal operations play different
+                            roles in the pipeline, which will enable certain
+                            optimizations, such as lazy evaluation and
+                            short-circuiting.
+                        </small>
+                        <aside class="notes">
+                            Remember short-circuiting in evaluation of
+                            expressions with &&'s and/or ||'s.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2><code>java.util.stream</code></h2>
+                        <p class="fragment">
+                            <code>java.util.stream</code> introduced in Java 8,
+                            includes the Stream interface.
+                        </p>
+                        <p class="fragment">
+                            It's not a functional interface, but most of its
+                            methods will take some action as a parameter.
+                        </p>
+                        <small class="fragment">
+                            <em>e.g.</em> What do you want to <em>filter</em>?
+                            What do you want to <em>find</em>? What do you want
+                            to <em>map</em>?
+                            <strong><em>What?...</em></strong>
+                        </small>
+                    </section>
+
+                    <section id="creation">
+                        <h2>Stream creation</h2>
+                        <br />
+                        <small class="fragment">
+                            Collections are one of the most common sources for a
+                            Stream, and they now include a
+                            <code>stream()</code>method.
+                        </small>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+List&lt;String&gt; names = new ArrayList&lt;&gt;();
+// ...
+Stream&lt;String&gt; namesStream = names.stream();
+                        </code></pre>
+                        <small class="fragment">
+                            The Stream interface also includes the static method
+                            <code>of()</code>
+                        </small>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+Bootcamp[] bootcamps = {
+    new Bootcamp("Lisbon"),
+    new Bootcamp("Fundão"),
+    new Bootcamp("Terceira"),
+};
+
+// a stream from an array of Bootcamps;
+Stream&lt;Bootcamp&gt; bootcampStream = Stream.of(bootcamps);
+
+// a stream from some random names
+Stream&lt;String&gt; pulpNames = Stream.of("Mia", "Vincent", "Butch", "Jules", "Marsellus", "The Gimp");
+                        </code></pre>
+                        <aside class="notes">
+                            We can pass any number of arguments to Stream.of()
+                            as it uses the varargs feature. Which has been
+                            present in the Java language since 1.5.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>A few terminal operations</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+String[] terminators = {"T-800", "T-1000", "Carl", "T-X", "Rev-9"};
+                        </code></pre>
+                        <div class="fragment float-left" style="width: 50%;">
+                            <pre style="margin-bottom:0px;">
+                                <code class="java" data-trim contenteditable>
+long total = Stream.of(terminators)
+                .count();
+                            </code></pre>
+                            <small>
+                                <code><u>count()</u></code>
+                            </small>
+                        </div>
+                        <div class="fragment float-right" style="width: 50%;">
+                            <pre style="margin-bottom:0px;">
+                                <code class="java" data-trim contenteditable>
+Stream.of(terminators)
+    .forEach(System.out::println);
+                            </code></pre>
+                            <small>
+                                <code><u>forEach()</u></code>
+                            </small>
+                        </div>
+                        <div class="fragment clearfix">
+                            <pre style="margin-bottom:0px;">
+                                <code class="java" data-trim contenteditable>
+List&lt;String&gt; terminatorList = Stream.of(terminators)
+                                  .collect(Collectors.toList());
+                            </code></pre>
+                            <small>
+                                <code><u>collect()</u></code>
+                            </small>
+                        </div>
+                        <small class="fragment">
+                            Without a pipeline these terminal operations are not
+                            very impressive or new. Let's step up our game with
+                            intermediate operations.
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>The reduce operation</h2>
+                        <div class="fragment">
+                            <p class="float-left" style="width: 50%;">
+                                Almost all terminal operations produce
+                                something, <em>reducing</em> all the elements to
+                                a single value.
+                            </p>
+                            <div class="float-right" style="width: 50%;">
+                                <img
+                                    style="max-height: 180px;"
+                                    src="images/2/functional/reduce.png"
+                                    alt="reduce operation"
+                                />
+                            </div>
+                        </div>
+                        <p class="fragment font-medium">
+                            Stream API provides a general-purpose
+                            <code>reduce</code>, which takes:
+                        </p>
+                        <div class="font-medium">
+                            <ol>
+                                <li class="fragment">An initial value</li>
+                                <li class="fragment">
+                                    A
+                                    <code>
+                                        java.util.function.BinaryOperator,
+                                    </code>
+                                    the first argument being a partial result of
+                                    the reduction operation, and the second, the
+                                    next element.
+                                </li>
+                            </ol>
+                        </div>
+                        <br />
+                        <div class="clearfix">
+                            <div
+                                class="fragment float-left"
+                                style="width: 50%;"
+                            >
+                                <small>imperative and procedural</small>
+                                <pre style="margin-top:0px;">
+                                    <code class="java" data-trim contenteditable>
+int result = 0;
+for(Integer number : numbers) {
+    result = doReduction(result, number);
+}
+                                </code></pre>
+                            </div>
+                            <div
+                                class="fragment float-right"
+                                style="width: 50%;"
+                            >
+                                <small>declarative and functional</small>
+                                <pre style="margin-top:0px;">
+                                    <code class="java" data-trim contenteditable>
+numbers.stream()
+    .reduce(0, (acc, elem) -&gt; acc + elem);
+                                </code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Intermediate Operations - Filtering</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+List&lt;Integer&gt; numbers = Arrays.asList(8, 3, 1, 99, 102, 55, 13);
+                        </code></pre>
+                        <div class="fragment float-left" style="width: 50%;">
+                            <small>imperative and procedural</small>
+                            <pre style="margin-top:0px;">
+                                <code class="java" data-trim contenteditable>
+long oddCount = 0;
+for(Integer number : numbers) {
+    if(number % 2 != 0) {
+        oddCount++;
+    }
+}
+                            </code></pre>
+                        </div>
+                        <div class="fragment float-right" style="width: 50%;">
+                            <small>declarative and functional</small>
+                            <pre style="margin-top:0px;">
+                                <code class="java" data-trim contenteditable>
+numbers.stream()
+    .filter(number -&gt; number % 2 != 0)
+    .count();
+                            </code></pre>
+                        </div>
+                        <small class="fragment clearfix">
+                            <code>filter()</code> is an intermediate operation
+                            that takes a
+                            <code>java.util.function.Predicate</code>, and
+                            returns a <code>Stream</code> of the elements that
+                            matched the filtering condition.
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>Mapping</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+String[] names = {"Ruben", "Rui", "Rodrigo", "Sid", "Soraia"};
+                        </code></pre>
+                        <small class="fragment">
+                            Let's create a List of MCs whose names have more
+                            than 3 letters:
+                        </small>
+                        <div class="fragment float-left" style="width: 50%;">
+                            <small>imperative and procedural</small>
+                            <pre style="margin-top:0px;">
+                                <code class="java" data-trim contenteditable>
+List&lt;MasterCoder&gt; mcs = new ArrayList&lt;&gt;();
+
+for (int i = 0; i &lt; names.length; i++) {
+
+    if (names[i].length() &lt; 3) {
+        continue;
+    }
+
+    mcs.add(new MasterCoder(names[i]));
+}
+                            </code></pre>
+                        </div>
+                        <div class="fragment float-right" style="width: 50%;">
+                            <small>declarative and functional</small>
+                            <pre style="margin-top:0px;">
+                                <code class="java" data-trim contenteditable>
+Stream.of(names)
+    .filter(name -&gt; name.length() &gt; 3)
+    .map(name -&gt; new MasterCoder(name))
+    .collect(Collectors.toList());
+                            </code></pre>
+                        </div>
+                        <small class="fragment">
+                            <code>map</code> is another intermediate operation
+                            that takes a
+                            <code>java.util.function.Function</code>
+                            which will then be applied to each element,
+                            <em>mapping</em> it to a new one.
+                        </small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>map-filter-reduce holy trinity</h3>
+                            <pre><code class="java" data-trim contenteditable>
+String message = "I'll send an SOS to the garbage world, " +
+        "I hope that someone garbage gets my message in a garbage bottle.";
+                            </code></pre>
+                            <p>
+                                Remove all garbage from the message and turn it
+                                to all caps
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Primitive Streams</h2>
+                        <p class="fragment">
+                            Java SE 8 introduced three primitive specialized
+                            streams to avoid performance costs when dealing with
+                            numbers.
+                        </p>
+                        <small class="fragment">
+                            <code>IntStream</code>, <code>LongStream</code>, and
+                            <code>DoubleStream</code>
+                        </small>
+                        <p class="fragment">
+                            The most used methods to convert a
+                            <code>Stream&lt;T&gt;</code> to a specialized stream
+                            are:
+                        </p>
+                        <small class="fragment">
+                            <code>mapToInt</code>, <code>mapToLong</code>, and
+                            <code>mapToDouble</code>.
+                        </small>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+List&lt;Warrior&gt; warriors = new LinkedList&lt;&gt;();
+// ...
+int totalPower = warriors.stream()                  // returns a Stream&lt;Warrior&gt;
+    .mapToInt(warrior -&gt; warrior.getPowerLevel())   // returns an IntStream
+    .filter(power -&gt; power &gt; 9000)                  // returns an IntStream for values above 9000
+    .sum();                                         // sum() is a specific terminal method of IntStream
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Building numeric streams</h2>
+                        <p class="fragment">
+                            Java 8 primitive streams provide some useful static
+                            methods to create a numeric stream.
+                        </p>
+                        <small class="fragment">
+                            <code>range</code>(exclusive) and
+                            <code>rangeClosed</code>(inclusive)
+                        </small>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+IntStream evenNumbers = IntStream.range(0, 100)
+                            .filter(number -&gt; number % 2 == 0);
+                        </code></pre>
+                        <p class="fragment">
+                            So far we've seen streams created from a collection
+                            of elements or, just now, from a range of integers.
+                        </p>
+                        <small class="fragment">But what if...</small>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/mind-blown.gif"
+                            alt="Mind Blown"
+                        />
+                        <h2>Infinite Streams!</h2>
+                        <p class="fragment">
+                            <code>Stream.iterate</code> and
+                            <code>Stream.generate</code> are two methods
+                            allowing to create a stream from a function.
+                        </p>
+                        <p class="fragment">
+                            Since stream elements are produced
+                            <strong>on demand</strong> these two operations can
+                            produce elements <em>forever</em>.
+                        </p>
+                        <small class="fragment">
+                            <code>iterate()</code> takes an initial value and a
+                            <code>java.util.function.UnaryOperator</code> to
+                            apply on each new value produced.
+                        </small>
+                        <pre style="margin-top: 0px;" class="fragment">
+                            <code class="java" data-trim contenteditable>
+Stream&lt;Integer&gt; tens = Stream.iterate(0, n -&gt; n + 10);
+                        </code></pre>
+                        <small class="fragment">
+                            <code>generate()</code> takes a
+                            <code>java.util.function.Supplier</code> which will
+                            be called on demand.
+                        </small>
+                        <pre style="margin-top: 0px;" class="fragment">
+                            <code class="java" data-trim contenteditable>
+IntStream randoms = IntStream.generate(() -&gt; (int)(Math.random() * 100))
+                        .limit(5); // limit bounds the number of elements
+                                   // produced by the stream
+                        </code></pre>
+                    </section>
+
+                    <section id="parallelism">
+                        <img
+                            class="logo float-right"
+                            src="images/2/functional/multi-core.jpg"
+                            alt="Multicore CPU"
+                        />
+                        <h2>Parallelism</h2>
+                        <p class="fragment clearfix">
+                            Parallelism (not the same as concurrency) aims to
+                            reduce the runtime of a specific task by breaking it
+                            down into smaller components and performing them in
+                            parallel, such as on a multicore CPU.
+                        </p>
+                        <p class="fragment">
+                            Making an operation execute in parallel using
+                            streams is a matter of changing a single method
+                            call.
+                        </p>
+                        <small class="fragment">
+                            On an existing Stream object, just call the
+                            <code>parallel</code> method;
+                        </small>
+                        <small class="fragment">
+                            When creating a Stream from a collection, calling
+                            the <code>parallelStream</code> method.
+                        </small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands-On }</h2>
+                            <h3>Perfect Numbers</h3>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Parallel stream pitfalls</h2>
+                        <p class="fragment">
+                            Parallelism improves runtime execution drastically
+                            but it's not a golden hammer. Running a task in
+                            parallel requires more work to be done by the CPU
+                            than running it sequentially would.
+                        </p>
+                        <p class="fragment">
+                            For smaller data sizes, the overhead of decomposing
+                            it, may turn parallelism innefficient.
+                        </p>
+                        <p class="fragment">
+                            If the task per element is short and quick,
+                            sequential execution may also be faster.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Also...</h2>
+                        <p class="fragment">
+                            When dealing with parallelism the pillars of
+                            Functional Programming assume the most importance.
+                        </p>
+                        <p class="fragment">
+                            If the order of the execution of the lambda
+                            expressions matter, parallel streams are not a
+                            viable solution (e.g. printing results);
+                        </p>
+                        <small class="fragment">
+                            The code should be able to run independently without
+                            causing any side effects or race conditions, i.e.
+                            make sure your lambda expressions are pure
+                            functions.
+                        </small>
+                    </section>
+                </section>
+
+                <section id="optionals">
+                    <section>
+                        <h1>Optionals</h1>
+                        <blockquote>
+                            I call it my billion-dollar mistake. It was the
+                            invention of the null reference in 1965.
+                            <p>
+                                <small
+                                    style="display: block; text-align: right;"
+                                >
+                                    [Tony Hoare, creator of <code>null</code>]
+                                </small>
+                            </p>
+                        </blockquote>
+                    </section>
+
+                    <section>
+                        <h2>Point of no return</h2>
+                        <p class="fragment">
+                            Prior to Java 8, there were two ways to deal with
+                            not being able to return a value:
+                        </p>
+                        <ul>
+                            <li class="fragment">throwing an exception;</li>
+                            <li class="fragment">returning null.</li>
+                        </ul>
+                        <p class="fragment">And neither is perfect.</p>
+                        <img
+                            style="max-height: 230px;"
+                            class="fragment"
+                            src="images/2/functional/null-pointer.jpg"
+                            alt="null pointer meme"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>
+                            But really, what's wrong with <code>null</code>?
+                        </h2>
+                        <ul class="font-medium">
+                            <li class="fragment">
+                                <u>It's a source of errors:</u>
+                                <code>java.lang.NullPointerException</code>.
+                                <em>'nuff said.</em>
+                            </li>
+                            <li class="fragment">
+                                <u>It invades your code:</u> It worsens
+                                readability by making it necessary to fill your
+                                code with often deeply nested null checks.
+                            </li>
+                            <li class="fragment">
+                                <u>It's meaningless:</u> It doesn't have any
+                                semantic meaning. To be sure if a missing value
+                                is permitted you must dive into the business
+                                model (in other words dive into the
+                                <em>hows</em>).
+                            </li>
+                            <li class="fragment">
+                                <u>It breaks Java philosophy:</u> Java always
+                                hides pointers from developers except in one
+                                case: the null pointer.
+                            </li>
+                            <li class="fragment">
+                                <u>It creates a hole in the type system:</u>
+                                <code>null</code> carries no type or other
+                                information, meaning it can be assigned to any
+                                reference type.
+                            </li>
+                        </ul>
+                        <img
+                            src="images/2/functional/everything.gif"
+                            alt="everything"
+                            class="fragment"
+                            style="max-height: 180px;"
+                        />
+                        <aside class="notes">
+                            A pointer is a programming language object that
+                            stores a memory address.
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Optional</h2>
+                        <p class="fragment">
+                            In Java 8 there's a third approach to writing
+                            methods that may or may not be able to return a
+                            value.
+                        </p>
+                        <p class="fragment">
+                            The <code>Optional&lt;T&gt;</code> class represents
+                            an immutable container that can hold a single
+                            non-null <code>T</code> reference or nothing at all.
+                        </p>
+                        <small class="fragment">
+                            An optional that contains nothing is said to be
+                            empty.
+                        </small>
+                        <p class="fragment">
+                            It protects the programmer from getting a
+                            <code>NullPointerException</code> and makes it quite
+                            explicit to the reader that
+                            <em>no result found</em> is a possible outcome.
+                        </p>
+                        <img
+                            src="images/2/functional/maybe.gif"
+                            alt="it's a maybe?"
+                            class="fragment logo"
+                        />
+                    </section>
+
+                    <section>
+                        <h2>Creating an Optional</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+private Map&lt;Integer, Customer&gt; customerMap = new HashMap&lt;&gt;();
+// ...
+public Customer get(Integer id) {
+    return customerMap.get(id);
+}
+                        </code></pre>
+                        <small class="fragment">
+                            The <code>get</code> method is built using a known
+                            pattern: if there's no customer for some id, it
+                            should return <code>null</code>. (Actually, it's the
+                            same approach used by Java's
+                            <code>HashMap</code> implementation).
+                        </small>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+public Optional&lt;Customer&gt; get(Integer id) {
+    return Optional.ofNullable(customerMap.get(id));
+}
+                        </code></pre>
+                        <small class="fragment">
+                            Other factory methods for creating an
+                            <code>Optional</code> are <code><u>of</u></code>
+                            , if you have a non-null object, or
+                            <code><u>empty</u></code> for an empty Optional.
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>Using an Optional</h2>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+Optional&lt;Customer&gt; maybeCustomer = customerService.get(42);
+
+// Returns a value if one is present; otherwise, throws NoSuchElementException.
+// This is the "unsafe" operation
+Customer customer = maybeCustomer.get();
+
+// Checks for a value inside the optional. Not very functional
+if(maybeCustomer.isPresent()) {
+    Customer customer = maybeCustomer.get();
+}
+
+// Takes a java.util.function.Consumer and takes an action
+maybeCustomer.ifPresent(customer -&gt; System.out.println(customer.getName()));
+
+// set a default value in case of absence, using a java.util.function.Supplier
+Customer customer = maybeCustomer.orElseGet(() -&gt; new Customer("Joe Doe", 99));
+                        </code></pre>
+                        <aside class="notes">
+                            <pre>
+                                <code class="java">
+public T orElse(T other)
+public T orElseGet(Supplier&lt;? extends T&gt; other)
+                                </code>
+                            </pre>
+                            <ul>
+                                <li>
+                                    orElse(): returns the value if present,
+                                    otherwise return other
+                                </li>
+                                <li>
+                                    orElseGet(): returns the value if present,
+                                    otherwise invoke other and return the result
+                                    of its invocation
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Streams and Optionals</h2>
+                        <p class="fragment">
+                            Some stream terminal methods have by its own nature
+                            the possibility of not returning a value. Instead of
+                            <code>null</code> these methods will return
+                            <code>Optional&lt;T&gt;</code>
+                        </p>
+                        <small class="fragment"
+                            ><code><u>findFirst()</u></code></small
+                        >
+                        <small class="fragment"
+                            ><code><u>findAny()</u></code></small
+                        >
+                        <p class="fragment">
+                            Others, from the primitive streams API, will return
+                            the primitive specialized version of an Optional.
+                        </p>
+                        <small style="display: block;" class="fragment">
+                            <code>average()</code> returns an
+                            <code>OptionalDouble</code>
+                        </small>
+                        <small style="display: block;" class="fragment">
+                            <code>min()</code> and <code>max()</code> both
+                            return an <code>OptionalInt</code>
+                        </small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>
+                                Create a File Analyzer Application.
+                            </h3>
+                            <p class="fragment">
+                                Capable of performing these operations over
+                                files:
+                            </p>
+                            <ul>
+                                <li class="fragment">
+                                    reading and counting number of words.
+                                </li>
+                                <li class="fragment">
+                                    finding the first word longer than
+                                    <i>n</i> characters.
+                                </li>
+                                <li class="fragment">
+                                    getting the longest <i>n</i> words.
+                                </li>
+                                <li class="fragment">
+                                    finding the common words between two files.
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                transition: "slide", // none/fade/slide/convex/concave/zoom
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: "left",
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+                // Specifies section for limits-app
+                section: 39,
+                // Optional reveal.js plugins
+                dependencies: [
+                    {
+                        src: "lib/js/classList.js",
+                        condition: function() {
+                            return !document.body.classList;
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/marked.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/markdown.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/highlight/highlight.js",
+                        async: true,
+                        condition: function() {
+                            return !!document.querySelector("pre code");
+                        },
+                        callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+                    {
+                        src: "plugin/zoom-js/zoom.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/notes/notes.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/bootcamp/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/hide-slides/index.js",
+                        async: true
+                    },
+                    {
+                        src: "//cdn.socket.io/socket.io-1.4.5.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/multiplex/client.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/master.js",
+                        async: true
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>&lt;Academia de Código_&gt;</title>
+	<meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+	<meta name="keyword" content="academia,código,startup lisboa" />
+	<meta name="author" content="<Academia de Código_>" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/ac_white.css" id="theme">
+	<link rel="stylesheet" href="css/theme/warmup.css">
+	<!-- Use for presentation specific styling -->
+	<link rel="stylesheet" href="css/presentation.css">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+	<div class="header">
+		<img id="logo" src="logo.png" />
+	</div>
+	<div class="reveal">
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h1>Regular Expressions</h1>
+				<p>
+					<small>Created by
+						<a>&lt;Academia de Código_&gt;</a>
+					</small>
+				</p>
+				<aside class="notes">
+					<ol>
+					</ol>
+				</aside>
+			</section>
+			<section id="intro">
+				<section>
+					<h1>They call me Regex</h1>
+					<h2>and I'm not your average search</h2>
+					<p class="fragment">
+						Regular Expressions are an essential tool for string manipulation. They allow searching for occurrences of a pattern instead
+						of a specific word, sentence or number.
+					</p>
+				</section>
+				<section>
+					<h2>Why?</h2>
+					<p class="fragment">
+						Regex comes in handy when dealing with large data sets.
+					</p>
+					<p class="fragment">
+						Using these expressions, one will be able to search for something without knowing its exact characters.
+					</p>
+				</section>
+			</section>
+			<section id="example">
+				<section>
+					<h1>Wait... what?!</h1>
+					<h2>Examples always help</h2>
+				</section>
+				<section>
+					<p class="fragment">You've got a user list.</p>
+					<p class="fragment">Each user is identified by a group of information:</p>
+					<ul>
+						<li class="fragment">First Name</li>
+						<li class="fragment">Last Name</li>
+						<li class="fragment">Age</li>
+						<li class="fragment">E-mail</li>
+						<li class="fragment">Telephone Number</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Can I get your number?</h2>
+					<p class="fragment">Your boss needs every telephone number on the list.</p>
+					<p class="fragment">What would you do?</p>
+					<p class="fragment">If you said "I'd use those Regular Expressions", you're on the right track!</p>
+				</section>
+				<section>
+					<h2>On the right track, you say?</h2>
+					<p class="fragment">Every telephone number is different, right? But every telephone number consists of nine digits.
+						<span class="fragment">A pattern.</span>
+					</p>
+					<p class="fragment">Using Regex you may search for that specific pattern, gathering everything that matches it.</p>
+					<p class="fragment">This is a huge time-saver, and is easily achieved by a simple regular expression. </p>
+				</section>
+				<section>
+					<h2>Valid data, please.</h2>
+					<p class="fragment">The pattern-searching ability of Regex also allows us to use it as a validation tool.</p>
+					<p class="fragment">Looking for a pattern means we can filter out data that does not meet our requirements.</p>
+					<p class="fragment">In the previous example, we could have gathered all the numbers by searching for a 9-digit pattern. This means if a
+						user had a number with less than 9 digits, it would not show up in the results. (and that's good)</p>
+				</section>
+			</section>
+			<section>
+				<h2>Where do I insert those expressions?</h2>
+				<p class="fragment">Regex is supported in a variety of programming languages, natively or through libraries.</p>
+				<p class="fragment">Even your terminal is capable of understanding regular expressions, and we'll use it for this exercise.</p>
+			</section>
+		</div>
+	</div>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			keyboard: true,
+			center: true,
+			help: true,
+			progress: true,
+			slideNumber: true,
+			history: false,
+			width: 1024,
+			overview: true,
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			// Optional reveal.js plugins
+			menu: {
+				// Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+				side: 'left',
+
+				// Add slide numbers to the titles in the slide list.
+				// Use 'true' or format string (same as reveal.js slide numbers)
+				numbers: false,
+
+				// Hide slides from the menu that do not have a title.
+				// Set to 'true' to only list slides with titles.
+				hideMissingTitles: true,
+
+				// Add markers to the slide titles to indicate the progress through the presentation
+				markers: false,
+
+				// Specify custom panels to be included in the menu
+				custom: false,
+				// Disable themes tab
+				themes: false,
+
+				// Specifies if the transitions menu panel will be shown.
+				transitions: true,
+
+				// Adds a menu button to the slides to open the menu panel.
+				// Set to 'false' to hide the button.
+				openButton: true,
+
+				// If 'true' allows the slide number in the presentation to
+				// open the menu panel. The reveal.js slideNumber option must
+				// be displayed for this to take effect
+				openSlideNumber: false,
+
+				// If true allows the user to open and navigate the menu using
+				// the keyboard. Standard keyboard interaction with reveal
+				// will be disabled while the menu is open.
+				keyboard: true
+			},
+
+			// Optional reveal.js plugins
+			dependencies: [{
+				src: 'plugin/menu/menu.js'
+			}, {
+				src: 'lib/js/classList.js',
+				condition: function () {
+					return !document.body.classList;
+				}
+			}, {
+				src: 'plugin/markdown/marked.js',
+				condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src: 'plugin/markdown/markdown.js',
+				condition: function () {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src: 'plugin/highlight/highlight.js',
+				async: true,
+				condition: function () {
+					return !!document.querySelector('pre code');
+				},
+				callback: function () {
+					hljs.initHighlightingOnLoad();
+				}
+			}, {
+				src: 'plugin/zoom-js/zoom.js',
+				async: true
+			}, {
+				src: 'plugin/notes/notes.js',
+				async: true
+			}, {
+				src: '//cdn.socket.io/socket.io-1.4.5.js',
+				async: true
+			}, {
+				src: 'plugin/multiplex/config.js',
+				async: false
+			}, {
+				src: 'plugin/multiplex/client.js',
+				async: true
+			}, {
+				src: 'plugin/multiplex/master.js',
+				async: true
+			}]
+		});
+	</script>
+</body>
+
+</html>

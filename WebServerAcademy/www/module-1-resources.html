@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        window.onload = function () {
+            document.getElementById("academiaCodigo").focus();
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body id="body">
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section id="start">
+                    <h2>Additional Resources</h2>
+                </section>
+
+                <section id="books">
+                    <h2>Books</h2>
+                    <small><ul>
+                        <li><a target="_blank" href="https://www.amazon.com/Head-First-Java-Kathy-Sierra/dp/0596009208">"Head First Java" by Kathy Sierra &amp; Bert Bates</a></li>
+                        <li><a target="_blank" href="https://www.amazon.com/gp/product/0131872486/ref=ase_bruceeckelA/">"Thinking in Java" by Bruce Eckel</a></li>
+                        <li><a target="_blank" href="https://www.amazon.com/Head-First-Object-Oriented-Analysis-Design/dp/0596008678"> "Head First Object-Oriented Analysis and Design" by Brett D. McLaughin, Gary Police &amp; Dave West</a></li>
+                        <li><a target="_blank" href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882">"Clean Code" by Robert C. Martin AKA Uncle Bob</a></li>
+                        <li><a target="_blank" href="https://www.amazon.com/Core-Java-Impatient-Cay-Horstmann/dp/0321996321">"Core Java for the Impatient" by Cay S. Horstmann</a></li>
+                    </ul></small>
+                </section>
+
+                <section id="videos">
+                    <h2>Videos &amp; Movies</h2>
+                    <small><ul>
+                        <li><a target="_blank" href="https://www.youtube.com/watch?v=Tng6Fox8EfI">The Scribe's Oath - Robert "Uncle Bob" Martin</a></li>
+                        <li><a target="_blank" href="https://www.youtube.com/watch?v=NTfOnGZUZDk">Where GREP Came From - Brian Kernighan (Computerphile)</a></li>
+                    </ul></small>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="drawin/intro.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+            menu: {
+                // Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu
+                custom: false,
+                // Disable themes tab
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Optional reveal.js plugins
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function () {
+                    return !document.body.classList;
+                }
+            }, {
+                src: 'plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                condition: function () {
+                    return !!document.querySelector('pre code');
+                },
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                    src: 'plugin/bootcamp/config.js',
+                    async: false
+            }, {
+                src: 'plugin/hide-slides/index.js',
+                async: true
+            }, {
+                src: '//cdn.socket.io/socket.io-1.4.5.js',
+                async: true
+            }, {
+                src: 'plugin/multiplex/config.js',
+                async: false
+            }, {
+                src: 'plugin/multiplex/client.js',
+                async: true
+            }, {
+                src: 'plugin/multiplex/master.js',
+                async: true
+            }]
+        });
+    </script>
+</body>
+
+</html>

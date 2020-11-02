@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Network <br> Programming</h1>
+                <p>
+                  <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+                <aside class="notes">
+                    <ul>
+                        <li>In university, 1 semester of computer networks</li>
+                        <li>We will cover the basics only, this is not a network admin bootcamp</li>
+                        <li>Its fundamental for any web developer to understand how computers communicate</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Computer Networks</h2>
+                    <aside class="notes">
+                        <ul>
+                            <li>Used to Connect Machines to other Machines</li>
+                            <li>Can be categorized considering distance and characteristics</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Wide Area Network</h2>
+                    <ul>
+                        <li class="fragment">Communication over large distances, spanning entire continents and joining computers across an ocean;</li>
+                        <li class="fragment">Operates at slower speeds and exhibits significant delay;</li>
+                        <li class="fragment">Topology consists of a mesh of individual point-to-point links.</li>
+                    </ul>
+                    <span class="fragment">
+                        <img style="max-height: 250px;" src="images/1/network/wan.png">
+                        <p><small>Internet Backbone in Europe</small></p>
+                    </span>
+                    <aside class="notes">
+                        <ul>
+                            <li>MEO Router uplink labelled as WAN. Not correct, but it is a connection to the outside of the LAN..</li>
+                            <li>Delay - time it takes for a bit to travel from a source to it's destination</li>
+                            <li>Latency is a broad engineering concept, can mean the same as delay or not, depends on context - time between stimulus and it's response, always smaller or equal than the speed of the light</li>
+                            <li>Latency in a switch is the delay between the time when a device receives a frame and the time that frame is forwarded out the destination port</li>
+                            <li>RTT - Round Trip Time</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Local Area Network</h2>
+                    <ul>
+                        <li class="fragment">Short distances only;</li>
+                        <li class="fragment">Operates at high speeds and does not exhibit significant delay;</li>
+                        <li class="fragment">Each computer contains a network interface that connects the machine to the network medium.</li>
+                    </ul>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/man-wan-lan.png">
+                    <aside class="notes">
+                        network mediums can be copper, coaxial or radio
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/1/network/nic-card.jpg">
+                    <h2>Ethernet</h2>
+                    <p>Invented at Xerox in the 1970s, and has become the most popular means for connecting computers in a LAN. Evolved from coaxial cable to twisted pair and fiber optics. Transmission speeds range from the original 10 Mbit/s to current 100Mbit/s,
+                        1Gbit/s and 10Gbit/s.</p>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/lan-nics.jpg">
+                </section>
+
+                <section>
+                    <h2>Bus Topology</h2>
+                    <ul>
+                        <span class="fragment">
+                            <img class="logo float-right" src="images/1/network/medium-coax.jpg">
+                            <li>All computers share a single communication channel;</li>
+                        </span>
+                        <li class="fragment">Broadcast-based, all computers receive all transmissions;</li>
+                        <li class="fragment">Each computer discards transmissions destined to other computers;</li>
+                        <li class="fragment">Collisions can occur and need to be handled;</li>
+                        <li class="fragment">10 Base 5 for 10 Mbit/s half-duplex on thick coaxial cable;</li>
+                        <li class="fragment">10 Base 2 for 10 Mbit/s half-duplex on thin coaxial cable.</li>
+                    </ul>
+                    <img style="max-height: 200px;" class="fragment" src="images/1/network/ethernet-bus.jpg">
+                    <aside class="notes">
+                        <p>ask students how they would implement such a system and lead them to CSMA/CD</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>CSMA/CD</h2>
+                    <p class="fragment">Carrier Sense Multiple Access with Collision Detection</p>
+                    <img class="fragment" style="max-height: 400px;" src="images/1/network/csmacd.png">
+                </section>
+
+                <section>
+                    <h2>Ethernet Hub</h2>
+                    <ul>
+                        <img class="logo float-right" src="images/1/network/hub.jpg">
+                        <li class="fragment">Replaces the coaxial bus by acting as a single network segment;</li>
+                        <li class="fragment">Connects multiple Ethernet devices together;</li>
+                        <li class="fragment">10 Base-T for 10 Mbit/s half-duplex on unshielded twisted pair cabling.</li>
+                    </ul>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/10baset.jpg">
+                </section>
+
+                <section>
+                    <h2>Ethernet Switch</h2>
+                    <ul>
+                        <img class="logo float-right" src="images/1/network/medium-stp.jpg">
+                        <li class="fragment">Replaces shared medium with dedicated full duplex links;</li>
+                        <li class="fragment">Prevents collisions;</li>
+                        <li class="fragment">100 Base-TX for 100 Mbit/s full-duplex on shielded twisted pair cabling.</li>
+                    </ul>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/hub-switch.png">
+                </section>
+
+                <section>
+                    <h2>Ethernet Address</h2>
+                    <p>A Media Access Control (MAC) address is used as a global unique identifier assigned to ethernet network interfaces for communications on the physical network segment</p>
+                    <ul>
+                        <li class="fragment"><u>48-bit</u> addressing scheme</li>
+                        <li class="fragment">MAC address <u>encodes the manufacturer</u> identification number</li>
+                    </ul>
+                    <img class="fragment" src="images/1/network/mac.jpg">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Find out your desktop MAC address and look for its manufacturer online</h3>
+                        <p>http://macvendors.com</p>
+                        <aside class="notes">
+                            <p>System preferences, Network, Advanced, Hardware</p>
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Ethernet Frame</h2>
+                    <ul>
+                        <li class="fragment">Contains source and destination addresses;</li>
+                        <li class="fragment">Up to 1500 bytes payload;</li>
+                        <li class="fragment">CRC to check for errors.</li>
+                    </ul>
+                    <img class="fragment" src="images/1/network/ethernet-frame.jpg">
+                    <aside class="notes">
+                        give parity bit as an example of extremely simple check algorithm
+                    </aside>
+                </section>
+
+            </section>
+
+            <section id="ip">
+
+                <section>
+                    <h2>The Internet</h2>
+                </section>
+
+                <section>
+                    <h2>Internet Architecture</h2>
+                    <p class="fragment">We have seen how machines connect to individual networks...
+                        <br>
+                        <span class="fragment">But how are networks interconnected to form an internetwork?</span>
+                    </p>
+                    <ul>
+                        <li class="fragment">We need computers that connect to <u>multiple networks;</u></li>
+                        <li class="fragment">We need these computers to <u>forward packets</u> between networks;</li>
+                        <li class="fragment">Such computers are called <u>Routers;</u></li>
+                        <li class="fragment">Forwarding network traffic among networks is called <u>Routing</u>.</li>
+                    </ul>
+                    <img style="max-height:250px;" class="fragment" src="images/1/network/router.png">
+                </section>
+
+                <section>
+                    <h2>Internet Protocol</h2>
+                    <ul>
+                        <li class="fragment">Abstracts underlying LAN technology, making the internet appear to be a single uniform entity;</li>
+                        <li class="fragment">Has the task of delivering packets from a source host to a destination host;</li>
+                        <li class="fragment">IPv4 is the dominant protocol of the Internet;</li>
+                        <li class="fragment">IPv6 is its successor.</li>
+                    </ul>
+                    <img class="fragment" src="images/1/network/ip-encapsulation.png">
+                    <aside class="notes">
+                        IPv4 addresses were exhausting, IPv6 allowed for 100k address per mˆ2 of earth surface, but a very successful patch was applied
+                        to v4 (Classless/NAT/PAT), which caused v6 adoption to slow down.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Internet Addresses</h2>
+                    <p class="fragment">Each host on the internet is assigned a unique 32-bit internet address that is used in all communication with that host</p>
+                    <p class="fragment">IP addresses encode both a network and a host on that network. They do not specify an individual computer, but a connection to a network</p>
+                    <p class="fragment">If a host computer moves from one network to another, its IP address must change</p>
+                    <img class="fragment" src="images/1/network/ip-address.jpg"/>
+                </section>
+
+                <aside class="notes">
+                  <ol>
+                    <li>A host is a network node that may expose information resources, services or applications;</li>
+                    <li>Every host is a physical network node, but not every physical network node is a host;</li>
+                    <li>Some network devices as modems, hubs and switches are NOT considered hosts;</li>
+                  </ol>
+                </aside>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Check IP addresses on the codecadets server using the <u>ifconfig</u> command</h3>
+
+                    </div>
+                    <aside class="notes">
+                        refer to man pages for proper usage of ifconfig command
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Subnet Masks</h2>
+                    <p class="fragment">The parts of the IP address that are used as the network and host addresses are not fixed, so the network and host addresses cannot be determined unless you have more information.</p>
+                    <p class="fragment">This information is supplied in another 32-bit number called a subnet mask.</p>
+                    <img class="fragment" src="images/1/network/subnetmask.png">
+                </section>
+
+                <section>
+                    <h2>Network and Broadcast</h2>
+                    <p class="fragment">The first address of a subnetwork is reserved for addressing the network itself</p>
+                    <p class="fragment">The last address of a subnetwork is reserved for broadcasting to all hosts on the network</p>
+                    <img class="fragment" src="images/1/network/ip-net-bcast.gif">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Using an IP calculator such as <u>ipcalc</u></h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Loopback Address</h2>
+                    <p class="fragment">All addresses starting with 127 are reserved for testing and inter-process communication on the local machine. They are called loopback addresses and should never appear on the network</p>
+                    <p class="fragment">When a software program uses the loopback address as a destination, the operating system returns the data back without sending traffic across any network</p>
+                    <img class="fragment" src="images/1/network/loopback.jpg">
+                </section>
+
+                <section>
+                    <h2>Private Addresses</h2>
+                    <p class="fragment">Private IPv4 address ranges are reserved for private networks and can not go out to the public internet</p>
+                    <p class="fragment">Private addresses can be translated to one or more public addresses by using a technique called NAT and/or PAT</p>
+                    <img class="fragment" src="images/1/network/ip-private.png">
+                </section>
+
+                <section id="arp">
+                    <h2>Address Resolution Protocol</h2>
+                    <p class="fragment">ARP is a low-level protocol that hides the underlying network physical addressing, which allows an arbitrary IP address assignment to each host</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">Allows a host to find the physical address of a target host on the same physical network, given only the target IP address</li>
+                            <li class="fragment">A broadcast ARP request is used to find the hardware address of target hosts</li>
+                            <li class="fragment">To make ARP efficient, each host caches IP-to-physical address bindings</li>
+                        </ul>
+                    </small>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/arp.png">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Print the arp table on the codecadets server using the <u>arp</u> command</h3>
+                        <aside class="notes">
+                            refer to man pages for proper command usage
+                        </aside>
+                    </div>
+                </section>
+
+                <section id="routing">
+                    <h2>IP Routing</h2>
+                    <p class="fragment">Routing is the mechanism that determines the path that data follows in order to travel across multiple networks from its source to its destination. Data is routed from its source to its destination through a series of routers, and
+                        across multiple networks</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">frames destined to the same physical network use direct delivery</li>
+                            <li class="fragment">frames destined to another physical network use indirect delivery</li>
+                            <li class="fragment">each host has a default router or gateway responsible for forwarding traffic to other networks</li>
+                        </ul>
+                    </small>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/ip-routing.png">
+                </section>
+
+                <section>
+                    <h2>Routing Tables</h2>
+                    <img style="max-height: 400px;" class="fragment" src="images/1/network/routing-table.jpg">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Inspect and Manipulate the routing table on your server using the <u>route</u> command:</h3>
+                        <ol>
+                            <li>print the default route</li>
+                            <li>add a new route for host 4.2.2.1 - requires root privileges</li>
+                            <li>add a new route for network 4.2.0.0/16 - requires root privileges</li>
+                        </ol>
+                    </div>
+                    <aside class="notes">
+                        The -n switch will be explained later (no dns resolution)
+                        <ul>
+                            <li>route -n or netstat -rn</li>
+                            <li>route add -host 4.2.2.1 gw 172.36.2.1</li>
+                            <li>route add -net 4.2.0.0/16 gw 172.36.2.1</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Connectionless Datagram Delivery</h2>
+                    <img style="margin-left: 20px;" class="fragment float-right" src="images/1/network/ip-datagram.png">
+                    <p class="fragment">Unreliable, best-effort, connectionless packet delivery system</p>
+                    <p class="fragment">IP datagrams may be lost, duplicated, delayed or delivered out of order</p>
+                    <p class="fragment">Datagrams bigger than MTU will be fragmented</p>
+                    <p class="fragment">IP fragments need to be reassembled at the destination</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Alter the interface MTU on the codecadets server using the command <u>ifconfig</u> - requires root privileges</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Display the IP statistics using the <u>netstat</u> command</h3>
+                    </div>
+                    <aside class="notes">
+                        <p>The -n switch will be explained later (no dns resolution)</p>
+                        netstat -ni
+                    </aside>
+                </section>
+
+                <section id="tcpip">
+                    <h2>TCP/IP</h2>
+                    <p class="fragment">Acronym that is commonly used for the set of network protocols that compose the Internet Protocol suite</p>
+                    <img class="fragment" src="images/1/network/tcpip-suite.jpg">
+                </section>
+
+                <section id="libpcap">
+                    <h2>libpcap</h2>
+                    <p class="fragment">Portable and system independent API for capturing network traffic</p>
+                    <small><ol>
+                    <li class="fragment">Written in C, but wrappers exist for many languages</li>
+                    <li class="fragment">Supports saving captured packets to a file</li>
+                    <li class="fragment">Supports reading files containing captured packets</li>
+                    <li class="fragment">Supports a filtering mechanism based on the architecture of the BSD packet filter</li>
+                    <li class="fragment">Applications include network statistics collection, security monitoring, network debugging, etc.</li>
+                    </ol></small>
+                    <img style="max-height: 350px;" class="fragment" src="images/1/network/libpcap.jpg">
+                </section>
+
+                <section id="tcpdump">
+                    <h2>tcpdump</h2>
+                    <img class="logo float-right" src="images/1/network/tcpdump.png">
+                    <h3>powerful command-line packet analyzer based on libpcap</h3>
+                    <ul>
+                        <li class="fragment">places the NIC in promiscuous mode</li>
+                        <li class="fragment">may require root privileges, use <u>sudo</u></li>
+                    </ul>
+                    <pre class="fragment"><code class="bash" data-trim contenteditable>
+// capture all packets on interface eth0 to screen
+$ tcpdump -i eth0
+
+// display captured packets in HEX and ASCII
+$ tcpdump -XX -i eth0
+
+// capture 10 packets up to 1500 bytes each on interface eth0, save them to file, filtering by host
+$ tcpdump -c 10 -i eth0 -s 1500 -w data.pcap host www.academiadecodigo.org
+
+// read packets from a previously saved file, be very verbose about it
+$ tcpdump -vvv -r data.pcap
+                    </code></pre>
+                    <small class="fragment"><u>man tcpdump</u> for additional options/features</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Generate, capture and display network traffic on the codecadets server using <u>tcpdump</u></h3>
+                    </div>
+                </section>
+
+                <section id="wireshark">
+                    <img class="logo float-right" src="images/1/network/wireshark.png">
+                    <h2>Wireshark</h2>
+                    <p>Very similar to tcpdump, but has a graphical front-end</p>
+                    <p class="fragment">and integrated sorting and filtering options</p>
+                    <img class="fragment" style="max-height: 400px;" src="images/1/network/wireshark-ftp.png">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Generate, capture and analyse network traffic on your desktop</h3>
+                        <small>traffic capture requires root privileges, capture on the server and transfer with scp to the desktop</small>
+                    </div>
+                </section>
+
+                <section id="dhcp">
+                    <h2>Dynamic Host Configuration Protocol</h2>
+                    <p class="fragment">With DHCP, computers request IP addresses and networking parameters automatically from a DHCP server, reducing the need for a network administrator or a user to configure these settings manually</p>
+                    <img class="fragment" src="images/1/network/dhcp.jpg">
+                </section>
+
+                <section id="icmp">
+                    <h2>Internet Control Message Protocol</h2>
+                    <p>ICMP is one of the main protocols of the Internet Protocol Suite. It is used by network devices to send error messages indicating, for example, that a requested service is not available or that a host or router could not be reached</p>
+                    <img class="fragment" src="images/1/network/ping.jpg">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Perform reachability tests to well known websites on the codecadets server using the <u>ping</u> and <u>traceroute</u> commands</h3>
+                    </div>
+                </section>
+
+                <section id="transport">
+                    <h2>Transport Layer</h2>
+                    <p class="fragment">Provides end-to-end communication from one application program to another</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">may regulate flow of information</li>
+                            <li class="fragment">may provide reliable transport</li>
+                            <li class="fragment">must accept data from multiple user programs</li>
+                            <li class="fragment">programs within a host are addressed by port number</li>
+                        </ul>
+                    </small>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/transport.jpg">
+                </section>
+
+                <section id="ports">
+                    <h2>Ports</h2>
+                    <p class="fragment">A port number is a way to identify a specific process to which an Internet or other network message is to be forwarded when it arrives at a server</p>
+                    <img style="max-height: 120px;" class="fragment" src="images/1/network/port.gif">
+                    <p class="fragment">Lower port numbers are reserved for standardized protocols, higher port numbers are free for use</p>
+                    <img style="max-height: 100px;" class="fragment" src="images/1/network/port-allocation.jpg">
+                </section>
+
+                <section>
+                    <h2>Port Numbers</h2>
+                    <img style="max-height: 380px;" class="fragment" src="images/1/network/port-list.png">
+                    <pre class="fragment"><code class="bash" data-trim contenteditable>
+// dump all well-known ports to screen
+$ cat /etc/services
+
+// dump all http like protocol ports to screen
+$ cat /etc/services | grep http
+                    </code></pre>
+                </section>
+
+                <section id="udp">
+                    <h2>User Datagram Protocol</h2>
+                    <p class="fragment">UDP provides an unreliable connectionless delivery service using IP to transport messages between machines</p>
+                    <p class="fragment">It uses IP to carry messages, but adds the ability to distinguish among multiple destinations within a given host computer</p>
+                    <img style="max-height: 300px;" class="fragment" src="images/1/network/udp.jpg">
+                </section>
+
+                <section id="tcp">
+                    <h2>Transmission Control Protocol</h2>
+                    <p>TCP provides a reliable full duplex connection between two machines, allowing them to exchange large volumes of data efficiently</p>
+                    <ul>
+                        <li class="fragment">Applications request a <u>connection</u> to the destination, which is used to transfer data;</li>
+                        <li class="fragment">Applications can handle multiple tcp connections simultaneously;</li>
+                        <li class="fragment">Guarantees that data will be delivered without loss, duplication or transmission errors;</li>
+                        <li class="fragment">Endpoints can exchange data in both directions simultaneously;</li>
+                        <li class="fragment">Guarantees reliable, synchronized startup between endpoints;</li>
+                        <li class="fragment">Guarantees delivery of all data after endpoint shutdown;</li>
+                        <li class="fragment">Provides flow control, allowing systems of varying speeds to communicate.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>TCP Header</h2>
+                    <img style="max-height: 480px;" src="images/1/network/tcp-header.png">
+                </section>
+
+                <section>
+                    <h2>TCP State Machine</h2>
+                    <p class="fragment">A TCP connection progresses through a series of states during its lifetime</p>
+                    <img class="fragment" style="max-height: 450px;" src="images/1/network/tcp-state.png">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Check TCP connection states on the codecadets server with the <u>netstat</u> command</h3>
+                        <aside class="notes">
+                            netstat -tn
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Socket API</h2>
+                    <p class="fragment">Provided by the operating system, allowing application software to use network services without being concerned with low-level communication details</p>
+                    <p class="fragment">Sockets are characterized by:</p>
+                    <ul>
+                        <li class="fragment">Transport protocol, which can be UDP, TCP or raw data</li>
+                        <li class="fragment">Local IP address</li>
+                        <li class="fragment">Local Port number</li>
+                        <li class="fragment">Remote IP address</li>
+                        <li class="fragment">Remote Port number</li>
+                    </ul>
+                    <aside class="notes">
+                            netstat -an | grep LIST
+                            netstat -an | grep EST
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Check for <u>listening</u> and <u>established</u> sockets on the codecadets server with the <u>netstat</u> command</h3>
+                        <aside class="notes">
+                            netstat -tn
+                        </aside>
+                    </div>
+                </section>
+
+                <section id="dns">
+                    <h2>Domain Name System</h2>
+                    <p class="fragment">The DNS is a hierarchical distributed naming system for computers, services, or any resource connected to the Internet or a private network. It associates various information with domain names assigned to each of the participating
+                        entities
+                    </p>
+                    <p class="fragment">We can query DNS for:
+                        <small>
+                            <ul>
+                                <li class="fragment">address for domain name</li>
+                                <li class="fragment">address of dns servers for domain</li>
+                                <li class="fragment">address of mail servers for domain</li>
+                            </ul>
+                        </small>
+                    </p>
+                    <img style="max-height: 480px;" class="fragment" src="images/1/network/dns.png">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>resolve hostnames, nameservers and mail servers on the codecadets server using the <u>host</u> command</h3>
+                        <aside class="notes">
+                            <ul>
+                                <li>host www.google.com</li>
+                                <li>host -t NS google.com</li>
+                                <li>host -t MX google.com</li>
+                            </ul>
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Client-server model</h2>
+                    <p class="fragment">Architecture of a computer network in which many clients request a service from a centralized server (host computer). Servers wait for requests to arrive from clients and then respond to them.</p>
+                    <img style="max-height: 200px;" class="fragment" src="images/1/network/client-server.png">
+                    <p class="fragment">Usually servers are more powerful machines located elsewhere on the network, but it is possible for the client and the server to reside on the same host</p>
+                </section>
+
+                <section id="netcat">
+                    <h2>Netcat</h2>
+                    <img class="logo float-right" src="images/1/network/netcat-victorinox.jpg">
+                    <h3 class="fragment">The TCP/IP Swiss Army knife</h3>
+                    <ul>
+                    <li class="fragment">Listen on arbitrary TCP and UDP ports</li>
+                    <li class="fragment">Establish TCP connections</li>
+                    <li class="fragment">Send UDP packets</li>
+                    <li class="fragment">Perform port scanning (you might want to check <u>nmap</u> for some serious security scanning)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Manually establish tcp/udp sockets with netcat</h3>
+                        <h3>Capture and decode traffic</h3>
+                    </div>
+                    <aside class="notes">
+                        <p>refer to man pages for proper usage</p>
+                        <ul>
+                        <li>nc -l 6666 (tcp server)</li>
+                        <li>nc 127.0.0.1 6666 (tcp client)</li>
+                        <li>nc -lu 6666 (udp server)</li>
+                        <li>nc -u 127.0.0.1 6666 (udp client)</li>
+                        </ul>
+                    </aside>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Network Programming in Java</h2>
+                </section>
+
+                <section>
+                    <h2>java.net.InetAddress</h2>
+                    <p class="fragment">High-level representation of an IP address and used by most of the other networking classes</p>
+                    <p class="fragment">Capable of performing DNS resolutions, storing results in a local cache and testing for host reachability</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Host name resolution and reachability</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Sockets</h2>
+                    <p class="fragment">Different processes can communicate with each other across networks by means of sockets. Java implements both TCP and UDP sockets, allowing the programmer to treat a network connection as just another stream.</p>
+                    <p class="fragment"><u>java.net.DatagramSocket</u> implements UDP sockets, capable of sending and receiving UDP datagrams to/from a specified host and port</p>
+                    <p class="fragment"><u>java.net.Socket</u> implements TCP client sockets, capable of connecting to a specified server and port</p>
+                    <p class="fragment"><u>java.net.ServerSocket</u> implements TCP server sockets, used to wait for requests to come in over the network. </p>
+                    <aside class="notes">
+                        sockets shield the programmer from low-level details, such as error detection, packet sizes, packet splitting, packet retransmission, network addresses and more
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>UDP Socket</h2>
+                    <h3>Steps for sending/receiving to/from udp socket:</h3>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// STEP1: Get your host and port
+String hostName = args[0];
+int portNumber = Integer.parseInt(args[1]);
+
+// STEP2: Create send and receive buffers
+byte[] sendBuffer = new byte[1024];
+byte[] recvBuffer = new byte[1024];
+
+// STEP3: Open a UDP (datagram) socket
+DatagramSocket socket = new DatagramSocket(portNumber);
+
+// STEP4.1: Create and receive UDP datagram packet from the socket
+DatagramPacket receivePacket = new DatagramPacket(recvBuffer, recvBuffer.length);
+socket.receive(receivePacket); // blocks while packet not received
+
+// STEP4.2: Create and send UDP datagram packet from the socket
+DatagramPacket sendPacket = new DatagramPacket(sendBuffer,
+        sendBuffer.length, InetAddress.getByName(hostName), portNumber);
+socket.send(sendPacket);
+
+// STEP5: Close the socket
+socket.close();
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Implement UDP UPPERCASE server and client classes</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>TCP Client Socket</h2>
+                    <p>Steps for reading/writing to/from client socket:</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// STEP1: Get the host and the port from the command-line
+String hostName = args[0];
+int portNumber = Integer.parseInt(args[1]);
+
+// STEP2: Open a client socket, blocking while connecting to the server
+Socket clientSocket = new Socket(hostName, portNumber);
+
+// STEP3: Setup input and output streams
+PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+// STEP4: Read from/write to the stream
+// STEP5: Close the streams
+// STEP6: Close the sockets
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>TCP Server Socket</h2>
+                    <p>Steps for reading/writing to/from server socket:</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// STEP1: Get parameters from command line arguments
+int portNumber = Integer.parseInt(args[0]);
+
+// STEP2: Bind to local port and block while waiting for client connections
+ServerSocket serverSocket = new ServerSocket(portNumber);
+Socket clientSocket = serverSocket.accept();
+
+// STEP3: Setup input and output streams
+PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+// STEP4: Read from/write to the stream
+// STEP5: Close the streams
+// STEP6: Close the sockets
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                     <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Chat server and client (support for 1 client only)</h3>
+                    </div>
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+              // Specifies which side of the presentation the menu will
+              // be shown. Use 'left' or 'right'.
+              side: 'left',
+
+              // Add slide numbers to the titles in the slide list.
+              // Use 'true' or format string (same as reveal.js slide numbers)
+              numbers: false,
+
+              // Hide slides from the menu that do not have a title.
+              // Set to 'true' to only list slides with titles.
+              hideMissingTitles: true,
+
+              // Add markers to the slide titles to indicate the
+              // progress through the presentation
+              markers: false,
+
+              // Specify custom panels to be included in the menu, by
+              // providing an array of objects with 'title', 'icon'
+              // properties, and either a 'src' or 'content' property.
+              custom: false,
+
+              // Specifies the themes that will be available in the themes
+              // menu panel. Set to 'false' to hide themes panel.
+              themes: false,
+
+              // Specifies if the transitions menu panel will be shown.
+              transitions: true,
+
+              // Adds a menu button to the slides to open the menu panel.
+              // Set to 'false' to hide the button.
+              openButton: true,
+
+              // If 'true' allows the slide number in the presentation to
+              // open the menu panel. The reveal.js slideNumber option must
+              // be displayed for this to take effect
+              openSlideNumber: false,
+
+              // If true allows the user to open and navigate the menu using
+              // the keyboard. Standard keyboard interaction with reveal
+              // will be disabled while the menu is open.
+              keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 13,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

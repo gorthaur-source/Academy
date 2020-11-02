@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    		<script src="lib/js/html5shiv.js"></script>
+    		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <div class="slides">
+
+            <section>
+
+                <section>
+                    <h1>JavaScript
+                        <br>Frontend Web Development</h1>
+                </section>
+
+                <section>
+                    <img src="images/3/frontend-web/web-platform.png" alt="" class="logo float-right">
+                    <h1 class="clearfix">The Web Platform</h1>
+                    <aside class="notes">
+                        <b>next:</b>developing in javascript is ultimately developing for the web. But what is JavaScript? Is
+                        it a language? A platform? A runtime for executing code?
+                    </aside>
+                </section>
+
+                <section id="www">
+                    <img src="images/3/frontend-web/www-logo.gif" alt="" class="logo float-right">
+                    <h2>World Wide Web</h2>
+                    <blockquote>
+                        A web of hypertext documents to be viewed by browsers using a client-server architecture
+                        <small>Tim Berners Lee</small>
+                    </blockquote>
+                    <img class="fragment xsmall" src="images/3/frontend-web/first-page.png" alt="">
+                </section>
+
+                <section>
+                    <img src="images/3/frontend-web/frontend.png" class="logo float-right" alt="">
+                    <h2>Modern Web</h2>
+                    <br>
+                    <p class="fragment">The modern Web brought us a plethora of new technologies, such as:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <b>CSS</b> to describe the appearance or presentation of content on a webpage</li>
+                            <li class="fragment">
+                                <b>JavaScript</b>, the programming language that runs in the browser and can add interactivity
+                                and other dynamic features to web applications</li>
+                            <li class="fragment">
+                                <b>Web APIs</b>, used to perform a variety of tasks, such as manipulating the
+                                <b>DOM</b>, playing audio or video, or generating 3D graphics</li>
+                            <li class="fragment">
+                                <b>AJAX</b>, used to fetch data from a server without having to do a full page refresh</li>
+                            <li class="fragment">
+                                <b>WebRTC</b>, enabling audio/video streaming and data sharing between browser clients</li>
+                        </ul>
+                    </small>
+                    <img src="images/3/frontend-web/frontend_history.png" class="fragment" alt="">
+                    <aside class="notes">
+                        <b>next:</b>as a web developer, you are often required to debug and troubleshoot what is happening on
+                        the browser. For that we have developer tools
+                        <ul>
+                            <li>.. and a few others others, there is even a Mathematical Markup Language (MathML)</li>
+                            <li>JavaScript allows dynamic modifications on the web page without the need to perform any server
+                                request
+                            </li>
+                            <li>although X in Ajax stands for XML, JSON is used more than XML nowadays</li>
+                        </ul>
+                    </aside>
+                </section>
+
+            </section>
+
+            <section>
+                <section>
+                    <h2>Document Object Model</h2>
+                </section>
+
+                <section id="dom">
+                    <img src="images/3/frontend-web/doom.jpg" class="logo float-right" alt="">
+                    <h2>Document Object Model</h2>
+                    <p class="fragment clearfix">Language neutral interface that allows dynamic access
+                        <br>and update to the contents, structure and style of web pages</p>
+                    <img src="images/3/frontend-web/dom.png" class="fragment" alt="">
+                    <small class="fragment">It is an object oriented representation of the web page and <u>can be modified with JavaScript</u></small>
+                </section>
+
+                <section id="tree">
+                    <h3>DOM Tree</h3>
+                    <p class="fragment">In the DOM, documents assume a
+                        <u>tree</u> structure of nodes</p>
+                    <img src="images/3/frontend-web/dom-tree.png" class="fragment float-right" style="margin-left: 20px;" />
+                    <p class="fragment">Browsers use layout engines such as Webkit (Safari), Blink (Chrome) or Gecko (Firefox) to parse HTML
+                        into a DOM and render it on screen</p>
+                    <p class="fragment clearfix">These engines historically implemented the DOM standards to varying degrees of compliance, causing inconsistencies
+                        in the way the DOM is accessed in different browsers</p>
+                </section>
+
+                <section>
+                    <h2>How do I access the DOM?</h2>
+                    <p class="fragment">The
+                        <u>window</u> object represents a browser window containing a DOM</p>
+                    <p class="fragment">The
+                        <u>document</u> property points to the DOM loaded in that window</p>
+                    <pre class="fragment">
+                        <code class="html" data-trim contenteditable>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;script&gt;
+        // create a couple of elements in an empty HTML page
+        window.onload = function() {
+            var heading = document.createElement("h1");
+            var heading_text = document.createTextNode("Academia de Código");
+            heading.appendChild(heading_text);
+            document.body.appendChild(heading);
+        }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                        </code>
+                    </pre>
+                    <small class="fragment">The
+                        <u>window.onload</u> method receives as argument a function callback to be invoked when the document
+                        is loaded into the browser window.
+                        <u>The DOM may not fully populated before that!</u>
+                    </small>
+                </section>
+
+                <section id="dom-objects">
+                    <h3>DOM Objects</h3>
+                    <p class="fragment">In the DOM API, each HTML element is represented by an object</p>
+                    <p class="fragment">Each object has various properties and methods that correspond to the appearance or behavior of the corresponding
+                        HTML element</p>
+                    <img src="images/3/frontend-web/dom-types.png" class="fragment" style="max-height: 250px" />
+                    <p class="fragment">Each object can have parents, children and siblings</p>
+                </section>
+
+                <section id="document-object">
+                    <h2>The Document Object</h2>
+                    <p class="fragment">The
+                        <u>document</u> node represents the HTML document itself and it is at the root of the DOM tree</p>
+                    <p class="fragment">It provides methods for creating new nodes in the document as well as searching for existing ones</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">document.createElement(name) - create an element of the given tag name</li>
+                            <li class="fragment">document.getElementById(id) - get the element with the given id</li>
+                            <li class="fragment">document.getElementsByClassName(class) - get a list of elements for the given class name</li>
+                            <li class="fragment">document.getElementByTagName(name) - get a list of elements for the given tag name</li>
+                        </ul>
+                    </small>
+                    <pre class="fragment">
+                        <code class="html" data-trim contenteditable>
+var elem = document.getElementById("hello");
+&lt;p id="hello"&gt;Hello world!&lt;/p&gt;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h3>Create content on the DOM</h3>
+                    <p class="fragment">Starting with a basic HTML table:</p>
+                    <pre class="fragment">
+                        <code class="xml" data-trim contenteditable>
+&lt;table id="users-table"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Email&lt;/th&gt;
+        &lt;th&gt;Edit&lt;/th&gt;
+        &lt;th&gt;Delete&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                        </code>
+                    </pre>
+                    <p class="fragment">This is what is required to populate it with users data:</p>
+                    <pre class="fragment">
+                        <code class="js" data-trim contenteditable>
+// get the table's DOM object
+var usersTable = document.getElementById('users-table');
+
+// create a new table row, added to the end of the table
+var row = usersTable.insertRow(-1);
+
+// modify the table row HTML
+row.innerHTML = htmlStr;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Traversing the DOM</h2>
+                    <p class="fragment">After retrieving a DOM element, there are a number of properties that can be used to get elements from
+                        elsewhere in the tree</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">element.parentNode - Returns the parent node of the given element</li>
+                            <li class="fragment">element.childNodes - Returns a collection of child nodes of the given element</li>
+                            <li class="fragment">element.firstChild - Returns the node’s first child in the tree, or null if the node is childless</li>
+                            <li class="fragment">element.lastChild - Returns the node’s last child in the tree, or null if the node is childless</li>
+                            <li class="fragment">element.nextSibling - Returns the node immediately following the specified one in its parent’s
+                                childNodes list, or null if the specified node is the last node in that list</li>
+                            <li class="fragment">element.previousSibling - Returns the node immediately preceding the specified one in its parent’s
+                                childNodes list, null if the specified node is the first in that list</li>
+                        </ul>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Element Attributes</h2>
+                    <p class="fragment">Most HTML attributes of an element can be accessed through the object property of the same name</p>
+                    <pre class="fragment">
+                        <code class="javascript" data-trim contenteditable>
+var elem = document.getElementById("logo_image");
+console.log("The URL of this image is: " + elem.src);
+
+// replace the old logo on the page with a new one
+elem.src = "../img/new_logo.jpg";
+
+// apply some CSS to the new logo
+elem.style = "max-height: 50px; border: 1px solid"
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Element Contents</h2>
+                    <p class="fragment">Element contents can be retrieved or changed</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">element.innerHTML - This property represents the HTML within the element</li>
+                            <li class="fragment">element.textContent - This property represents the plain text within the element. This is equivalent
+                                to the inner HTML, but with all the tags stripped out</li>
+                        </ul>
+                    </small>
+                    <pre class="fragment">
+                        <code class="javascript" data-trim contenteditable>
+var button = document.getElementById('submit');
+button.textContent = 'DO NOT PRESS!!!';
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Head to www.google.com and apply some creative CSS and content to the logo and sign-in button</h3>
+                    </div>
+                </section>
+
+                <section id="events">
+                    <h2>Events</h2>
+                    <p class="fragment">The DOM provides methods for registering and
+                        <br>unregistering event listeners on elements</p>
+                    <p class="fragment">
+                        <u>EventTarget</u> is an interface implemented by DOM nodes that can receive events and may have listeners
+                        for them</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">element.addEventListener(type, callback, options) - Register an event handler of a specific event
+                                type on the EventTarget</li>
+                            <li class="fragment">element.removeEventListener(type, listener, options) - Removes an event listener from the EventTarget</li>
+                            <li class="fragment">element.dispatchEvent(event) - Dispatch an event to this EventTarget</li>
+                        </ul>
+                    </small>
+                    <pre class="fragment">
+                        <code class="javascript" data-trim contenteditable>
+var helloWorldFn = function() {
+    console.log("hello world!");
+};
+
+var btn = document.getElementById("hello_world_btn");
+btn.addEventListener("click", helloWorldFn, false)
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Event Default Action</h2>
+                    <p class="fragment">Many events have a default action</p>
+                    <small>
+                        <p class="fragment">Clicking on a hyperlink will make the browser navigate to the target page by default</p>
+                        <p class="fragment">Clicking on a form submission button will cause the browser to submit the form to the server by default</p>
+                    </small>
+                    <p class="fragment">If there is an event listener attached to an element, the event listener will fire first before the default
+                        browser action is run.</p>
+                    <pre class="fragment">
+                        <code class="javascript" data-trim contenteditable>
+var preventDefault = function(event) {
+    event.preventDefault()
+};
+
+var link = document.getElementById("disabled_link")
+link.addEventListener("click", preventDefaultFn, false);
+                        </code>
+                    </pre>
+                    <p class="fragment">The event listener
+                        <u>can choose</u> to prevent the action from being run</p>
+                </section>
+
+                <section id="bubble">
+                    <h2>Event Propagation</h2>
+                    <p class="fragment">When an event is fired, the element’s event handlers are first fired.
+                        <br>
+                        <span class="fragment">The element’s parent’s event handlers are fired next.
+                            <br>
+                            <span class="fragment">That element’s parent’s event handlers are also fired,</span>
+                            <span class="fragment"> and so on, until the dom root element (
+                                <b>document</b>) is reached</span>
+                        </span>
+                    </p>
+                    <img src="images/3/frontend-web/event-propagation.png" class="fragment" style="max-height: 200px;" />
+                    <small>
+                        <p class="fragment">This behaviour is called
+                            <u>Event Bubbling</u>
+                        </p>
+                        <p class="fragment">When an event handler is fired, it has an opportunity to stop the event from propagating to its parent.
+                            To do so, the handler can call
+                            <u>event.stopPropagation()</u> method on the event object</p>
+                    </small>
+                </section>
+
+
+                <section>
+                    <div class="exercise">
+                        <h3>{ Exercise }</h3>
+                        <h3>List Customer data using the DOM API</h3>
+                        <img src="images/3/frontend-web/dom-api-exercise.png" class="small tight">
+                        <pre class="tight" style="font-size: 0.7rem;">
+                            <code class="js" data-trim contenteditable>
+var customerData = [
+    {"id":1,"firstName":"Rui","lastName":"Ferrão","email":"rui@gmail.com","phone":"777888"},
+    {"id":2,"firstName":"Sergio","lastName":"Gouveia","email":"sergio@gmail.com","phone":"777999"},
+    {"id":3,"firstName":"Bruno","lastName":"Ferreira","email":"bruno@gmail.com","phone":"777666"},
+    {"id":4,"firstName":"Rodolfo","lastName":"Matos","email":"rodolfo@gmail.com","phone":"777333"}
+];
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>AJAX</h2>
+                </section>
+
+                <section id="ajax">
+                    <img src="images/3/frontend-web/ajax.png" class="logo float-right" alt="">
+                    <h2>AJAX</h2>
+                    <p class="fragment">Asynchronous JavaScript and XML refers to a technique for creating better, faster and more interactive
+                        client-side web applications
+                    </p>
+                    <div class="float-left" style="width: 50%; font-size: 0.8em;">
+                        <ul>
+                            <li class="fragment">JavaScript for interacting with the browser and responding to events</li>
+                            <li class="fragment">The DOM for accessing and manipulating the structure of the HTML page</li>
+                            <li class="fragment">XML, which represents the data exchanged between the server and client</li>
+                            <li class="fragment">An XMLHttpRequest object for asynchronously exchanging data between the client and the server</li>
+                        </ul>
+                    </div>
+                    <img class="fragment float-right" src="images/3/frontend-web/ajax-web.png">
+                    <p class="fragment clearfix">Not a technology in itself, AJAX refers to<br> a <u>variety of technologies</u> coming together</p>
+                </section>
+
+                <section id="ajax-request">
+                    <h3>XMLHttpRequest</h3>
+                    <p class="fragment">
+                        The <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> object provides the API
+                        to make AJAX requests, using a variety of formats within a JavaScript application.
+                    </p>
+                    <pre class="fragment">
+                        <code class="js" data-trim contenteditable>
+var ajax;
+
+if (window.XMLHttpRequest) {
+    // Mozilla, Safari, IE7+ ...
+    ajax = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+    // IE 6 and older
+    ajax = new ActiveXObject('Microsoft.XMLHTTP');
+}
+
+// run this when the ajax request completes
+ajax.onreadystatechange = function() {
+  if (ajax.readyState === 4 &#38;&#38; ajax.status === 200) {
+    alert(ajax.responseText);
+  }
+};
+
+// start the AJAX request
+ajax.open('GET', 'http://localhost:8080/api/users', true);
+ajax.setRequestHeader('Content-type', 'application/json');
+ajax.send();
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h3>{ Exercise }</h3>
+                        <h3>Fetch Customer data with AJAX</h3>
+                        <p>Load the customers from the JavaBank REST API <br>using the XMLHttpRequest object</p>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            width: 1024,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 31,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        window.onload = function() {
+            document.getElementById("academiaCodigo").focus();
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body id="body">
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+
+                <section>
+                    <h2>Operating Systems Fundamentals</h2>
+                </section>
+
+                <section id="os">
+                        <img style="max-height: 100px;" class="float-right" data-src="images/0/operating-system.png">
+                        <h2>Operating System</h2>
+                        <h3 class="fragment"><u>The</u> most important piece of software</h3>
+                        <ul>
+                            <li class="fragment">Controls all the computer resources</li>
+                            <li class="fragment">Manages the execution of application programs</li>
+                            <li class="fragment">Shields programmers from the complexity of the hardware</li>
+                            <li class="fragment">Provides users with command line (CLI) and graphical (GUI) interfaces</li>
+                        </ul>
+                </section>
+
+                <section>
+                    <img class="logo float-right" data-src="images/0/unix-plate.jpg"/>
+                    <h2>The UNIX Operating System</h2>
+                    <ul>
+                        <li class="fragment">Written by <u>Ken Thompson and Dennis Ritchie</u> at AT&amp;T Bell Labs in 1972</li>
+                        <li class="fragment">Was the first widely-used <u>portable</u> operating system</li>
+                        <li class="fragment">Allows access by multiple users (<u>Multiuser</u>)</li>
+                        <li class="fragment">Concurrently performs multiple tasks (<u>Multitask</u>)</li>
+                        <li class="fragment">Two major versions from which all others derive, <u>System V</u> from AT&amp;T and <u>BSD</u> from the University of Berkeley</li>
+                        <li class="fragment">IEEE developed a standard for UNIX called <u>POSIX</u> to make it possible to write programs that could run on any UNIX system</li>
+                    </ul>
+                        <aside class="notes">
+                            <ol>
+                                <li>Originally written in Assembly and later rewritten in C</li>
+                                <li>K&amp;R were also the makers of C</li>
+                                <li>Portable as in able to be compiled and run on different types of computers</li>
+                                <li>IEEE - Institute of Electrical and Electronics Engineers</li>
+                                <li>task is also known as process</li>
+                                <li>concurrent task execution came from time sharing system, today on top of time sharing we have multiple processors</li>
+                                <li>BSD - Berkeley Software Distribution</li>
+                            </ol>
+                        </aside>
+                </section>
+
+                <section id="fsf">
+                    <img class="logo float-right" data-src="images/0/richard-stallman.jpg"/>
+                    <h2>The Free Software Foundation</h2>
+                    <p class="fragment">In the 70s, programmers used to share their code <u>freely</u> among each other.
+                    <span class="fragment">In the 80s, a new trend emerged where companies developing the code <u>refused to share it</u> with their clients</span></p>
+                    <p class="fragment">In response to this trend, <u>Richard Stallman</u> (RMS) formed the Free Software Foundation (FSF).
+                    <span class="fragment">The plan was to develop a <u>free OS</u> called GNU, which would be compatible with the proprietary Unix operating systems</span></p>
+                </section>
+
+                <section id="gnu">
+                    <img class="logo float-right" data-src="images/0/gnu.png"/>
+                    <h2>GNU OS</h2>
+                    <p class="fragment">The components required for kernel development were written first: an editor (<u>emacs</u>), a C compiler (<u>gcc</u>), a shell (<u>bash</u>), libraries and all associated generic Unix tools.</p>
+                    <p class="fragment">The GNU kernel is called <u>Hurd</u> and it uses a revolutionary <u>server–client</u> architecture built on top of a microkernel.
+                    <span class="fragment">The Hurd is still <u>not considered suitable</u> for production environments as of today...</span></p>
+                    <aside class="notes">
+                        <ul>
+                            <li>The kernel is a computer program that is the core of a computer's operating system, with complete control over everything in the system</li>
+                            <li>Unlike the Hurd, all other unix kernels are monolithic (one single program). The Hurd uses a modular approach, the minikernel providing only the bare basic services to kernel modules</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" data-src="images/0/torvalds.jpg"/>
+                    <h2>Linux Torvalds</h2>
+                    <img class="fragment" style="max-height: 500px;" data-src="images/0/linus-post.png"/>
+                    <aside class="notes">
+                        <ul>
+                            <li>MINIX (mini-Unix) is a POSIX-compliant Unix-like computer operating system</li>
+                            <li>Andrew S. Tanenbaum created MINIX at Vrije Universiteit in Amsterdam to exemplify the principles conveyed in his textbook, Operating Systems: Design and Implementation</li>
+                            <li>The design principles Tanenbaum applied to MINIX greatly influenced the design decisions Linus Torvalds applied in the creation of the Linux kernel</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="linux">
+                    <img class="logo float-right" data-src="images/0/gnu-linux.png"/>
+                    <h2>GNU/Linux</h2>
+                    <p class="fragment">The Linux kernel became the most popular adoption of the GNU software.
+                    <span class="fragment">A number of distributors provided a complete OS by putting together the Linux kernel, GNU tools and libraries, package managers, installers and other applications.</span></p>
+                    <img class="fragment" style="max-height: 300px;" data-src="images/0/linux-distros.png"/>
+                    <small class="fragment">Nowadays Linux is pretty much everywhere: computers, smartphones, cars and embedded devices.<br/><u>It basically powers the world...</u></small>
+                    <aside class="notes">
+                        <ul>
+                            <li>Some of these distributions are community driven, others are commercially backed</li>
+                            <li>Slackware - the first linux distro</li>
+                            <li>RedHat - the first commercial distro</li>
+                            <li>Debian - the free operating system</li>
+                            <li>tux is the linux mascot, story is that linus was bitten by a penguin</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" data-src="images/0/freebsd.jpg"/>
+                    <h2>BSD Family</h2>
+                    <p class="fragment">Berkeley Software Distribution (BSD) is a Unix operating system derivative developed and distributed by the University of Berkeley</p>
+                    <p class="fragment">BSD has been the base of a large number of operating systems:</p>
+                        <ul>
+                            <li class="fragment"><u>FreeBSD</u> - Known for its performance and rock solid stability</li>
+                            <li class="fragment"><u>OpenBSD</u> - Known for being the most secure operating system</li>
+                            <li class="fragment"><u>NetBSD</u> - Known for being the most portable operating system</li>
+                            <li class="fragment"><u>Darwin</u> - FreeBSD fork and the base for Apple's OSX, iOS, watchOS and tvOS</li>
+                        </ul>
+                </section>
+
+                <section>
+                    <h2>Unix Family Tree</h2>
+                     <img style="max-height: 450px;" data-src="images/0/unix-tree.jpg"/>
+               </section>
+
+                <section>
+                    <h2>Operating System Overview</h2>
+                    <div class="float-left">
+                        <p>
+                            <img class="fragment" data-src="images/1/intro/os.jpg" />
+                        </p>
+                    </div>
+                    <div class="float-right">
+                        <p class="fragment">
+                            Consists of:
+                            <ul>
+                                <li class="fragment">Kernel</li>
+                                <li class="fragment">Libraries and Utilities</li>
+                            </ul>
+                        </p>
+                        <p class="fragment">
+                            Performs:
+                            <ul>
+                                <li class="fragment">Device management</li>
+                                <li class="fragment">Filesystem management</li>
+                                <li class="fragment">Process management</li>
+                                <li class="fragment">Memory management</li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <aside class="notes">
+                        <ol>
+                            <li>Maps hardware as devices, accessible through a file</li>
+                            <li>Needs to interact with all the hardware, hence C</li>
+                            <li>CPU starts executing BIOS</li>
+                            <li>BIOS bootstraps the OS</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="filesystem">
+                    <h2>Filesystem</h2>
+                    <p class="fragment">Defines the structure and the rules used to read, write and maintain data on a disk.
+                    <span class="fragment">Application software usually <u>does not write directly to disk</u>, but goes through the OS filesystem calls</span></p>
+                    <img class="fragment" style="max-height: 280px;" data-src="images/0/fat-layout.png" />
+                    <small><p class="fragment">Common file system types include:</p>
+                    <ul>
+                        <li class="fragment">Ext2 - Linux filesystems</li>
+                        <li class="fragment">Ext3/Ext4 - Linux filesystem with journaling capabilities</li>
+                        <li class="fragment">HFS/HFS+/AFS - Filesystems used by Apple computers</li>
+                        <li class="fragment">FAT12/16/32 - Simple legacy filesystems developed by Microsoft</li>
+                        <li class="fragment">NTFS - Proprietary Microsoft filesystem</li>
+                    </ul></small>
+                    <aside class="notes">
+                        <li>Linux distros allow great freedom of choice in filesystem selection</li>
+                        <li>Relate to physical (raw) devices</li>
+                        <li>https://en.wikipedia.org/wiki/Comparison_of_file_systems</li>
+                        <li>Journaling is designed to prevent data corruption from crashes and sudden power loss</li>
+                        <li>File systems that don’t offer journaling are available for use on high-performance servers, where power loss is not a concern</li>
+                        <li>superblock contains the boot loader</li>
+                    </aside>
+                </section>
+
+                <section id="fhs">
+                    <h2>Filesystem Hierarchy</h2>
+                    <p class="fragment">The Filesystem Hierarchy Standard (FHS) defines the directory structure and directory contents in Unix-like operating systems</p>
+                    <img class="fragment" style="max-height: 280px;" data-src="images/1/intro/filesystem.png" />
+                    <p class="fragment"><small>Different Operating Systems follow this standard to different levels of compliance</small></p>
+                </section>
+
+                <section>
+                    <h2>Processes and Threads</h2>
+                    <p class="fragment">A <u>process</u> is a program in execution in memory. <u>Any program executed creates a process</u>. A program can be a command, a shell script, or any binary executable or any application.</p>
+                    <p class="fragment">A <u>thread</u> is a sequence of instructions and a lightweight alternative to processes. Threads within the same process share the same memory address space.</p>
+                    <img class="fragment" style="max-height: 200px;" data-src="images/0/process-threads.jpg" />
+
+                    <aside class="notes">
+                        <ol>
+                            <li>UNIX is Multiprocessing and Multithreading</li>
+                            <li>Each process has it's own dedicated memory space and can not access other processes memory space (OS throws segfault if it does..)</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="scheduler">
+                    <h2>Scheduler</h2>
+                    <p class="fragment">The <u>Scheduler</u> is an operating system module that selects and allocates CPU time to processes in memory that are ready to execute</p>
+                    <p class="fragment">The Scheduling algorithms can be divided into two categories:</p>
+                    <small><ul>
+                        <li class="fragment">Nonpreemptive Scheduling - once a process has been given the CPU, the CPU cannot be taken away from that process and it has to voluntarily give the CPU back to the OS</li>
+                        <li class="fragment">Preemptive Scheduling - once a process has been given the CPU, the OS can take it back at any time</li>
+                    </ul></small>
+                    <img class="fragment" style="max-height: 200px;" data-src="images/0/scheduler.jpg" />
+                    <small><p class="fragment">Preemptive scheduling is commonly used in real-time operating systems, such as VxWorks, QNX, Montavista Linux Symbian and many others.
+                        They are quite popular in audio, video and telecommunication applications</p></small>
+                    <aside class="notes">
+                        <ul>
+                            <li>In the Linux kernel, different schedulers with different characteristics can be chosen from</li>
+                            <li>Symbian was used by older nokia phones</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section id="ipc">
+                    <h2>Interprocess Communication</h2>
+                    <p class="fragment">Processes frequently need to communicate with other processes.</p>
+                    <p class="fragment">Sure, we can use <u>Files</u>, but it is slow and may require file locks.
+                    <span class="fragment">Such functionality is better provided by the kernel with <u>IPC</u> mechanisms:</span></p>
+                    <ul>
+                        <li class="fragment">Message Queues - message exchange between processes</li>
+                        <li class="fragment">Semaphores - synchronization between processes</li>
+                        <li class="fragment">Signals - notification mechanism between processes</li>
+                        <li class="fragment">Pipes/Sockets - connect streams of data</li>
+                        <li class="fragment">Shared Memory - fast exchange of data between processes</li>
+                    </ul>
+                    <img class="fragment" style="max-height: 150px;" data-src="images/0/shared-memory.gif" />
+                    <aside class="notes">
+                        yes, multiple processes can write simultaneously to the same file. What happens depends on OS, data might be interleaved...
+                        <ul>
+                            <li>signals - think unix kill command</li>
+                            <li>pipes - think unix pipe</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Check Running Processes</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Secure Shell Connection</h2>
+                    <p class="fragment">Cryptographic network protocol that allows remote login. Authenticate on a remote machine and run commands remotely, as if we were there!</p>
+                    <p class="fragment">ssh - Authenticate using SSH protocol</p>
+                    <p class="fragment">scp - Copy files using SSH protocol</p>
+                    <p class="fragment">Asymmetric cryptography for usage without passwords</p>
+                    <aside class="notes">
+                        Public key cryptography, or asymmetric cryptography, is any cryptographic system that uses pairs of keys: public keys which may be disseminated widely, and private keys which are known only to the owner.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Remote Processes</h3>
+                    </div>
+                    <img src="images/1/intro/ssh-processes.png" />
+                    <aside class="notes">
+                        <p>Show ssh and scp commands and examples</p>
+                        <p>Reference to man page</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Memory Management</h2>
+                    <p class="fragment"><u>Physical Memory</u> is the amount of RAM available to the OS</p>
+                    <p class="fragment"><u>Virtual Memory</u> is a combination of RAM and disk space that running processes can use. Virtual memory makes the system appear to have more memory than it actually has by sharing it between competing processes as they need it.</p>
+                    <p class="fragment"><u>Swap</u> space is the portion of virtual memory that is on the hard disk, used when RAM is full</p>
+                    <ul>
+                        <li class="fragment">Allocate memory to processes</li>
+                        <li class="fragment">Free previously allocated memory</li>
+                        <li class="fragment">Map virtual memory to physical memory</li>
+                        <li class="fragment">Memory swap</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Memory Usage and Statistics</h3>
+                    </div>
+                </section>
+                <aside class="notes">
+                    Linux commands for checking memory usage/stats/etc.
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="drawin/intro.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+            menu: {
+                // Specifies which side of the presentation the menu will be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: true,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu
+                custom: false,
+                // Disable themes tab
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 5,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+</body>
+
+</html>

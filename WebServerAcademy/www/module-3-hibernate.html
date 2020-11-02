@@ -1,0 +1,1687 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="&lt;Academia de Código_&gt;">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Java
+                    <br> Persistence</h1>
+                <p>
+                    <small>Created by
+                        <a>&lt;Academia de Código_&gt;</a>
+                    </small>
+                </p>
+            </section>
+
+            <section>
+
+                <section>
+                    <h1>The JDBC Saga</h1>
+                </section>
+
+                <section>
+                    <h2>Remember the
+                        <u>A</u> in ACID?</h2>
+                    <img class="fragment" style="max-height: 500px;" src="images/2/hibernate/transaction-atomicity.png">
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/hibernate/transaction-icon.jpg">
+                    <h2>Transactions in JDBC</h2>
+                    <p class="fragment">By default, JDBC Connections are in
+                        <u>auto-commit</u> mode and every SQL statement is committed to the database upon its completion</p>
+                    <p class="fragment">That is ok for simple applications, but there are reasons why you may want to turn off the auto-commit
+                        and manage your own transactions:</p>
+                    <ul>
+                        <li class="fragment">increase performance</li>
+                        <li class="fragment">maintain the integrity of business processes</li>
+                        <li class="fragment">to use distributed transactions</li>
+                    </ul>
+                    <p class="fragment">Transactions enable you to control if and when changes are applied to the database. It treats a group
+                        of SQL statements as one logical unit, and if any statement fails, the whole transaction fails</p>
+                    <aside class="notes">
+                        distributed transactions = across multiple databases
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Transactions in JDBC</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+try {
+
+    connection.setAutoCommit(false);
+    Statement statement = connection.createStatement();
+
+    String query = "INSERT INTO user  " + "VALUES ('Rui', 'rui.ferrao@academiadecodigo.org')";
+    statement.executeUpdate(query);
+
+    // Malformed SQL statement that breaks
+    query = "INSERT IN user  " + "VALUES ('Catarina', 'catarina.campino@academiadecodigo.org')";
+    statement.executeUpdate(query);
+
+    // If no errors, both users will be inserted
+    connection.commit();
+
+} catch(SQLException e){
+
+    // Error occurred, no user will be inserted
+    connection.rollback();
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/hibernate/thread-lock.jpg">
+                    <h2>Locking</h2>
+                    <p class="fragment">Locking is a RDBMS feature that prevents users from different transactions from causing data conflicts.
+                        <span class="fragment">When locking is acquired on a row, it prevents other transactions from changing that row until the
+                            transaction ends</span>
+                    </p>
+                    <p class="fragment">When too many rows are locked simultaneously, the RDBMS can escalate the lock into a full table lock</p>
+                    <ol>
+                        <li class="fragment">User 1 reads a record from database</li>
+                        <li class="fragment">User 2 reads the same record from database</li>
+                        <li class="fragment">User 1 updates the record</li>
+                        <li class="fragment">User 2 updates the same record</li>
+                    </ol>
+                    <p class="fragment">Without a locking mechanism, the changes that User 1 made on the record are
+                        <u>lost forever</u>
+                    </p>
+                </section>
+
+                <section id="pessimistic">
+                    <img style="max-width: 100px;" class="float-right" src="images/2/hibernate/pessimistic.png">
+                    <h2>Pessimistic Locking</h2>
+                    <p class="fragment">The pessimistic locking mechanism is provided by the RDBMS and locks the record when it is read</p>
+                    <ol>
+                        <li class="fragment">User 1 reads a record from the database and locks it</li>
+                        <li class="fragment">User 2 attempts to read and lock the same record, but must now wait behind User 1</li>
+                        <li class="fragment">User 1 updates the record and releases the lock</li>
+                        <li class="fragment">User 2 can now read the record with the changes that User 1 made</li>
+                        <li class="fragment">User 2 updates the record complete with the changes from User 1</li>
+                    </ol>
+                    <p class="fragment">Locks are
+                        <u>always released</u> when the transaction is committed or rolled back</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Pessimistic Lock</h3>
+                    </div>
+                    <aside class="notes">
+                        <pre><code>
+// Connection 1
+begin;
+select * from user for update;
+
+// Connection 2
+update user set email="rui.ferrao@academiadecodigo.org" where username="ferrao";
+
+// Connection 1
+commit;
+                        </code></pre>
+                    </aside>
+                </section>
+
+                <section id="optimistic">
+                    <img style="max-width: 100px;" class="float-right" src="images/2/hibernate/optimistic.jpg">
+                    <h2>Optimistic Locking</h2>
+                    <p class="fragment">Pessimist locking introduces a problem in application design...
+                        <span class="fragment">poor concurrency</span>
+                    </p>
+                    <small>
+                        <p class="fragment">The solution is to use an optimistic locking mechanism instead which does not use exclusive locks
+                            when reading. Instead, a check is made during the update to make sure that the record has not
+                            been changed since it was read.
+                            <span>This check can be implemented by introducing a
+                                <u>version</u> attribute to the table</span>
+                        </p>
+                    </small>
+                    <small>
+                        <ol>
+                            <li class="fragment">User 1 reads the record, which has id 1 and version 21</li>
+                            <li class="fragment">User 2 reads the record, which has id 1 and version 21</li>
+                            <li class="fragment">User 1 attempts to update the record and bump version number
+                                <pre><code>
+UPDATE user SET name = 'Rui', version = 22 WHERE id = 1 and version = 21
+                            </code></pre>
+                            </li>
+                            <li class="fragment">User 2 attempts to update the record and bump version number
+                                <pre><code>
+UPDATE user SET email = 'rui.ferrao@academiadecodigo.org', version = 22 WHERE id = 1 and version = 21
+                            </code></pre>
+                            </li>
+                            <li class="fragment">User 2 failed to update the record, as record with id = 1 and version = 21 no longer exists</li>
+                            <li class="fragment">User 2 must re-read the record, including User 1 changes and re-attempt the update.</li>
+                        </ol>
+                    </small>
+                </section>
+            </section>
+
+            <section>
+
+                <section>
+                    <h1>Object Relational Mapping</h1>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/hibernate/jdbc-frustration.jpg">
+                    <h2>Challenges with JDBC</h2>
+                    <ul>
+                        <li class="fragment">the developer has to manually write
+                            <u>lots of plumbing code</u> to map between Java objects and database tables
+                        </li>
+                        <li class="fragment">supports
+                            <u>only native SQL</u> and it's up to the developer to figure out the most effective query to perform
+                            each specific task</li>
+                        <li class="fragment">
+                            <u>caching is not available</u> and has to be maintained by hand-coding</li>
+                        <li class="fragment">
+                            <u>complex error handling</u> to make sure connections are properly closed after used</li>
+                        <li class="fragment">endless
+                            <u>try-catch-finally-try-catch blocks</u>
+                        </li>
+                        <li class="fragment">
+                            <u>exception hierarchy not supported</u>, the developer has to handle the not very informative SQLException</li>
+                    </ul>
+                </section>
+
+                <section id="impedance">
+                    <h2>Object-Relational Impedance Mismatch</h2>
+                    <p class="fragment">Technical difficulties are often encountered when a RDBMS is being used by a program written in an object-oriented
+                        programming language</p>
+                    <small>
+                        <table>
+                            <tr class="fragment">
+                                <th>Mismatch</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Granularity</td>
+                                <td>Sometimes you will have an object model which has more classes than the number of corresponding
+                                    tables in the database</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Inheritance</td>
+                                <td>RDBMSs do not define anything similar to Inheritance which is a natural paradigm in object-oriented
+                                    programming languages</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Identity</td>
+                                <td>A RDBMS defines exactly one notion of equality: the primary key. Java, defines both object
+                                    identity (a==b) and object equality (a.equals(b))</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Associations</td>
+                                <td>Object-oriented languages represent associations using object references where a RDBMS represents
+                                    an association as a foreign key column</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Navigation</td>
+                                <td>The ways you access objects in Java and in a RDBMS are fundamentally different</td>
+                            </tr>
+                        </table>
+                    </small>
+                </section>
+
+                <section id="orm">
+                    <h2>Object Relational Mapping</h2>
+                    <p class="fragment">The basic idea of ORM is to map database tables to a class.
+                        <span class="fragment">One row of the database data is copied to a class instance.</span>
+                        <span class="fragment">On the other hand, if an object is saved, one row is inserted in the database table.</span>
+                    </p>
+                    <img class="fragment" style="max-height: 350px;" src="images/2/hibernate/orm.png">
+
+                    <aside class="notes">
+                        <ul>
+                            <li>Your application is object-oriented. Your database tables are not object oriented but relational</li>
+                            <li>Mapping presents a challenge, here 3 classes mapped into two tables</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ORM Frameworks in 2014</h2>
+                    <img style="max-height: 550px;" src="images/2/hibernate/orm-frameworks.jpg">
+                </section>
+
+                <section>
+                    <h2>Hibernate vs JPA</h2>
+                    <img src="images/2/hibernate/hibernate-jpa.png">
+                </section>
+                <section>
+                    <img class="logo float-right" src="images/2/hibernate/jpa-logo.jpg" alt="">
+                    <h2>Why JPA?</h2>
+                    <p class="fragment">JPA is not an implementation, but a specification</p>
+                    <p class="fragment">Provides portability across different JPA implementations</p>
+                    <p class="fragment">Standardized API and query language (JPQL)</p>
+                    <img style="max-height:200px;" src="images/2/hibernate/jpa.png" alt="" class="fragment">
+                </section>
+            </section>
+
+            <section>
+
+                <section>
+                    <img src="images/2/hibernate/hibernate-logo.png">
+                </section>
+
+                <section id="hibernate">
+                    <h2>Hibernate</h2>
+                    <p class="fragment">High performance object/relational persistence and query framework</p>
+                    <ul>
+                        <li class="fragment">Persistence for Plain Old Java Objects (POJOs)</li>
+                        <li class="fragment">Multiple Database dialects</li>
+                        <li class="fragment">Transactions</li>
+                        <li class="fragment">Sophisticated Caching</li>
+                        <li class="fragment">Connection pooling</li>
+                        <li class="fragment">Custom types</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>1st and 2nd level cache, 2nd level can be externally provided, cache</li>
+                            <li>internal connection pooling or c3p0, apache, etc.</li>
+                            <li>custom types allow things like persist properties of type BigInteger to VARCHAR columns or concatenate
+                                together FIRST_NAME, INITIAL and SURNAME columns into a String</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Entity Classes</h2>
+                    <p class="fragment">In JPA data is persisted through
+                        <u>Entity Classes</u>
+                    </p>
+                    <p class="fragment">
+                        <u>Each</u> entity class instance represents a row on a database table</p>
+                    <ol>
+                        <li class="fragment">Should be
+                            <u>POJOs</u> with no base class or interface requirements</li>
+                        <li class="fragment">Annotated with javax.persistence.Entity</li>
+                        <li class="fragment">
+                            <u>Must have</u> a public no arguments constructor with at least package access</li>
+                        <li class="fragment">
+                            <u>Should not</u> be declared final</li>
+                        <li class="fragment">
+                            <u>Should have</u> an id property to be used as the primary key, preferably a wrapper class</li>
+                        <li class="fragment">
+                            <u>Should have</u> setters and getters for all persistent fields</li>
+                        <li class="fragment">
+                            <u>Might have</u> to override equals and hashCode</li>
+                    </ol>
+                    <aside class="notes">
+                        <ul>
+                            equals-hashCode if:
+                            <li>inted to put instances of persistent classes in a Set (many-valued associations)</li>
+                            <li>intend to use reattachment of detached instances</li>
+                        </ul>
+                        not final for lazy loading via proxies
+                    </aside>
+                </section>
+
+                <section id="architecture">
+                    <h2>JPA Architecture</h2>
+                    <img class="float-right" src="images/2/hibernate/jpa-api.gif">
+                    <ol style="max-width: 500px;">
+                        <li class="fragment">Persistence creates one or more EntityManagerFactory objects</li>
+                        <li class="fragment">Each EntityManagerFactory is configured by one persistence unit</li>
+                        <li class="fragment">EntityManagerFactory creates one or more EntityManager objects</li>
+                        <li class="fragment">One or more EntityManagers manage one PersistenceContext</li>
+                    </ol>
+                </section>
+
+                <section id="session-factory">
+                    <h2>Entity Manager Factory</h2>
+                    <ul>
+                        <li class="fragment">Factory that produces Entity Manager objects</li>
+                        <li class="fragment">Heavy weighted object, single EntityManagerFactory for each database</li>
+                        <li class="fragment">Thread safe (immutable) and shared amongst all threads</li>
+                        <li class="fragment">Internal state includes all of the mapping metadata</li>
+                        <li class="fragment">Caches generated SQL statements</li>
+                    </ul>
+                    <img class="fragment" src="images/2/hibernate/entity-manager-factory.jpg">
+                </section>
+
+                <section id="em">
+                    <h2>Entity Manager</h2>
+                    <img class="float-right" src="images/2/hibernate/entity-manager.jpg" alt="">
+                    <div style="max-width: 850px;">
+                        <p class="fragment">Primary interface of the JPA, abstracts the physical connection to the database</p>
+                        <p class="fragment">Entity Managers are:</p>
+                        <small>
+                            <ul>
+                                <li class="fragment">Lightweight and inexpensive to create and destroy</li>
+                                <li class="fragment">Not thread safe, should be used by one thread at a time</li>
+                                <li class="fragment">Factory to create transactions</li>
+                            </ul>
+                        </small>
+                        <p class="fragment">Entity Managers are responsible for managing JPA entity objects in the
+                            <u>persistence context</u>
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Persistence Context</h2>
+                    <img style="max-height: 400px;" class="float-right" src="images/2/hibernate/persistence-context.png" alt="">
+                    <div style="max-width: 620px; margin-top: 100px;">
+                        <p class="fragment">The place where the persistent entities are created, modified and retrieved</p>
+                        <p class="fragment">Acts as a first level (L1) cache for persisted entities</p>
+                        <p class="fragment">Accessible by Entity Manager only</p>
+                    </div>
+                </section>
+
+                <section id="entity-state">
+                    <h2>Entity State</h2>
+                    <p class="fragment">An entity class instance can have four possible states regarding the persistence context:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <u>transient</u> - just instantiated and not associated with a persistence context</li>
+                            <li class="fragment">
+                                <u>managed</u> or
+                                <u>persistent</u> - associated with a persistence context</li>
+                            <li class="fragment">
+                                <u>removed</u> - associated with a persistence context but scheduled for removal</li>
+                            <li class="fragment">
+                                <u>detached</u> - no longer associated with a persistence context</li>
+                        </ul>
+                    </small>
+                    <img style="max-height: 200px;" class="fragment" src="images/2/hibernate/jpa-state-transition.png">
+                </section>
+
+                <section>
+                    <h2>Transient</h2>
+                    <img class="logo float-right" src="images/2/hibernate/hibernate-transient.jpg">
+                    <ul>
+                        <li class="fragment">Not associated with a persistence context</li>
+                        <li class="fragment">Identifier value has not been set</li>
+                        <li class="fragment">Has no representation in the database</li>
+                        <li class="fragment">Eligible for garbage collection</li>
+                    </ul>
+                    <aside class="notes">
+                        transient = not permanent
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Persistent</h2>
+                    <img class="logo float-right" src="images/2/hibernate/hibernate-persistent.jpg">
+                    <ul>
+                        <li class="fragment">Associated with a persistence context</li>
+                        <li class="fragment">Identifier value has been set</li>
+                        <li class="fragment">Has a representation in the database</li>
+                        <li class="fragment">Entity state is synchronized with database</li>
+                        <li class="fragment">Safe from garbage collection</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Removed</h2>
+                    <img class="logo float-right" src="images/2/hibernate/hibernate-removed.jpg">
+                    <ul>
+                        <li class="fragment">Associated with a persistence context</li>
+                        <li class="fragment">Identifier value has been set</li>
+                        <li class="fragment">Marked for removal from the database</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Detached</h2>
+                    <img class="logo float-right" src="images/2/hibernate/hibernate-detached.png">
+                    <ul>
+                        <li class="fragment">Entity state no longer synchronized with database</li>
+                        <li class="fragment">Not associated with a persistence context anymore</li>
+                        <li class="fragment">Eligible for garbage collection</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>JPA dependencies</h2>
+                    <pre class="fragment">
+                            <code class="xml" data-trim contenteditable>
+&lt;!-- pom.xml --&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+        &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+        &lt;version&gt;5.3.6.Final&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.hibernate.javax.persistence&lt;/groupId&gt;
+        &lt;artifactId&gt;hibernate-jpa-2.1-api&lt;/artifactId&gt;
+        &lt;version&gt;1.0.0.Final&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;version&gt;8.0.12&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+                            </code>
+                        </pre>
+                </section>
+
+                <section>
+                    <h2>Persistence Configuration</h2>
+                    <ul>
+                        <li class="fragment">Which database to connect to</li>
+                        <li class="fragment">The type of database (MySQL, Postgres, Oracle, etc)</li>
+                        <li class="fragment">JPA configuration settings</li>
+                        <li class="fragment">Hibernate configuration settings</li>
+                    </ul>
+                </section>
+
+                <section id="persistence-unit">
+                    <h2>Persistence Unit</h2>
+                    <pre style="margin-bottom: 0; font-size: 0.5em;" class="fragment">
+                                <code class="xml" data-trim contenteditable>
+&lt;!-- /META-INF/persistence.xml --&gt;
+&lt;persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1"&gt;
+    &lt;persistence-unit name="test" transaction-type="RESOURCE_LOCAL"&gt;
+        &lt;!-- provider element declares the class that provides the initial factory
+            for creating an EntityManager instance --&gt;
+        &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
+
+        &lt;properties&gt;
+            &lt;property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/&gt;
+            &lt;property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ac"/&gt;
+            &lt;property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/&gt;
+            &lt;property name="hibernate.connection.username" value="root"/&gt;
+            &lt;property name="hibernate.connection.password" value=""/&gt;
+            &lt;property name="hibernate.archive.autodetection" value="class"/&gt;
+            &lt;property name="hibernate.show_sql" value="true"/&gt;
+            &lt;property name="hibernate.format_sql" value="true"/&gt;
+            &lt;property name="hibernate.hbm2ddl.auto" value="create"/&gt;
+        &lt;/properties&gt;
+
+    &lt;/persistence-unit&gt;
+&lt;/persistence&gt;
+                                </code>
+                            </pre>
+                    <small class="fragment">Hibernate can
+                        <u>automatically validate or create</u> a database schema
+                        <br>with the hbm2ddl (hibernate mappings to data definition language) setting.</small>
+                </section>
+
+                <section>
+                    <h2>JPA Bootstrapping</h2>
+                    <pre style="margin-top: 0;" class="fragment">
+                        <code class="java">
+// Use the test persistence unit to configure a new
+// entity manager factory and start up JPA
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+
+// Open a new database connection by getting a new
+// entity manager from the entity manager factory
+EntityManager em = emf.createEntityManager();
+
+// Used to test the database connection, should return 2
+System.out.println("Result: " +
+    em.createNativeQuery("select 1 + 1").getSingleResult());
+
+// Close the database connection
+em.close();
+
+// Shutdown JPA
+emf.close();
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Create and bootstrap an Hibernate JPA Project</h3>
+                        <aside class="notes">
+                            <ul>
+                                <li>Create new Maven Project</li>
+                                <li>Add dependencies</li>
+                                <li>Add JPA framework support</li>
+                                <li>Add and modify persistence unit configuration file</li>
+                                <li>Bootstrap JPA</li>
+                                <li>Create the database</li>
+                                <li>Make sure the db connection is working with a test query</li>
+                            </ul>
+                        </aside>
+                    </div>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section>
+                    <h1>Mappings and Associations</h1>
+                </section>
+
+                <section id="er">
+                    <h2>Entity Relationship Model</h2>
+                    <p class="fragment">The
+                        <u>ER model</u> is a way of graphically representing the logical relationships of entities in order
+                        to create a database</p>
+                    <small>
+                        <p class="fragment">An
+                            <u>Entity</u> may be defined as a thing capable of an independent existence that can be uniquely
+                            identified. It is an abstraction of something that exists either physically or logically</p>
+                        <p class="fragment">Entities are represented by means of their properties, called
+                            <u>Attributes</u>. For example, a student entity may have name, class, and age as attributes.</p>
+                        <p class="fragment">The association among entities is called a
+                            <u>Relationship</u>. For example, an employee works at a department, a student enrolls in a course.
+                        </p>
+                    </small>
+                    <img class="fragment" src="images/2/hibernate/er-model.png" />
+                </section>
+
+                <section id="entity">
+                    <h2>Entity Mapping</h2>
+                    <p class="fragment">Entity classes describe the mapping between the persistable domain model objects and a database table
+                        row
+                    </p>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-entity.png" alt="">
+                        <pre style="margin-top:0px;margin-bottom:0px">
+                            <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "user") // model the database user table
+public class User {
+
+    @Id // models the primary key of the entity
+    private Integer id;
+
+    private String name;
+    private String email;
+
+    @Transient // exclude field from the persistent state
+    private String password;
+
+    // getters and setters
+}
+                            </code>
+                        </pre>
+                        <small class="fragment">Using a lower case database name makes your code portable
+                            <br> between case sensitive and case insensitive database engines</small>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Identifier Generation</h2>
+                    <p class="fragment">Values for entity identifiers can be automatically generated by Hibernate when saving or persisting</p>
+                    <p class="fragment">Four different identifier generation strategies are available:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">
+                                <strong>AUTO</strong> - hibernate should choose a generation strategy according to the specific database
+                                dialect used.</li>
+                            <li class="fragment">
+                                <strong>IDENTITY</strong> - hibernate expects the identifier to be generated by the database INSERT
+                                into the table.
+                                <br> This Id generation mechanism is very efficient, but prevents hibernate from knowing the
+                                id value prior to executing the insert statement, which might hinder hibernate query optimization
+                                mechanisms
+                            </li>
+                            <li class="fragment">
+                                <strong>SEQUENCE</strong> - hibernate asks the database for the next sequence value and performs
+                                the database INSERT with the returned sequence value as the Id</li>
+                            <li class="fragment">
+                                <strong>TABLE</strong> - hibernate uses a database table (defaults to
+                                <u>hibernate_sequences</u>) for the purpose of holding identifier generation values for any
+                                number of entities.
+                                <br> This Id generation mechanism is the most portable one at the cost of write performance,
+                                as the sequence needs to be calculated in a separate database transaction.
+                            </li>
+                        </ul>
+                    </small>
+                    <pre class="fragment" style="margin-top:0px;margin-bottom:0px">
+                            <code class="java" data-trim contenteditable>
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+}
+                            </code>
+                        </pre>
+                    <aside class="notes">
+                        <p>
+                            <u>identity</u> generation hinders hibernate transactional write-behind technique, in which hibernate
+                            collects and delays all database operations associated with a transaction and creates a minimum
+                            set of sql queries before actually hitting the database</p>
+                        <p>
+                            <u>sequence</u> generation is table free, same sequence works for multiple tables, can be preallocated
+                            for performance and use defined incremental steps</p>
+                    </aside>
+                </section>
+
+                <section id=timestamps>
+                    <h2>Locking and TimeStamps</h2>
+                    <small>
+                        <p class="fragment">By default, pessimistic locking (database locking) is used, but Hibernate can perform automatic optimistic
+                            concurrency control with
+                            <u>javax.persistence.Version</u>
+                        </p>
+                        <p class="fragment">Creation and update timestamps can be added using
+                            <u>org.hibernate.annotations.CreationTimestamp</u>
+                            and
+                            <u>org.hibernate.annotations.UpdateTimestamp</u>
+                        </p>
+                    </small>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-optimistic.png" alt="">
+                        <pre style="font-size: 0.4em;" class="fragment">
+                            <code class="java" data-trim contenteditable>
+@Entity
+public class User {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer id;
+
+        @Version
+        private Integer version;
+
+        @CreationTimestamp
+        private Date creationTime;
+
+        @UpdateTimestamp
+        private Date updateTime;
+
+        private String name;
+        private String email;
+}
+                            </code>
+                        </pre>
+                    </div>
+                    <small class="fragment">Timestamps can be used for <u>auditing purposes</u> and are not required for locking!</small>
+
+                </section>
+
+                <section id="fetch">
+                    <h2>Entity Fetching</h2>
+                    <p class="fragment">Fetching is the process of grabbing data from the database and making it available to the application</p>
+                    <p class="fragment">em.find()</p>
+                    <small>
+                        <ol>
+                            <li class="fragment">It always hits the database and returns the real object, an object that represents the database
+                                row
+                            </li>
+                            <li class="fragment">If no row is found, method returns null</li>
+                        </ol>
+                    </small>
+                    <pre style="font-size: 0.4em;" class="fragment">
+                        <code  class="java" data-trim contenteditable>
+@Override
+public User findById(Integer id) {
+
+    // open a new connection to the database
+    EntityManager em = emf.createEntityManager();
+
+    try {
+        // fetch a new user using its id
+        return em.find(User.class, id); // always the primary key
+    } finally {
+        // make sure we close the database connection
+        if (em != null) {
+            em.close();
+        }
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">An EntityManager is an inexpensive, non-threadsafe object that should be used once
+                        <br> and then
+                        <u>closed and discarded for every single request</u>
+                    </small>
+                </section>
+
+                <section id="persist">
+                    <h2>Entity Persist</h2>
+                    <small class="fragment">New entity instances can be made persistent by associating it to a
+                        <u>javax.persistence.EntityManager</u> instance</small>
+                    <p class="fragment">em.merge() OR em.persist()</p>
+                    <pre style="font-size: 0.4em;" class="fragment"><code class="java" data-trim contenteditable>
+@Override
+public Customer saveOrUpdate(Customer customer) {
+
+    EntityManager em = emf.createEntityManager();
+
+    try {
+
+        em.getTransaction().begin(); // open transaction
+        Customer savedCustomer = em.merge(customer);
+        em.getTransaction().commit(); // close transaction
+        return savedCustomer;
+
+    } catch (RollbackException ex) {
+
+        // something went wrong, make sure db is consistent
+        em.getTransaction().rollback();
+        return null;
+
+    } finally {
+        if (em != null) {
+            em.close();
+        }
+    }
+}
+                    </code></pre>
+                    <small class="fragment">JPA requires a transaction in order to trigger the synchronization between the object cache and the database</small>
+                </section>
+
+                <section id="persist-vs-merge">
+                    <h2>persist() vs merge()</h2>
+                    <small class="fragment">Both add an entity to a Persistence Context.</small>
+                    <small class="fragment">persist() makes the instance managed - future changes to the original instance will be tracked.</small>
+                    <small class="fragment">Used for INSERT operations.</small>
+                    <small class="fragment">merge() makes a copy of the instance managed - future changes to the original instance will not be tracked.
+                    </small>
+                    <small class="fragment">Used for INSERT or UPDATE operations.</small>
+                    <pre style="font-size: 0.35em;" class="fragment"><code class="java">
+@Override
+public Customer saveOrUpdate(Customer customer) {
+    ...
+    em.persist(customer);
+
+    // address update will be persisted in the database
+    customer.setAddress(new Address("Fundão"));
+    ...
+}
+
+@Override
+public Customer saveOrUpdate(Customer customer) {
+    ...
+    Customer persistedCustomer = em.merge(customer);
+
+    // address update will not be persisted in the database
+    // because update was made after merging
+    customer.setAddress(new Address("Fundão"));
+
+    // address update will be persisted because update was
+    // not made in original entity but in persisted copy
+    persistedCustomer.setAddress(new Address("Fundão"));
+    ...
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>JPA API Overview</h2>
+                    <img style="max-height:500px;" src="images/2/hibernate/jpa-api-detail.png">
+                    <p>
+                        JPA API classes are found on the javax.persistence.* package
+                    </p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Entity Mapping</h3>
+                        <p>Configure an entity class with optimistic lock and timestamps
+                            <br> use hibernate hbm2ddl to create the database schema
+                            <br> and persist and retrieve a few entity objects</p>
+                    </div>
+                </section>
+
+                <section id="component">
+                    <h2>Components</h2>
+                    <p class="fragment">Composition relationships are called components and can be mapped as a single table</p>
+                    <img class="fragment" src="images/2/hibernate/hibernate-component-mapping.png">
+                    <p class="fragment">
+                        <u>Customer</u> entity
+                        <u>Has A</u>
+                        <u>Address</u> value</p>
+                </section>
+
+                <section>
+                    <h2>Component Mapping</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-component.png" alt="">
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@Embeddable
+public class Address {
+
+    private String street;
+    private String city;
+    private String zipcode;
+
+}
+
+@Entity
+@Table(name = "student")
+public class Student {
+
+    @Id
+    private Integer id;
+    private String name;
+
+    @Embedded
+    private Address address;
+}
+                            </code>
+                        </pre>
+                    </div>
+                    <small class="fragment">Address is a component and not an entity because
+                        <u>it was decided</u> that for our data model, addresses must not exist on their own but
+                        <u>always as a part</u> of a student entity</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Component Mapping</h3>
+                    </div>
+                </section>
+
+                <section id="inheritance">
+                    <h2>Inheritance Mapping</h2>
+                    <p class="fragment">Key concept in Java, but relational databases
+                        <u>do not</u> support it</p>
+                    <p class="fragment">Different strategies exist to map inheritance to the relational world:</p>
+                    <small class="small">
+                        <ol>
+                            <li class="fragment">
+                                <u>Mapped Superclass</u> - Simplest approach, maps each concrete class to its own table, does
+                                not support polymorphic queries or relationships between entities, solid use case for sharing
+                                state and mapping information between entities</li>
+                            <li class="fragment">
+                                <u>Table per Class</u> - Similar to mapped superclass, but superclass is its own entity, overcoming
+                                its drawbacks. Allows the usage of constraints to ensure data consistency and supports relationships
+                                and polymorphic queries, although polymorphic queries are complex to perform
+                            </li>
+                            <li class="fragment">
+                                <u>Single Table</u> - Maps all entities to the same table. Provides the best performance, supports
+                                efficient polymorphic queries and relationships, but does not support not null constraints
+                                on any column not mapped to all entities, which increases the risk of data inconsistencies</li>
+                            <li class="fragment">
+                                <u>Joined Table</u> - Maps each class to its own table like the table per class, but the super
+                                class is now mapped to its own table. Queries are complex and slower than the single table,
+                                but supports relationships, not null constrains and polymorphic queries
+                            </li>
+                        </ol>
+                    </small>
+                    <p class="fragment">
+                        <small>
+                            <u>Choose the right strategy according to the need</u>
+                        </small>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>a polymorphic query could be select all vehicles, from a model in which car and boat are vehicles</li>
+                            <li>db admins are not very fond of columns which may be null, as its easier to get the db into an
+                                inconsistent state</li>
+                            <li>Single table vs Joined table is a matter of performance vs consistency</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Mapped Superclass Inheritance</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-mapped-super.png" alt="">
+                        <pre style="font-size: 0.7rem;"><code class="java">
+@MappedSuperclass
+public abstract class AbstractModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Version
+    private Integer version;
+
+    @CreationTimestamp
+    private Date creationTime;
+
+    @UpdateTimestamp
+    private Date updateTime;
+}
+
+@Entity
+@Table(name = "customer")
+public class Customer extends AbstractModel {
+    private String name;
+}
+
+@Entity
+@Table(name = "account")
+public class Account extends AbstractModel {
+    private Double balance;
+}
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Mapped Superclass inheritance Mapping</h3>
+                    </div>
+                </section>
+
+                <section id="single-table">
+                    <h2>Single Table Inheritance</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-single-table.png" alt="">
+                        <pre style="font-size: 0.7rem;">
+                            <code class="java" data-trim contenteditable>
+@Entity(name="BoatSingleTable")
+@DiscriminatorValue("boat")
+public class Boat extends Vehicle {
+    private Integer engines;
+}
+
+@Entity (name="CarSingleTable")
+@DiscriminatorValue("car")
+public class Car extends Vehicle {
+    private Integer gears;
+}
+
+@Entity(name="VehicleSingleTable")
+@Table(name = "vehicle_single_table")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+    name = "vehicle_type",
+    discriminatorType = DiscriminatorType.STRING
+)
+public abstract class Vehicle {
+    @Id
+    private Integer id;
+    private Integer maxSpeed;
+}
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Single Table Inheritance Mapping</h3>
+                    </div>
+                </section>
+
+                <section id="table-per-class">
+                    <h2>Table per Class Inheritance</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-table-per-class.png" alt="">
+                        <pre>
+                            <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "boat_table_per_class")
+public class Boat extends Vehicle {
+    private Integer engines;
+}
+
+@Entity
+@Table(name = "car_table_per_class")
+public class Car extends Vehicle {
+    private Integer gears;
+}
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Vehicle {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+    private Integer maxSpeed;
+}
+                            </code>
+                        </pre>
+                    </div>
+                    <small class="fragment">The IDENTITY generator strategy
+                        <u>is not allowed</u> with table per class inheritance!</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Table per Class Inheritance Mapping</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Joined Table Inheritance</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-joined-table.png" alt="">
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+@Entity(name = "BoatJoinedTable")
+@Table(name = "boat_joined_table")
+public class Boat extends Vehicle {
+    private Integer engines;
+}
+
+@Entity(name = "CarJoinedTable")
+@Table(name = "car_joined_table")
+public class Car extends Vehicle {
+    private Integer gears;
+}
+
+@Entity(name = "VehicleJoinedTable")
+@Table(name = "vehicle_joined_table")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Vehicle {
+    @Id
+    private Integer id;
+    private Integer maxSpeed;
+}
+                            </code>
+                        </pre>
+                    </div>
+                    <small class="fragment"><b>id</b> property on Boat and Car tables is <u>both a primary and foreign key</u>, referencing the Vehicle table</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Joined Table Inheritance Mapping</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Mapping Challenges</h2>
+                    <img style="max-width: 250px;" class="fragment float-right" src="images/2/hibernate/hib-map-obj.png">
+                    <p class="fragment">Options to consider:</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">Does the address know the customer?</li>
+                            <li class="fragment">Does the customer have more than one address?</li>
+                            <li class="fragment">Can the address be owned by more than one customer?</li>
+                        </ul>
+                    </small>
+                    <img class="fragment" src="images/2/hibernate/hib-map-tab.png">
+
+                </section>
+
+                <section id="associations">
+                    <h2>Associations</h2>
+                    <p class="fragment">Represent relationships between entities and can be one of:</p>
+                    <ul>
+                        <li class="fragment">One-to-One</li>
+                        <li class="fragment">Many-to-One</li>
+                        <li class="fragment">One-to-Many</li>
+                        <li class="fragment">Many-to-Many</li>
+                    </ul>
+                    <p class="fragment">There is no directionality involved in the relational world, it's just a matter of writing a query.
+                        <span class="fragment">But there is directionality in Java and because of this, associations can be:</span>
+                    </p>
+                    <ul>
+                        <li class="fragment">Unidirectional</li>
+                        <li class="fragment">Bidirectional</li>
+                    </ul>
+                </section>
+
+                <section id="one-to-one">
+                    <h2>One-to-One</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-one-to-one.png" alt="">
+                        <pre style="font-size: 0.4em;" class="fragment">
+                            <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "car")
+public class Car {
+
+    @Id
+    private Integer id;
+    private String make;
+    private String model;
+
+    @OneToOne
+    private Owner owner; // for bidirectionality
+}
+
+@Entity
+@Table(name = "owner")
+public class Owner {
+
+    @Id
+    private Integer id;
+    private String name;
+
+    // mappedBy is required for bidirectional associations, and it tells hibernate
+    // to use the user foreign key on the Car table to define the Owner
+    @OneToOne(mappedBy = "owner")
+    private Car car;
+}
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+
+                <section id="cascades">
+                    <h2>Cascades</h2>
+					<small>
+                    <p class="fragment">The most common cascade types are:</p>
+                        <ul>
+                            <li class="fragment">
+                                <u>all</u> - all operations (persist, merge, remove, detach, refresh) are passed to child entities</li>
+                            <li class="fragment">
+                                <u>persist</u> - insert operations are passed to child entities</li>
+                            <li class="fragment">
+                                <u>merge</u> - update operations are passed to child entities</li>
+                            <li class="fragment">
+                                <u>remove</u> - delete operations are passed to child entities</li>
+                            </ul>
+                            <p class="fragment">The JPA <strong>@Cascade</strong> annotation can be used to specify the type of cascade:</p>
+                    </small>
+                    <pre style="font-size: 0.4em" class="fragment">
+                        <code>
+@Entity
+public class Owner {
+
+    @Id
+    private Integer id;
+    private String name;
+
+    @OneToOne(
+        // propagate changes on Owner entity to Car entities
+        cascade = {CascadeType.ALL},
+        // Owner removal will remove Car due to cascade, but this property makes
+        // sure we also remove the Car if unlinked from Owner (orphaned)
+        orphanRemoval = true,
+        // mappedBy is required for bidirectional associations, and it tells hibernate
+        // to use the user foreign key on the Car table to define the Owner
+        mappedBy = "owner"
+    )
+    private Car car;
+}
+                        </code>
+                    </pre>
+                    <aside class="notes">
+                        For further reading on JPA cascades: https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>One-to-One Mapping with Cascade</h3>
+                        <p>Persist and fetch both Car and Owner entities by using
+                            <br> JPA API methods (persist/merge/find)
+                            <u>only</u> on Owner entities</p>
+                    </div>
+                </section>
+
+                <section id="many-to-one">
+                    <h2>Many-to-One</h2>
+                    <div class="fragment">
+                        <img style="max-width: 180px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-one-to-many.png" alt="">
+                        <pre style="font-size: 0.6rem;" class="fragment">
+                            <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "product")
+public class Product {
+
+    @Id
+    private Integer id;
+    private String name;
+
+    @ManyToOne
+    private Category category; // for bidirectionality
+}
+
+@Entity
+@Table(name = "category")
+public class Category {
+
+    @Id
+    private Integer id;
+    private String name;
+    @OneToMany(
+        cascade = {CascadeType.ALL},
+        orphanRemoval = true,
+        // use Category foreign key on Product table to establish
+        // the many-to-one relationship instead of a join table
+        mappedBy = "category"
+    )
+    private Set&lt;Product&gt; products;
+
+    // utility method to update both sides of the association
+    public void addProduct(Product product) {
+        products.add(product);
+        product.setCategory(this);
+    }
+}
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Entity Equality</h2>
+                    <p class="fragment">When using a Set for storing entity instances, the
+                        <u>equality</u> of the entity classes needs to be properly defined</p>
+                    <p class="fragment">What
+                        <u>properties</u> should be used to define Equality?</p>
+                    <p class="fragment">With generated identifiers, Hibernate will only assign an identifier when an entity is persisted.
+                        <span class="fragment">Meaning that when inserting into a Set the id might be
+                            <u>null</u>
+                        </span>
+                    </p>
+                    <p class="fragment">
+                        It is recommended to use Business key equality - the id key plus the natural properties that would identify our object
+                    </p>
+                    <small class="fragment">Remember the
+                        <u>equals-hashCode contract</u>, when you override one, you probably need to override the other!</small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Many-to-One Mapping</h3>
+                        <p>Persist a Category entity with multiple Products associated by using
+                            <br> JPA API methods (persist/merge/find)
+                            <u>only</u> on Category</p>
+                    </div>
+                    <aside class="notes">
+                        <p>
+                            Hibernate uses Lazy-Loading on Many-to-One associations by default, so students will likely have problems accessing products
+                            from fetched category after transaction/database connection for fetching category is closed.
+                        </p>
+                        <p>Lazy/Eager loading will be introduced next, for now make students fetch Category and Products independently</p>
+                    </aside>
+                </section>
+
+                <section id="many-to-many">
+                    <h2>Many-to-Many</h2>
+                    <div class="fragment">
+                        <img style="max-width: 300px; margin-left: 10px;" class="float-right" src="images/2/hibernate/jpa-many-to-many.png" alt="">
+                        <pre style="font-size: 0.65rem;" class="fragment">
+                                <code class="java" data-trim contenteditable>
+@Entity
+@Table(name = "user")
+public class User {
+    @Id
+    private Integer id;
+    private String username;
+    private String password;
+    @ManyToMany(
+        // fetch all security groups when fetching a user
+        fetch = FetchType.EAGER
+    )
+    private List&lt;SecurityGroup&gt; sgroups;
+
+    // utility methods to update both sides of the relationship
+}
+
+@Entity
+@Table(name = "sgroup")
+public class SecurityGroup {
+    @Id
+    private Integer id;
+    private String name;
+    @ManyToMany(
+        // mappedBy required for bidirectional association
+        mappedBy="sgroups",
+
+        // delay fetching users until they are actually needed
+        fetch = FetchType.LAZY
+    )
+   private List&lt;User&gt; users;
+}
+                                </code>
+                            </pre>
+                    </div>
+                </section>
+
+                <section id="fetch-types">
+                    <h2>Fetch Types</h2>
+                    <p class="fragment">JPA supports both lazy and eager fetching:</p>
+                    <ul>
+                        <li class="fragment">
+                            <u>Eager</u> fetching will by default load ALL of the relationships related to a particular object
+                            loaded by Hibernate.</li>
+                        <li class="fragment">
+                            <u>Lazy</u> fetching will use proxy objects as a replacement for associated objects. Proxy objects
+                            are replaced by hibernate when a request hits a proxy</li>
+                    </ul>
+                    <p class="fragment">Which one should we use?</p>
+                </section>
+                <section>
+                    <h2>Fetch Types</h2>
+                    <p class="fragment">
+                        <u>Eager</u> is convenient, but slower...</p>
+                    <p class="fragment">
+                        <u>Lazy</u> might not provide enough data and we can either get Lazy Loading Exceptions (if entity is
+                        detached) or experience multiple trips back and forth to the database to get the required data.
+                    </p>
+                    <pre class="fragment">
+                                <code class="java" data-trim contenteditable>
+@Entity
+public class User {
+
+    @Id
+    private Integer id;
+
+    @ManyToMany (
+        fetch = FetchType.EAGER
+    )
+    private List&lt;String&gt; aliases;
+}
+                                </code>
+                            </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Many to Many Mapping</h3>
+                        <p>Persist and fetch multiple User and SecurityGroup entities by using JPA API
+                            <br> methods (persist/merge/find)
+                            <u>only</u> on User</p>
+                        <p>Fetching or persisting a user should fetch and persist all associated security groups</p>
+                        <p>Fetching or persisting a security group should not fetch neither persist all associated users</p>
+                    </div>
+                    <aside class="notes">
+                        <p>students will likely have problems if they attempt to persist a user which contains security groups
+                            that have been previously persisted (by another user, for example).</p>
+                        <p>Persist should be used only on fresh new instances, so merge needs to be utilized to get around this</p>
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+
+                <section id="query">
+                    <h1>JPA Queries</h1>
+                </section>
+
+                <section id="jpql">
+                    <h2>Java Persistence Query Language (JPQL)</h2>
+                    <p class="fragment">JPQL is an Object Oriented query language for performing queries</p>
+                    <small class="fragment">It is very similar to SQL, but queries the entity model instead of tables and supports
+                        <br> OOP notions like inheritance and polymorphism</small>
+                    <pre style="font-size: 0.45em;" class="fragment">
+                        <code class="java" data-trim contenteditable>
+// fetch a list of users with a given name
+@Override
+public List&lt;User&gt; findByName(String name) {
+
+    EntityManager em = emf.createEntityManager();
+
+    try {
+
+        TypedQuery&lt;User&gt; query =
+            em.createQuery("SELECT user FROM User user WHERE user.name = :name", User.class);
+
+        query.setParameter("name", name);
+        return query.getResultList();
+
+    } finally {
+        if (em != null) {
+            em.close();
+        }
+    }
+}
+                        </code>
+                    </pre>
+                    <small class="fragment">
+                        <u>User</u> is the entity being queried,
+                        <u>user</u> is an identification variable
+                        <br> used in all other parts of the query to reference this entity</small>
+                </section>
+
+                <section id="criteria">
+                    <h2>Criteria Queries</h2>
+                    <p class="fragment">JPQL is a
+                        <u>non type-safe</u> way to perform query operations</p>
+                    <p class="fragment">Criteria queries are a
+                        <u>programmatic and type-safe</u>
+                        <br>way to express a query</p>
+                    <small>
+                        <ul>
+                            <li class="fragment">With JPQL queries are constructed using a
+                                <u>string based</u> approach</li>
+                            <li class="fragment">With Criteria, queries are constructed with
+                                <u>query definition objects</u>
+                            </li>
+                            <li class="fragment">With Criteria, the Java compiler will check for query correctness and
+                                <u>reduce run-time errors</u>
+                            </li>
+                            <li class="fragment">Criteria allows building dynamic queries
+                                <u>without</u> performing string concatenation</li>
+                        </ul>
+                        <p class="fragment">Constructing and running queries dynamically with JPQL requires String concatenation,
+                            <br> which can result in
+                            <u>security holes</u>
+                        </p>
+                    </small>
+                </section>
+
+                <section>
+                    <h2>Criteria Querying</h2>
+                    <pre style="font-size: 0.38em;" class="fragment">
+                        <code class="java" data-trim contenteditable>
+@Override
+public Customer findOneByName(String customerName) {
+
+    EntityManager em = emf.createEntityManager();
+
+    try {
+
+        // 1 - get a CriteriaBuilder object from the EntityManager
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+
+        // 2 - create a new CriteriaQuery instance for the Customer entity
+        CriteriaQuery&lt;Customer&gt; criteriaQuery = builder.createQuery(Customer.class);
+
+        // 3 - get the root of the query, from where all navigation starts
+        Root&lt;Customer&gt; root = criteriaQuery.from(Customer.class);
+
+        // 4 - specify the item that is to be returned in the query result
+        criteriaQuery.select(root);
+
+        // 5 - add query restrictions
+        criteriaQuery.where(builder.equal(root.get("name"), customerName));
+
+        // 6 - create and execute a query using the criteria
+        return em.createQuery(criteriaQuery).getSingleResult();
+
+    } finally {
+        if (em != null) {
+            em.close();
+        }
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <p>Add a JPA persistence layer to the JavaBank application</p>
+                        <ul>
+                            <li>Create JPA Implementations of all services</li>
+                            <li>Create unit tests for the JPA services</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 25,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

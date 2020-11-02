@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Java Programming Language</h1>
+                <p>
+                    <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+            </section>
+
+            <section class="stack present">
+
+                <section>
+                    <h2>Java Programming Environment</h2>
+                </section>
+
+                <section>
+                    <h2>"Write Once, Run Anywhere"</h2>
+                    <img class="fragment" src="images/1/java/java_portability.gif" alt="">
+                </section>
+
+                <section>
+                    <h2>Java is a Compiled/Interpreted language</h2>
+                    <img class="fragment" src="images/1/java/java_compile.gif" alt="">
+                    <p class="fragment">Java is compiled into bytecode which is interpreted by the Java Virtual Machine (JVM).</p>
+                </section>
+
+                <section>
+                    <h2>JVM languages</h2>
+                    <p class="fragment"><u>Many</u> computer programming languages are used to produce computer software that runs on the JVM</p>
+                    <ul>
+                        <li class="fragment">Clojure - a functional programming language</li>
+                        <li class="fragment">Groovy - a dynamic programming and scripting language</li>
+                        <li class="fragment">Scala - a statically-typed object-oriented and functional programming language</li>
+                        <li class="fragment">Kotlin - a statically-typed language from JetBrains, the developers of IntelliJ IDEA</li>
+                        <li class="fragment">JRuby - an implementation of Ruby</li>
+                        <li class="fragment">Jython - an implementation of Python</li>
+                    </ul>
+                    <p class="fragment">...and many more...</p>
+                </section>
+
+                <section>
+                    <h2>The Java Platform</h2>
+                    <img class="fragment" src="images/1/java/java_platform.jpg" alt="">
+                    <aside class="notes">
+                        <ol>
+                            <li>A platform is the environment in which a program runs;</li>
+                            <li>The Java platform has two components: The Java Virtual Machine; The Java Application Programming Interface (API)</li>
+                            <li>The API is a large collection of ready-made software components that provide many useful capabilities. It is grouped into libraries of related classes and interfaces; these libraries are known as packages.</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section id="memory">
+                    <h2>The Java Memory Model</h2>
+                    <p><img class="float-right" style="max-height: 300px;" src="images/1/java/java-memory-model.png" />
+                        <ul style="max-width: 450px;">
+                            <li class="fragment">Each thread has its own stack</li>
+                            <li class="fragment">Local method variables reside on the stack</li>
+                            <li class="fragment">Objects reside on the heap</li>
+                        </ul>
+                        <small style="margin-top: 50px;">
+                                    <ul style="max-width: 450px;">
+                                        <li class="fragment">Just like a function, a <u>Method</u> is a collection of statements that are grouped together to perform an operation</li>
+                                        <li class="fragment">An <u>Object</u> is a combination of variables and methods</li>
+                                    </ul>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Object-Oriented Language</h2>
+                    <img src="images/1/java/java_oop_meme.jpg" alt="" />
+                    <aside class="notes">
+                        <ol>
+                            <li>Java is an object-oriented language that take many of the features of C and C++ and improves upon them.</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Programming Paradigms</h2>
+                    <img src="images/1/java/java_oop.jpg" alt="" />
+                    <aside class="notes">
+                        <ol>
+                            <li>Procedural programming uses a list of instructions to tell the computer what to do step-by-step.</li>
+                            <li>Procedural programming relies on - you guessed it - procedures, also known as routines or subroutines.</li>
+                            <li>A procedure contains a series of computational steps to be carried out.</li>
+                            <li>Object-oriented programming, or OOP, is an approach to problem-solving where all computations are carried out using objects.</li>
+                            <li>An object is a component of a program that knows how to perform certain actions and how to interact with other elements of the program.</li>
+                            <li>Objects are the basic units of object-oriented programming.</li>
+                        </ol>
+                    </aside>
+                </section>
+
+	            <section>
+	                <div class="exercise">
+	                    <h2>{ Hands On }</h2>
+	                    <h3>Let's Hello World! in JAVA.</h3>
+	                <pre class="fragment"><code class="java" data-trim contenteditable>
+class HelloWorld {
+
+    public static void main(String[] args) {
+
+        System.out.println("Hello World!!");
+
+    }
+
+}
+	                </code></pre>
+	                </div>
+	            </section>
+	        </section>
+
+            <section class="stack present">
+
+            <section>
+                <h2>Introduction to Java</h2>
+            </section>
+
+            <section>
+                <h2>Java is a <u>statically</u> typed language</h2>
+                <p class="fragment">variables and expressions have a type that is known at compile time</p>
+                <aside class="notes">
+                strongly typed: the variable type limits the values it can hold and the operations that we can perform on those variables
+                </aside>
+            </section>
+
+            <section id="variables">
+                <h2>Variables</h2>
+                <ul>
+                    <li class="fragment">Primitive Types;</li>
+                    <li class="fragment">Reference Types.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Primitive Types</h2>
+                <p><ul>
+                    <li class="fragment">Built into the Java language and named by a reserved keyword</li>
+                    <li class="fragment">Do not have any functionality other than simple data storage</li>
+                </ul></p>
+                <img class="fragment tiny" src="images/1/java/primitives.png" />
+            </section>
+
+            <section>
+                <h2>Primitive Types</h2>
+                <img src="images/1/java/java_primitives.png" alt="" />
+            </section>
+
+            <section id="reference">
+                <h2>Reference Types</h2>
+                <ul>
+                    <li class="fragment">Data types that reference objects</li>
+                    <li class="fragment">Reference data types are
+                        <u>not built into the Java language</u> like primitives</li>
+                    <li class="fragment">Can be provided as part of the Java SDK or written by the programmer</li>
+                    <li class="fragment">They store data and
+                        <u>functionality associated with the data</u>
+                    </li>
+                </ul>
+                <img class="fragment xsmall" src="images/1/java/refs-memory.png" />
+            </section>
+
+            <section id="wrappers">
+                <h2>Primitive Wrappers</h2>
+                <p>Reference Types that add functionality to existing primitives</p>
+                <pre class="fragment"><code class="java" data-trim contenteditable>
+// Byte, Short, Integer, Long, Float, Double, Character, Boolean
+
+// Primitive type
+int primitiveInt = 29;
+
+// wraps the primitive types inside objects
+// new is used to create a new object, similar to {} in javascript
+Integer objectInt = new Integer("29");
+
+// the wrapper classes provide added functionality
+System.out.println("To Binary: " + Integer.toBinaryString(primitiveInt));  // "11101"
+System.out.println("To String: " + objectInt.toString());               // "29"
+            	    </code></pre>
+                <aside class="notes">
+                    <ol>
+                        <li>the Java platform provides wrapper classes for each of the primitive data types;</li>
+                        <li>These classes "wrap" the primitive in an object;</li>
+                        <li>Autoboxing and unboxing. The automatic conversion between primitive and related class.</li>
+                    </ol>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Primitives vs Wrappers</h2>
+                <pre class="fragment"><code class="java" data-trim contenteditable>
+int n1 = 100;
+Integer n2 = new Integer(100);
+                      </code></pre>
+                <img class="fragment" src="images/1/java/primitive-ref.png" />
+                <p class="fragment">When should we use it?</p>
+                <ul>
+                    <li class="fragment">As an argument of methods that expect an object;</li>
+                    <li class="fragment">To use object methods (e.g. convert from and to String).</li>
+                    <li class="fragment">All objects contain a reference to a <u>corresponding class object</u>, we will have a look at what this is later on</li>
+                </ul>
+            </section>
+
+	</section>
+
+	<section class="stacked present">
+
+	  <section>
+	    <h2>Operators</h2>
+	  </section>
+
+      <section>
+        <h2>Assignment and Arithmetic Operators</h2>
+        <ul>
+            <li class="fragment">Assignment operator is used to assign a value to a variable</li>
+            <li class="fragment">Arithmetic operators are used to perform simple arithmetic operations on primitive data types</li>
+        </ul>
+        <pre class="fragment"><code class="java" data-trim contenteditable>
+// assignment
+int score = 200; // 200
+
+// arithmetic operators
+score = 100 + 5;	// 105
+score = 100 - 5;	// 95
+score = 100 * 5;	// 500
+score = 100 / 5;	// 20
+score = 100 % 3;	// 1 - modulus operator (%): (100 = 33 * 3 + 1)
+        </code></pre>
+            </section>
+
+	  <section>
+        <h2>Unary and Ternary Operators</h2>
+        <ul>
+            <li class="fragment">Unary operators need only one operand</li>
+            <li class="fragment">Ternary operators have three operands</li>
+            <li class="fragment">Ternary operators are commonly used to shorthand if-else statements</li>
+        </ul>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+int score = 100;
+
+// pre and post increment/decrement
+int highScore = score++; // highScore = 100 and score = 101
+highScore = score--;  // highScore = 101 and score = 100
+highScore = ++score; // highScore = 101 and score = 101
+highScore = --score; // highScore = 100 and score = 100
+// easy to insert Off-by-one type of bugs if not used on their own
+
+score += 10; // 110 - a shorter version of score = score + 10
+score -= 10; // 90
+score *= 10; // 1000
+score /= 10; // 10
+
+// Usage of the ternary inside expression to replace if/else statement
+int x = 10;
+System.out.println((x % 2 == 0) ? "yes " + x : "no " + x);
+
+x = 11;
+System.out.println((x % 2 == 0) ? "yes " + x : "no " + x);
+	    </code></pre>
+	  </section>
+
+      <section>
+            <h2>Relational Operators</h2>
+            <ul>
+                <li class="fragment">Used to check for relations between values</li>
+                <li class="fragment">Evaluate to a boolean value</li>
+            </ul>
+            <pre class="fragment"><code class="java" data-trim contenteditable>
+score &gt; 99 	// greater than
+score &lt; 56 	// less than
+score &gt;= 76	// greater than or equal to
+score &lt;= 83	// less than or equal to
+score == 45	// equals
+score != 23	// not equal to
+            </code></pre>
+        </section>
+
+        <section>
+                <h2>Logical Operators</h2>
+                <ul>
+                    <li class="fragment">Used for testing multiple conditions</li>
+                    <li class="fragment">Evaluate to a boolean result</li>
+                </ul>
+                <pre class="fragment"><code class="java" data-trim contenteditable>
+score &gt; 99 &amp;&amp; score &lt; 150 // AND, returns true if all are true
+score &gt; 99 || score &lt; 45 // OR,	returns true if at least one is true
+    </code></pre>
+         </section>
+
+	  <section>
+	    <h2>Some Basic Math Methods I</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// absolute value
+int i = -1;
+System.out.println(Math.abs(i));
+
+// round number
+float f = 10.23f;
+
+int ceil = (int) Math.ceil(f); // returns double
+int floor = (int) Math.floor(f); // returns double
+int round = Math.round(f); // returns int
+
+System.out.println(ceil + " " + floor + " " + round);
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Some Basic Math Methods II</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// min and max
+int number1 = 10;
+int number2 = 15;
+
+int min = Math.min(number1, number2);
+int max = Math.max(number1, number2);
+
+System.out.println(min + " " + max);
+	    </code></pre>
+	  </section>
+
+	</section>
+
+	<section class="stacked present">
+	  <section id="string">
+	    <h2>Strings</h2>
+	    <p>A String consists of a sequence of characters</p>
+	    <img style="max-height: 100px;" src="images/1/java/java_string.jpg" />
+        <span class="fragment">
+	        <p>A String in Java is an Object, we access it using a string reference:</p>
+	        <img style="max-height: 250px;" src="images/1/java/java-string-object.jpg" />
+        </span>
+	  </section>
+
+	  <section>
+	    <h2>Creating Strings</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// creating a String literal
+String hello = "Hello World";
+
+// creating a String using the constructor
+String world = new String("Hello World");
+	    </code></pre>
+	    <p class="fragment">
+	      Which one should we use?
+	    </p>
+        <img class="fragment" style="max-height: 250px;" src="images/1/java/string-literal.jpg" />
+	  </section>
+
+	  <section>
+	    <h2>Go with String Literal</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// using literals
+String a = "Java";
+String b = "Java";
+
+System.out.println(a == b); // True, it is the same object, GO WITH THIS ONE
+
+// using the constructor
+String c = new String("Java");
+String d = new String("Java");
+
+System.out.println(c == d); // False, they are different objects
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Compare the String content</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// using literals
+String a = "Java";
+String b = "Java";
+
+System.out.println(a.equals(b)); // True, they have the same content
+
+// using the constructor
+String c = new String("Java");
+String d = new String("Java");
+
+System.out.println(c.equals(d)); // True, they have the same content
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Concatenating Strings</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String hello = "Hello ";
+String world = "World!";
+
+System.out.println(hello + world);
+System.out.println(hello.concat(world));
+System.out.println("hello".concat(world));
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Converting Numbers to String</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+int age = 21;
+
+String str1 = age + "";
+String str2 = String.valueOf(age);
+String str3 = Integer.toString(age);
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Getting a Character by Index</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String str = "Hello World!";
+
+// returns the character at the specified index
+char ch = str.charAt(6);
+
+System.out.println(ch);
+	    </code></pre>
+	    <aside class="notes">
+	      <ol>
+		<li>What if the index is out of range?</li>
+	      </ol>
+	    </aside>
+	  </section>
+
+	  <section>
+	    <h2>Substring</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String str = "Hello World!";
+
+// returns the "Hello" substring
+String hello = str.substring(0, 5);
+
+// returns the "World!" substring
+String world = str.substring(6);
+
+System.out.println(hello + " " + world);
+	    </code></pre>
+	    <aside class="notes">
+	      <ol>
+		<li>What if the index is out of range?</li>
+	      </ol>
+	    </aside>
+	  </section>
+
+      <section>
+          <h2>String Length</h2>
+          <pre class="fragment"><code class="java" data-trim contenteditable>
+String str = "Hello World!";
+
+System.out.println(str.length());
+  	    </code></pre>
+      </section>
+
+	  <section>
+	    <div class="exercise">
+	      <h2>Exercise</h2>
+	      <h3>String: Missing Char</h3>
+	    <p>
+	      Given a non-empty string and an int n, print a new string where the char at index n has been removed.<br>
+	    </p>
+	    <pre><code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+  missingChar("Robocop", 3);
+
+  //receive command line argument if available
+  if(args.length&gt;=2){
+    missingChar(args[0], Integer.parseInt(args[1]));
+  }
+}
+
+private static void missingChar(String str, int n) {
+
+  // print result here
+
+}
+	    </code></pre>
+	    </div>
+	  </section>
+
+	  <section>
+	    <div class="exercise">
+	      <h2>{ Exercise }</h2>
+	      <h3>String: Not String</h3>
+	    <p style="font-size: 0.8em;">
+	      Given a string, print a new string where "not " has been added to the front<br>
+	      However, if the string already begins with "not", print the string unchanged.
+	    </p>
+	    <pre><code class="java" data-trim contenteditable style="font-size: 0.8em;">
+public static void main(String[] args) {
+
+    notString("semicolon");
+    notString("not semicolon");
+
+    //receive command line argument if available
+    if(args.length&gt;0){
+      notString(args[0]);
+    }
+
+}
+
+private static void notString(String str) {
+
+    // print result here
+
+}
+	    </code></pre>
+	    </div>
+	  </section>
+
+	  <section>
+	    <div class="exercise">
+	      <h2>{ Exercise }</h2>
+	      <h3>String: Front Back</h3>
+	    <p>
+	      Given a string, print a new string where the first and last characters have been exchanged.
+	    </p>
+	    <pre><code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+    frontBack("heisenberg");
+
+    //receive command line argument if available
+    if(args.length&gt;0){
+      frontBack(args[0]);
+    }
+}
+
+private static void frontBack(String str) {
+
+    // print result here
+
+}
+	    </code></pre>
+	    </div>
+	  </section>
+
+        <section>
+            <h2>Searching inside a String</h2>
+            <pre class="fragment"><code class="java" data-trim contenteditable>
+String str = "Hello World!";
+
+// what to search for, it can be a char or string
+String search = "o";
+
+// check if the string contains the search
+if(str.contains(search)) {
+    System.out.println(search + " exists!");
+}
+
+// search forward from the beginning or a specified index
+int index = str.indexOf(search);   // ??
+
+// search backwards from the end or a specified index
+int lastIndex = str.lastIndexOf(search, str.length() - 2);  // ??
+
+// if the string does not contain the search expression, -1 is returned
+
+System.out.println("The first " + search + " is at " + index +
+    " and the last one at " + lastIndex);
+        	</code></pre>
+        </section>
+
+	  <section>
+	    <h2>Replacing String content</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String str = "Hello World!";
+
+// what to replace and for what
+String target = "Hello";
+String replacement = "Goodbye";
+
+// create a new string with the provided replacement (strings are immutable)
+str = str.replace(target, replacement);
+
+// replace only the first occurrence
+str = str.replaceFirst("o", "U");
+
+System.out.println(str);
+	    </code></pre>
+	  </section>
+
+	  <section>
+            <h2>Searching and Replacing
+                    <br>with Regular Expressions</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// Replace all digits with letter X
+str = str.replaceAll("[0-9]", "X");
+
+// Replace all occurrences of multiple spaces with one single space
+str = str.replaceAll(" {2,}", " ");
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Splitting with Regular Expressions</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String str = "Academia de Codigo";
+
+String[] words = str.split(" "); // str.split(" ", 2) to limit the array length
+
+// words = ["Academia", "de", "Codigo"]
+// prints the first element of the array
+System.out.println(words[0]);
+	    </code></pre>
+	  </section>
+
+      <section>
+        <div class="exercise">
+            <h2>{ Exercise }</h2>
+            <h3>String Manipulations</h3>
+            <pre><code class="java" data-trim contenteditable>
+String str = "http://www.academiadecodigo.org";
+
+String domain = ""; // www.academiadecodigo.org
+String name = "";   // &lt; Academia de Codigo_ &gt;
+
+// print the following message at the end
+// I am a Code Cadet at &lt; Academia de Codigo_ &gt;, www.academiadecodigo.org
+               </code></pre>
+            </div>
+        </section>
+
+	</section>
+
+	<section class="stacked present">
+	  <section id="array">
+	    <h2>Arrays</h2>
+	    <img src="images/1/java/java_arrays.gif" alt="" />
+        <p class="fragment">An array is a container object that holds
+            <br>a fixed number of values of a single type
+        </p>
+	  </section>
+
+	  <section>
+	    <h2>Declaring an Array</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// The length of an array is established when the array is created.
+// After creation, its length is fixed.
+String[] contacts = new String[4];
+
+// declare an array with values
+String[] contacts = { "John", "Mary", "Ze" };
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Accessing an Array</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String[] contacts = new String[4];
+
+// assign a value to one element of the array
+contacts[0] = "Ze";
+
+// retrieve the value of one element
+String ze = contacts[0];
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Array Length</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// declare an array with values
+String[] contacts = { "John", "Mary", "Ze" };
+
+// print the length
+System.out.println(contacts.length);
+	    </code></pre>
+	  </section>
+
+      <section>
+          <div class="exercise">
+              <h2>{ Exercise }</h2>
+              <h3>Closest Neighbours</h3>
+              <p>
+      	      Find the two neighbouring numbers in an array with the smallest difference to each other<br>
+      	    </p>
+
+
+          <pre><code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+    int[] myArray = {0, 5, 1209, 6, 2, 111, 112, 33};
+    int[] result = findClosest(myArray);
+    // print the elements of the resulting array
+}
+
+private static int[] findClosest(int[] numbers) {
+    // hint: remember Math.abs();
+}
+          </code></pre>
+          </div>
+
+      </section>
+	</section>
+
+	<section class="stacked present">
+
+	  <section>
+	    <h2>Control Flow Statements</h2>
+	    <p class="fragment">
+	      Control flow statements, break up the flow of execution by employing decision making, looping, and branching, enabling your program to conditionally execute particular blocks of code.
+	    </p>
+	  </section>
+
+	  <section>
+	    <h2>The if-then Statement</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+int bullets = 7;
+
+if(bullets &gt; 0) {
+
+    System.out.println("Shoot");
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The if-then-else Statement</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+int bullets = 7;
+
+if(bullets &gt; 0) {
+
+    System.out.println("Shoot");
+
+} else {
+
+    System.out.println("Reload");
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The if-then-else Statement</h2>
+	    <p>
+	      Multiple Conditions
+	    </p>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// score
+int score = 95;
+
+// player ranking
+if(score &gt; 0) {
+
+    System.out.println("NOOB!");
+
+} else if (score &gt; 30) {
+
+    System.out.println("Not bad…");
+
+} else if (score &gt; 60) {
+
+    System.out.println("That was good.");
+
+} else if (score &gt; 90) {
+
+    System.out.println("Awesome!");
+
+}
+	    </code></pre>
+	    <p class="fragment">
+	      This is the wrong way to do it!
+	    </p>
+	  </section>
+
+	  <section>
+	    <h2>The if-then-else Statement</h2>
+	    <p class="fragment">
+	      The order matters!
+	    </p>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// score
+int score = 95;
+
+// player ranking
+if(score &gt; 90) {
+
+    System.out.println("Awesome!");
+
+} else if (score &gt; 60) {
+
+    System.out.println("That was good");
+
+} else if (score &gt; 30) {
+
+    System.out.println("Not bad…");
+
+} else {
+
+    System.out.println("NOOB!");
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The Switch Statement</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// weapons: 0 - Sword 1 - Gun 2 - Grenade
+int currentWeapon = 0;
+
+switch(currentWeapon) {
+
+    case 0:
+        System.out.println("Attack!");
+        break;
+
+    case 1:
+        System.out.println("Shoot!");
+        break;
+
+    case 2:
+        System.out.println("Throw!");
+        break;
+
+    default:
+        System.out.println("Get a weapon…");
+        break;
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The For Loop</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String[] contacts = { "John", "Mary", "Jean", "Paul" };
+
+for(int i = 0; i &lt; contacts.length; i++) {
+
+    // print each contact
+    System.out.println(contacts[i]);
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The Enhanced For Loop</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String[] contacts = { "John", "Mary", "Jean", "Paul"};
+
+for (String contact : contacts) {
+
+    // print each contact
+    System.out.println(contact);
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The While Loop</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// bullet count
+int bullets = 100;
+
+while (bullets &gt; 0) {
+
+    // shoot the weapon
+    bullets--;
+
+}
+	    </code></pre>
+	    <p class="fragment">
+	      Be aware of infinite loops!
+	    </p>
+	  </section>
+
+	  <section id="break">
+	    <h2>Breaking from a Switch</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+// weapons: 0 - Sword 1 - Gun 2 - Grenade
+int currentWeapon = 0;
+
+switch(currentWeapon) {
+
+    case 0:
+        System.out.println("Attack!");
+        break;
+
+    case 1:
+        System.out.println("Gun!");
+        break;
+
+    case 2:
+        System.out.println("Throw!");
+        break;
+
+    default:
+        System.out.println("Get a weapon…");
+        break;
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>Breaking from a Loop</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String[] droids = { "M-TD", "C3PO", "R2-D2", "RA-7" };
+
+// we are looking for R2-D2
+for(int i = 0; i &lt; droids.length; i++) {
+
+    if(droids[i].equals("R2-D2")) {
+
+        // do something with it and jump out of the loop
+        System.out.println("This is the droid I was looking for...");
+
+        break;
+
+    }
+
+    System.out.println("Still looking...");
+
+}
+	    </code></pre>
+	  </section>
+
+	  <section>
+	    <h2>The Continue</h2>
+	    <pre class="fragment"><code class="java" data-trim contenteditable>
+String[] droids = { "M-TD", "C3PO", "R2-D2", "RA-7" };
+
+// looking for R2-D2 and C3PO
+for(int i = 0; i &lt; droids.length; i++) {
+
+    if(!droids[i].equals("R2-D2") && !droids[i].equals("C3PO")) {
+
+        // just skip the iteration
+        System.out.println("This is not the droid I'm looking for...");
+
+        continue;
+
+    }
+
+    // do something with the droid
+    System.out.println("Found " + droids[i]);
+
+}
+	    </code></pre>
+	  </section>
+	</section>
+
+	<section id="build">
+
+	  <section>
+	    <h1>Java Build Process</h1>
+	  </section>
+
+	  <section>
+	    <h2>Why do I need a build process?</h2>
+	    <ol>
+	      <li class="fragment">Compiling the code</li>
+	      <li class="fragment">Packaging the binaries</li>
+	      <li class="fragment">Testing the changes</li>
+	      <li class="fragment">Deploying the package</li>
+	    </ol>
+	    <p class="fragment">Should I do all of these manually?</p>
+	    <p class="fragment">The IDE may help you, but it's still mostly a manual process</p>
+	  </section>
+
+	  <section>
+	    <h2>The Integrated Development Environment</h2>
+	    <p> A set of programming tools for writing applications, all activated from a common user interface and menus.</p>
+	    <img  class="fragment logo" data-src="images/1/java/ide_eclipse.png" />
+	    <img  class="fragment logo" data-src="images/1/java/ide_netbeans.png" />
+	    <img  class="fragment logo" data-src="images/1/java/ide_intellij.png" />
+	    <p class="fragment">Let's work with our HelloWorld example in the IDE!</p>
+	    <small class="fragment">but first, some information regarding <u>packages</u></small>
+
+	    <aside class="notes">
+	      <ol>
+		<li>(source code editor, compiler, debugger, etc.)</li>
+	      </ol>
+	      <ol>
+		<li>Eclipse: IBM2001, open source, multiple plugins, sometimes too much;</li>
+		<li>NetBeans: Sun1999/Oracle2010, official one, database support;</li>
+		<li>IntelliJ IDEA: JetBrains2001, smart code completion, advanced refactoring.</li>
+	      </ol>
+	    </aside>
+	  </section>
+
+	  <section>
+	    <div class="exercise">
+	      <h2>{ Hands On }</h2>
+	      <h3>IntelliJ Hello World</h3>
+	    </div>
+	  </section>
+
+	  <section id="packages">
+	    <h2>Packages in Java</h2>
+	    <p class="fragment">The process of software design is largely a process of <u>organizing</u></p>
+	    <p class="fragment"><u>Packages</u>, together with object oriented design, will help you to organize your code<span class="fragment">, they are used for:</span></p>
+	    <ul>
+	      <li class="fragment">avoiding name conflicts</li>
+	      <li class="fragment">hierarchical organization</li>
+	      <li class="fragment">access control</li>
+	    </ul>
+	    <aside class="notes">
+	      access control allows hiding library implementation details by declaring public only classes that need to be known
+	    </aside>
+	  </section>
+
+      <section>
+          <div class="exercise">
+              <h2>{ Exercise }</h2>
+              <h3>Packages</h3>
+          </div>
+      </section>
+
+	  <section id="jar">
+	    <h2>Packaging Applications</h2>
+	    <p class="fragment">The Java Archive (JAR) file format enables you to bundle multiple files into a <u>single archive file</u> containing the class files and auxiliary resources associated with the application.</p>
+	    <p class="fragment">To perform basic tasks with JAR files, you use the Java Archive Tool provided as part of the JDK</p>
+	    <p class="fragment">A <u>JAR</u> file is a zip archive containing a manifest file and potentially signature files</p>
+	    <p class="fragment">JAR files can be executed directly on OSX, Linux and Microsoft operating systems</p>
+	  </section>
+
+	  <section>
+	    <h2>Java Archive Metadata</h2>
+	    <p class="fragment">The manifest is a special file that contains information about the files packaged in a JAR file. You can use the manifest for:</p>
+	    <ul>
+	      <li class="fragment">Setting the application entry point</li>
+	      <li class="fragment">Modifying the classpath</li>
+	      <li class="fragment">Setting the package version</li>
+	      <li class="fragment">Sealing the package</li>
+	    </ul>
+	  </section>
+
+	  <section>
+	    <h2>Manual Build Process</h2>
+	    <ol>
+	      <li class="fragment">Edit and modify your code</li>
+	      <li class="fragment">Compile</li>
+	      <li class="fragment">Archive</li>
+	      <li class="fragment">Run</li>
+	    </ol>
+	  </section>
+
+	  <section>
+	    <div class="exercise">
+	      <h2>{ Hands On }</h2>
+	      <h3>Manual build process</h3>
+	    </div>
+	  </section>
+
+    <section id="ant">
+        <h2>Automated Build Process with Ant</h2>
+        <p><img style="max-height: 300px;" data-src="images/1/java/ant.png" /></p>
+        <ul>
+            <li class="fragment">Stands for <u>Another Neat Tool</u></li>
+            <li class="fragment">Good for automating repetitive <u>tasks</u></li>
+            <li class="fragment">Can be invoked from the command line or IDE</li>
+        </ul>
+        <aside class="notes">
+            <ul>
+                <li>Fills a similar role a C Make</li>
+                <li>Project dependencies need to be setup manually</li>
+            </ul>
+        </aside>
+    </section>
+
+    <section>
+        <h2>Ant Configuration</h2>
+        <p class="fragment">Ant uses an xml file to store it's configuration, which is typically named <u>build.xml</u></p>
+        <img class="fragment" style="max-height: 400px;" data-src="images/1/java/ant-build-file.jpg" />
+    </section>
+
+    <section>
+        <h2>eXtensible Markup Language(XML)</h2>
+        <p class="fragment">Simplifies exchange of data between software agents</p>
+        <p class="fragment">Meta-Language and a technology for creating markup languages</p>
+        <h2 class="fragment">What are Markup Languages?</h2>
+        <ul>
+            <li class="fragment">Designed for the processing, definition and presentation of text</li>
+            <li class="fragment">Specifies code for formatting both the layout and style within a text file</li>
+            <li class="fragment">The code used to specify the formatting are called tags and needs to comply to some sort of grammar</li>
+            <li class="fragment">HTML is an example of a widely known and used markup language</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Tasks and Targets</h2>
+        <p class="fragment">A <u>Task</u> is the smallest unit of work in ant</p>
+        <p class="fragment">A <u>Target</u> represents a phase in the project build cycle and is a collection of zero or more tasks</p>
+        <pre class="fragment"><code class="xml">
+&lt;!-- hello is an Ant project --&gt;
+&lt;project name="HelloWorld" &gt;
+
+    &lt;!-- message is an Ant target --&gt;
+    &lt;target name="message"&gt;
+
+        &lt;!-- echo is an Ant task --&gt;
+        &lt;echo message="Hello, World"/&gt;
+
+    &lt;/target&gt;
+
+&lt;/project&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <div class="exercise">
+            <h2>{ Hands On }</h2>
+            <h3>Ant Hello World</h3>
+        </div>
+    </section>
+
+    <section>
+        <div class="exercise">
+            <h2>{ Hands On }</h2>
+            <h3>Ant Build Process</h3>
+        </div>
+    </section>
+
+	</section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 8,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <section>
+                    <h1>The Prompt-View Library</h1>
+                    <h3 class="fragment">It's a prompt you can view</h3>
+                </section>
+                <section id="prompt-view">
+                    <h2>Prompt-View</h2>
+                    <p class="fragment">
+                        Tiny Java library for producing interactive command line prompts
+                    </p>
+                    <p class="fragment">
+                        It is very easy to use due to its small API, and extremely useful for applications where textual input from the user is needed.
+                    </p>
+                    <p class="fragment">
+                        It is also open-source and open to contributions
+                        <a target="_blank" href="https://github.com/academia-de-codigo/prompt-view" target="_blank">here</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>Endless Possibilities</h2>
+                    <p>
+                        The extensive feature list follows:
+                    </p>
+                    <p>
+                        <ul>
+                            <li class="fragment">Attach the prompt to any input/output stream</li>
+                            <li class="fragment">Fetch a number from the user, with optional validations</li>
+                            <li class="fragment">Fetch a string from the user, with optional validations</li>
+                            <li class="fragment">Create text menus easily from an array of options</li>
+                            <li class="fragment">Present messages on validation errors</li>
+                        </ul>
+                    </p>
+                    <img class="float-right" height="150" src="images/2/prompt-view/prompt-view-1.png" />
+                </section>
+            </section>
+            <section>
+                <section>
+                    <p>The library is built around two main concepts:</p>
+                    <h2 class="fragment">Prompt and Scanners</h2>
+                </section>
+                <section id="scanner">
+                    <h2>Scanners</h2>
+                    <p class="fragment">A Scanner represents a question</p>
+                    <p class="fragment">Defines the message shown and the expected answer type</p>
+                    <p class="fragment">The library includes multiple scanners, such as:</p>
+                        <ul>
+                            <li class="fragment">
+                                <strong>
+                                    <a href="#/prompt-scanner-integer">Integer</a>
+                                </strong>
+                                <small style="vertical-align: middle">: Presents a message and expects an integer as the answer</small>
+                            </li>
+                            <li class="fragment">
+                                <strong>
+                                    <a href="#/prompt-scanner-double">PrecisionDouble</a>
+                                </strong>
+                                <small style="vertical-align: middle">: Presents a message and expects a floating point number as the answer</small>
+                            </li>
+                            <li class="fragment">
+                                <strong>
+                                    <a href="#/prompt-scanner-string">String</a>
+                                </strong>
+                                <small style="vertical-align: middle">: Presents a message and expects a string as the answer</small>
+                            </li>
+                            <li class="fragment">
+                                <strong>
+                                    <a href="#/prompt-scanner-menu">Menu</a>
+                                </strong>
+                                <small style="vertical-align: middle">: Presents multiple options and expects an integer as the answer</small>
+                            </li>
+                        </ul>
+                </section>
+                <section id="prompt">
+                    <h2>Prompt</h2>
+                    <p class="fragment">Scanners <em>are</em> questions. <span class="fragment">Prompt <em>presents</em> them to the user.</span></p>
+                    <p class="fragment">Prompt attaches to any input and output stream<br>and uses scanners to fetch data from the user</p>
+                    <p class="fragment">One instance of Prompt can make an infinite number of questions</p>
+                    <img class="fragment" height="150" src="images/2/prompt-view/prompt-view-2.png" />
+                </section>
+                <section>
+                    <h2>Prompt Me Anything</h2>
+                    <pre>
+                        <code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+    // attach prompt to system's input/output
+    Prompt prompt = new Prompt(System.in, System.out);
+
+    // create a question, and set the message to be displayed
+    StringInputScanner question1 = new StringInputScanner();
+    question1.setMessage("What is your name?");
+
+    // create one more question
+    IntegerInputScanner question2 = new IntegerInputScanner();
+    question2.setMessage("What is your age?");
+
+    // use the prompt to make the first question
+    // this method will block the thread execution while waiting for user input
+    String name = prompt.getUserInput(question1);
+
+    // notice how the return type is defined by the scanner/question
+    int age = prompt.getUserInput(question2);
+    System.out.println("User's name: " + name + " | User's age: " + age);
+}
+                        </code>
+                    </pre>
+                </section>
+                <section id="integer-scanner">
+                    <h2>Scan Integers</h2>
+                    <p class="fragment">To handle integer inputs, prompt-view includes<br>
+                       the <strong>IntegerInputScanner</strong> class</p>
+                    <p class="fragment">Validation by range or set of values can also be applied using
+                        <strong>IntegerRangeInputScanner</strong> or
+                        <strong>IntegerSetInputScanner</strong></p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+    // accepts any integer
+    IntegerInputScanner anyInt = new IntegerInputScanner();
+
+    // accepts integers from 1 to 5
+    IntegerInputScanner intBetween = new IntegerRangeInputScanner(1, 5);
+
+    // in Portugal we would say "ou 8 ou 80.."
+    Set&lt;Integer&gt; validValues = new HashSet&lt;&gt;();
+    validValues.add(8);
+    validValues.add(80);
+    IntegerInputScanner bipolar = new IntegerSetInputScanner(validValues);
+}
+                        </code>
+                    </pre>
+                </section>
+                <section id="double-scanner">
+                    <h2>Scan Doubles</h2>
+                    <p class="fragment">To handle double/float input, prompt-view includes<br>
+                        the <strong>DoubleInputScanner</strong> class</p>
+                    <p class="fragment">Validation by set or range can be applied using the 
+                        <strong>DoubleSetInputScanner</strong> or
+                        <strong>DoubleRangeInputScanner</strong></p>
+                    <small class="fragment"><small style="vertical-align: middle">*
+                        <a target="_blank" href="https://github.com/academia-de-codigo/prompt-view" target="_blank">Check it out peepz!</a> *</small>
+                    </small>
+                    <pre class="fragment" style="margin-top: 0px;">
+                        <code class="java" style="max-height: 290px;" data-trim contenteditable>
+public static void main(String[] args) {
+
+    Prompt prompt = new Prompt(System.in, System.out);
+
+    // accepts any double
+    DoubleInputScanner anyDouble = new DoubleInputScanner();
+    anyDouble.setMessage("How much money did you save today?");
+
+    Double amount = prompt.getUserInput(anyDouble); // 0.0
+
+    // accepts doubles from 4.500 to 4.650
+    DoubleRangeInputScanner doubleBetween = new DoubleRangeInputScanner(4.500, 4.650);
+    doubleBetween.setMessage("What's your guess for the bag's weight, Anabela?");
+
+    Double guess = prompt.getUserInput(doubleBetween); // 4.520
+}
+                        </code>
+                    </pre>
+                </section>
+                <section id="string-scanner">
+                    <h2>
+                        Scan Strings
+                    </h2>
+                    <p class="fragment">
+                        To fetch a string from the user, prompt-view includes<br>
+                        the <strong>StringInputScanner</strong> class
+                    </p>
+                    <p class="fragment">
+                        To fetch passwords or masked strings, you can use<br>
+                        the <strong>PasswordInputScanner</strong> class
+                    </p>
+                    <p class="fragment">
+                        You may also apply validation using an array of strings with the
+                        <strong>StringSetInputScanner</strong> class
+                    </p>
+                    <pre class="fragment">
+                        <code class="java" style="max-height: 250px;" data-trim contenteditable>
+public static void main(String[] args) {
+
+    Prompt prompt = new Prompt(System.in, System.out);
+
+    // this scanner accepts any string
+    StringInputScanner question1 = new StringInputScanner();
+
+    // this scanner hides the input while typing
+    PasswordInputScanner question2 = new PasswordInputScanner();
+
+    // this scanner only accepts words present in a set of strings
+    Set&lt;String&gt; options = new HashSet&lt;&gt;();
+    options.add("yes");
+    options.add("no");
+    StringSetInputScanner question3 = new StringSetInputScanner(options);
+
+    System.out.println("User " + (prompt.getUserInput(question3).equals("yes") ?
+        "agrees." : "does not agree."));
+}
+                        </code>
+                    </pre>
+                </section>
+                <section id="prompt-scanner-menu">
+                    <img class="logo-small float-right" style="max-height: 150px" src="https://media.giphy.com/media/rVVFWyTINqG7C/source.gif"
+                        alt="">
+                    <h3>and...</h3>
+                    <h1>CREATE MENUS</h1>
+                    <div style="clear: both"></div>
+                    <pre>
+                        <code class="java" data-trim contenteditable>
+
+public static void main(String[] args) {
+    Prompt prompt = new Prompt(System.in, System.out);
+
+    // options that you want to be presented are supplied in an array of strings
+    String[] options = {"Go", "Stay"};
+
+    // create a menu with those options and set the message
+    MenuInputScanner scanner = new MenuInputScanner(options);
+    scanner.setMessage("Should I stay or should I go?");
+
+    // show the menu to the user and get the selected answer
+    int answerIndex = prompt.getUserInput(scanner);
+
+    System.out.println("User wants to " + options[answerIndex - 1]);
+}
+                        </code>
+                    </pre>
+                </section>
+                <section id="scanner-errors">
+                        <h2>I'll pretend I didn't hear that</h2>
+                        <p class="fragment">Scanners with validation (or menus) will re-ask the question<br> until a valid answer is given</p>
+                        <p class="fragment">An error message is displayed when validation fails</p>
+                        <pre class="fragment medium">
+                            <code class="java" data-trim contenteditable>
+public static void main(String[] args) {
+
+    Prompt prompt = new Prompt(System.in, System.out);
+
+    // accepts integers from 1 to 11
+    IntegerInputScanner intBetween = new IntegerRangeInputScanner(1, 11);
+    intBetween.setMessage("Twist the knob.");
+
+    // will present an error message on validation fail (before re-asking the question)
+    intBetween.setError("Sorry. This only goes up to 11.");
+
+    System.out.println("Switching knob to position " +
+        prompt.getUserInput(intBetween));
+}
+                            </code>
+                        </pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Prompt-View Login Application</h3>
+                        <img height="200" src="images/2/prompt-view/prompt-login-exercise.png"/>
+                    </div>
+                </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 17,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

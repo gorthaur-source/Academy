@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <section>
+                    <h1>Enterprise Application Architecture</h1>
+                    <p>
+                        <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                    </p>
+                    <aside class="notes">
+                        We will have a look at how applications have been engineered in the enterprise market over time
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Enterprise Applications</h2>
+                    <p class="fragment">Computer software used to satisfy the needs of an organization rather than individual users and usually characterized by:</p>
+                    <ul>
+                        <img style="margin-left: 10px; max-height: 200px;" class="float-right" src="images/2/architecture/ea.gif">
+                        <li class="fragment"><u>Persistent data</u> - might need to persist for several years</li>
+                        <li class="fragment"><u>High amounts of data</u> - GBs of data in tens of millions of records</li>
+                        <li class="fragment"><u>Use databases</u> - mostly relational databases</li>
+                        <li class="fragment"><u>Concurrent Access</u> - data accessed by hundreds or thousands of people simultaneously</li>
+                        <li class="fragment"><u>Interface Screens</u> - dozens or hundreds of interface screens to handle all the data</li>
+                        <li class="fragment"><u>Integration</u> - they often integrate with other enterprise applications</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Examples of EA are : payroll, patient records, shipping tracking, cost analysis, credit scoring, insurance, supply chain, accounting, customer service, and foreign exchange trading</li>
+                            <li>Examples of what EA are NOT: automobile fuel injection, word processors, elevator controllers, chemical plant controllers, telephone switches, operating systems, compilers, and games</li>
+                        </ul>
+                    </aside>
+                </section>
+
+            </section>
+            <section>
+                <section>
+                    <img class="logo float-right" src="images/2/architecture/vt100-terminal.jpg">
+                    <h2>Terminal Architecture</h2>
+                    <p>The Terminal or Mainframe Architecture (aka teleprocessing) was dominant in the enterprise between the
+                        1950s and the 1970s, and disappeared (sort of...) around the 1990s</p>
+                    <img class="fragment" style="max-height: 180px;" src="images/2/architecture/terminal.png">
+                    <small><ul>
+                        <li class="fragment">Mainframes and minicomputers executed all the applications logic in a centralized manner</li>
+                        <li class="fragment">Dumb Terminals (<u>thin clients</u>) displayed application screens coming from the server to the users</li>
+                        <li class="fragment">User keystrokes were captured and sent to the server</li>
+                        <li class="fragment">Deployment was extremely easy, just do it once at the server</li>
+                        <li class="fragment">Display capabilities were very limited</li>
+                    </ul></small>
+                    <aside class="notes">
+                        Terminal logo is a DEC-VT100 (export TERM=vt100)<br>IBM was king on the mainframe market<br> Some Banking and Insurance
+                        companies still use mainframes as of today<br> Dumb terminals (no processing capabilities, communication
+                        only) were simple serial communication devices, key bytes to wire, wire bytes to ascii on screen
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/architecture/ibm-pc.jpg">
+                    <h3>Client Server Architecture (Two-Tier)</h3>
+                    <p class="fragment">The mass production and increasing power of the Personal Computers together with LAN technologies enabled
+                        the Client-Server Architecture in the 1980s</p>
+                    <img class="fragment" style="max-height: 180px;" src="images/2/architecture/client-server.png">
+                    <small><ul>
+                        <li class="fragment">PCs <u>(fat clients)</u> were not limited anymore to the characters base user interface</li>
+                        <li class="fragment">Personal computers were powerful enough to run rich user interfaces instead of being run on the server</li>
+                        <li class="fragment">Ability to autonomously run business applications like word processors and spreadsheets</li>
+                        <li class="fragment">Servers provided shared Data Storage and limited services such as DBMSs</li>
+                        <li class="fragment">Deployment was complex, had to be done on all clients</li>
+                        <li class="fragment">Lots of server compatibility issues to support different client OSs and versions</li>
+                    </ul></small>
+                    <aside class="notes">
+                        IBM shifts from the mainframe market to the PC market and almost goes bankrupt<br> Opens the IBM
+                        PC architecture to the world, shifts focus away from the hardware business and comes back from the
+                        ashes as a services company<br> Microsoft shows up for the ride<br>
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/architecture/3tier-logo.png">
+                    <h2>Three-Tier Architectures</h2>
+                    <small><p class="fragment">The continued development of the Internet and improvements in network speed enabled the idea of programs that could be run across the Internet.<br>
+                    <span class="fragment">To do this, new application tiers were created on top of the existing client-server model, giving rise to the multi-tier architecture in the early 2000s</span></p></small>
+                    <img class="fragment" src="images/2/hibernate/application-tiers.png">
+                    <small><ol>
+                         <li class="fragment">Responsibility for presentation and user interaction resides with the first-tier</li>
+                         <li class="fragment">Commonly referred to as the <u>application logic layer</u>, manages the business logic of the application and permits access to the third-tier services</li>
+                         <li class="fragment">Protected from direct access, interaction must occur through the second-tier processes</li>
+                     </ol></small>
+                     <aside class="notes">
+                         Business Logic also referred as Domain Logic
+                     </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/architecture/thin-logo.png">
+                    <h2>Thin Client Web Applications</h2>
+                    <p class="fragment">Presentation layer now handled by the Web Browser</p>
+                    <img class="fragment" src="images/2/architecture/thin-client.png">
+                    <small><ul>
+                        <li class="fragment">Most of the application logic went back to the server</li>
+                        <li class="fragment">Server generated HTML pages with application screens (GUI logic)</li>
+                        <li class="fragment">Client performed the rendering of the HTML and sent form responses back to the server</li>
+                        <li class="fragment">Deployment is easy again, application is updated only once at the server</li>
+                        <li class="fragment">Clients lack autonomy, they now have to perform server requests with each user action</li>
+                    </ul></small>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/architecture/thick-logo.png">
+                    <h2>Thick Client Web Applications</h2>
+                    <p>Large improvement in JavaScript execution performance in all major browsers and the creation of advanced
+                        JavaScript frameworks enabled the execution of all GUI logic at the client</p>
+                    <img class="fragment" src="images/2/architecture/thick-client.png">
+                    <small><ul>
+                        <li class="fragment">GUI logic is moved back to the client</li>
+                        <li class="fragment">Deployment remains easy, application is updated only once at the server and pushed to all clients through http</li>
+                        <li class="fragment">User experience improves without the need to reload the web page for each user action (SPA)</li>
+                        <li class="fragment">Web applications are now capable of displaying rich User Interfaces with desktop like capabilities</li>
+                    </ul></small>
+                    <aside class="notes">
+                        SPA = Single Page App
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="logo float-right" src="images/2/architecture/cloud.png">
+                    <h2>Serverless Architecture</h2>
+                    <p>Cloud computing technology brings a shift in the way systems are deployed</p>
+                    <img class="fragment" style="max-height: 300px;" src="images/2/architecture/cloud-service-models.png">
+                    <small><ul>
+                        <li class="fragment">Depends on third-party services</li> 
+                        <li class="fragment">Provides self-service capabilities with scalable features to upgrade based on requirement</li>
+                        <li class="fragment">Brings flexibility of budget, speed and infrastructure</li>
+                        <li class="fragment">Function as a Service - "on-demand" functionality</li>
+                    </ul></small>
+                    <aside class="notes">
+                        <ul>
+                            <li>IAAS - Do not buy metal (hw) anymore, get a VPS from a cloud provider. Ex. AWS</li>
+                            <li>PAAS - No need to run your own platform anymore (JVM, Node.JS, etc.), just deploy bundle to the cloud. Ex. Heroku</li>
+                            <li>SAAS - No need to deploy sw anymore, just use some online service software. Ex. Gmail</li>
+                            <li>FAAS - No need to worry about bringing entire applications up and down in response to an event, functions are invoked and scaled individually. Ex. AWS Lambda</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Application Layering</h2>
+                    <p class="fragment">Layering is one of the most common techniques used to break apart a complicated software system</p>
+                    <small><ul>
+                        <li class="fragment">A single layer can be understood as a coherent whole without knowing much about the other layers</li>
+                        <li class="fragment">Layers can be substituted with alternative implementations of the same basic services</li>
+                        <li class="fragment">Dependencies between layers can be minimized, reducing the overall coupling in the system</li>
+                    </ul></small>
+                    <img class="fragment" style="max-height: 350px;" src="images/2/hibernate/application-layers.jpg">
+                    <aside class="notes">
+                        Main disadvantage of layers can be performance
+                    </aside>
+                </section>
+
+                <section id="service">
+                    <h2>Service Layer</h2>
+                    <p class="fragment">It is common to split the business logic between a Service Layer and a Domain Model</p>
+                    <ul>
+                        <li class="fragment">Transactional and secure operations for the Domain Model are normally provided by the Service Layer</li>
+                        <li class="fragment">Domain Model is the conceptual model of a system which describes the various entities involved and their relations</li>
+                    </ul>
+                    <img class="fragment" style="max-height: 250px;" src="images/2/architecture/service-layer.jpg">
+                    <aside class="notes">
+                        Domain Modeling is what students have been doing with their database data modelling.
+                    </aside>
+                </section>
+
+                <section>
+                        <h2>Transaction Handling</h2>
+                        <p class="fragment">The most common transaction pattern is the <u>Session-Per-Request</u>:</p>
+                        <small><ul>
+                            <li class="fragment">A single session (EntityManager in JPA) will be used to process a single user event</li>
+                            <li class="fragment">Session scope is the same as Transaction scope</li>
+                            <li class="fragment">One-to-one relationship between the Transaction and the Session</li>
+                        </ul></small>
+                        <img class="fragment" src="images/2/architecture/session-per-request.jpg" alt="">
+                        <small class="fragment">Within this pattern there is a common technique of defining a <u>current session</u> to simplify the need of passing this Session around to all the application components that may need access to it</small>
+                    </section>
+
+                    <section id="sm">
+                            <h2>Session Manager</h2>
+                            <p class="fragment">Encapsulates the Session lifecycle management.</p>
+                            <div style="font-size: 0.8em;"><pre class="fragment">
+                                <code class="java" data-trim contenteditable>
+public class JpaSessionManager {
+
+    private EntityManagerFactory emf; // the persistence unit
+    private EntityManager em; // the persistence context
+
+    public void startSession() {
+
+        if (em == null) {
+            em = emf.createEntityManager();
+        }
+    }
+
+    public void stopSession() {
+
+        if (em != null) {
+              em.close();
+        }
+
+        em = null;
+    }
+
+    public EntityManager getCurrentSession() {
+        startSession();
+        return em;
+    }
+}
+                                </code>
+                            </pre></div>
+                        </section>
+
+                <section id="tx">
+                    <h2>Transaction Manager</h2>
+                    <p class="fragment">Encapsulates common transaction operations.</p>
+
+                    <div style="font-size: 0.7em;"><pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class JpaTransactionManager implements TransactionManager {
+
+    @Override
+    public void beginRead() {
+        sm.startSession();
+    }
+
+    @Override
+    public void beginWrite() {
+        sm.getCurrentSession().getTransaction().begin();
+    }
+
+    @Override
+    public void commit() {
+
+        if (sm.getCurrentSession().getTransaction().isActive()) {
+            sm.getCurrentSession().getTransaction().commit();
+        }
+        sm.stopSession();
+    }
+
+    @Override
+    public void rollback() {
+
+        if (sm.getCurrentSession().getTransaction().isActive()) {
+            sm.getCurrentSession().getTransaction().rollback();
+        }
+        sm.stopSession();
+    }
+}
+                        </code>
+                    </pre></div>
+                </section>
+
+                <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Add Session and Transaction Managers to the JavaBank application</h3>
+                        </div>
+                    </section>
+
+                <section id="dao">
+                    <h2>Data Access Object</h2>
+                    <p class="fragment">DAO is an important design pattern used at the persistence layer</p>
+                    <small><ul>
+                        <li class="fragment">Separates low level data access from high level business services</li>
+                        <li class="fragment">Handles data access and manipulation from the persistence storage (db, ldap, file system, etc.)</li>
+                        <li class="fragment">Decouples the persistent storage implementation from the rest of the application</li>
+                    </ul></small>
+                    <img style="max-height: 300px;" src="images/2/architecture/jpa-dao.jpg" alt="" class="fragment">
+                </section>
+
+                <section>
+                    <h2>Data Access Objects</h2>
+                        <small><ul>
+                            <li class="fragment">At the core of the DAO pattern is a Java interface which defines various methods to perform <u>data access</u></li>
+                            <li class="fragment">Different implementations of this interface can be created to accommodate <u>multiple persistence mechanisms</u>, e.g. JdbcDAO or HibernateDAO</li>
+                            <li class="fragment">Domain objects or Service layer can interface with the data layer with <u>no knowledge</u> of the low level persistence APIs</li>
+                        </ul></small>
+                        <img style="max-height: 250px;" class="fragment" src="images/2/architecture/service-dao.png">
+                        <small class="fragment"><strong>Transaction management</strong> should be handled at the <u>Service Layer</u>, allowing one transaction to span operations on multiple DAOs</small>
+                    <aside class="notes">
+                        When your application only deals with a dao interface, you can easily replace it with
+                        an implementation using a different persistance mechanism (eg. LDAP directory). This is the main intent of the Dao pattern.                    </aside>
+                </section>
+
+                <section>
+                    <h2>DAO Methods</h2>
+                    <p class="fragment">DAO should provide methods for implementing CRUD operations as well as any other required data access operations</p>
+                    <pre style="font-size: 0.48em;" class="fragment">
+                        <code>
+public interface UserDao {
+
+    // basic crud methods
+    List&lt;User&gt; findAll();
+    User findById(Integer id);
+    User saveOrUpdate(User user);
+    void delete(Integer id);
+
+    // additional methods
+    User findByUsername(String username);
+    User findByEmail(String email);
+
+}
+                        </code>
+                    </pre>
+                    <aside class="notes">
+                        <p>Repository pattern is similar to DAOs, but helps preventing the effect of having too many methods inside of a single DAO class</p>
+                        <p>Repository pattern is not within the scope of the bootcamp</p>
+                        <p>DAO and Repository patterns are often confused in online resources/tutorials</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <img class="float-right" style="max-height: 500px; max-width: 250px;" src="images/2/architecture/exercise-dao.png">
+                    <div class="exercise" style="max-width: 650px;">
+                        <h2>{ Exercise }</h2>
+                        <h3>Decouple the Service Layer from the persistence api on the JavaBank application using the Dao design pattern</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Generic Dao</h2>
+                    <ul>
+                        <li class="fragment">The basic Dao interface crud methods should be common to all DAOs and hence placed in a Generic DAO object</li>
+                        <li class="fragment">More specific Dao objects can extend from this generic dao to provide additional data query capabilities</li>
+                    </ul>
+                    <img style="max-height: 300px;" class="fragment" src="images/2/architecture/generic-dao.png">
+                </section>
+
+                <section>
+                    <img class="float-right" style="max-height: 500px; max-width: 250px;" src="images/2/architecture/exercise-generic-dao.png">
+                    <div class="exercise" style="max-width: 600px;">
+                        <h2>{ Exercise }</h2>
+                        <h3>Implement the Generic Dao on the JavaBank application</h3>
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 26,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

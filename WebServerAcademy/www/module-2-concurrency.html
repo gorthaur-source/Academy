@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>&lt;Academia de Código_&gt;</title>
+
+    <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+    <meta name="keyword" content="academia,código,startup lisboa">
+    <meta name="author" content="<Academia de Código_>">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+    <!-- Use for presentation specific styling -->
+    <link rel="stylesheet" href="css/presentation.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Concurrent Programming</h1>
+                <p>
+                    <small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+                </p>
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Introduction to Concurrency</h2>
+                    <p>
+                        <span class="fragment">In the beginning...</span>
+                        <span class="fragment"> computers didn't have operating systems, they executed a <u>single program</u> from beginning to end with direct access to all the resources of the machine.</span>
+                    </p>
+                    <p>
+                        <span class="fragment">Operating Systems allow more than one program to execute, running individual programs in <u>processes</u>.</span>
+                        <span class="fragment">Each process is isolated and executes <u>independently</u> from others, getting its share of resources such as memory, file handles, etc.</span>
+                    </p>
+                    <p>
+                        <span class="fragment">Processes can communicate through a variety of <u>Inter Process Communication</u> (IPC) mechanisms, such as sockets, signal handlers, shared memory, semaphores and files.</span>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Threads</h2>
+                    <img class="logo float-right" src="images/1/concurrency/threads.jpg">
+                    <p class="fragment">Allow multiple streams of program control flow to coexist and execute simultaneously within <u>one single process</u>.</p>
+                    <img class="fragment" src="images/1/concurrency/single-vs-multiple-threads.gif">
+                    <p class="fragment">They share process-wide resources such as memory and file handles, but they have their own stack and local variables.</p>
+
+                </section>
+
+                <section>
+                    <h2>Processes vs Threads</h2>
+                    <p class="fragment">All Threads within a process have access to the same variables, allowing them to <u>share data</u> without using IPC mechanisms.</p>
+                    <img style="max-height: 200px;" class="fragment" src="images/1/concurrency/process_vs_threads.jpg">
+                    <p class="fragment">Without explicit synchronization to coordinate access to shared data, a thread may modify variables that another thread is in the middle of using, with <u>unpredictable results</u></p>
+                </section>
+
+                <section>
+                    <h2>Why should I care?</h2>
+                    <img class="logo float-right" src="images/1/concurrency/threads-why.jpg">
+                    <p class="fragment">Threads can <u>simplify</u> the development of complex systems, by turning complicated asynchronous code (remember JavaScript callback hell...) into simpler straight-line code.</p>
+                    <p class="fragment">Threads are the easiest way to take advantage of the <u>computing power</u> of multi-processor and multi-core systems.</p>
+                    <p class="fragment">Threads are an <u>inescapable</u> feature of the Java language, even if you do not explicitly create them in your code.</p>
+                    <aside class="notes">
+                        JVM garbage collection utilizes threads main method is executed in another thread AWT (simplegraphics) and other user interface frameworks create threads Timers create threads etc.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands-On }</h2>
+                        <h3>Timers and Implicit Thread Creation</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Thread Creation</h2>
+                    <p class="fragment">We can explicitly create a Thread in our code by:</p>
+                    <ul>
+                        <li class="fragment">Extending the <u>Thread</u> class</li>
+                        <li class="fragment">Implementing the <u>Runnable</u> interface</li>
+                    </ul>
+                    <p class="fragment">The second is the proper way to do it, we are not really extending the thread behaviour but simply giving it something to run, while retaining the possibility for extending from something else.</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands-On }</h2>
+                        <h3>Explicit Thread Creation</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Thread Synchronization</h2>
+                    <img style="max-height: 150px;" class="float-right" src="images/1/concurrency/threads-sync.jpg">
+                    <p class="fragment">There are times when one thread might want to wait for another thread to finish its execution or for some specific condition to occur</p>
+                    <p class="fragment">Loops are expensive and will eat up all the available CPU</p>
+                    <p class="fragment">We can throw a Thread.sleep() in the loop, which will ease the CPU by blocking the thread, but there is no way of knowing for sure how much time we should wait.
+                        <span class="fragment">
+                            There has to be another way to block those Threads...
+                        </span>
+                    </p>
+                    <p class="fragment"><u>Locks</u> provide the proper way to achieve thread synchronization, but for now let's have a look at the Thread <u>join</u> method</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands-On }</h2>
+                        <h3>Thread-Sync using Join</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Concurrent web server</h3>
+                    </div>
+                </section>
+
+
+
+                <section>
+                    <h2>Thread Safety</h2>
+                    <p class="fragment">Code that executes and behaves correctly when accessed simultaneously by multiple threads is called thread safe</p>
+                    <p class="fragment">Concurrent programming errors tend to fall into one of these three categories:
+                        <img class="logo float-right" src="images/1/concurrency/threads-safety.png">
+                        <ol>
+                            <li class="fragment">visibility</li>
+                            <li class="fragment">atomicity</li>
+                            <li class="fragment">ordering</li>
+                        </ol>
+                    </p>
+                </section>
+
+                <section id="volatile">
+                    <h2>Visibility</h2>
+                    <p class="fragment">Memory Reads and Writes are slow and expensive operations compared to CPU internal registers. Modern CPUs introduced L1/L2 caches to speed things up.</p>
+                    <p class="fragment">Variables are not always read from or written to memory, but to the cache of the specific CPU the thread is executing on.</p>
+                    <img style="max-height:270px;" class="fragment" src="images/1/concurrency/thread-visibility.png">
+                </section>
+
+                <section>
+                    <h2>Overcoming Visibility Errors</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// thread unsafe class
+public class IDFactory {
+
+    private long currentId = 0L;
+
+    public long getNextId() {
+
+        // retrieves and writes from cache
+        return currentId++;
+
+    }
+
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">Declare the variable <u>volatile</u></p>
+                    <p class="fragment">Volatile variables will never be cached, all reads and writes will go straight to <u>main memory</u></p>
+                    <aside class="notes">
+                        fix visibility problem by making property volatile still has other thread issues...
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Atomicity</h2>
+                    <img class="logo float-right" src="images/1/concurrency/threads-atomicity.png">
+                    <p class="fragment">An operation (or set of operations) is atomic if it appears to occur instantaneously to the rest of the system.</p>
+                    <p class="fragment">Atomic operations commonly have a succeed-or-fail definition; they either successfully change the state of the system, or have no apparent effect.</p>
+                    <p class="fragment">Non-atomic operations in concurrent programming can cause sporadic and extraneous behaviour, which by nature will likely be hard to reproduce and debug.</p>
+                </section>
+
+                <section>
+                    <h2>Atomicity</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// thread unsafe class
+public class IDFactory {
+
+    volatile private long currentId = 0L;
+
+    public long getNextId() {
+
+        // How many operations are involved in incrementing a long?
+        return currentId++;
+
+    }
+
+}
+                        </code>
+                    </pre>
+                    <ul>
+                        <li class="fragment">Java primitives are <u>not</u> thread safe</li>
+                        <li class="fragment">long and double require two memory operations write or read</li>
+                        <li class="fragment">Context switch can occur in the middle of these operations</li>
+                        <li class="fragment">Volatile fixes atomicity of reading/writing primitives since Java 5</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Atomicity</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// is this class thread safe?
+public class IDFactory {
+
+    volatile private long currentId = 0;
+
+    public long getNextId() {
+
+        // How many operations are involved here?
+        return currentId++;
+
+    }
+
+}
+                        </code>
+                    </pre>
+                    <ul>
+                        <li class="fragment">Reading, writing and incrementing are distinct operations</li>
+                        <li class="fragment">Context switch can occur in the middle of these operations</li>
+                    </ul>
+                    <aside class="notes">
+                        reading long (2) + incrementing (1) + writing long (2) = 5 operations
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Atomic Variables</h2>
+                    <p class="fragment">The <u>java.util.concurrent.atomic</u> package defines classes that support atomic operations on single variables</p>
+                    <p class="fragment">All classes have get and set methods that work like reads and writes on volatile variables</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public class IDFactory {
+
+    private AtomicLong currentId = new AtomicLong(0);
+
+    public long getNextId() {
+
+        return currentId.getAndIncrement();
+
+    }
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Atomicity</h2>
+                    <p class="fragment">Atomic Variables solve atomicity problem for isolated variables, <span class="fragment">but we need to watch for other types of Atomicity issues</span></p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public void withdrawMoney(int money) {
+
+    // CHECK
+    if (balance &gt;= money) {
+
+        // ACT
+        balance -= money;
+
+    }
+
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">Watch out for <u>CHECK-THEN-ACT</u> type of logic, everything can happen between checking and acting!</p>
+                </section>
+
+                <section>
+                    <h2>Ordering</h2>
+                    <p class="fragment">The Java compiler can change the order of execution if it believes the outcome will not change...</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+//Code of Thread 1
+operationResult = executeVeryComplexComputation();
+done = true;
+
+//Code of Thread 2
+if (done) {
+
+    // This could go wrong...
+    System.out.println(operationResult);
+
+}
+                        </code>
+                    </pre>
+                    <p class="fragment">This compiler assumption does not hold true in multithreading</p>
+                </section>
+
+                <section>
+                    <h2>Solving Concurrency Issues</h2>
+                    <p class="fragment">How do we solve them?</p>
+                    <ul>
+                        <li class="fragment"><u>L1/L2 Caching</u> is solved using Volatile or Locks</li>
+                        <li class="fragment"><u>Atomic Memory Reads/Writes</u> is solved using Volatile (for Java &gt; 5) or Locks</li>
+                        <li class="fragment"><u>Atomic Check-Then-Act</u> is solved using Locks</li>
+                        <li class="fragment"><u>Code Reordering</u> is solved using Locks</li>
+                    </ul>
+                    <p class="fragment">Either we learn to cope with concurrency issues or we have to work with immutable objects only...</p>
+                </section>
+
+                <section id="immutability">
+                    <h2>Immutability</h2>
+                    <p class="fragment">Immutable objects can help us make our objects thread safe.
+                        <small>
+                        <ul>
+                            <span class="fragment">The <u>final</u> keyword can be used to help enforce immutability:</span>
+                            <br>
+                            <br>
+                            <li class="fragment">a final class cannot be subclassed</li>
+                            <li class="fragment">a final method cannot be overridden or hidden by subclasses</li>
+                            <li class="fragment">a final variable can only be initialized once</li>
+                        </ul>
+                    </small>
+                    </p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Immutable counter
+final class Counter {
+
+    final int count;
+
+    public Counter(int value) {
+        this.count = value;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public Counter increment() {
+        return new Counter(count + 1);
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Intrinsic Locks</h2>
+                    <img class="logo float-right" src="images/1/concurrency/thread-lock.jpg">
+                    <p class="fragment">Java provides a built-in locking mechanism, the <u>synchronized block</u></p>
+                    <p class="fragment">The synchronized block has two parts:</p>
+                    <ol>
+                        <span class="fragment">
+                        <img class="logo float-right" src="images/1/concurrency/threads-intrinsic-lock.png">
+                            <li>A reference to an object that will serve as a lock</li>
+                        </span>
+                        <li class="fragment">A block of code to be guarded by the lock</li>
+                    </ol>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+synchronized (lock) {
+    // Access or modify shared state guarded by lock
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Synchronized Blocks</h2>
+                    <p class="fragment">Threads acquire a lock when entering a synchronized block</p>
+                    <p class="fragment">Threads release a lock when exiting the synchronized block</p>
+                    <p class="fragment">Only one single thread can hold the lock</p>
+                    <p class="fragment">If a thread attempts to acquire a lock that is already taken, it will block until that lock is released</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// thread safe class
+public class IDFactory {
+
+    // Shared mutable state is guarded by a lock on the object instance
+    private long currentId = 0L;
+
+    public long getNextId() {
+        synchronized(this) {
+            return currentId++;
+        }
+    }
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Synchronized Methods</h2>
+                    <p class="fragment">Shorthand for synchronizing all the code inside a method with a lock on the object instance</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// thread safe class
+public class IDFactory {
+
+    // Shared mutable state is guarded by a lock on the object instance
+    private long currentId = 0L;
+
+    public synchronized long getNextId() {
+            return currentId++;
+    }
+
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section id="guarded-blocks">
+                    <h2>Thread Synchronization with Guarded Blocks</h2>
+                    <p class="fragment">Efficient way to coordinate actions between Threads</p>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public synchronized void guardedHappiness() {
+    // loop until happiness is achieved
+    while(!happy) {
+        try {
+            wait(); // release the lock and block until we get interrupted
+        } catch (InterruptedException e) {}
+    }
+    System.out.println("Happiness has been achieved!");
+}
+                        </code>
+                    </pre>
+                    <small class="fragment"><u>Always invoke wait inside a loop that tests for the condition being waited for.</u></small>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+public synchronized void notifyHappiness() {
+    happy = true;
+    notifyAll(); // notify all threads that blocked while using the same lock
+}
+                        </code>
+                    </pre>
+                    <aside class="notes">
+                        wait, notify and notifyAll are methods inherited from Object calling them on different objects will cause IllegalMonitorStateException notifyAll will unblock all threads and then let them fight for the lock notify unblocks only one, but each thread needs to
+                        remember to unlock the next one
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Wait / Notify</h2>
+                    <p class="fragment"><u>wait</u>, <u>notify</u> and <u>notifyAll</u> are methods inherited from <u>Object</u></p>
+                    <p class="fragment">Invoking them on different objects will cause an <u>IllegalMonitorStateException</u></p>
+                    <p class="fragment"><u>notifyAll</u> will unblock all threads and then let them fight for the lock</p>
+                    <p class="fragment"><u>notify</u> unblocks only one, but each thread needs to remember to unlock the next one</p>
+                </section>
+
+                <section id="producerconsumer">
+                    <h2>The Producer/Consumer Problem</h2>
+                    <p>Classic example of a multi-process synchronization problem.<br>The problem describes two processes, the producer and the consumer, who share a common, fixed-size buffer used as a queue.</p>
+                    <img class="fragment" style="max-height: 200px;" src="images/1/concurrency/producer-consumer.png">
+                    <small>
+                    <p class="fragment">The <u>producer</u>'s job is to generate data, put it into the buffer, and start again.</p>
+                    <p class="fragment"> At the same time, the <u>consumer</u> is consuming the data, removing it from the buffer, one piece at a time.</p>
+                    <strong class="fragment"><p>The problem is to make sure that the producer won't try to add data into the buffer if it's full and that the consumer won't try to remove data from an empty buffer.</p></strong>
+                    </small>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Producer/Consumer using a Blocking Queue</h3>
+                        <img src="images/1/concurrency/blocking-queue.png">
+                        <h4>Extra features</h4>
+                        <p>Producer alerts when it has left the queue full</p>
+                        <p>Consumer alerts when it has left the queue empty</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Synchronized Collections</h2>
+                    <p class="fragment">State is encapsulated and all public methods are synchronized.
+                        <span class="fragment">This makes all operations on these classes atomic at the cost of poor concurrency, which can affect performance</span>
+                    </p>
+                    <p class="fragment">The synchronized collection classes include: </p>
+                    <ul>
+                        <li class="fragment"><u>HashTable</u> - similar to HashMap</li>
+                        <li class="fragment"><u>Vector</u> - similar to ArrayList</li>
+                        <li class="fragment"><u>Synchronized Wrapper Classes</u> - created by the Collections.synchronized factory methods</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Concurrent Collections</h2>
+                    <p class="fragment">Designed for concurrent access from multiple threads, replacing synchronized collections with concurrent collections can offer dramatic scalability improvements</p>
+                    <p class="fragment">The concurrent collection classes include: </p>
+                    <ul>
+                        <li class="fragment"><u>ConcurrentHashMap</u> - a replacement for synchronized hash based Map implementations</li>
+                        <li class="fragment"><u>CopyOnWriteArrayList</u> - a replacement for synchronized List implementations where traversal is the dominant operation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>The Wrong Way</h2>
+                    <p class="fragment">Concurrency is hard, can't I just make everything volatile and synchronized?</p>
+                    <p class="fragment">
+                        <img class="logo float-right" src="images/1/concurrency/threads-danger.gif"> You can, but...
+                    </p>
+                    <ul>
+                        <li class="fragment">That is worse than having a single thread</li>
+                        <li class="fragment">You can have a deadlock if you miss something</li>
+                    </ul>
+                </section>
+
+
+                <section id="executors">
+                    <h2>Thread Pools and Executors</h2>
+                    <p class="fragment">Let's go back to our concurrent web server</p>
+
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+private void dispatch(ServerSocket bindSocket) {
+
+    while (true) {
+
+        // accepts client connections and instantiates client dispatchers
+        ClientDispatcher clientDispatcher = new ClientDispatcher(bindSocket.accept());
+
+        // launch the client thread
+        Thread clientThread = new Thread(clientDispatcher);
+        clientThread.start();
+
+    }
+}
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Creating a Thread per Request</h2>
+                    <p class="fragment">Your single threaded Web Server worked but it performed poorly because it could only handle one request at a time</p>
+                    <p class="fragment">Executing each request in its own thread was an improvement over sequential execution because it enabled the main loop to resume waiting for the next incoming connection more quickly.</p>
+                    <p class="fragment">But, is it safe?...</p>
+                    <img class="fragment" style="max-height: 150px;" src="images/1/concurrency/robot.jpg">
+                </section>
+
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3> The ten thousand requests Hell or ... </h3>
+                        <h3 class="fragment"> How my web-server broke down </h3>
+                    </div>
+                </section>
+
+                <section>
+                    <div>
+                        <img class="logo float-right" src="images/1/concurrency/wait-what.jpg">
+                        <h2>What just happened?</h2>
+                        <p class="fragment">Creating a new thread for each request can consume significant computing resources.</p>
+                        <p class="fragment">There are limits on how many threads can be created, imposed by both the JVM and the OS.</p>
+                        <p class="fragment">When you hit this limit, the most likely result is an OutOfMemoryError.</p>
+                        <aside class="notes">
+                          - A lot of active but idle threads can tie up a great deal of memory.<br>
+                          - Having them competing for the CPUs can impose other performance costs as well.
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <div>
+                        <h2>So, no, it is not safe at all</h2>
+                        <p class="fragment">Having nothing but the rate at which users throw HTTP requests at your server to limit thread creation, makes you vulnerable to a malicious user or enough ordinary ones.</p>
+                        <img class="fragment" style="max-height: 250px;" src="images/1/concurrency/computers.jpg">
+                        <aside class="notes">
+                          - Up to a certain point, more threads can improve performance, but beyond that point creating more threads just slows down your application.<br>
+                          - One too many can cause your entire application to crash.
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <div>
+                        <h2>The Executor Framework</h2>
+                        <p class="fragment">java.util.concurrent provides a flexible thread pool implementation.</p>
+                        <p class="fragment">A thread pool is a managed collection of threads that are available to perform tasks.</p>
+                        <img class="fragment" style="max-height: 300px;" src="images/1/concurrency/executor-framework.png">
+                        <aside class="notes">
+                          - Organize your application around the execution of tasks.<br>
+                          - The key abstraction is no longer Thread, which served as both the unit of work and the mechanism for executing it.<br>
+                          - The key abstraction is the unit of work, which is called a task.<br>
+                          - Ideally, tasks are independent activities: work that doesn't depend on the state, result, or side effects of other tasks.<br>
+                          - The general mechanism for executing tasks is the executor service.<br>
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <div>
+                        <h2>Executor Interface</h2>
+                        <p class="fragment">The Executor interface provides a standard means of decoupling task submission from task execution, describing tasks with Runnable.</p>
+                        <pre class="fragment">
+                            <code class="java" data-trim contenteditable>
+public interface Executor {
+
+    /**
+     * Executes the given command at some time in the future.  The command
+     * may execute in a new thread, in a pooled thread, or in the calling
+     * thread, at the discretion of the implementation.
+     */
+    void execute(Runnable command);
+}
+                            </code>
+                        </pre>
+                        <aside class="notes">
+                          - It is based on the producer-consumer pattern, where activities that submit tasks are the producers and the threads that execute them are the consumers.<br>
+                          - Using an Executor is usually the easiest path to implementing a producer-consumer design in your application.
+                        </aside>
+                    </div>
+                </section>
+
+                <section>
+                    <div>
+                        <h2>Why should I use them?</h2>
+                        <p class="fragment">Reusing an existing thread reduces the costs of creating a new one for each request</p>
+                        <p class="fragment">Since most of the time, the worker thread is already there, task execution will not be delayed, improving responsiveness.</p>
+                        <p class="fragment">It gives you access to other actions such as tuning, management, monitoring, logging, or error reporting.</p>
+                    </div>
+                </section>
+
+
+                <section>
+                    <h2>ExecutorService</h2>
+                    <p class="fragment">The ExecutorService interface extends Executor and provides multiple convenience methods for the lifecycle management of the Executor and submission of tasks.</p>
+                    <p class="fragment">An ExecutorService can be shut down, which will cause it to reject new tasks</p>
+                    <img class="fragment" style="max-height: 200px;" src="images/1/concurrency/closed.jpg">
+                    <aside class="notes">
+                        - When you are done using the ExecutorService you should shut it down, so the threads do not keep running.<br>
+                        - For instance, if your application is started via a main() method and your main thread exits your application, the application will keep running if you have an active ExecutorService in your application.<br>
+                        - It may be done graciously, allowing previously submitted tasks to execute before terminating, or abruptly, attempting to stop currently executing tasks.<br>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Creating a new thread pool</h2>
+                    <p class="fragment">You can create a thread pool by calling one of the static factory methods in Executors</p>
+                </section>
+
+                <section>
+                    <h2>Fixed Thread Pool</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Allocate a Pool of 4 fixed threads
+ExecutorService fixedPool = Executors.newFixedThreadPool(4);
+
+// submit 10 tasks to be executed
+for(int i = 0; i &lt; 10; i++){
+    fixedPool.submit(new Runnable());
+}
+
+// shut down the executor after all submitted tasks are finished
+fixedPool.shutdown();
+
+                        </code>
+                    </pre>
+                    <p class="fragment">A fixed-size thread pool creates threads as tasks are submitted, up to the maximum pool size, and then attempts to keep the pool size constant (adding new threads if a thread dies due to an unexpected Exception).</p>
+                </section>
+
+                <section>
+                    <h2>Cached Thread Pool</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Allocate a Pool of an undefined number of threads
+ExecutorService cachedPool = Executors.newCachedThreadPool();
+
+// submit 10 tasks to be executed
+for(int i = 0; i &lt; 10; i++){
+    cachedPool.submit(new Runnable());
+}
+
+// shut down the executor immediately, even if the submitted tasks haven't finished its execution
+cachedPool.shutdownNow();
+                        </code>
+                    </pre>
+                    <p class="fragment">A much more flexible pool, will terminate idle threads when the current size of the pool exceeds the demand for processing, and add new ones when demand increases. Does not impose a size limit to the pool.</p>
+                </section>
+
+                <section>
+                    <h2>Single Thread Executor</h2>
+                    <pre class="fragment">
+                        <code class="java" data-trim contenteditable>
+// Create an executor for a single thread
+ExecutorService singleExecutor = Executors.newSingleThreadExecutor();
+
+// submit 10 tasks to be executed sequentially
+for(int i = 0; i &lt; 10; i++){
+    singleExecutor.submit(new Runnable());
+}
+
+// shut down the executor after all submitted tasks are finished
+singleExecutor.shutdown();
+                        </code>
+                    </pre>
+                    <p class="fragment">Creates a single worker thread to process tasks, replacing it if it dies unexpectedly. Tasks are guaranteed to be processed sequentially according to the order imposed by the task queue (FIFO, LIFO, priority order).</p>
+                </section>
+
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3> The 10000 requests Hell or ... </h3>
+                        <h3 class="fragment"> How my web-server <u>stood up</u> <b>STRONG!</b> </h3>
+                    </div>
+                </section>
+
+
+
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Concurrent chat server with support for commands</h3>
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 15,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

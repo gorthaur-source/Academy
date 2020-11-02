@@ -1,0 +1,147 @@
+/* Get rid of theme img styling */
+.reveal section img {
+    background: none;
+    border: none;
+}
+
+.reveal table td {
+    vertical-align: middle;
+}
+
+.reveal section figure {
+    display: inline-block;
+    margin: auto;
+}
+
+.reveal section .caption {
+    font-size: 12px;
+}
+
+.reveal section .font-medium {
+    font-size: 20px;
+}
+
+.reveal section .logo-small {
+    max-height: 70px;
+    padding: 10px;
+    margin: 0;
+}
+
+.reveal section .logo {
+    max-height: 100px;
+    padding: 10px;
+    margin: 0;
+}
+
+.reveal section .logo-big {
+    max-height: 200px;
+    padding: 10px;
+}
+
+.reveal section .shell {
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.reveal ul {
+    list-style-type: square;
+}
+
+.center {
+    text-align: center;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-center {
+    float: none;
+}
+
+.clearfix {
+    clear: both;
+}
+
+#svg-cvcs {
+    width: 600px;
+    height: 350px;
+    font: 1em source-sans-pro, Source Sans Pro, Helvetica, sans-serif;
+}
+
+div.exercise {
+    border-style: dashed;
+    border-width: medium;
+    padding: 20px;
+}
+
+.reveal section .large {
+    max-height: 500px;
+}
+
+.reveal section .big {
+    max-height: 400px;
+}
+
+.reveal section .medium {
+    max-height: 350px;
+}
+
+.reveal section .small {
+    max-height: 300px;
+}
+
+.reveal section .xsmall {
+    max-height: 270px;
+}
+
+.reveal section .tiny {
+    max-height: 200px;
+}
+
+.reveal section .tight {
+    margin: 0;
+    padding: 0;
+}
+
+.reveal pre.medium {
+    font-size: 0.9rem;
+}
+
+.reveal pre.small {
+    font-size: 0.8rem;
+}
+
+.reveal pre.xsmall {
+    font-size: 0.7rem;
+}
+
+.reveal #metacharacters table {
+    font-size: 1.1rem;
+    width: 80%;
+}
+
+.reveal #metacharacters th {
+    font-size: 0.8rem;
+    text-align: center;
+    border-color: #232323;
+}
+
+.reveal #metacharacters table tr td  {
+    border-color: #232323;
+    font-size: 0.8rem;
+}
+.reveal #metacharacters table tr td:first-child {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.reveal .highlight {
+    color: rgb(214, 85, 85);
+}
+

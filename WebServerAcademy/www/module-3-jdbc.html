@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>&lt;Academia de Código_&gt;</title>
+
+	<meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+	<meta name="keyword" content="academia,código,startup lisboa">
+	<meta name="author" content="<Academia de Código_>">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/ac.css" id="theme">
+	<!-- Use for presentation specific styling -->
+	<link rel="stylesheet" href="css/presentation.css">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<div class="header">
+		<img id="logo" src="logo.png" />
+	</div>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+			<section>
+				<h1>Java Database <br> Connectivity</h1>
+				<p>
+					<small>Created by <a>&lt;Academia de Código_&gt;</a></small>
+				</p>
+			</section>
+
+			<section class="stacked present">
+
+                <section>
+                    <h2>JDBC</h2>
+                    <p class="fragment">Java Database Connectivity is a standard API for Java programs to access database management systems</p>
+                    <img class="fragment" style="max-height: 400px;" src="images/2/jdbc.png" alt="">
+                </section>
+
+				<section>
+                    <h2>Functionality of JDBC</h2>
+                    <p class="fragment">With JDBC we can:</p>
+					<ul>
+						<li class="fragment">Connect to a data source, like a database</li>
+						<li class="fragment">Perform queries and update statements on data</li>
+						<li class="fragment">Retrieve and process the results received</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Connection</h2>
+					<ul>
+						<li class="fragment"><u>DriverManager</u> Connects an application to a data source, which is specified by a database URL;</li>
+						<li class="fragment"><u>Database URL</u> Contains information such as where to search for the database, the name of the database to connect to, and configuration properties.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Database URL</h2>
+					<small>
+						jdbc:mysql://[host][,failoverhost...][:port]/[database][?propertyName1][=propertyValue1]...
+					</small>
+					<ul>
+						<li class="fragment"><u>host:port</u> is the hostname and port number of the computer hosting your database. If not specified, the default values of host and port are 127.0.0.1 and 3306, respectively;</li>
+						<li class="fragment"><u>database</u> is the name of the database to connect to;</li>
+						<li class="fragment"><u>failover</u> is the name of a standby database (MySQL Connector/J supports failover);</li>
+						<li class="fragment"><u>propertyName=propertyValue</u> represents an optional, ampersand-separated list of properties. </li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Connecting to the database</h2>
+					<pre class="fragment" style="font-size: 0.8rem;"><code class="java" data-trim contenteditable>
+public class ConnectionManager {
+
+    private Connection connection = null;
+
+    public Connection getConnection() {
+
+            try {
+                if (connection == null) {
+                    connection = DriverManager.getConnection(dbUrl, user, pass);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Failure to connect to database : " + ex.getMessage());
+            }
+            return connection;
+        }
+
+    public void close() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println("Failure to close database connections: " + ex.getMessage());
+        }
+    }
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<ul>
+						<li class="fragment">A Statement is an interface that represents a SQL statement;</li>
+						<li class="fragment">You execute Statement objects, and they generate ResultSet objects, which represent a database result set.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Queries</h2>
+					<ul>
+						<li class="fragment"><u>execute:</u> use this method if the query could return one or more ResultSet objects (returns true if the first object is a ResultSet; get the ResultSet by calling Statement.getResultSet);</li>
+						<li class="fragment"><u>executeQuery:</u> returns one ResultSet object;</li>
+						<li class="fragment"><u>executeUpdate:</u> returns the number of rows affected by the SQL statement (use with INSERT, DELETE or UPDATE statements).</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Creating and executing statements</h2>
+					<pre class="fragment" style="font-size: 0.8rem;"><code class="java" data-trim contenteditable>
+public class JdbcUserService implements UserService {
+
+    private Connection dbConnection;
+
+    @Override
+    public int count() {
+
+        int result = 0;
+
+        // create a new statement
+        Statement statement = dbConnection.createStatement();
+
+        // create a query
+        String query = "SELECT COUNT(*) FROM user";
+
+        // execute the query
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // get the results
+        if (resultSet.next()) {
+            result = resultSet.getInt(1);
+        }
+
+        return result;
+    }
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>ResultSet Object</h2>
+					<ul>
+						<li class="fragment">We access the data in a <u>ResultSet</u> using a cursor that points to one row of data in the object</li>
+						<li class="fragment">To move the cursor to the next row, we use the method <u>next</u> from the ResultSet class, which returns false when no more rows are available</li>
+						<li class="fragment"><u>Getters</u> are available on the ResultSet class to retrieve data from the current row</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Processing ResultSet Objects</h2>
+					<pre class="fragment"><code class="java" data-trim contenteditable>
+@Override
+public User findByName(String username) {
+
+      // ... connection and statements....
+
+      // execute the query
+      ResultSet resultSet = statement.executeQuery(query);
+
+      // user exists
+      if(resultSet.next()) {
+
+          String usernameValue = resultSet.getString("username");
+          String passwordValue = resultSet.getString("password");
+          String emailValue = resultSet.getString("email");
+
+          user = new User(usernameValue, passwordValue, emailValue);
+      }
+
+      // ....
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Closing the connection</h2>
+					<p class="fragment">
+						It is important to close the connection and statement when no longer needed to release the used resources.
+					</p>
+					<pre class="fragment"><code class="java" data-trim contenteditable>
+@Override
+public User findByName(String username) {
+
+    try {
+
+        ...
+
+        if(statement != null) {
+            statement.close();
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+					</code></pre>
+				</section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Prompt-View Login with MVC, Service Layer and JDBC</h3>
+                        <img style="max-height: 400px;" src="images/2/jdbc/prompt-jdbc.png">
+                    </div>
+                </section>
+
+				<section>
+					<h2>Statement Types</h2>
+					<ul>
+						<li class="fragment"><u>Statement:</u> Used to implement SQL statements;</li>
+						<li class="fragment"><u>PreparedStatement:</u> Used for precompiling SQL statements that might contain input parameters;</li>
+						<li class="fragment"><u>CallableStatement:</u> Used to execute stored procedures that may contain both input and output parameters.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Prepared Statements</h2>
+					<ul>
+						<li class="fragment">It needs a SQL statement when it is created;</li>
+						<li class="fragment">The SQL statement is sent to the DBMS where it is compiled;</li>
+						<li class="fragment">Reduces execution time when executing a statement multiple times.</li>
+						<li class="fragment">Prevents SQL injection attacks</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Creating and executing prepared statements</h2>
+					<pre class="fragment"><code class="java" data-trim contenteditable>
+
+public User getUser(int id, String name) {
+	...
+
+	// create a query
+	String query = "SELECT * FROM table WHERE id=? AND name=?";
+	PreparedStatement statement = dbConnection.prepareStatement(query);
+
+	// set values for the placeholders
+	statement.setInt(1, id);
+	statement.setString(2, name);
+
+	// execute the query
+	ResultSet resultSet = statement.executeQuery();
+
+	...
+
+}
+					</code></pre>
+                    <aside class="notes">
+                        With mysql-connector-java-5.1.41 the correct syntax is:
+                        ResultSet resultSet = statement.executeQuery();
+                    </aside>
+				</section>
+
+                <section>
+                    <img src="images/2/jdbc/sql-injection-logo.jpg" class="logo float-right">
+                    <h2>SQL Injection</h2>
+                    <p class="fragment">Insertion of malicious SQL query via the input data from the client to the application</p>
+                    <img class="fragment" src="images/2/jdbc/sql-injection.gif">
+                    <aside class="notes">
+                        The final -- is used to comment out the rest of your query (-- indicates beginning of sql comment)
+                    </aside>
+                </section>
+
+				<section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Demonstrate that we can login without knowing the password using SQL injection</h3>
+                    </div>
+					<aside class="notes">
+						username should be for eg:  rui' or 1=1 --  (don't forget extra spaces after --)
+					</aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Fix SQL injection vulnerabilities in the JdbcUserService</h3>
+                    </div>
+                </section>
+
+			</section>
+
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 24,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function () {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function () {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function () {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function () {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

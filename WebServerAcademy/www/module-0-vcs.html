@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>&lt;Academia de Código_&gt;</title>
+
+  <meta name="description" content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro.">
+  <meta name="keyword" content="academia,código,startup lisboa">
+  <meta name="author" content="<Academia de Código_>">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/ac.css" id="theme">
+  <!-- Use for presentation specific styling -->
+  <link rel="stylesheet" href="css/presentation.css">
+
+  <!-- Code syntax highlighting -->
+  <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" />
+    </div>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <h1>Version Control Systems</h1>
+                <p>
+                    <small>Created by
+                        <a>&lt;Academia de Código_&gt;</a>
+                    </small>
+                </p>
+            </section>
+
+            <section class="stack present">
+
+                <section>
+                    <h2>Version Control Systems (VCS)</h2>
+                    <p class="fragment">management of changes in documents/code/information</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Ask for VCS experience and knowledge;</li>
+                            <li>Version control is a system that records changes to a file or set of files over time so
+                                that you can recall
+                                specific versions later.</li>
+                            <li>Helps developers on a team working together and also archives a complete history of
+                                their work.</li>
+                            <li>1. We want people working simultaneously;</li>
+                            <li>2. When working at the same time, the changes must not conflict</li>
+                            <li>3. We want to keep a record of every version that ever existed, and who did it, and
+                                when and why</li>
+                            <li>As a resource: https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>No Version Control</h2>
+                    <p>
+                        <div class="logo">
+                            <img class="fragment logo" data-src="images/1/vcs/git_backup_zip.png" />
+                            <img class="fragment logo" data-src="images/1/vcs/git_backup_dropbox.png" />
+                        </div>
+                    </p>
+                    <aside class="notes">
+                        <ol>
+                            <li>Single Developer - Local copies of the project in zip files;</li>
+                            <li>Multiple Developers - Shared project on cloud;</li>
+                            <li>Explain the pros and cons of these approaches and why they are not version control, ie,
+                                cannot detect changes
+                                in documents with sufficient granularity..</li>
+                            <li>Make a bridge for how difficult it is to work in group remotely with files</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>File Locks</h3>
+                    <p class="fragment">File locks allow a developer to lock a file while working on it.</p>
+                    <p class="fragment">e.g. SCCS and RCS</p>
+                    <aside class="notes">
+                        <ol>
+                            <li>Explain the file locks system and the disadvantages;</li>
+                            <li>Bottlenecks: someone is waiting for another developer to stop working on a file;</li>
+                            <li>Manual merges: local copies of a file and manually merging the changes later.</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Centralized Version Control Systems (CVCS)</h3>
+                    <svg id="svg-cvcs"></svg>
+                    <p class="fragment">e.g. CVS, SourceSafe, Perforce, SubVersion</p>
+                    <aside class="notes">
+                        <ol>
+                            <li>Multiple developers are able to work on the same file at the same time. Although
+                                there's locks.</li>
+                            <li>They must merge the changes before committing the file.</li>
+                            <li>To commit you have to be connected to the repo. Offline development becomes hard.</li>
+                            <li>Central repo and clients.</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Distributed Version Control Systems (DVCS)</h3>
+                    <img class="fragment" data-src="images/1/vcs/git_dvcs.png" />
+                    <p class="fragment">e.g. Git, Mercurial, Bazaar, Bitkeeper</p>
+                    <aside class="notes">
+                        <ol>
+                            <li>No central repository.</li>
+                            <li>Offline.</li>
+                            <li>Speed.</li>
+                            <li>Commit/Update and Push/Pull.</li>
+                        </ol>
+                    </aside>
+                </section>
+
+            </section>
+
+            <section class="stack present">
+
+                <section>
+                    <div class="logo">
+                        <img class="logo" data-src="images/1/vcs/git_icon.png" />
+                    </div>
+                    <small>The stupid content tracker</small>
+                    <aside class="notes">
+                        <ol>
+                            <li>Linus Torvalds</li>
+                            <li>Separation of Linux/Bitkeeper</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>First-Time Git Setup</h3>
+                        <pre><code class="bash" data-trim contenteditable>
+# check if git is installed
+$ git version
+
+# set user info and default editor
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+$ git config --global core.editor vim
+
+# dump the git configuration and repo configuration if executed inside repo
+$ git config --list
+
+# getting help
+$ git help config
+      </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ol>
+                            <li>Information used in every commit</li>
+                            <li>--global stores the info in the system to use in all projects</li>
+                            <li>without --global we can override this info on a single project basis</li>
+                            <li>vim will be the program to use when git needs to open a text editor</li>
+                            <li>command to run when asking for help for a given command</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Fake it 'til you make it</h2>
+                    <p>We'll learn what git is and how it works by using it.</p>
+                    <p>Let's start off creating a fictitious project.</p>
+
+                    <pre><code class="bash" data-trim contenteditable>
+# create a new directory for your fake project, and move inside
+$ mkdir my-vegan-restaurant
+$ cd my-vegan-restaurant
+            </code></pre>
+                </section>
+                <section>
+                    <h2>Greetings, my name is git</h2>
+                    <p>It's time for git to know about your project.</p>
+                    <p class="fragment">Programmers would say we're initializing a local git repository inside your
+                        project root directory.</p>
+                    <p class="fragment">All your local repository data is stored inside a directory called .git.<br>It
+                        is created as soon as you initialize
+                        the repository.</p>
+
+                    <pre><code class="bash fragment" data-trim contenteditable>
+# initialize a local git repository
+# (make sure your current directory is your project root directory!)
+$ git init
+
+# list all files (including hidden ones)
+$ ls -a
+            </code></pre>
+
+                    <p class="fragment">
+                        <small>Don't mess with the .git directory!</small>
+                    </p>
+                </section>
+                <section>
+                    <h2>What are we doing here?</h2>
+                    <p class="fragment">By now, you have successfully created a directory for your project and
+                        initialized a local git repository to manage
+                        its versions.</p>
+                    <p class="fragment">Git has nothing to keep track of, because there are no files inside your
+                        project directory.</p>
+                    <p class="fragment">Let's create your first file and check what that means to git.</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# create your restaurant description
+$ echo "We've got the best fresh vegetables all day, every day." &gt; description.txt
+# check your current repository status
+$ git status
+            </code></pre>
+                </section>
+                <section>
+                    <h2>I might want to remember this</h2>
+                    <p>You are happy with the description you've come up with. You'd like to be able to come back to
+                        this one in case
+                        it changes for the worse.</p>
+                    <p class="fragment">This is where you make a new "version". Git calls it a
+                        <i>commit</i>.</p>
+                    <p class="fragment">A commit stores the state of your project (the content of your files) with an
+                        associated date and description.</p>
+                    <p class="fragment">Your commits are kept in a chronologically ordered list, and you are able to
+                        navigate between them (changing files'
+                        content on the fly).</p>
+                </section>
+                <section>
+                    <h2>It's okay to be picky</h2>
+                    <p class="fragment">In most VCS, you would create a commit of your files content now.</p>
+                    <p class="fragment">In git, you must add it to the staging area first. This
+                        <i>area</i> is where you place all the files you want to be
+                        <i>stored</i> in your next commit.</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# add the file to the staging area
+$ git add description.txt
+# check your current repository status again
+$ git status
+          </code></pre>
+
+                    <span class="fragment">
+                        <p>
+                            <small>You may use unix metacharacters for pattern matching.</small>
+                        </p>
+                        <p>
+                            <small>e.g:
+                                <strong>.</strong>,
+                                <strong>*</strong>,
+                                <strong>*.txt</strong>, etc..</small>
+                        </p>
+                    </span>
+                </section>
+
+                <section>
+                    <h3>File Status Lifecycle</h3>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status.png" />
+                    <aside class="notes">
+                        <ol>
+                            <li>GIT is not aware of untracked files</li>
+                            <li>git add will make git aware of files and stage them (ready for commit)</li>
+                            <li>git commit will put the file in unmodified state (git is aware, but no changes from
+                                previous commit)</li>
+                            <li>modified files can be staged with git add</li>
+                            <li>git rm --cached will make git untrack files without deleting</li>
+                        </ol>
+                    </aside>
+                </section>
+
+
+                <section>
+                    <h2>File Lifecycle - Tracked/Untracked</h2>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status_untracked.png" />
+                    <p class="fragment">A file is said to be
+                        <u>tracked</u> if there is evidence of it in the last snapshot in the Local Repository.</p>
+                    <p class="fragment">If no story of it is available (files not yet committed for the first time), we
+                        say the file is
+                        <u>untracked</u>.</p>
+                    <p>
+                        <small class="fragment">The git status report will list these files.</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>File Lifecycle - Add a file</h2>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status_staged.png" />
+                    <p class="fragment">When you add an untracked file, it goes directly to the staging area.</p>
+                    <p>
+                        <small class="fragment">It will be added to the repository during the next commit</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>File Lifecycle - Commit a file</h2>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status_unmodified.png" />
+                    <p class="fragment">When you make a commit, staging area will flush and your files in the working
+                        directory will be in unmodified state.</p>
+                    <p>
+                        <small class="fragment">This means the files in the working directory are the same as the
+                            snapshot in the local repository</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>File Lifecycle - Modify a file</h2>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status_modified.png" />
+                    <p class="fragment">When you change a file in the working directory,<br>it changes
+                        to the modified state</p>
+                    <p>
+                        <small class="fragment">A modified file won't be automatically staged. You must manually do it
+                            (with the add command) if you want it
+                            to.
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>File Lifecycle - Stage a modified file</h2>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status_staged.png" />
+                    <p class="fragment">All the files in modified state can be added to the staging area</p>
+                    <p>
+                        <small class="fragment">and will be ready to be part of the local repository during the next commit</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>File Lifecycle - Remove a file</h2>
+                    <img class="fragment" data-src="images/1/vcs/git_file_status_untracked.png" />
+                    <p class="fragment">A file can be removed from the unmodified state.<br>This action will force the
+                        file to be untracked again</p>
+                    <p>
+                        <small class="fragment">It won't be deleted from the working directory. You can always add it
+                            again, if needed</small>
+                    </p>
+                </section>
+
+
+                <section>
+                    <h2>Ignoring files</h2>
+                    <img class="fragment" width="300px" data-src="images/1/vcs/git_ignored.gif" />
+                    <p class="fragment">We don't want git to track every file in our working directory</p>
+                    <p class="fragment">Do we always remember not to stage those files?</p>
+                    <p class="fragment">Does everyone in the team know what files not to stage?</p>
+                    <p class="fragment">No! So there must be a better way to do this!</p>
+                </section>
+                <section id="ignore">
+                    <h2>.gitignore</h2>
+                    <p class="fragment"><code>.gitignore</code> is a file that tells git<br>which files in the
+                        repository should be ignored</p>
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# create file .gitignore
+$ vim .gitignore
+                       </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Ignore the rat problem in your restaurant</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>This is where it all started</h2>
+                    <p class="fragment">After adding the file to the staging area,<br>you are ready to make your first
+                        commit.</p>
+                    <p class="fragment">The commit needs to be accompanied with a brief description<br>of what has
+                        changed.</p>
+                    <p class="fragment">It will be useful when navigating through hundreds of commits,<br>or when you
+                        want to have an overview of what has
+                        been done in a series of commits.</p>
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# commit your staging area
+$ git commit -m "Initial commit. Add restaurant description."
+# I think you know what this means
+$ git status
+
+           </code></pre>
+                    <small class="fragment">Remember this core concept: commit often, perfect later!</small>
+                </section>
+
+                <section>
+                    <h2>I'm getting the hang of this</h2>
+                    <p class="fragment">Now that you've made your first commit, you are able to safely<br>keep working
+                        on your project.</p>
+                    <p class="fragment">Let's add some menus to our restaurant!</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# create a menus directory
+$ mkdir menus
+# create the fried cuttlefish menu
+$ echo "Bean Burrito | Sweet Potato Fries | Beer -&gt; \$5" &gt; menus/bean-burrito.txt
+# create a new menu you're still not sure about it's price
+$ echo -n "Vegetable Curry | White Rice | Wine -&gt; \$7" &gt; menus/vegetable-curry.txt
+
+
+$ git status
+             </code></pre>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Make a new commit</h3>
+                        <p>It's time for you to create a new commit<br>with both files and a nice description.</p>
+                    </div>
+
+                </section>
+
+                <section>
+                    <h2>A piece of history</h2>
+                    <p class="fragment">The two commits you've made are stored in your local repository and it's
+                        possible to see them in a chronologically
+                        ordered list.</p>
+                    <p class="fragment">A unique key is assigned to each commit that is used as an identifier. You'll
+                        use it whenever you want to reference
+                        a particular commit</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# check your commit list
+$ git log
+             </code></pre>
+                </section>
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>Raise your prices, and commit those changes</h3>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Change is inevitable</h2>
+                    <p>Just like you have changed your prices,<br>a software project keeps evolving over time.</p>
+                    <p class="fragment">As commits store the files content at a point in time, git also provides a tool
+                        to compare file differences across versions.</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# see the differences between two commits on a particular file
+$ git diff COMMIT_ID menus/bean-burrito.txt
+# see the differences between two commits (every file that has changed)
+$ git diff COMMIT_ID
+# see the differences between the last commit and the current project state (excluding what's in the staging area)
+$ git diff
+# see the differences between the last commit and the current staging area
+$ git diff --staged
+          </code></pre>
+
+                </section>
+
+                <section>
+                    <h2>Get into the time machine!</h2>
+
+                    <p class="fragment">Why would we store multiple versions of our files if we didn't want to check
+                        them in the future?</p>
+                    <p class="fragment">The clients didn't like the changes you've made to your prices, and you want to
+                        revert them as soon as possible.</p>
+                    <p class="fragment">Of course you could remember what the prices were in this situation, but
+                        imagine a restaurant with hundreds
+                        of menus that keep changing their price.</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# revert a file to it's state in a particular commit
+$ git checkout COMMIT_ID menus/bean-burrito.txt
+# the file is automatically added to the staging area, you may commit the price reversion
+$ git commit -m "revert burrito menu price"
+# check your log for an overview
+$ git log
+          </code></pre>
+                </section>
+            </section>
+
+            <section class="stack present">
+
+                <section>
+                    <h2>Working with Remotes</h2>
+                    <p>Remote repositories are versions of your project that are hosted on the Internet or in a network
+                        somewhere.</p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Setup a Remote Repository</h3>
+                        <pre><code data-trim contenteditable>
+# Connect to the bootcamp server
+ssh codecadet@codecadets.academiadecodigo.org
+
+# create a new git shared repository
+git init --bare myrepo.git
+
+# logout from the bootcamp server
+exit
+
+# Connect the local and remote repositories
+git remote add origin codecadet@codecadets.academiadecodigo.org:myrepo.git
+            </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ol>
+                            <li>remote repo is for sharing only, not for working</li>
+                            <li>ssh-keygen -C "rui.ferrao@academiadecodigo.org"</li>
+                            <li>scp .ssh/id_rsa.pub bootcamp.academiadecodigo.org:.ssh/authorized_keys</li>
+                        </ol>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Adding Remotes</h3>
+                        <pre><code data-trim contenteditable>
+# cloning a remote
+$ git clone [url]
+
+# adding a new remote repository, origin is a common shortname
+$ git remote add [shortname] [url]
+
+# listing all remotes with urls
+$ git remote -v
+	    </code></pre>
+                    </div>
+                </section>
+
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Pulling and Pushing</h3>
+                        <pre><code data-trim contenteditable>
+# pull a copy of the master branch from the remote repository named origin,
+# and merges it with the current checked out local branch
+$ git pull origin master
+
+# merges current checked out local branch
+# with the remote branch the local branch was created from
+$ git pull
+
+# push data from local checked out branch
+# to master branch in the remote named origin
+$ git push origin master
+
+# push data from local checked out branch
+# to the remote branch the local branch was created from
+$ git push
+
+	    </code></pre>
+                        <p class="fragment">Remember that you won't be able to push<br>if any changes are waiting for
+                            being pulled.</p>
+                    </div>
+                </section>
+
+                <!--<section>
+	    <div class="exercise">
+	      <h2>{ Exercise }</h2>
+	      //TODO add exercise to GIT or challenge.
+	    </div>
+	  </section>
+	</section>-->
+
+            </section>
+
+            <section>
+                <section id="branches">
+                    <h2>Branches</h2>
+                    <img style="max-height: 100px;" src="images/1/vcs/git-branch.svg">
+                    <p class="fragment">In a collaborative environment, it is common for several developers to share
+                        and work on the same source code</p>
+                    <p class="fragment">Branches allow each developer to branch out from the original code base and
+                        isolate their work from others.</p>
+                </section>
+
+                <section>
+                    <h2>Branch Master</h2>
+                    <p class="fragment">Let's start simple</p>
+                    <img class="fragment" src="images/1/vcs/git-branch-01.png">
+                    <p>
+                        <small class="fragment">Let's assume this is our repository history. There's a pointer called
+                            <code>master</code> pointing at commit
+                            <code>a5c3eb</code>
+                        </small>
+                        <small class="fragment">That's all branches are: movable pointers.</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Add a new feature</h2>
+                    <pre><code class="fragment" data-trim contenteditable>
+$ git branch feature
+                        </code></pre>
+                    <img class="fragment" src="images/1/vcs/git-branch-02.png">
+                    <p>
+                        <small class="fragment">We just created another pointer called feature pointing at the exact
+                            same commit.</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Head</h2>
+                    <p class="fragment">Now that we have two different branches pointing to the same commit, how does
+                        Git know in which branch are we working on?</p>
+                    <img class="fragment" src="images/1/vcs/git-branch-03.png">
+                    <p>
+                        <small class="fragment">The HEAD is a special pointer that simply points to the currently
+                            checked out branch or commit.</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Switch to the new branch</h2>
+                    <pre><code class="fragment" data-trim contenteditable>
+$ git checkout feature
+                        </code></pre>
+                    <img class="fragment" src="images/1/vcs/git-branch-04.png">
+                    <p>
+                        <small class="fragment">All that happens is that HEAD is now pointing to
+                            <code>feature</code> instead of
+                            <code>master</code>
+                        </small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Do some work</h2>
+                    <pre><code class="fragment" data-trim contenteditable>
+$ touch anotherFile.txt
+$ git add anotherFile.txt
+$ git commit -m "working hard"
+                        </code></pre>
+                    <img class="fragment" src="images/1/vcs/git-branch-05.png">
+                    <p>
+                        <small class="fragment">We created a new commit
+                            <code>c57e22</code> and the
+                            <code>feature</code> pointer moved on to it.</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>What about the master branch?</h2>
+                    <pre><code class="fragment" data-trim contenteditable>
+$ git checkout master
+                        </code></pre>
+                    <img class="fragment" src="images/1/vcs/git-branch-06.png">
+                    <p>
+                        <small class="fragment">the HEAD pointer changed to
+                            <code>master</code> and the state of the entire working directory<br>changed to what it was
+                            at
+                            <code>a5c3eb</code>.</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Another commit from master</h2>
+                    <pre><code class="fragment bash" data-trim contenteditable>
+$ touch yetAnotherFile.txt
+$ git add yetAnotherFile.txt
+$ git commit -m "minor changes on master"
+                        </code></pre>
+                    <img class="fragment" src="images/1/vcs/git-branch-07.png">
+                    <p>
+                        <small class="fragment">A new commit
+                            <code>3aa2ff</code> appeared and
+                            <code>master</code> moved on to it. At this point our history has diverged.
+                        </small>
+                        <small class="fragment">This is the whole point of branches. <u>They enable parallel evolution
+                                of a code base.</u></small>
+                    </p>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Working with branches</h3>
+                        <pre><code class="bash" data-trim contenteditable>
+# list of branches with the last commit
+$ git branch -v
+
+# create a new branch
+$ git branch feature
+
+# change to the new branch
+$ git checkout feature
+
+# shortcut: create and change to the new branch
+$ git checkout -b feature
+
+# delete a branch
+$ git branch -d feature
+        </code></pre>
+                    </div>
+                </section>
+
+                <section id="merge">
+                    <h2>Merging Branches</h2>
+                    <p class="fragment">The
+                        <code>git merge</code> command lets you take independent branches and integrate them into a
+                        single commit.</p>
+                    <img class="fragment" src="images/1/vcs/git-merge-01.png">
+                </section>
+
+                <section>
+                    <h2>git merge</h2>
+                    <p class="fragment">Git can merge other branches into the current branch.
+                        <br>The current branch will be updated to reflect the merge, but the target branch will be
+                        completely unaffected.</p>
+                    <p class="fragment">This means that
+                        <code>git merge</code> is often used in conjunction with
+                        <code>git checkout</code> for selecting the current branch and
+                        <code>git branch -d</code> for deleting the obsolete target branch.</p>
+
+                    <pre><code class="fragment bash" data-trim contenteditable>
+# create a branch to develop a new feature, and automatically checkout to it
+$ git checkout -b new-feature
+# develop a new feature..
+$ git add .
+$ git commit
+# merge the new branch into master
+$ git checkout master
+$ git merge new-feature
+# delete the newly merged branch
+$ git branch -d new-feature
+            </code></pre>
+                </section>
+
+                <section id="conflicts">
+                    <h2>Conflict resolution</h2>
+                    <p class="fragment">If two developers are working on the same file in parallel,<br>conflicts may
+                        arise.</p>
+                    <p class="fragment">When merging both commits, git is often able to automatically resolve these
+                        conflicts based on a number of factors
+                        (e.g: date),<br>but sometimes the process may require human interaction.</p>
+                </section>
+
+                <section>
+                    <h2>Manual conflict resolution</h2>
+                    <p class="fragment">Git will modify the file to combine the content of both commits, with
+                        separators indicating where the conflicts
+                        are.
+                    </p>
+                    <p class="fragment">Conflicts may be resolved manually by editing the conflicted files
+                        <br>or using third party software for creating the merge commit.</p>
+                    <img class="fragment float-left" src="images/1/vcs/git-conflict-file.png" alt="">
+                    <img width="350" class="fragment float-right" src="images/1/vcs/git-mergetool.png" alt="">
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Hands On }</h2>
+                        <h3>Generate and solve a merge conflict</h3>
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    </div>
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="lib/js/snap.svg-min.js"></script>
+  <script src="js/module1/vcs.js"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            keyboard: true,
+            center: true,
+            help: true,
+            progress: true,
+            slideNumber: true,
+            history: false,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            menu: {
+                // Specifies which side of the presentation the menu will
+                // be shown. Use 'left' or 'right'.
+                side: 'left',
+
+                // Add slide numbers to the titles in the slide list.
+                // Use 'true' or format string (same as reveal.js slide numbers)
+                numbers: false,
+
+                // Hide slides from the menu that do not have a title.
+                // Set to 'true' to only list slides with titles.
+                hideMissingTitles: true,
+
+                // Add markers to the slide titles to indicate the
+                // progress through the presentation
+                markers: false,
+
+                // Specify custom panels to be included in the menu, by
+                // providing an array of objects with 'title', 'icon'
+                // properties, and either a 'src' or 'content' property.
+                custom: false,
+
+                // Specifies the themes that will be available in the themes
+                // menu panel. Set to 'false' to hide themes panel.
+                themes: false,
+
+                // Specifies if the transitions menu panel will be shown.
+                transitions: true,
+
+                // Adds a menu button to the slides to open the menu panel.
+                // Set to 'false' to hide the button.
+                openButton: true,
+
+                // If 'true' allows the slide number in the presentation to
+                // open the menu panel. The reveal.js slideNumber option must
+                // be displayed for this to take effect
+                openSlideNumber: false,
+
+                // If true allows the user to open and navigate the menu using
+                // the keyboard. Standard keyboard interaction with reveal
+                // will be disabled while the menu is open.
+                keyboard: true
+            },
+
+            // Specifies section for limits-app
+            section: 7,
+            // Optional reveal.js plugins
+            dependencies: [
+                {
+                    src: "lib/js/classList.js",
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: "plugin/markdown/marked.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/markdown/markdown.js",
+                    condition: function() {
+                        return !!document.querySelector("[data-markdown]");
+                    }
+                },
+                {
+                    src: "plugin/highlight/highlight.js",
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector("pre code");
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: "plugin/zoom-js/zoom.js",
+                    async: true
+                },
+                {
+                    src: "plugin/notes/notes.js",
+                    async: true
+                },
+                {
+                    src: "plugin/bootcamp/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/hide-slides/index.js",
+                    async: true
+                },
+                {
+                    src: "//cdn.socket.io/socket.io-1.4.5.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/config.js",
+                    async: false
+                },
+                {
+                    src: "plugin/multiplex/client.js",
+                    async: true
+                },
+                {
+                    src: "plugin/multiplex/master.js",
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

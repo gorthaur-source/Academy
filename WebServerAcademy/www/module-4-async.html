@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? 'css/print/pdf.css'
+                : 'css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]> <script src="lib/js/html5shiv.js"></script> <![endif]-->
+    </head>
+
+    <body>
+        <div class="header"><img id="logo" src="logo.png" /></div>
+
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <img src="images/3/async/async.png" class="medium" />
+                    <h2>Asynchronous Programming</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h1 class="clearfix">
+                            Concurrency
+                            <img
+                                src="images/3/deep-dive/concurrency-logo.png"
+                                style="position: relative; bottom: 30px;"
+                                class="logo"
+                            />
+                        </h1>
+                        <p class="fragment">
+                            JavaScript is a single threaded, concurrent, non-blocking and
+                            asynchronous programming language
+                        </p>
+                    </section>
+
+                    <section id="execution-environment">
+                        <img
+                            src="images/3/deep-dive/execution-environment-logo.png"
+                            class="logo float-right"
+                        />
+                        <h2>Execution Environment</h2>
+                        <p class="fragment">
+                            The JavaScript engine runs inside an execution environment <br />such as
+                            the Browser or Node.js
+                        </p>
+                        <img
+                            src="images/3/deep-dive/execution-environment.png"
+                            class="fragment"
+                            style="max-height: 200px;"
+                        />
+                        <p class="fragment">
+                            This environment exposes many APIs to the JavaScript engine, such as the
+                            DOM or XMLHttpRequest (browser) or the Timers (both)
+                        </p>
+                    </section>
+
+                    <section id="concurrency">
+                        <img src="images/3/deep-dive/multi-tasking.png" class="logo float-right" />
+                        <h2>Concurrency Model</h2>
+                        <p class="fragment">
+                            JavaScript has a concurrency model based on an <u>event loop</u>
+                        </p>
+                        <img
+                            src="images/3/deep-dive/concurrency-model.png"
+                            class="fragment small"
+                        />
+                        <small class="fragment"
+                            >This model is quite different from models in other languages like C and
+                            Java <br />where concurrency is achieved mainly via parallel code
+                            execution using threads</small
+                        >
+                        <aside class="notes">
+                            <ul>
+                                <li>This model is sometimes referred to as the reactor pattern</li>
+                                <li>
+                                    It scales better than typical multi-threaded servers for I/O
+                                    bound applications
+                                </li>
+                                <li>
+                                    multi-threading is a superior model for CPU bound applications
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="event-queue">
+                        <img src="images/3/deep-dive/queue.png" class="logo float-right" />
+                        <h2>Event Queue</h2>
+                        <p class="fragment">
+                            Browser APIs expose operations that can run concurrently<br />using a
+                            small number of threads
+                        </p>
+                        <pre class="fragment">
+						<code class="javascript" style="font-size: 0.9em; line-height: 0.9em;" data-trim contenteditable>
+// to be called when data is available
+function ajaxCallback() {
+    console.log(this.responseText);
+}
+
+// to be called every 10 ms
+function timerCallback() {
+    console.log('tick');
+}
+
+setInterval(timerCallback, 10);
+
+var ajax = new XMLHttpRequest();
+ajax.addEventListener('load', ajaxCallback);
+ajax.open('GET', 'https://api.github.com');
+ajax.send();
+						</code>
+					</pre>
+                        <p class="fragment">
+                            Such operations result in a <u>callback function</u> <br />to be
+                            executed by the JavaScript runtime
+                        </p>
+                    </section>
+
+                    <section id="event-loop">
+                        <img
+                            src="images/3/deep-dive/event-loop-logo.png"
+                            class="logo float-right"
+                        />
+                        <h2>Event Loop</h2>
+                        <p class="fragment">
+                            When the Call Stack <u>is empty</u>, the Event Loop takes the first
+                            callback from the Event Queue and places it at the top of the Call Stack
+                            for execution
+                        </p>
+                        <img src="images/3/deep-dive/event-loop.png" class="fragment small" />
+                        <pre class="fragment">
+						<code class="javascript" style="font-size: 0.9em; line-height: 0.9em;" data-trim contenteditable>
+console.log('start');
+
+setTimeout(function() {
+
+    console.log('setTimeout');
+
+}, 0);
+
+console.log('end');
+
+// start, end, setTimeout
+						</code>
+					</pre>
+                        <p class="fragment">
+                            Each iteration of the event loop is called a <b>tick</b>
+                        </p>
+                    </section>
+
+                    <section id="rendering-engine">
+                        <img src="images/3/deep-dive/rendering-logo.png" class="logo float-right" />
+                        <h2>Rendering Engine</h2>
+                        <p class="fragment">
+                            Browsers rendering engine executes <u>in the same thread</u> <br />as
+                            the JavaScript runtime
+                        </p>
+                        <p class="fragment">
+                            Rendering events have <u>higher priority</u> for execution <br />and
+                            will be fetched from the queue first
+                        </p>
+                        <pre class="fragment">
+						<code class="javascript" style="font-size: 0.9em; line-height: 0.9em;" data-trim contenteditable>
+// what happens if we run this?
+while (true) {}
+						</code>
+					</pre>
+                        <p class="fragment">
+                            The event loop will not fetch anything from the queue <br />
+                            <b>if the call stack is not empty</b>
+                        </p>
+                        <aside class="notes">
+                            <b>next:</b> now that we understand how our code is executed by the
+                            runtime environment, lets see how we can write code that will run
+                            concurrently using asynchronous programming, in which closures and
+                            callbacks play a key role
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <img src="images/3/async/callback-logo.png" class="logo float-right" />
+                        <h2>Callback Functions</h2>
+                        <p class="fragment clearfix">
+                            A function is called a <b>Callback</b> when it is passed as an argument
+                            to another function for later execution
+                        </p>
+                        <p class="fragment">
+                            Callbacks can be invoked <u>synchronously</u> or <u>asynchronously</u>:
+                        </p>
+                        <div class="float-left" style="width: 50%">
+                            <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em;">
+// synchronous callback
+function isOdd(num) {
+    return num % 2;
+}
+var numbers = [1, 5, 8, 19, 232, 456];
+var oddNumbers = numbers.filter(isOdd);
+						</code>
+					</pre>
+                            <small class="fragment"
+                                >All <i>isOdd</i> callback invocations end <br />before the invoking
+                                <i>filter</i> function ends</small
+                            >
+                        </div>
+                        <div class="float-right" style="width: 50%">
+                            <pre class="fragment float-right" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em;">
+// asynchronous callback
+function ring() {
+    console.log('RING!');
+}
+
+setInterval(ring, 1000);
+						</code>
+					</pre>
+                            <small class="fragment"
+                                >The invoking <i>setInterval</i> function ends before the
+                                <i>ring</i> callback is invoked</small
+                            >
+                        </div>
+                        <aside class="notes">
+                            <b>next: </b> asynchronous callbacks are what we use to execute code
+                            concurrently. The vast majority of these async operations involve some
+                            sort of I/O (exception for timers..), so let's have another look at the
+                            different ways in which we can handle I/O in our software
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/io-logo.png" class="logo float-right" />
+                        <h2>I/O Handling</h2>
+                        <p class="fragment">
+                            To handle I/O operations, two different API models exists:
+                        </p>
+                        <div class="float-left" style="width: 45%">
+                            <small class="fragment"> <b>Synchronous and Blocking I/O</b> </small>
+                            <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0 ;">
+function doSthWithData(data) { ... }
+var data = getDataFromServer();
+doSthWithData(data);
+doSthElse();
+doSthElse();
+						</code>
+					</pre>
+                            <img
+                                src="images/3/async/sync-io.png"
+                                class="fragment small"
+                                style="margin: 0;"
+                            />
+                        </div>
+                        <div class="float-right" style="width: 45%">
+                            <small class="fragment">
+                                <b>Asynchronous and Non-Blocking I/O</b>
+                            </small>
+                            <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+function doSthWithData(data) { ... }
+getDataFromServer(doSthWithData);
+doSthElse();
+doSthElse();
+							</code>
+						</pre>
+                            <img src="images/3/async/async-io.png" class="fragment small " />
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    callback functions are the basis for async non-blocking i/o in
+                                    JavaScript
+                                </li>
+                            </ul>
+                            <b>next:</b> much of the async programming we do involves exchanging
+                            data between the client and the server. This data payload is mostly
+                            formatted using JSON
+                        </aside>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>HTML Animation</h3>
+                            <img src="images/3/async/async-animation.png" />
+                        </div>
+                    </section>
+
+                    <section id="json">
+                        <img src="images/3/async/json-logo.png" class="logo float-right" />
+                        <h2>JSON</h2>
+                        <p class="fragment clearfix">
+                            JavaScript Object Notation is a lightweight data interchange format
+                        </p>
+                        <small class="fragment"
+                            >It is based on a subset of JavaScript and widely used in web
+                            applications <br />to exchange data
+                            <u>between the client and the server</u>
+                        </small>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+// a plain js object
+var obj = { ticker: 'AAPL', name: 'Apple Inc' };
+
+// serialize an object into a JSON string
+var serObj = JSON.stringify(obj);
+
+console.log(typeof obj); // 'object'
+console.log(typeof serObj); // 'string'
+console.log(serObj); '{"ticker":"AAPL","name":"Apple Inc"}'
+console.log(serObj.name); // undefined
+
+// deserialize a JSON string into an object
+var deSerObj = JSON.parse(serObj);
+
+console.log(typeof deSerObj); // 'object'
+console.log(deSerObj.name); // 'Apple Inc'
+						</code>
+					</pre>
+                        <small class="fragment">
+                            <a target="_blank" href="https://www.json.org/">Introducing JSON</a>
+                        </small>
+                        <aside class="notes">
+                            <b>next:</b> Now that we have the proper way to serialize our data for
+                            transmission, how do we go about actually transmitting it?
+                        </aside>
+                    </section>
+
+                    <section id="ajax">
+                        <img src="images/3/async/ajax-logo.png" class="logo float-right" />
+                        <h2>AJAX with Browser APIs</h2>
+                        <p class="fragment">
+                            Allow loading data from the server without doing a page refresh
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+window.onload = function() {
+
+    fetchData(processResults);
+
+    function fetchData(cb) {
+        var ajax = new XMLHttpRequest();
+        ajax.addEventListener('load', cb);
+        ajax.open('GET', 'https://api.exchangeratesapi.io/latest');
+        ajax.send();
+    }
+
+    // asynchronous callback
+    function processResults(event) {
+
+    var results = JSON.parse(event.currentTarget.response);
+    var usd = results.rates.USD;
+
+    var container = document.getElementById('rate');
+    container.innerHTML = '<p>1 EUR = ' + usd + ' USD</p>';
+  }
+}
+						</code>
+					</pre>
+                        <aside class="notes">
+                            <b>next: </b> browser APIs for ajax might not be consistent across every
+                            browser or browser versions. jQuery can help with an easier and
+                            consistent API, not only for DOM interactions, but also for doing AJAX
+                            requests
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/jquery-ajax-logo.png" class="logo float-right" />
+                        <h2>AJAX with jQuery</h2>
+                        <p class="fragment">
+                            The jQuery library has a full suite of Ajax capabilities available,
+                            which <u>wrap around</u> the browser XMLHttpRequest
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+$(document).ready(function() {
+
+    fetchData(processResults);
+
+    function fetchData(cb) {
+        $.ajax({
+            url: 'https://api.exchangeratesapi.io/latest',
+            type: 'GET',
+            dataType: 'json',
+            success: cb
+        });
+    }
+
+    // asynchronous callback
+    function processResults(results) {
+        var usd = results.rates.USD;
+        var container = $('#rate');
+        container.html('<p>1 EUR = ' + usd + ' USD</p>');
+    }
+});
+						</code>
+					</pre>
+                        <small class="fragment"
+                            >When using jQuery, there is <u>no need</u> to deserialize the JSON
+                            response</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b>Some of the assumptions that we had when learning how to
+                            deal with errors in JavaScript do not hold true inside async callbacks.
+                            A new way of error handling is required.
+                        </aside>
+                    </section>
+
+                    <section id="async-error">
+                        <img src="images/3/async/async-error.png" class="logo float-right" />
+                        <h2>Async Error Handling</h2>
+                        <p class="fragment">
+                            Handling errors inside async callbacks present some challenges
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                Stack trace loses all the callback invocation context
+                            </li>
+                            <li class="fragment">
+                                It is not possible to catch async callback error
+                            </li>
+                        </ul>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+/* this pattern DOES NOT work! */
+
+try {
+    fetchDataAsync(processResults);
+} catch (error) {
+    // error handling logic
+    console.log('Caught Error: ', error);
+}
+
+function fetchDataAsync(cb) { ... }
+
+function processResults(results) {
+    throw Error('something went wrong');
+}
+						</code>
+					</pre>
+                        <small class="fragment"
+                            >Application will blow up with <b>Uncaught Error</b> and
+                            <i>fetchData</i> call will <u>not be present</u> on stack trace</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b>so how exactly do we handle errors inside async callbacks?
+                        </aside>
+                    </section>
+
+                    <section id="cb-error">
+                        <img
+                            src="images/3/async/callback-error-logo.png"
+                            class="logo float-right"
+                        />
+                        <h2>Callback Error Handling</h2>
+                        <p class="fragment">
+                            A separate <u>error callback</u> or <u>callback error argument</u> is
+                            required <br />to pass error details from inside an async callback
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+fetchData(processResults);
+
+function fetchData(cb) {
+    $.ajax({
+        url: 'https://api.exchangeratesapi.io/latest',
+        type: 'GET',
+        dataType: 'json',
+        success: function(results) { cb(null, results) },
+        error: function(request, statusText, httpError) { cb(httpError || statusText) }
+    });
+}
+
+function processResults(error, data) {
+    if (error) {
+        // error handling
+    }
+    // process data
+}
+						</code>
+					</pre>
+                        <p class="fragment">
+                            <u>Error first</u> callbacks are a well know and established pattern
+                        </p>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>AJAX with Error Handling</h3>
+                            <img
+                                class="float-left"
+                                style="width: 48%"
+                                src="images/3/async/ajax-ok.png"
+                            />
+                            <img
+                                class="float-right"
+                                style="width: 48%"
+                                src="images/3/async/ajax-error.png"
+                            />
+                            <p class="clearfix"></p>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <img src="images/3/async/distress-logo.png" class="logo float-right" />
+                        <h2>Callback Woes</h2>
+                        <p class="fragment">
+                            Two very important aspects of synchronous code <br />for function
+                            composition are:
+                        </p>
+                        <small>
+                            <ol>
+                                <li class="fragment">
+                                    They <u>return values</u> - feed the return value from one
+                                    function straight into the next
+                                </li>
+                                <li class="fragment">
+                                    They <u>throw exceptions</u> - if one function fails, all others
+                                    in the chain are bypassed until error is handled
+                                </li>
+                            </ol>
+                        </small>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+try {
+
+    var result = func3(func2(funct1()));
+
+} catch (error) {
+    // handle error
+}
+						</code>
+					</pre>
+                        <p class="fragment">
+                            With async callbacks we have <u>lost both aspects</u>!
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>Return values are not ready on time</li>
+                                <li>Nobody is there to catch exceptions</li>
+                                <li>Composition of return values involves nested callbacks</li>
+                                <li>
+                                    Composition of errors involves passing them up the chain
+                                    manually
+                                </li>
+                            </ul>
+                            <b>next: </b>as a consequence of this, async callback flows are hard..
+                        </aside>
+                    </section>
+
+                    <section id="headache">
+                        <img src="images/3/async/headache.png" class="logo float-right" />
+                        <h2>Callback Headaches</h2>
+                        <div class="float-left clearfix" style="width: 48%">
+                            <small class="fragment">Callbacks in sequence are hard...</small>
+                            <pre class="fragment" style="margin: 0;">
+							<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+var result;
+
+f1(function(err, data) {
+
+    if (err) {
+        // handle error
+        return;
+    }
+
+    result = data;
+});
+
+var f1 = function(cb) {
+    f2(function(error, result) {
+        if (error) { cb(error); }
+        f3(function(error, result) {
+            cb(null, result);
+        });
+    })
+});
+							</code>
+						</pre>
+                        </div>
+                        <div class="float-right" style="width: 48%">
+                            <small class="fragment">In parallel they are harder...</small>
+                            <pre class="fragment" style="margin: 0; line-height: 1em;">
+							<code class="javascript" data-trim contenteditable style="font-size: 0.60em; margin:0;">
+var result, temporaryResults = [];
+f1(function(err, result) {
+    if (err) { /* process error */ return; }
+    finished(result);
+});
+
+f2(function(err, result) {
+    if (err) { /* process error */ return; }
+    finished(result);
+});
+
+f3(function(err, result) {
+    if (err) { /* process error */ return; }
+    finished(result);
+});
+
+function finished(data) {
+    temporaryResults.push(data);
+    if (temporaryResults.length === 3) {
+        result = temporaryResults[0] +
+            temporaryResults[1] +
+            temporaryResults[2] ;
+    }
+}
+							</code>
+						</pre>
+                        </div>
+                        <small class="fragment clearfix tight" style="display: block;"
+                            >And errors <u>so easy</u> to lose!!!</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b>lets talk about an abstraction created on top of async
+                            callbacks that helps us address this
+                        </aside>
+                    </section>
+
+                    <section id="promise">
+                        <img src="images/3/async/promise-logo.png" class="logo float-right" />
+                        <h2>Promises</h2>
+                        <p class="fragment">
+                            An abstraction built on top of callbacks that gives us back <br />
+                            <u>functional composition</u> and <u>error bubbling</u> in the async
+                            world
+                        </p>
+                        <p class="fragment">
+                            A Promise object represents the <u>eventual completion</u> (or failure)
+                            <br />of an asynchronous operation and its resulting value
+                        </p>
+                        <div class="float-left" style="width: 48%;">
+                            <small class="fragment">Easy in sequence...</small>
+                            <pre class="fragment" style="margin: 0;">
+								<code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+var result = f1()
+    .then(f2)
+    .then(f3)
+    .catch(function(error) {
+        // handle error
+    });
+
+								</code>
+							</pre>
+                        </div>
+                        <div class="float-left" style="width: 48%">
+                            <small class="fragment">Equally as easy in parallel...</small>
+                            <pre class="fragment" style="margin: 0;">
+								<code class="javascript" data-trim contenteditable style="font-size: 0.65em; margin:0;">
+var result = Promise.all([f1(), f2(), f3()])
+    .then(function(results) {
+        return results[0] + results[1] + results[2];
+    }).catch(function(error) {
+       // handle error
+    });
+								</code>
+							</pre>
+                        </div>
+                        <p class="fragment">
+                            Un-invert the chain of responsibility: <br />instead of calling a passed
+                            callback, return a promise
+                        </p>
+                        <aside class="notes"><b>next: </b> so how do we create a promise?</aside>
+                    </section>
+
+                    <section id="creating-promises">
+                        <img
+                            src="images/3/async/promise-creation-logo.png"
+                            class="logo float-right"
+                        />
+                        <h2>Creating Promises</h2>
+                        <p class="fragment clearfix">
+                            A promise can be created using a constructor function, <br />after which
+                            it will be in one of the following states:
+                        </p>
+                        <small>
+                            <ol>
+                                <li class="fragment">
+                                    <u>pending</u> - initial state, neither fulfilled nor rejected
+                                </li>
+                                <li class="fragment">
+                                    <u>fulfilled</u> - the operation completed successfully
+                                </li>
+                                <li class="fragment"><u>rejected</u> - the operation failed</li>
+                            </ol>
+                        </small>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable style="margin:0;">
+var promise = new Promise(function(resolve, reject) {
+
+    // do some async action, promise is in pending state
+
+    if (/* everything ok */) {
+
+        resolve(value); // promise will be resolved
+
+    } else {
+
+        reject(Error(value)); // promise will be rejected
+
+  }
+});
+						</code>
+					</pre>
+                        <small class="fragment tight"
+                            >The constructor receives an <u>async function callback</u> with methods
+                            for resolving or rejecting the promise</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b> creating promises is useful for wrapping old async APIs,
+                            but most of the times we will work with APIs that already return a
+                            promise. Created by us or not, how do we use it?
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/promise-state-logo.png" class="logo float-right" />
+                        <h2>Using Promises</h2>
+                        <p class="fragment">
+                            A promise is a an <i>thenable</i> object to which callbacks can be
+                            attached
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+						<code class="javascript" data-trim contenteditable>
+promise.then(function(result) {
+
+	// do something with the result
+
+}, function(err) {
+
+	// handle the error
+});
+						</code>
+					</pre>
+                        <p class="fragment">
+                            <b>then</b> takes two optional arguments, <br />a callback for success
+                            and another for failure
+                        </p>
+                        <small class="fragment"
+                            >Once a promise has been settled, its state can not be altered, but we
+                            can always add additional handlers to it</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b> many times we want to chain two async operations together.
+                            For this, we can chain promises
+                        </aside>
+                    </section>
+
+                    <section id="chaining">
+                        <img src="images/3/async/chain-logo.png" class="logo float-right" />
+                        <h2>Promise Chaining</h2>
+                        <p class="fragment">
+                            Promises can be chained together to transform values or <br />run
+                            additional async actions one after another
+                        </p>
+                        <pre class="fragment">
+						<code class="javascript" data-trim contenteditable>
+var promise = doSomethingAsync();
+
+promise
+    .then(doSomethingElseAsync)
+    .then(doSomethingElseAsync)
+    .then(doSomethingElseAsync, handleSpecificError)
+    .then(doSomethingElseAsync)
+    .then(doSomethingElseAsync)
+    .catch(handleGenericError)
+    .finally(alwaysRunThis);
+						</code>
+					</pre>
+                        <small class="fragment"
+                            >Both <u>specific</u> and <u>generic</u> error handling callbacks can be
+                            attached to promises</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b> what about parallel execution flows?
+                        </aside>
+                    </section>
+
+                    <section id="parallel">
+                        <img src="images/3/async/promise-all-logo.png" class="logo float-right" />
+                        <h2>Parallel Execution</h2>
+                        <p class="fragment">
+                            Parallel promises fulfills when <u>all of the promises</u> have
+                            fulfilled or <br />
+                            rejects <u>as soon as one</u> of the promises rejects
+                        </p>
+                        <pre class="fragment">
+						<code class="javascript" data-trim contenteditable>
+var promise = Promise.all([
+    doSomethingAsync(),
+    doSomethingAsync(),
+    doSomethingAsync().catch(handleSpecificError,
+    doSomethingAsync(),
+    ]).catch(handleGenericError);
+						</code>
+					</pre>
+                        <p class="fragment">
+                            It fulfills with an <u>array of the values</u> <br />and rejects with
+                            the <u>reason from the first</u> promise that rejected
+                        </p>
+                        <aside class="notes">
+                            <b>next: </b> we have seen how to execute async actions in sequence or
+                            in parallel, but promises also support redundant actions
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/redundant-logo.png" class="logo float-right" />
+                        <h2>Redundant Promises</h2>
+                        <p class="fragment">
+                            It is possible to settle a promise <u>as soon as one</u> of many
+                            promises settles
+                        </p>
+                        <pre class="fragment">
+							<code class="javascript" data-trim contenteditable>
+var promise = Promise.race([
+    doSomethingAsync(),
+    doSomethingAsync(),
+    doSomethingAsync().catch(handleSpecificError,
+    doSomethingAsync(),
+    ]).catch(handleGenericError);
+							</code>
+						</pre>
+                        <p class="fragment">Used when interested only in one of the results</p>
+                        <aside class="notes">
+                            <ul>
+                                <li>send 2 xhr requests, which ever gets served first is used</li>
+                            </ul>
+                        </aside>
+                        <aside class="notes">
+                            <b>next: </b> what about more advanced async flows, which combine
+                            sequence and parallel executions?
+                        </aside>
+                    </section>
+
+                    <section id="promise-flow">
+                        <img src="images/3/async/promise-flow-logo.png" class="logo float-right" />
+                        <h2>Advanced Async Flows</h2>
+                        <p class="fragment clearfix">
+                            Complex async flows can be achieved with promises
+                        </p>
+                        <img
+                            class="float-left medium fragment"
+                            src="images/3/async/promise-flow.png"
+                            alt=""
+                        />
+                        <pre class="fragment float-right" style="width: 45%">
+						<code class="javascript" data-trim contenteditable>
+asyncThing1().then(function() {
+    return asyncThing2();
+}).then(function() {
+    return asyncThing3();
+}).catch(function(err) {
+    return asyncRecovery1();
+}).then(function() {
+    return asyncThing4();
+}, function(err) {
+    return asyncRecovery2();
+}).catch(function(err) {
+    console.log("Don't worry about it");
+}).then(function() {
+    console.log("All done!");
+});
+						</code>
+					</pre>
+                        <p class="fragment clearfix">
+                            <span style="color: blue;">blue</span> lines for promises that fulfill
+                            or <span style="color: red;">red</span> for ones that reject
+                        </p>
+                        <aside class="notes">
+                            <b>next: </b> There are some circumstances where a function might
+                            perform an async action or a sync one depending on some condition. To
+                            maintain a consistent async API we can create promises which are already
+                            settled with a value
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/promise-results.png" class="logo float-right" />
+                        <h2>Settled Promises</h2>
+                        <p class="fragment clearfix">
+                            It is possible to create settled promises <br />without actually
+                            performing any async action
+                        </p>
+                        <pre class="fragment tight">
+							<code class="javascript" data-trim contenteditable>
+function doSomethingAsync() {
+
+    if (/* some condition */) {
+        return new Promise(asyncCallback); // do async operation
+    }
+
+    // make sure we always return a promise, even if no async code has been executed
+
+    if (/* other condition */) {
+        return Promise.resolve(value);
+    } else {
+        return Promise.reject(new Error());
+    }
+}
+
+doSomethingAsync().then(onSuccess).catch(onError);
+							</code>
+						</pre>
+                        <small class="fragment tight">
+                            Since a promise is always returned, we can use then and catch callback
+                            methods <br />
+                            on the promise return value, which will <u>always</u> be executed in the
+                            next event loop tick
+                        </small>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>AJAX with Promises</h3>
+                            <p>Use the browser <u>fetch</u>api to order a list of GitHub users by score</p>
+                            <img
+                                class="float-left"
+                                style="width: 48%"
+                                src="images/3/async/github-score-ok.png"
+                            />
+                            <img
+                                class="float-right"
+                                style="width: 48%"
+                                src="images/3/async/github-score-error.png"
+                            />
+                            <small>https://developer.github.com/v3/search/</small>
+                            <p class="clearfix"></p>
+                         </div>
+                    </section>
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>
+                                <span style="color: green;"> <b>&#10003;</b> </span>&nbsp;&nbsp;you
+                                should get a green check mark on all tests
+                            </h3>
+                            <img class="big" src="images/3/async/jsasync-tests.png" />
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="spa">
+                        <img src="images/3/async/web-2.0.png" class="logo float-right" />
+                        <h2>Single Page Application</h2>
+                        <p class="fragment clearfix">
+                            Modern web application development paradigm made possible by AJAX and
+                            asynchronous programming
+                        </p>
+                        <img
+                            src="images/3/async/spa.webp"
+                            style="max-width: 40%; max-height: 250px;"
+                            class="float-left fragment"
+                        />
+                        <ul style="max-width: 60%;" class="float-right">
+                            <li class="fragment">
+                                Only <u>one web page</u> is requested from the server
+                            </li>
+                            <li class="fragment">
+                                Each new page is <u>generated dynamically</u> through JavaScript DOM
+                                manipulation
+                            </li>
+                            <li class="fragment">
+                                Code is typically organized in separate JavaScript <u>modules</u>
+                            </li>
+                            <li class="fragment">
+                                A <u>Router</u> module allows the creation and usage of multiple
+                                page URLs without page reloading
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="modules">
+                        <img src="images/3/async/js-modules.png" class="logo float-right" />
+                        <h2>JavaScript Modules</h2>
+                        <p class="fragment clearfix">
+                            A module is a reusable piece of code that encapsulates implementation
+                            details and exposes public methods so it can be used by other code
+                        </p>
+
+                        <p class="fragment">Modules should allow us to:</p>
+                        <ul>
+                            <li class="fragment">abstract code</li>
+                            <li class="fragment">encapsulate code</li>
+                            <li class="fragment">code reuse</li>
+                            <li class="fragment">manage code dependencies</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/modular-js.jpg" class="logo float-right" />
+                        <h2>Modular JavaScript</h2>
+                        <p class="fragment clearfix">
+                            Before ES6, no official syntax to define modules existed and developers
+                            were often times forced to choose between:
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                code their entire application in a single file, which results in a
+                                <u>big mess</u>
+                            </li>
+                            <li class="fragment">
+                                expose on the global scope some variation of the module pattern
+                                which often lead to <u>namespace collisions</u>
+                            </li>
+                        </ul>
+                        <pre class="fragment" style="margin: 0;">
+                            <code class="html" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+&lt;!--
+    developers used to write a bunch of script tags with implicit dependencies that had to be
+    manually ordered and pray for no ordering issues or collisions on the global scope...
+--&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.google-analytics.com/analytics.js"&gt;&lt;/script&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;script src="js/module1.js"&gt;&lt;/script&gt;
+&lt;script src="js/module2.js"&gt;&lt;/script&gt;
+&lt;script src="js/module3.js"&gt;&lt;/script&gt;
+                            </code>
+                    </pre>
+                        <aside class="notes">
+                            each script tag will pollute the global scope with at least on object,
+                            which could potentially cause a namespace collision
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/module-system.png" class="logo float-right" />
+                        <h2>Module Systems</h2>
+                        <p class="fragment clearfix">
+                            Various formats to define modules in JavaScript were developed,
+                            minimizing the lack of native JavaScript module syntax
+                        </p>
+                        <p class="fragment">
+                            Some of the most widely adapted and well known formats are:
+                        </p>
+                        <small
+                            ><ul>
+                                <li class="fragment">
+                                    <u>AMD</u> - Asynchronous Module Definition, an asynchronous
+                                    module system for the browser
+                                </li>
+                                <li class="fragment">
+                                    <u>CommonJS</u> - Popular system used by Node, can be used in
+                                    the browser with tools such as Browserify or Webpack
+                                </li>
+                                <li class="fragment">
+                                    <u>UMD</u> - Universal Module Definition, supports both AMD and
+                                    CommonJS modules, both in Node and the Browser
+                                </li>
+                                <li class="fragment">
+                                    <u>ES6 modules</u> - native javascript modules, supported on
+                                    newer browsers only
+                                </li>
+                            </ul></small
+                        >
+                    </section>
+
+                    <section id="amd">
+                        <img src="images/3/async/amd-lego.png" class="logo float-right" />
+                        <h2>Asynchronous Module Definition (AMD)</h2>
+                        <p class="fragment clearfix">
+                            A mechanism for defining and asynchronously loading modules and their
+                            respective dependencies for the browser environment
+                        </p>
+                        <img
+                            src="images/3/async/amd.png"
+                            style="max-width: 35%;"
+                            class="fragment float-left"
+                        />
+                        <pre class="fragment float-right" style="margin: 0; max-width: 60%;">
+                        <code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+// Filename: foo.js
+
+// Calling define with a dependency array and a factory function
+define(['jquery'], function($) {
+
+    // Methods
+    function myFunc() {
+        // do something with jquery here...
+    };
+
+    // Exposed public methods
+    return myFunc;
+});
+                        </code>
+                    </pre>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/requirejs.png" class="logo float-right" />
+                        <h2>RequireJS</h2>
+                        <p class="fragment clearfix">
+                            JavaScript file and module loader supporting the AMD standard
+                        </p>
+                        <p class="fragment">
+                            A JavaScript application consisting of multiple modules and their
+                            respective dependencies can be bootstraped with a single script tag:
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+                        <code class="html" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My Web App&lt;/title&gt;
+
+        &lt;!-- data-main attribute tells require.js to load the js/app.js file after require.js loads --&gt;
+        &lt;script data-main="js/app"
+                   src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;My Web App&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code>
+                    </pre>
+                    </section>
+
+                    <section>
+                        <img src="images/3/async/requirejs-config.png" class="logo float-right" />
+                        <h2>RequireJS Configuration</h2>
+                        <p class="fragment clearfix">
+                            A global <u>require</u> object is exposed, which can be used to
+                            configure RequireJS and bootstrap the application
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+                        <code class="javascript" data-trim contenteditable style="font-size: 0.8em; margin:0;">
+// Filename: js/app.js
+require.config({
+
+    // path to fetch all our modules from
+    baseUrl: '/js/app'
+});
+
+// set the main module as our application entry point
+require(['main'], function() {
+    console.log('All modules finished loading');
+});
+
+// Filename: js/main.js
+require(['router'], function(router) {
+
+    $(document).ready(function() {
+        console.log('dom is ready');
+        router.start();
+    });
+});
+                        </code>
+                    </pre>
+                    </section>
+
+                    <section id="routing">
+                        <img src="images/3/async/routing.png" class="logo float-right" />
+                        <h2>Client Side Routing</h2>
+                        <p class="fragment clearfix">
+                            The SPA model breaks the browser page history navigation using the
+                            Forward/Back buttons
+                        </p>
+                        <p class="fragment">
+                            Both <b>Hash-based routing</b> and the <b>HTML5 History API</b> enable
+                            modifications to the page URL <u>without reloading the page</u>,
+                            allowing creation of separate URLs for different views
+                        </p>
+                    </section>
+
+                    <section id="hash">
+                        <img src="images/3/async/hash-logo.png" class="logo float-right" />
+                        <h2>Hash-based Routing</h2>
+                        <p class="fragment clearfix">
+                            URLs can contain some data prepended with a
+                            <b>#</b> character<br /><span class="fragment"
+                                >This data is called the <u>hash fragment</u></span
+                            >
+                        </p>
+                        <img src="images/3/async/hash-route.png" class="fragment" />
+                        <p class="fragment">
+                            Changes in the hash fragment never trigger a page reload and can be used
+                            for storing the state of the client application
+                        </p>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Hands On }</h2>
+                            <h3>Simple JavaScript Router</h3>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>MarvelApp</h3>
+                            <img
+                                class="float-left small"
+                                style="width: 48%"
+                                src="images/3/async/marvel-app-search.png"
+                            />
+                            <img
+                                class="float-right small"
+                                style="width: 48%"
+                                src="images/3/async/marvel-app-details.png"
+                            />
+                            <p class="clearfix"></p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            /*jshint -W117 */
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                boundaries: {
+                    section: 34,
+                    bootcamps: [
+                        {
+                            name: 'lisboa',
+                            id: 2
+                        },
+                        {
+                            name: 'fundao',
+                            id: 1
+                        },
+                        {
+                            name: 'terceira',
+                            id: 3
+                        },
+                        {
+                            name: 'porto',
+                            id: 5
+                        }
+                    ]
+                },
+                width: 1024,
+                overview: true,
+
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom,
+
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: 'left',
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+                // Specifies section for limits-app
+                section: 34,
+                // Optional reveal.js plugins
+                dependencies: [
+                    {
+                        src: 'lib/js/classList.js',
+                        condition: function() {
+                            return !document.body.classList;
+                        }
+                    },
+                    {
+                        src: 'plugin/markdown/marked.js',
+                        condition: function() {
+                            return !!document.querySelector('[data-markdown]');
+                        }
+                    },
+                    {
+                        src: 'plugin/markdown/markdown.js',
+                        condition: function() {
+                            return !!document.querySelector('[data-markdown]');
+                        }
+                    },
+                    {
+                        src: 'plugin/highlight/highlight.js',
+                        async: true,
+                        condition: function() {
+                            return !!document.querySelector('pre code');
+                        },
+                        callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+                    {
+                        src: 'plugin/zoom-js/zoom.js',
+                        async: true
+                    },
+                    {
+                        src: 'plugin/notes/notes.js',
+                        async: true
+                    },
+                    {
+                        src: 'plugin/bootcamp/config.js',
+                        async: false
+                    },
+                    {
+                        src: 'plugin/hide-slides/index.js',
+                        async: true
+                    },
+                    {
+                        src: '//cdn.socket.io/socket.io-1.4.5.js',
+                        async: true
+                    },
+                    {
+                        src: 'plugin/multiplex/config.js',
+                        async: false
+                    },
+                    {
+                        src: 'plugin/multiplex/client.js',
+                        async: true
+                    },
+                    {
+                        src: 'plugin/multiplex/master.js',
+                        async: true
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>&lt;Academia de Código_&gt;</title>
+
+        <meta
+            name="description"
+            content="Código Ergo Sum: Ajudar Portugal a surfar o tsunami digital, ensinando crianças e jovens licenciados no desemprego a programar um presente com futuro."
+        />
+        <meta name="keyword" content="academia,código,startup lisboa" />
+        <meta name="author" content="<Academia de Código_>" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+        />
+
+        <link rel="stylesheet" href="css/reveal.css" />
+        <link rel="stylesheet" href="css/theme/ac.css" id="theme" />
+        <!-- Use for presentation specific styling -->
+        <link rel="stylesheet" href="css/presentation.css" />
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? "css/print/pdf.css"
+                : "css/print/paper.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="header">
+            <img id="logo" src="logo.png" />
+        </div>
+
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <section>
+                        <h1>JavaScript Fundamentals</h1>
+                    </section>
+
+                    <section id="what-js">
+                        <img
+                            src="images/3/js-fundamentals/js-logo.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h1>What is JavaScript?</h1>
+                        <p class="fragment">
+                            High-level, dynamic, weakly typed, prototype-based,
+                            multi-paradigm, and interpreted programming language
+                        </p>
+                        <p class="fragment">...but more importantly...</p>
+                        <h3 class="fragment">
+                            It is the native programming language for the
+                            <u>web</u>
+                        </h3>
+                    </section>
+
+                    <section id="js">
+                        <h2>JavaScript</h2>
+                        <p class="fragment">
+                            High-level, dynamic, weakly typed, prototype-based,
+                            multi-paradigm, and interpreted programming language
+                        </p>
+                        <small class="fragment">
+                            <b
+                                >It is deployed as source code and it is an
+                                <u>essential part of the Web platform</u>
+                            </b>
+                        </small>
+                        <img
+                            class="fragment small"
+                            src="images/3/js-fundamentals/js-influence.png"
+                        />
+                        <p>
+                            <small class="fragment"
+                                >AKA ECMAScript, ECMA-262, ES</small
+                            >
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    dynamic - add/remove object props, object
+                                    literal notation
+                                </li>
+                                <li>multi-paradigm - functional and oop</li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    java - syntax, primitives and objects, Date
+                                    ported from java.util.Date
+                                </li>
+                                <li>awk - gave the function keyword</li>
+                                <li>
+                                    scheme - first class functions and closures
+                                </li>
+                                <li>
+                                    self - prototypal inheritance object
+                                    orientation
+                                </li>
+                                <li>
+                                    perl/python - handling of strings, arrays
+                                    and regex
+                                </li>
+                                <li>
+                                    hypertalk - influenced integration in
+                                    browsers
+                                </li>
+                            </ul>
+                            <b>next:</b> So what is this ECMAScript thing?
+                        </aside>
+                    </section>
+
+                    <section id="ecma">
+                        <img
+                            src="images/3/js-fundamentals/js-engines.png"
+                            class="logo float-right"
+                            alt=""
+                        />
+                        <h2>ECMAScript</h2>
+                        <br />
+                        <img
+                            class="fragment xsmall tight float-left"
+                            style="margin-right: 25px; margin-top: 25px;"
+                            src="images/3/js-fundamentals/js-implementations.png"
+                        />
+                        <p class="fragment">
+                            International standard that defines JavaScript
+                        </p>
+                        <p class="fragment">
+                            Developed by Technical Committee 39 (TC-39)
+                        </p>
+                        <p class="fragment">
+                            Issued as Ecma-262 and ISO/IEC 16262
+                        </p>
+                        <br />
+                        <small class="fragment">
+                            <b
+                                >Each browser vendor provides its own
+                                implementations of the standard!</b
+                            >
+                        </small>
+                        <small class="clearfix float-left fragment"
+                            >JavaScript Engines</small
+                        >
+                        <aside class="notes">
+                            <b>next:</b> TC-39 develops the language with a lot
+                            of care and regard for backwards compatibility,
+                            making sure new features always built on top of the
+                            old ones. If that was not the case, browser venders
+                            could very easily break and fragment the web.
+                        </aside>
+                    </section>
+
+                    <section id="jshistory">
+                        <h2>A Brief History of JavaScript</h2>
+                        <p class="fragment">
+                            The first JavaScript engine was created in
+                            <u>10 days by Brendan Eich</u> at Netscape for the
+                            Netscape Navigator Web browser
+                        </p>
+                        <small class="fragment"
+                            >The engine was code-named SpiderMonkey, implemented
+                            in C and still used in Firefox newest Quantum
+                            browser</small
+                        >
+                        <img
+                            class="fragment"
+                            src="images/3/js-fundamentals/js-timeline.png"
+                        />
+                        <br />
+                        <br />
+                        <div class="fragment">
+                            <a
+                                target="_blank"
+                                href="https://brendaneich.com/2010/07/a-brief-history-of-javascript"
+                            >
+                                <small
+                                    >A Brief History of JavaScript, by Brendan
+                                    Eich</small
+                                >
+                            </a>
+                            <br />
+                            <a
+                                target="_blank"
+                                href="https://auth0.com/blog/a-brief-history-of-javascript"
+                            >
+                                <small
+                                    >A Brief History of JavaScript, Auth0</small
+                                >
+                            </a>
+                        </div>
+                        <aside class="notes">
+                            <b>next:</b>In Dec 1995, Netscape introduced an
+                            implementation of Server Side JavaScript called
+                            LiveWire, which was included in the Netscape
+                            Enterprise Server product. Other players attempted
+                            the same, Microsoft supported the same thing on
+                            their ASP product with the JScript variant, Adobe
+                            had ColdFusion and Java had (and still has..) Rhino,
+                            which compiles to java bytecode. These
+                            implementations of JavaScript on the server side
+                            never really got mainstream, until node.js came to
+                            be in 2009.
+                        </aside>
+                    </section>
+
+                    <section id="node">
+                        <img
+                            src="images/3/js-fundamentals/node-logo.png"
+                            class="logo"
+                            alt=""
+                        />
+                        <p class="fragment">
+                            Platform built on Chrome's V8 JavaScript engine and
+                            using an event-driven, non-blocking I/O model that
+                            makes it lightweight and efficient
+                        </p>
+                        <img
+                            class="fragment xsmall float-right"
+                            style="background-color: grey"
+                            src="images/3/js-fundamentals/node-arch.png"
+                        />
+                        <small>
+                            <ul>
+                                <br />
+                                <br />
+                                <br />
+                                <li class="fragment">
+                                    Designed to build fast and scalable network
+                                    applications
+                                </li>
+                                <br />
+                                <li class="fragment">
+                                    HTTP is a first class citizen, making it
+                                    well suited <br />
+                                    for the foundation of a web library or
+                                    framework
+                                </li>
+                                <br />
+                                <li class="fragment">
+                                    Node.js package ecosystem, npm, is the
+                                    largest ecosystem <br />
+                                    of open source libraries in the world
+                                </li>
+                            </ul>
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    when switching to node.js, various companies
+                                    found themselves able to respond to larger
+                                    numbers of web requests with fewer servers
+                                    and serve content more rapidly
+                                </li>
+                                <li>
+                                    we will see what is behind this
+                                    high-scalability of node.js when we discuss
+                                    the javascript concurrency model
+                                </li>
+                            </ul>
+                            <b>next:</b>running JavaScript on the Server and on
+                            the Client is great, but JavaScript got even
+                            further..
+                        </aside>
+                    </section>
+
+                    <section id="everywhere">
+                        <h2>Ubiquitous JavaScript</h2>
+                        <br />
+                        <img
+                            src="images/3/js-fundamentals/js-everywhere.png"
+                            class="logo-big float-right fragment"
+                            alt=""
+                        />
+                        <ul>
+                            <li class="fragment">Client Side</li>
+                            <li class="fragment">Server Side</li>
+                            <li class="fragment">Mobile</li>
+                            <li class="fragment">Desktop</li>
+                            <li class="fragment">Database</li>
+                            <li class="fragment">Web APIs</li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    mobile - frameworks like cordova, ionic,
+                                    react native, nativescript, etc., map js to
+                                    native
+                                </li>
+                                <li>
+                                    desktop - with electron you can create
+                                    desktop app in js
+                                </li>
+                                <li>
+                                    database - NoSQL databases like MongoDB or
+                                    CouchDB use Javascript natively
+                                </li>
+                                <li>
+                                    web apis - REST APIs have ditched XML for
+                                    JSON
+                                </li>
+                            </ul>
+                            <b>next:</b> despite its popularity and momentum,
+                            JavaScript is still criticized by many due to its
+                            quirks
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            class="logo float-right"
+                            src="images/3/js-fundamentals/js-good.jpg"
+                        />
+                        <h2>The Good and the Bad</h2>
+                        <table>
+                            <tr>
+                                <th>Good Stuff</th>
+                                <th>Bad Stuff</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li class="fragment">
+                                            First-class Functions
+                                        </li>
+                                        <li class="fragment">Closures</li>
+                                        <li class="fragment">Prototypes</li>
+                                        <li class="fragment">
+                                            Object literals
+                                        </li>
+                                        <li class="fragment">Array literals</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li class="fragment">
+                                            Implied globals
+                                        </li>
+                                        <li class="fragment">Function scope</li>
+                                        <li class="fragment">
+                                            Complex this binding
+                                        </li>
+                                        <li class="fragment">
+                                            Aggressive type coercion
+                                        </li>
+                                        <li class="fragment">Falsy values</li>
+                                        <li class="fragment">
+                                            ... many more ...
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    first class functions allows functional
+                                    programming style
+                                </li>
+                                <li>
+                                    closures allow access to arbitrary data in
+                                    callback functions without passing it as
+                                    arguments, facilitates async programming
+                                </li>
+                                <li>
+                                    prototypes make for a very flexible type of
+                                    inheritance
+                                </li>
+                                <li>
+                                    literals make it so easy to create objects
+                                    and arrays on the fly, making the code so
+                                    expressive
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    global state is hard to keep track of,
+                                    implied globals are evil
+                                </li>
+                                <li>
+                                    function hoisting can be a source of bugs
+                                    and makes the code ugly and harder to read
+                                </li>
+                                <li>
+                                    5 different ways to set the this argument
+                                </li>
+                                <li>
+                                    very aggressive type coercion can be source
+                                    of bugs
+                                </li>
+                                <li>
+                                    falsy values can be source of bugs if we do
+                                    not understand very well what we are doing
+                                </li>
+                            </ul>
+                            <b>next:</b>you have to avoid the bad and stick to
+                            the good. One word to classify js is expressive
+                        </aside>
+                    </section>
+
+                    <section id="expressive">
+                        <h2>JavaScript is incredibly expressive</h2>
+                        <blockquote>
+                            The expressiveness of JavaScript provides an
+                            enormous amount of power. Even though the language
+                            lacks certain useful built-in features, its
+                            flexibility allows you to add them yourself...
+                            <small
+                                >Ross Harmes, Dustin Diaz in Pro JavaScript
+                                Design Patterns</small
+                            >
+                        </blockquote>
+                        <img
+                            class="fragment small"
+                            src="images/3/js-fundamentals/js-expressive.png"
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>intuitively readable constructs</li>
+                                <li>lack of boilerplate code</li>
+                            </ul>
+                            <b>next:</b>will finish with an example of how
+                            powerful and flexible can javascript be
+                        </aside>
+                    </section>
+
+                    <section id="jsfuck">
+                        <img
+                            src="images/3/js-fundamentals/jsfuck-logo.png"
+                            class="logo float-right"
+                            alt=""
+                        />
+                        <h2>JS Fu*k</h2>
+                        <p class="fragment">
+                            It is possible to write any JavaScript code with
+                            only 6 chars
+                        </p>
+                        <img
+                            class="fragment large"
+                            src="images/3/js-fundamentals/jsfuck.png"
+                        />
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    not really sure if this is a good or a bad
+                                    thing...
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="ide">
+                        <div class="exercise">
+                            <h2>{ Exercise }</h2>
+                            <h3>Development Environment Setup</h3>
+                            <div>
+                                <img
+                                    class="small float-right"
+                                    src="images/3/js-fundamentals/ide.png"
+                                />
+                                <br />
+                                <br />
+                                <a
+                                    target="_blank"
+                                    href="https://www.google.com/chrome/"
+                                    >Google Chrome</a
+                                >
+                                <br />
+                                <br />
+                                <a
+                                    target="_blank"
+                                    href="https://code.visualstudio.com/"
+                                    >Visual Studio Code</a
+                                >
+                                <br />
+                                <br />
+                                <a target="_blank" href="https://nodejs.org"
+                                    >Node.js</a
+                                >
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    some packages/extensions can make your life
+                                    much easier
+                                </li>
+                                <li>
+                                    vscode go live extension for live-reload
+                                </li>
+                                <li>nodemon for node.js live reload</li>
+                            </ul>
+                            <b>GOAL:</b> make sure we are ready to go!
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <img
+                            src="images/3/js-fundamentals/es5.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h1 class="clearfix">Introduction to JavaScript</h1>
+                        <p class="fragment">
+                            Many people start writing JavaScript <br />
+                            without taking the time to learn the language...
+                        </p>
+                        <p class="fragment">
+                            ... but when
+                            <img
+                                src="images/3/js-fundamentals/shit-fan.png"
+                                alt=""
+                                class="logo"
+                                style="position: relative; top: 30px;"
+                            />
+                            you need to know what you are doing!
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    ECMAScript 6 is a superset of ECMAScript 5
+                                </li>
+                                <li>
+                                    Several ES6 features replace ES5 features,
+                                    but still use them as their foundations
+                                </li>
+                            </ul>
+                            <b>next: </b>lets understand what we are doing and
+                            start by looking at the available data types
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img
+                            src="images/3/js-fundamentals/data-types.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h1 class="clearfix">Data Types</h1>
+                    </section>
+
+                    <section id="primitives">
+                        <img
+                            src="images/3/js-fundamentals/primitives.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Primitive Data Types</h2>
+                        <p class="fragment">
+                            A primitive value is an immutable piece of data that
+                            is represented directly at the lowest level of the
+                            language implementation
+                        </p>
+                        <small>
+                            <table
+                                class="fragment"
+                                style="background-color: #161616;"
+                            >
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Values</th>
+                                    <th>Size</th>
+                                    <th>Comments</th>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>Undefined</td>
+                                    <td>undefined</td>
+                                    <td></td>
+                                    <td>
+                                        used when a variable has not been
+                                        assigned a value
+                                    </td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>Null</td>
+                                    <td>null</td>
+                                    <td></td>
+                                    <td>
+                                        value that represents the intentional
+                                        absence of any object value
+                                    </td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>Boolean</td>
+                                    <td>true, false</td>
+                                    <td>1 bit</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>String</td>
+                                    <td>'A/C', &quot;A/C&quot;</td>
+                                    <td>length * 2 bytes</td>
+                                    <td>
+                                        finite ordered sequence of zero or more
+                                        16-bit unsigned integer representing
+                                        UTF-16 characters
+                                    </td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>Number</td>
+                                    <td>
+                                        -1.5, -1, -0, 0, +0, 1, 1.5
+                                        <br />-1.7976931348623157e+308 <br />
+                                        1.7976931348623157e+308 <br />
+                                        -Infinity, +Infinity, NaN
+                                    </td>
+                                    <td>8 bytes</td>
+                                    <td>
+                                        double precision 64-bit binary format
+                                        IEEE 754-2008 value plus <br />
+                                        additional symbolic values for infinity
+                                        and not-a-number
+                                    </td>
+                                </tr>
+                            </table>
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    undefined vs null - null is used to show
+                                    intent on a variable of not referencing any
+                                    object any more.. they should really be
+                                    merged, as any var can be set to null or
+                                    undefined explicitly
+                                </li>
+                                <li>
+                                    typeof null returns object just because the
+                                    spec says so (its supposed to be assigned to
+                                    variables working with objects, but it is a
+                                    primitive...)
+                                </li>
+                                <li>
+                                    string manipulation always returns new
+                                    strings, leaving the original ones
+                                    unaffected (immutability)
+                                </li>
+                                <li>
+                                    No specific type for integers, only one
+                                    number type (unlike most other prog lang)
+                                </li>
+                                <li>
+                                    0 is equivalent to +0, -0 and +0 are only
+                                    different if dividing by 0, resulting in
+                                    -Infinity or +Infinity
+                                </li>
+                            </ul>
+                            <b>next: </b>besides primitive values, JavaScript
+                            provides more complex types called objects
+                        </aside>
+                    </section>
+
+                    <section id="fp">
+                        <div class="exercise">
+                            <h2>{ Add-On }</h2>
+                            <img
+                                src="images/3/js-fundamentals/fp.png"
+                                alt=""
+                                class="small"
+                            />
+                            <small>
+                                <a
+                                    target="_blank"
+                                    href="http://floating-point-gui.de/"
+                                    >What Every Programmer Should Know About
+                                    Floating-Point Arithmetic</a
+                                >
+                            </small>
+                            <small>
+                                <a
+                                    target="_blank"
+                                    href="http://adripofjavascript.com/blog/drips/avoiding-problems-with-decimal-math-in-javascript.html"
+                                    >Avoiding Problems with Decimal Math in
+                                    JavaScript</a
+                                >
+                            </small>
+                            <small>
+                                <a
+                                    target="_blank"
+                                    href="http://openexchangerates.github.io/accounting.js/"
+                                    >JavaScript library providing simple and
+                                    advanced number, money and currency
+                                    formatting</a
+                                >
+                            </small>
+                            <small>
+                                <a
+                                    target="_blank"
+                                    href="http://mikemcl.github.io/bignumber.js/"
+                                    >A JavaScript library for
+                                    arbitrary-precision arithmetic</a
+                                >
+                            </small>
+                        </div>
+                        <aside class="notes">
+                            <b>GOAL:</b> Get familiarized with the problems
+                            relating to floating point arithmetic and how to get
+                            around them
+                        </aside>
+                    </section>
+
+                    <section id="objects">
+                        <img
+                            src="images/3/js-fundamentals/objects.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Objects</h2>
+                        <p class="fragment clearfix">
+                            A JavaScript object can be looked at as a simple
+                            collection of Properties
+                        </p>
+                        <p class="fragment">
+                            <small
+                                >Objects implement a <b>Map</b> Data Structure,
+                                where properties are containers that hold
+                                primitives or other objects</small
+                            >
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+// object literal syntax makes creating objects extremely easy
+var obj = { a: 42, b: true, c: { } };
+
+obj.a; // 42
+obj.b; // true
+obj['c']; // {}
+
+var key = 'd';
+obj[key] = 'AC';
+obj.d; // 'AC';
+                        </code>
+                                </pre>
+                        <p class="fragment">
+                            Everything that is not a primitive is an Object
+                        </p>
+                        <small class="fragment">
+                            <u>This includes Functions and Arrays!</u>
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Object literal syntax makes it extremely
+                                    easy to create objects on the fly
+                                </li>
+                                <li>
+                                    Latter own we will see other ways we can use
+                                    to create more complex objects in javascript
+                                </li>
+                            </ul>
+                            <b>next: </b> access to object properties can
+                            somehow be configured through attributes
+                        </aside>
+                    </section>
+
+                    <section id="property">
+                        <img
+                            src="images/3/js-fundamentals/key-lock.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Property Access</h2>
+                        <p class="fragment clearfix">
+                            Objects can have properties read or written to, as
+                            well as new ones added or removed dynamically
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+// 1. Dot syntax
+newObject.someKey = "Hello"; // create a new property if non existent and update value
+var value = newObject.someKey; // get property value
+
+// 2. Square bracket syntax
+newObject["someKey"] = "Hello"; //  create a new property if non existent and update value
+var value = newObject["someKey"]; // get properties
+
+// 3. Object.defineProperty (ES5 only)
+// create a new property if non existent and update attributes and value
+Object.defineProperty( newObject, "someKey", {
+    value: "for more control of the property's behavior",
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+
+// 4. delete property
+delete newObject.someKey;
+                                    </code>
+                                </pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    In ES5, each property has attributes that
+                                    determines how they can be used
+                                </li>
+                                <li>
+                                    messing with property attributes is not a
+                                    common thing to do, in js we embrace the
+                                    default publicly accessible model of object
+                                    properties and use other techniques to
+                                    restrict access to data
+                                </li>
+                            </ul>
+                            <b>next: </b>the way in which primitives and objects
+                            are stored in memory is substantially different
+                        </aside>
+                    </section>
+
+                    <section id="references">
+                        <h2>References</h2>
+                        <p class="fragment" style="font-size: 0.9em">
+                            Variables can hold the <u>actual values</u> of
+                            primitives types or
+                            <u>references to objects</u>
+                        </p>
+                        <pre class="fragment" style="margin: 0;">
+                                    <code class="javascript" data-trim contenteditable>
+var a = 80; // a holds the value of 80
+var b = a; // b holds the value of 80
+
+var a = { n: 80 }; // a holds a reference to the object
+var b = a; // b holds a reference to the same object
+
+console.log(a.n); // 80
+console.log(b.n); // 80
+a.n = 100;
+console.log(a.n); // 100
+console.log(b.n); // 100
+                                    </code>
+                                </pre>
+                        <img
+                            src="images/3/js-fundamentals/value-type.png"
+                            alt=""
+                            class="fragment float-left"
+                            style="margin: 0;"
+                        />
+                        <img
+                            src="images/3/js-fundamentals/reference-type.png"
+                            alt=""
+                            class="fragment float-right"
+                            style="margin: 0;"
+                        />
+                        <aside class="notes">
+                            <b>next: </b>js typing system is dynamic, lets see
+                            what this means
+                        </aside>
+                    </section>
+
+                    <section id="typing">
+                        <img
+                            src="images/3/js-fundamentals/dynamic-types.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Dynamic Typing</h2>
+                        <p class="fragment clearfix">
+                            The type of a variable does not have to be declared
+                            and can be reassigned to a different type
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+var bootcamp = 10; // bootcamp is a Number
+bootcamp = 'Lisbon'; // bootcamp is now a String
+bootcamp = true; // bootcamp is now a Boolean
+bootcamp = { edition: 10, city: 'Lisbon', running: true }; // bootcamp is now an Object
+                                    </code>
+                                </pre>
+                        <p class="fragment">
+                            <i>typeof</i> operator returns a string indicating
+                            the type of the value
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+console.log(typeof bootcamp); // prints object to the console
+                                    </code>
+                                </pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    In a static type system, we guarantee at
+                                    compile time that all program executions
+                                    will be free of type errors
+                                </li>
+                                <li>
+                                    In a dynamic type system, we wait until
+                                    runtime and throw an exception if a type
+                                    error is detected
+                                </li>
+                                <li>
+                                    Dynamic Typing is a double-edged sword.. It
+                                    provides lots of flexibility, but sometimes
+                                    at great cost...
+                                </li>
+                                <li>
+                                    A static type system allows for much better
+                                    development tools, and is less bug prone
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="notes">
+                            <b>next: </b>not only the typing system is dynamic,
+                            but js also performs type coercion
+                        </aside>
+                    </section>
+
+                    <section id="coercion">
+                        <img
+                            src="images/3/js-fundamentals/fish.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Type Coercion</h2>
+                        <p class="fragment clearfix">
+                            Converting a value from one type to another is
+                            called casting when done explicitly, and
+                            <u>coercion when done implicitly</u>
+                        </p>
+                        <p class="fragment">
+                            Type Coercion in JavaScript can be magical...
+                            <br />
+                            <span class="fragment"
+                                >... but also evil, confusing and sometimes a
+                                really bad idea!</span
+                            >
+                        </p>
+                        <div class="float-left" style="width: 48%;">
+                            <pre class="fragment" style="margin: 0;">
+                                        <code class="javascript" data-trim contenteditable>
+1 + 2 + '3'; // '33'
+1 + '2' + 3; // '123'
+1 + true + true + false; // 3
+true + '1'; // 'true1'
+1 + ''; / '1'
+'5' * 3; // 15
+'5' * false; // 0
+2 / '2'; // 1
+2 / 'a'; // NaN
+2 + null + ''; // '2'
+null + true; // 1
+                                        </code>
+                                    </pre>
+                        </div>
+                        <div class="float-right" style="width: 48%;">
+                            <pre class="fragment" style="margin: 0;">
+                                        <code class="javascript" data-trim contenteditable>
+// All of these evaluate to 'true'!
+console.log(false == '0');
+console.log(null == undefined);
+console.log(" \t\r\n" == 0);
+console.log('' == 0);
+console.log([] == 0);
+console.log(0 == '0');
+
+// And these do too!
+if ({}) // ...
+if ([]) // ...
+                                        </code>
+                                    </pre>
+                        </div>
+                        <small class="fragment"
+                            >Equality and coercion generates confusion!</small
+                        >
+                        <small class="fragment"
+                            >Coercion <u>can be disabled</u> on a boolean
+                            expression with the <b>===</b> and
+                            <b>!==</b> operators</small
+                        >
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    it is due to js type coercion system that we
+                                    can code anything with just 6 chars
+                                </li>
+                            </ul>
+                            <b>next: </b>Now that we think we know all about
+                            types, lets have a look at what are functions in JS
+                            and how they work
+                        </aside>
+                    </section>
+
+                    <section id="functions">
+                        <img
+                            src="images/3/js-fundamentals/function.png"
+                            alt=""
+                            class="logo-big float-right tight"
+                        />
+                        <h2>Function Declarations</h2>
+                        <p class="fragment" style="font-size: 0.8em;">
+                            In JavaScript,
+                            <u>functions are ordinary objects</u> with the
+                            <br />
+                            additional capability of being callable
+                        </p>
+                        <div
+                            class="float-left"
+                            style="max-width: 48%; margin: 10px;"
+                        >
+                            <pre class="fragment clearfix" style="margin: 0;">
+                                    <code class="javascript" data-trim contenteditable>
+function foo() {
+    return 42;
+}
+
+function baz() {}
+
+foo.bar = "hello world";
+
+typeof foo;     // "function"
+typeof foo();   // "number"
+typeof foo.bar; // "string"
+typeof baz();	// "undefined"
+                                    </code>
+                                </pre>
+                        <ul>
+                            <li class="fragment">
+                                <small>The typeof operator
+                                    <u>doesn't always</u> returns the type</small>
+                            </li>
+                            <li class="fragment">
+                                <small>A function that returns nothing is equivalent to
+                                    <u>returning undefined</u>
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="float-right" style="max-width: 48%; margin: 10px;">
+                        <pre class="fragment clearfix" style="margin: 0;">
+                                        <code class="javascript" data-trim contenteditable>
+function foo(a) {
+    console.log(a + 1, arguments);
+    return 2;
+}
+
+// Can you guess what is the output?
+foo();
+foo(1);
+foo('ey');
+var b = foo(1,2,3);
+console.log(b);
+                                        </code>
+                                    </pre>
+                            <ul>
+                                <li class="fragment">
+                                    <small>
+                                        <u>No checking is done</u> on either the
+                                        type or the number of arguments passed
+                                        into a function</small
+                                    >
+                                </li>
+                                <li class="fragment">
+                                    <small
+                                        >The variable arguments is an
+                                        <u>array like object</u> containing all
+                                        passed arguments into the
+                                        function</small
+                                    >
+                                </li>
+                                <li class="fragment">
+                                    <small
+                                        >All argument passing
+                                        <u>is done by value</u>, you can
+                                        pass-by-value a primitive or a reference
+                                        to an object</small
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    one might thinking it is strange that typeof
+                                    returns 'function' when function is not an
+                                    object...
+                                </li>
+                                <li>
+                                    typeof not always returns the type... typeof
+                                    returns whatever the ECMA-262 spec says it
+                                    should return.
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>foo(); // NaN {}</li>
+                                <li>foo(1); // 2 { '0': '1' }</li>
+                                <li>foo('ey'); // ey1 { '0': 'ey' }</li>
+                                <li>
+                                    var b = foo(1,2,3); // 2 { '0': 1, '1': 2,
+                                    '2': 3 }
+                                </li>
+                                <li>console.log(b); // 2</li>
+                            </ul>
+                            <b>next: </b> for every function call, a special
+                            arguments object is created and available inside the
+                            function body
+                        </aside>
+                    </section>
+
+                    <section id="arguments">
+                        <img
+                            src="images/3/js-fundamentals/parameters.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Function Arguments</h2>
+                        <p class="fragment">
+                            The <u>arguments object</u> is a local variable
+                            available within all functions
+                        </p>
+                        <p class="fragment">
+                            Contains a numerical property for each argument
+                            passed to the function
+                        </p>
+                        <pre class="fragment clearfix" style="margin: 0;">
+                                    <code class="javascript" data-trim contenteditable>
+function myFunction(x, y) {
+    console.log(x);
+    console.log(y);
+
+    for (var i = 0; i &lt; arguments.length; i++) {
+        console.log(arguments[i]);
+    }
+
+    console.log(arguments['0']);
+    console.log(arguments.0);
+}
+
+// what will happen?
+myFunction(1, 2, 3, 4);
+                                    </code>
+                                </pre>
+                        <small class="fragment"
+                            >The arguments object contains additional properties
+                            such as <b>length</b> or
+                            <b>callee</b>
+                        </small>
+                        <br />
+                        <small class="fragment"
+                            >The arguments object <b>IS NOT</b> an array!</small
+                        >
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    ES6 arrow functions do not have the
+                                    arguments object
+                                </li>
+                            </ul>
+                            <b>next: </b>primitives in JavaScript seem like they
+                            come with lots of functions attached (eg: 'a
+                            string'.toUpperCase()) how can that be?
+                        </aside>
+                    </section>
+
+                    <section id="wrappers">
+                        <img
+                            src="images/3/js-fundamentals/wrapper.gif"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Primitive Wrappers</h2>
+                        <p class="fragment clearfix">
+                            Primitives are immutable and have no methods, but
+                            JavaScript has the <u>Boolean</u>, <u>Number</u> and
+                            <u>String</u> objects that wrap around primitive
+                            values
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+var str = 'this is a string primitive';
+typeof str; // 'string'
+
+// due to implicit coercion of string to a wrapper object,
+// we can invoke methods on it
+console.log(str.toUpperCase());
+
+// the new operator is the way to instantiate wrapper objects
+var strObject = new String(str);
+typeof strObject; // 'object'
+
+var strPrimitive = strObject.valueOf();
+typeof strPrimitive; // 'string'
+                                    </code>
+                                </pre>
+                        <p class="fragment">
+                            Wrapper objects are
+                            <u>immediately destroyed</u> after their use!
+                        </p>
+                        <aside class="notes">
+                            <b>next: </b> besides the typing system, another
+                            very important concept to understand in JS is how
+                            does the variable scoping works
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="scope">
+                        <img
+                            src="images/3/js-fundamentals/scope.png"
+                            alt=""
+                            class="medium"
+                        />
+                        <p class="fragment">
+                            The region of the program where a binding between
+                            <br />
+                            a variable and its name is valid
+                        </p>
+                        <aside class="notes">
+                            <b>next: </b>JS has what is known as lexical scope
+                            (also known as static)
+                        </aside>
+                    </section>
+
+                    <section id="lexical-scope">
+                        <img
+                            src="images/3/js-fundamentals/lexical.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Lexical Scope</h2>
+                        <p class="fragment clearfix">
+                            JavaScript has support for static lexical scope only
+                            <br />
+                            <span class="fragment"
+                                >Variable scope depends on its position on the
+                                source code</span
+                            >
+                        </p>
+                        <pre class="fragment">
+                                        <code class="javascript" data-trim contenteditable>
+// a global definition of animal
+var animal = 'Horse, ';
+
+function mammal() {
+
+    // a local animal variable
+    var animal = 'Dog, ';
+
+}
+
+mammal();
+animal += ' a mammal with four legs';
+
+// Dog or Horse?
+console.log(animal);
+                                        </code>
+                                    </pre>
+                        <p class="fragment">
+                            Variables in JavaScript can have either
+                            <u>Global</u> or <u>Local</u> scope
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    lexical - to do with words, also known as
+                                    static scope, as the scope depends on the
+                                    location of the variable on the source code
+                                </li>
+                                <li>
+                                    on dynamic scopes, the scope does not depend
+                                    on where a function was declared, but where
+                                    it was called from
+                                </li>
+                                <li>
+                                    javascript does not have dynamic scope,
+                                    although the binding of the this variable
+                                    closely relates the dynamic scope mechanism
+                                </li>
+                            </ul>
+                            <b>next: </b>Lets have a look at these two types of
+                            scopes in more detail
+                        </aside>
+                    </section>
+
+                    <section id="local-scope">
+                        <img
+                            src="images/3/js-fundamentals/local-scope.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Local Scope</h2>
+                        <p class="fragment clearfix">
+                            Local variables exist only within the
+                            <u>function body</u>
+                            <br />
+                            of which they are defined
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+console.log(dog); // bad things will happen
+
+function animal() {
+
+    var dog = 'Dob'; // accessible inside animal function only
+
+}
+                                    </code>
+                                </pre>
+                        <small class="fragment"
+                            >Please note that contrary to other programming
+                            languages, ES5 local scope is bound to
+                            <u>function and not block!</u>
+                        </small>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    the block scope causes some interesting
+                                    behaviors, to be explored in a few slides
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="global-scope">
+                        <img
+                            src="images/3/js-fundamentals/global-scope.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Global Scope</h2>
+                        <p class="fragment">
+                            Global variables live through the entire execution
+                            of the runtime <br />and can be accessed and altered
+                            in any scope
+                        </p>
+
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+var dog = 'Dog'; // global definition of dog
+
+function animals() {
+
+    console.log(dog); // access to global dog
+    badAnimal();
+    console.log(rabbit); // access to global rabbit
+}
+
+function badAnimal() {
+
+    rabbit = 'rabbit'; // rabbit leaked into the global scope
+}
+                                    </code>
+                                </pre>
+                    <p>
+                        <small class="fragment">Variables defined outside a function or without the
+                            <b>var</b> keyword will
+                            <u>be bound to the Global Scope</u>
+                        </small>
+                    </p>
+                    <small class="fragment">ES5 contains a
+                        <u>strict mode</u>, causing the interpreter to check and scream at evil things such as
+                        <u>implicit globals</u>
+                    </small>
+                    <aside class="notes">
+                        <ul>
+                            <li>It is generally a bad idea to run without strict mode on, unless you want to run code written
+                                a decade ago..</li>
+                        </ul>
+                        <b>next: </b> some objects are already available to the programmer in the global scope
+                    </aside>
+                </section>
+
+                <section id="globals">
+                    <img src="images/3/js-fundamentals/globals.png" alt="" class="logo float-right">
+                    <h2>Global Objects</h2>
+                    <p class="fragment clearfix">Contrary to other programming languages, JavaScript does not have a standard library, but it does come
+                        with a few built in objects available</p>
+                    <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+var date2 = new Date('December 17, 2017 03:24:00');
+var date 1 = new Date.now(); // time in milliseconds since the UNIX epoch
+
+var func = new Function('console.log(\'A/C\');');
+func(); // prints A/C in the console
+
+new RegExp('^a.*c$').test('abasdfffc'); // true
+/^a.*c$/.test('abasdfffc'); // equivalent literal notation
+
+Math.ceil(Math.random() * 10); // calculates a random number between 1 and 10
+
+var obj1 = { a: '1'};
+var obj2 = { b: '2'};
+var merge = Object.assign(obj1, obj2); // { a: '1', b: '2'}
+                                    </code>
+                                </pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    we are just talking about the ecma standard,
+                                    the runtime environment (browser, node,
+                                    etc.) will have additional built in objects
+                                    available
+                                </li>
+                                <li>epoch = 1 Jan 1970 00:00:00 UTC</li>
+                                <li>
+                                    notice Math does not require the new
+                                    keyword... we will see the difference to
+                                    objects that require new latter on..
+                                </li>
+                            </ul>
+                            <b>next: </b>function scope introduces an
+                            interesting behavior called hoisting
+                        </aside>
+                    </section>
+
+                    <section id="hoisting">
+                        <img
+                            src="images/3/js-fundamentals/grua.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Hoisting</h2>
+                        <p class="fragment clearfix">
+                            Variable declarations are always processed before
+                            any code is executed
+                        </p>
+                        <div class="float-left" style="width: 48%;">
+                            <pre class="fragment">
+                                        <code class="javascript" data-trim contenteditable>
+// global animal variable
+var animal = 'dog';
+
+function showAnimal() {
+
+    if (animal != 'cat') {
+
+        console.log(animal);
+
+        // declare and assign variable
+        var animal = 'cat';
+
+        console.log(animal);
+    }
+}
+
+// can you guess the output?
+showAnimal();
+                                        </code>
+                                    </pre>
+                        </div>
+                        <div class="float-right" style="width: 48%;">
+                            <pre class="fragment">
+                                        <code class="javascript" data-trim contenteditable>
+// global animal variable
+var animal = 'dog';
+
+function showAnimal() {
+
+    var animal; // declare variable
+    if (animal != 'cat') {
+
+        console.log(animal);
+        animal = 'cat'; // assign variable
+        console.log(animal);
+    }
+}
+
+// what about now?
+showAnimal();
+                            </code>
+                                    </pre>
+                        </div>
+                        <small class="fragment"
+                            >This behavior is called <u>hoisting</u>, as it
+                            appears that the declaration is moved to the top of
+                            the scope</small
+                        >
+                        <aside class="notes">
+                            <b>next: </b>we mentioned before that functions were
+                            simply js objects that could be passed around, which
+                            accounts for great power and expressiveness in
+                            JavaScript. We say they are first class citizens in
+                            JS.
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="hof">
+                        <img
+                            src="images/3/js-fundamentals/high-order-funcs.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>High Order Functions</h2>
+                        <p class="fragment">
+                            Functions that operate on other functions, either by
+                            taking them as arguments or by returning them, are
+                            called higher-order functions
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+// build a multiplier by 2 and store it
+// in the variable named double
+var double = multiplier(2);
+
+// use it to double some numbers
+console.log(double(5)); // 10
+console.log(double(3)); // 6
+
+// builds a new multiplier
+function multiplier(operand1) {
+    return function(operand2) {
+        return operand1 * operand2;
+    }
+}
+                                    </code>
+                                </pre>
+                        <p class="fragment">
+                            Remember that functions in javascript are just
+                            ordinary objects
+                        </p>
+                        <aside class="notes">
+                            <ul>
+                                <li></li>
+                            </ul>
+                            <b>next: </b> functions can be defined as part of an
+                            existing expression
+                        </aside>
+                    </section>
+
+                    <section id="fexp">
+                        <img
+                            src="images/3/js-fundamentals/function2.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Function Expressions</h2>
+                        <p class="fragment">
+                            Functions can be used before they are declared
+                            <br />
+                            due to
+                            <u>function declaration hoisting</u>
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+foo(); // prints bar to the console
+
+function foo() {
+    console.log('bar');
+}
+                                    </code>
+                                </pre>
+                        <p class="fragment">
+                            <u>Function expressions are not hoisted</u>
+                            <br />
+                            and can not be used before declaration
+                        </p>
+                        <pre class="fragment float-left" style="width: 48%;">
+                                        <code class="javascript" data-trim contenteditable>
+// bad things happen
+foo();
+
+var foo = function() {
+    console.log('bar');
+}
+                                        </code>
+                                    </pre>
+                        <pre class="fragment float-right" style="width: 48%;">
+                                    <code class="javascript" data-trim contenteditable>
+var foo; // undefined
+foo(); // bad things happen
+
+foo = function() {
+    console.log('bar');
+}
+                                    </code>
+                                </pre>
+                        <aside class="notes">
+                            <b>next: </b> function expressions can be executed
+                            immediately, which brings us this weird acronym
+                        </aside>
+                    </section>
+
+                    <section id="iife">
+                        <img
+                            src="images/3/js-fundamentals/iife.jpg"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>IIFE</h2>
+                        <p class="fragment clearfix">
+                            A function expression can be invoked immediately,
+                            <br />many times useful to avoid global scope
+                            pollution
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+// This function will execute immediately
+// extra parentheses are required to tell the interpreter
+// this is a function expression and not a declaration
+(function() {
+    var name = 'sting';
+})();
+
+console.log(name); // not available
+                                        </code>
+                                    </pre>
+                        <aside class="notes">
+                            <b>next: </b>we have seen primitives and objects.
+                            Functions are special objects. But what are arrays?
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="arrays">
+                        <img
+                            src="images/3/js-fundamentals/array.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Arrays</h2>
+                        <p class="fragment clearfix">
+                            Powerful high-level list-like objects, containing
+                            <br />methods to perform traversal and mutation
+                            operations
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+// array literal syntax is built in the language
+var arr = [ 'hello world', 42, true, { a: 1 } ];
+
+arr[0];	// 'hello world'
+arr[1];	// 42
+arr[2];	// true
+arr[3];	// { a : 1 }
+arr.length; // 4
+
+typeof arr;     // 'object'
+
+arr[999] = null;
+arr.length;     // 1000
+typeof arr[10]; // 'undefined'
+                                    </code>
+                                </pre>
+                        <p class="fragment">
+                            Neither the length of an array nor the types of its
+                            elements are fixed
+                        </p>
+                        <aside class="notes">
+                            <b>next: </b> compared to other languages, arrays in
+                            js are extremely powerful
+                        </aside>
+                    </section>
+
+                    <section id="array-structures">
+                        <img
+                            src="images/3/js-fundamentals/stack.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Data Structures with Arrays</h2>
+                        <small class="fragment"
+                            >Objects and Arrays are so powerful that
+                            <u>a Collections library is rarely needed</u>
+                        </small>
+                        <div class="float-left clearfix" style="width: 48%;">
+                            <p class="fragment">
+                                Arrays can be used as a <b>stack</b>...
+                            </p>
+                            <pre class="fragment" style="font-size: 0.9rem;">
+                                        <code class="javascript" data-trim contenteditable>
+var stack = [];
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+stack.pop(); // 3
+stack.pop(); // 2
+stack.pop(); // 1
+stack.pop(); // undefined
+                                        </code>
+                                    </pre>
+                            <small class="fragment">
+                                <u>shift</u> and <u>unshift</u> also work</small
+                            >
+                        </div>
+                        <div class="float-right" style="width: 48%;">
+                            <p class="fragment">
+                                ...or as a
+                                <b>queue</b>
+                            </p>
+                            <pre class="fragment" style="font-size: 0.9rem;">
+                                        <code class="javascript" data-trim contenteditable>
+var queue = [];
+queue.push(1);
+queue.push(2);
+queue.push(3);
+
+queue.shift(); // 1
+queue.shift(); // 2
+queue.shift(); // 3
+queue.shift(); // undefined
+
+                                        </code>
+                                    </pre>
+                            <small class="fragment">
+                                <u>pop</u> and <u>unshift</u> also work</small
+                            >
+                        </div>
+                        <p class="fragment">
+                            Arrays contain their own <b>sort</b> method, <br />
+                            just provide them with a
+                            <u>compare function!</u>
+                        </p>
+                        <aside class="notes">
+                            <b>small: </b> and they interact with strings really
+                            well
+                        </aside>
+                    </section>
+
+                    <section id="array-operations">
+                        <img
+                            src="images/3/js-fundamentals/array-operations.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Array Operations</h2>
+                        <div class="float-left clearfix" style="width: 48%;">
+                            <p class="fragment">
+                                An array can be populated <br />
+                                with contents from a String...
+                            </p>
+                            <pre class="fragment" style="font-size: 0.9rem;">
+                                        <code class="javascript" data-trim contenteditable>
+var sentence = 'JavaScript is a lot of fun!';
+var words = sentence.split(' ');
+
+console.log(words[5]); // 'fun!'
+                                        </code>
+                                    </pre>
+                        </div>
+                        <div class="float-right" style="width: 48%;">
+                            <p class="fragment">
+                                ...and a String generated <br />
+                                from the elements of an Array
+                            </p>
+                            <pre class="fragment" style="font-size: 0.9rem;">
+                                        <code class="javascript" data-trim contenteditable>
+var numbers = [1, 9, 7, 4];
+var year = numbers.join();
+
+console.log(year); // '1974'
+                                        </code>
+                                    </pre>
+                        </div>
+                        <div class="float-left clearfix" style="width: 48%;">
+                            <p class="fragment">
+                                A shallow copy of an array portion can be
+                                created...
+                            </p>
+                            <pre class="fragment" style="font-size: 0.7rem;">
+                                            <code class="javascript" data-trim contenteditable>
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+animalsSlice = animals.slice(2, 4);
+
+console.log(animalsSlice); // ['camel', 'duck']
+console.log(animals); // has not been changed
+                                            </code>
+                                        </pre>
+                        </div>
+                        <div class="float-right" style="width: 48%;">
+                            <p class="fragment">
+                                ...or elements can be added or removed from it
+                            </p>
+                            <pre class="fragment" style="font-size: 0.8rem;">
+                                            <code class="javascript" data-trim contenteditable>
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+myFish.splice(2, 1);
+
+console.log(myFish);
+                                            </code>
+                                        </pre>
+                        </div>
+                        <aside class="notes">
+                            <b>next: </b> arrays are meant to be iterated
+                        </aside>
+                    </section>
+
+                    <section id="iteration">
+                        <img
+                            src="images/3/js-fundamentals/array-iterations.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Array Iteration</h2>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+var words = ['JavaScript', 'Bootcamp', 'Fun', 'Games'];
+
+// you can break early from a for loop
+for (var i = 0; i &lt; words.length; i++) {
+    if (words[i] === 'Fun') {
+        break;
+    }
+    console.log(words[i] + ' has ' + words[i].length + ' letters.');
+}
+
+// improved readability, but not possible to break early
+words.forEach(function(word) {
+    console.log(word + ' has ' + word.length + ' letters.');
+});
+
+                                    </code>
+                                </pre>
+                        <p class="fragment">
+                            It is possible to iterate on an object by obtaining
+                            an array with its keys
+                        </p>
+                        <pre class="fragment">
+                                    <code class="javascript" data-trim contenteditable>
+var obj = { a: 1, b: 2, c: 3};
+
+Object.keys(obj).forEach(function(key) {
+    console.log('Value of key ' + key + ' is ' + obj[key]);
+});
+                                    </code>
+                                </pre>
+                        <aside class="notes">
+                            <b>next: </b> arrays allow for a very elegant
+                            functional style of programming
+                        </aside>
+                    </section>
+
+                    <section id="functional">
+                        <img
+                            src="images/3/js-fundamentals/functional.png"
+                            alt=""
+                            class="logo float-right"
+                        />
+                        <h2>Functional Style with Arrays</h2>
+                        <p class="fragment">
+                            The functional style can make code much cleaner and
+                            easier to maintain, although some performance
+                            penalty is paid
+                        </p>
+                        <pre
+                            class="fragment"
+                            style="font-size: 0.85rem; margin:0; padding: 0;"
+                        >
+                                    <code class="javascript" data-trim contenteditable>
+// apply a filter function to an array, obtaining the older persons
+var persons = [{ name: 'Rui', age: 43 }, { name: 'Pedro', age: 29 }];
+var old = persons.filter(function(person) {
+    return person.age &gt; 40;
+});
+
+// apply a transform function to an array, transforming each element in the array into its square root
+var numbers = [1, 4, 9];
+var roots = numbers.map(Math.sqrt); // [1, 2, 3]
+
+// reduce an array to one single value, the total number of characters in the array
+var animals = ['cat', 'dog', 'fish'];
+var letters = animals.reduce(function(sum, word) {
+    return sum + word.length;
+}, 0); // 10
+
+// most array functions can be chained together, this example flattens an array and finds even numbers
+const data = [[1,2,3], [4,5,6], [7,8,9]];
+const evens = data.reduce(function(total, value) {
+    return total.concat(value);
+}, []).filter(function(value) {
+    return value % 2 === 0;
+});
+                                    </code>
+                                </pre>
+                        <small class="fragment"
+                            >The original array objects
+                            <u>are not mutated</u> by map, filter or
+                            reduce</small
+                        >
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Functional programming is a declarative
+                                    programming style where all functions have
+                                    no side effects and data is readonly
+                                </li>
+                                <li>
+                                    You can explain this through the definition
+                                    of a mathematical function
+                                </li>
+                                <li>
+                                    If something needs to be changes, create a
+                                    new instance instead
+                                </li>
+                                <li>
+                                    Benefits include: simpler code, less bugs,
+                                    concurrency safety
+                                </li>
+                                <li>Downsides include: higher CPU, memory</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <div class="exercise">
+                        <h2>{ Exercise }</h2>
+                        <h3>
+                            <span style="color: green;">
+                                <b>&#10003;</b> </span
+                            >&nbsp;&nbsp;you should get a green check mark on
+                            all tests
+                        </h3>
+                        <img
+                            class="big"
+                            src="images/3/js-fundamentals/jsintro-tests.png"
+                        />
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                keyboard: true,
+                center: true,
+                help: true,
+                progress: true,
+                slideNumber: true,
+                history: false,
+                width: 1024,
+                transition: "slide", // none/fade/slide/convex/concave/zoom
+
+                menu: {
+                    // Specifies which side of the presentation the menu will
+                    // be shown. Use 'left' or 'right'.
+                    side: "left",
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                    // Hide slides from the menu that do not have a title.
+                    // Set to 'true' to only list slides with titles.
+                    hideMissingTitles: true,
+
+                    // Add markers to the slide titles to indicate the
+                    // progress through the presentation
+                    markers: false,
+
+                    // Specify custom panels to be included in the menu, by
+                    // providing an array of objects with 'title', 'icon'
+                    // properties, and either a 'src' or 'content' property.
+                    custom: false,
+
+                    // Specifies the themes that will be available in the themes
+                    // menu panel. Set to 'false' to hide themes panel.
+                    themes: false,
+
+                    // Specifies if the transitions menu panel will be shown.
+                    transitions: true,
+
+                    // Adds a menu button to the slides to open the menu panel.
+                    // Set to 'false' to hide the button.
+                    openButton: true,
+
+                    // If 'true' allows the slide number in the presentation to
+                    // open the menu panel. The reveal.js slideNumber option must
+                    // be displayed for this to take effect
+                    openSlideNumber: false,
+
+                    // If true allows the user to open and navigate the menu using
+                    // the keyboard. Standard keyboard interaction with reveal
+                    // will be disabled while the menu is open.
+                    keyboard: true
+                },
+
+                // Specifies section for limits-app
+                section: 30,
+                // Optional reveal.js plugins
+                dependencies: [
+                    {
+                        src: "lib/js/classList.js",
+                        condition: function() {
+                            return !document.body.classList;
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/marked.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/markdown/markdown.js",
+                        condition: function() {
+                            return !!document.querySelector("[data-markdown]");
+                        }
+                    },
+                    {
+                        src: "plugin/highlight/highlight.js",
+                        async: true,
+                        condition: function() {
+                            return !!document.querySelector("pre code");
+                        },
+                        callback: function() {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    },
+                    {
+                        src: "plugin/zoom-js/zoom.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/notes/notes.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/bootcamp/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/hide-slides/index.js",
+                        async: true
+                    },
+                    {
+                        src: "//cdn.socket.io/socket.io-1.4.5.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/config.js",
+                        async: false
+                    },
+                    {
+                        src: "plugin/multiplex/client.js",
+                        async: true
+                    },
+                    {
+                        src: "plugin/multiplex/master.js",
+                        async: true
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>
