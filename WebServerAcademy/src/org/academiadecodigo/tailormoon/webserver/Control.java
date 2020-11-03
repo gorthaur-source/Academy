@@ -26,6 +26,7 @@ public class Control {
                 Socket client = serverSocket.accept();
                 Thread thread = new Thread(new WebServer(client));
                 thread.start();
+                System.out.println(thread.toString());
             } catch (IOException e) {
                 System.err.println("Error handling client request: " + e.getMessage());
             }

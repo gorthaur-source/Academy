@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WebServerAcademy.iml" filepath="$PROJECT_DIR$/WebServerAcademy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/producer-consumer-skeleton.iml" filepath="$PROJECT_DIR$/producer-consumer-skeleton.iml" />
     </modules>
   </component>
 </project>
