@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp.concurrency.bqueue;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -12,8 +13,7 @@ public class BQueue<T> {
 
 
     final private Integer limit;
-    private LinkedList<T> queue = new LinkedList<>();
-    private Integer currentSize;
+    private Queue<T> queue = new LinkedList<>();
     /**
      * Constructs a new queue with a maximum size
      * @param limit the queue size
@@ -22,7 +22,6 @@ public class BQueue<T> {
 
         if (limit <= 0) throw new IllegalArgumentException();
         this.limit = limit;
-        currentSize = queue.size();
 
 
     }
@@ -45,14 +44,9 @@ public class BQueue<T> {
                 }
             }
             queue.offer(data);
-            System.out.println(Thread.currentThread() + " added element #" + queue.size());
-
-            if(queue.size() == getLimit()) System.out.println("Halt! The queue is full");
-
+            System.out.println(Thread.currentThread().getName() + " added element #" + queue.size());
             notifyAll();
         }
-
-
     }
 
     /**
@@ -62,26 +56,24 @@ public class BQueue<T> {
      */
     public T poll() {
 
-            T removedElement = null;
+        T removedElement = null;
 
-            synchronized (this) {
+        synchronized (this) {
 
-                while (queue.size() == 0) {
+            while (queue.size() == 0) {
 
                 //    System.out.println("Queue is empty. Waiting for producer");
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                removedElement = queue.poll();
-                System.out.println(Thread.currentThread() + " consumed. Queue shrunk to size " + queue.size());
-                if(queue.size() == 0) System.out.println("Halt! I've left the queue empty");
-                notifyAll();
             }
-
+            removedElement = queue.poll();
+            System.out.println(Thread.currentThread().getName() + " consumed. Queue shrunk to size " + queue.size());
+            notifyAll();
             return removedElement;
+        }
     }
 
     /**

@@ -1,9 +1,11 @@
 package org.academiadecodigo.tailormoons.mapeditor.Keyboard;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.tailormoons.mapeditor.Direction;
 import org.academiadecodigo.tailormoons.mapeditor.Grid;
 
 import java.util.HashMap;
@@ -63,10 +65,9 @@ public class Input implements KeyboardHandler {
         keyStates.put(e.getKey(), false);
     }
 
-
-  public Map<Integer, Boolean> getKeyStates() {
-        return keyStates;
-  }
+    public boolean isPressed(int code) {
+        return keyStates.getOrDefault(code, false);
+    }
 
 }
 

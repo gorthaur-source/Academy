@@ -11,7 +11,7 @@ public class Producer implements Runnable {
     private int elementNum;
 
     /**
-     * @param queue the blocking queue to add elements to
+     * @param queue      the blocking queue to add elements to
      * @param elementNum the number of elements to produce
      */
     public Producer(BQueue queue, int elementNum) {
@@ -22,11 +22,14 @@ public class Producer implements Runnable {
     @Override
     public void run() {
 
-        for(int i = 0; i < elementNum; i++) {
+        for (int i = 0; i < elementNum; i++) {
 
-            try {
-                Thread.sleep(1000);
+            synchronized (queue) {
                 queue.offer(i);
+                if (queue.getSize() == queue.getLimit()) System.out.println(Thread.currentThread().getName() + ": Halt! The queue is full");
+            }
+            try {
+                Thread.sleep(1500 + (long) (Math.random() * 500));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

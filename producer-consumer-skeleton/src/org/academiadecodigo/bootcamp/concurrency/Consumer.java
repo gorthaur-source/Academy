@@ -22,17 +22,18 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
 
-        for(int i = 0; i < elementNum; i++) {
+        for (int i = 0; i < elementNum; i++) {
 
-            try {
-                Thread.sleep(1000 + (long) (Math.random() * 500));
+            synchronized (queue) {
                 queue.poll();
+                if (queue.getSize() == 0) System.out.println(Thread.currentThread().getName() + ": Halt! I've left the queue empty");
+            }
+            try {
+                Thread.sleep(2000 + (long) (Math.random() * 500));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
-
     }
-
-
 }

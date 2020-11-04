@@ -24,67 +24,62 @@ public class Canvas {
 
         public void update() throws InterruptedException {
 
-            if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_LEFT)) {
+            if (input.isPressed(KeyboardEvent.KEY_SPACE) && input.isPressed(KeyboardEvent.KEY_LEFT)) {
                 if ((grid.getCursor().getX() > 0)) {
                     grid.move(Direction.LEFT.getDeltaCol(), Direction.LEFT.getDeltaRow());
                     grid.getCursor().paintContinuous(Color.BLACK);
                 }
             }
-            else if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_DOWN)) {
+            else if (input.isPressed(KeyboardEvent.KEY_SPACE) && input.isPressed(KeyboardEvent.KEY_DOWN)) {
                 if ((grid.getCursor().getY() < grid.getROWS() + Direction.UP.getDeltaRow())) {
                     grid.move(Direction.DOWN.getDeltaCol(), Direction.DOWN.getDeltaRow());
                     grid.getCursor().paintContinuous(Color.BLACK);
                 }
             }
 
-            else if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_UP)) {
+            else if (input.isPressed(KeyboardEvent.KEY_SPACE) && input.isPressed(KeyboardEvent.KEY_UP)) {
                 if ((grid.getCursor().getY() > 0)) {
                     grid.move(Direction.UP.getDeltaCol(), Direction.UP.getDeltaRow());
                     grid.getCursor().paintContinuous(Color.BLACK);
                 }
             }
-            else if (isPressed(KeyboardEvent.KEY_SPACE) && isPressed(KeyboardEvent.KEY_RIGHT)) {
+            else if (input.isPressed(KeyboardEvent.KEY_SPACE) && input.isPressed(KeyboardEvent.KEY_RIGHT)) {
                 if ((grid.getCursor().getX() < grid.getCOLS() + Direction.LEFT.getDeltaCol())) {
                     grid.move(Direction.RIGHT.getDeltaCol(), Direction.RIGHT.getDeltaRow());
                     grid.getCursor().paintContinuous(Color.BLACK);
                 }
             }
-            else if (isPressed(KeyboardEvent.KEY_LEFT)) {
+            else if (input.isPressed(KeyboardEvent.KEY_LEFT)) {
                 //   if (input.left.equals(input.keys)) {
                 if (!(grid.getCursor().getX() == 0)) {
                     grid.move(Direction.LEFT.getDeltaCol(), Direction.LEFT.getDeltaRow());
                 }
-            } else if (isPressed(KeyboardEvent.KEY_RIGHT)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_RIGHT)) {
                 if (!(grid.getCursor().getX() == grid.getCOLS() - 1)) {
                     grid.move(Direction.RIGHT.getDeltaCol(), Direction.RIGHT.getDeltaRow());
 
                 }
-            } else if (isPressed(KeyboardEvent.KEY_UP)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_UP)) {
                 if (!(grid.getCursor().getY() == 0)) {
                     grid.move(Direction.UP.getDeltaCol(), Direction.UP.getDeltaRow());
 
                 }
-            } else if (isPressed(KeyboardEvent.KEY_DOWN)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_DOWN)) {
                 if (!(grid.getCursor().getY() == grid.getROWS() - 1)) {
                     grid.move(Direction.DOWN.getDeltaCol(), Direction.DOWN.getDeltaRow());
                 }
-            } else if (isPressed(KeyboardEvent.KEY_SPACE)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_SPACE)) {
                 grid.getCursor().paintOverlap();
-            } else if (isPressed(KeyboardEvent.KEY_C)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_C)) {
                 grid.getCursor().paint(Color.PINK);
-            } else if (isPressed(KeyboardEvent.KEY_L)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_L)) {
                 grid.stringToNode();
-            } else if (isPressed(KeyboardEvent.KEY_S)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_S)) {
                 grid.saveData();
-            } else if (isPressed(KeyboardEvent.KEY_M)) {
+            } else if (input.isPressed(KeyboardEvent.KEY_M)) {
                 grid.clear();
             }
             Thread.sleep(30);
         }
-
-
-    private boolean isPressed(int code) {
-        return input.getKeyStates().getOrDefault(code, false);
-    }
 }
 
