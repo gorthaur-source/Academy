@@ -8,16 +8,16 @@ public class Whisper implements Command {
 
 
     private ChatServer myServer;
-    private String input;
+    private String[] inputArray;
     private String name;
 
     public Whisper() {
 
     }
 
-    public Whisper(ChatServer myServer, String input, String name) {
+    public Whisper(ChatServer myServer, String[] input, String name) {
         this.myServer = myServer;
-        this.input = input;
+        this.inputArray = input;
         this.name = name;
     }
 
@@ -27,7 +27,6 @@ public class Whisper implements Command {
 
         PrintWriter myOut = myServer.getUserWriterMap().get(this.name);
 
-        String[] inputArray = input.trim().split(" ");
         if (inputArray.length < 3) {
             myOut.println("You've used the command wrong. /whisper <user> <message>");
             return;

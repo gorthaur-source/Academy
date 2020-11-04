@@ -4,12 +4,11 @@ import chatserver.ChatServer;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Map;
 
 public class Name implements Command {
 
     private ChatServer myServer;
-    private String input;
+    private String[] inputArray;
     private String name;
 
 
@@ -17,9 +16,9 @@ public class Name implements Command {
 
     }
 
-    public Name(ChatServer myServer, String input, String name) {
+    public Name(ChatServer myServer, String[] input, String name) {
         this.myServer = myServer;
-        this.input = input;
+        this.inputArray = input;
         this.name = name;
     }
 
@@ -27,7 +26,6 @@ public class Name implements Command {
     public void commandAction() {
 
         PrintWriter out = myServer.getUserWriterMap().get(this.name);
-        String[] inputArray = input.trim().split(" ");
         System.out.println(Arrays.toString(inputArray));
 
         if (inputArray.length != 2) {

@@ -17,6 +17,8 @@ public class ClientThread implements Runnable {
     private Scanner in;
     private PrintWriter out;
     private final ChatServer myServer;
+    private boolean hasQuit = false;
+
 
     public ClientThread(Socket socket, ChatServer myServer) {
         this.socket = socket;
@@ -58,6 +60,7 @@ public class ClientThread implements Runnable {
         out.println("Hello " + name + ". Welcome to Academia de Codigo's server! Type /help to get a list of available commands");
 
         for (PrintWriter writer : myServer.getUserWriterMap().values()) {
+            if(writer == out) continue;
             writer.println(name + " has joined the server. Hello!");
         }
     }
@@ -78,39 +81,14 @@ public class ClientThread implements Runnable {
                 }
                 continue;
             }
-            boolean validCommand = false;
-            boolean hasQuit = false;
-            for (Commands c : Commands.values()) {
-                if (inputArray[0].toLowerCase().equals(c.getIdentifier())) {
-                    validCommand = true;
-                    switch (c) {
-                        case QUIT:
-                            new Quit(myServer, name).commandAction();
-                            hasQuit = true;
-                            break;
-                        case LIST:
-                            new List(myServer, name).commandAction();
-                            break;
-                        case NAME:
-                            new Name(myServer, input, name).commandAction();
-                            name = (String) getKeyFromValue();
-                            break;
-                        case HELP:
-                            new Help(myServer, name).commandAction();
-                            break;
-                        case WHISPER:
-                            new Whisper(myServer, input, name).commandAction();
-                            break;
-
-                    }
-                }
-            }
+            boolean validCommand = commandConfig(inputArray);
             if (!validCommand) out.println("Wrong use of command. Please refer to /help for proper usage.");
             else if(hasQuit) break;
         }
     }
 
     public void run() {
+
         try {
 
             in = new Scanner(socket.getInputStream());
@@ -130,9 +108,39 @@ public class ClientThread implements Runnable {
                 e.getMessage();
             }
         }
-
     }
 
+
+    public boolean commandConfig(String[] input) {
+        boolean validCommand = false;
+        for (Commands c : Commands.values()) {
+            if (input[0].toLowerCase().equals(c.getIdentifier())) {
+                validCommand = true;
+                switch (c) {
+                    case QUIT:
+                        new Quit(myServer, name).commandAction();
+                        hasQuit = true;
+                        break;
+                    case LIST:
+                        new List(myServer, name).commandAction();
+                        break;
+                    case NAME:
+                        new Name(myServer, input, name).commandAction();
+                        name = (String) getKeyFromValue();
+                        break;
+                    case HELP:
+                        new Help(myServer, name).commandAction();
+                        break;
+                    case WHISPER:
+                        new Whisper(myServer, input, name).commandAction();
+                        break;
+
+                }
+            }
+        }
+        return validCommand;
+
+    }
     public Object getKeyFromValue() {
         for (Object o : myServer.getUserWriterMap().keySet()) {
             if (myServer.getUserWriterMap().get(o).equals(out)) {

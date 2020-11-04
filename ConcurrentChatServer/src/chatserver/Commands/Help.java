@@ -26,6 +26,7 @@ public class Help implements Command {
 
         List<Command> commands = myServer.getCommands();
 
+        myServer.getUserWriterMap().get(name).println("List of available commands: ");
         for (Command command : commands) {
             command.commandDescription(myServer.getUserWriterMap().get(name));
         }

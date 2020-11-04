@@ -26,9 +26,9 @@ public class ChatServer implements Runnable {
         System.out.println("The chat server is running on port " + serverSocket.getLocalPort() + ".");
         commands.add(new chatserver.Commands.List());
         commands.add(new Quit());
-        commands.add(new Help());
         commands.add(new Name());
         commands.add(new Whisper());
+        commands.add(new Help());
         userWriterMap = new HashMap<>();
 
 

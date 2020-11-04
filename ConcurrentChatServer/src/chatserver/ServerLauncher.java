@@ -7,14 +7,12 @@ import java.util.concurrent.Executors;
 
 public class ServerLauncher {
 
-    private final int MAX_SERVER_NUMBER;
     private final int MAX_USER_NUMBER;
-    private ExecutorService pool;
+    private final ExecutorService pool;
 
     public ServerLauncher(int maxServer, int maxUser) {
-        this.MAX_SERVER_NUMBER = maxServer;
         this.MAX_USER_NUMBER = maxUser;
-        pool = Executors.newFixedThreadPool(MAX_SERVER_NUMBER);
+        pool = Executors.newFixedThreadPool(maxServer);
 
     }
 
