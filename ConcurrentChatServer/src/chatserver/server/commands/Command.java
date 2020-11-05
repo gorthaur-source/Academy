@@ -1,8 +1,6 @@
-package chatserver.Commands;
+package chatserver.server.commands;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public interface Command {
 

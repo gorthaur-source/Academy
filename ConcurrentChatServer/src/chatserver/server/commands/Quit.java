@@ -1,10 +1,8 @@
-package chatserver.Commands;
+package chatserver.server.commands;
 
-import chatserver.ChatServer;
+import chatserver.server.ChatServer;
 
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.Set;
 
 public class Quit implements Command{
 

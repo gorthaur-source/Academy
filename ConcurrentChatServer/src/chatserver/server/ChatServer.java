@@ -1,6 +1,6 @@
-package chatserver;
+package chatserver.server;
 
-import chatserver.Commands.*;
+import chatserver.server.commands.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +15,7 @@ public class ChatServer implements Runnable {
    // private final Set<String> users = new HashSet<>();
    // private final Set<PrintWriter> writers = new HashSet<>();
     private final Map<String, PrintWriter> userWriterMap;
+    private final Map<String, Long> userSpamMap;
     private final ServerSocket serverSocket;
     private final int MAX_USER_NUMBER;
     private final List<Command> commands = new ArrayList<>();
@@ -24,14 +25,13 @@ public class ChatServer implements Runnable {
         this.serverSocket = serverSocket;
         this.MAX_USER_NUMBER = maxUser;
         System.out.println("The chat server is running on port " + serverSocket.getLocalPort() + ".");
-        commands.add(new chatserver.Commands.List());
+        commands.add(new chatserver.server.commands.List());
         commands.add(new Quit());
         commands.add(new Name());
         commands.add(new Whisper());
         commands.add(new Help());
         userWriterMap = new HashMap<>();
-
-
+        userSpamMap = new HashMap<>();
     }
 
     public void serverAcceptLoop() {
@@ -44,6 +44,7 @@ public class ChatServer implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        pool.shutdown();
     }
 
     @Override
@@ -57,7 +58,30 @@ public class ChatServer implements Runnable {
 
     public Map<String, PrintWriter> getUserWriterMap() {
         return userWriterMap;
-
     }
+
+    public Map <String, Long> getUserSpamMap() {
+        return userSpamMap;
+    }
+
+
+    public void broadcast(String message) {
+        //for each client
+
+      //  client.send(message);
+    }
+
+    public void wisper(String name, String message) {
+
+
+    //    client.send(message);
+    }
+
+
+
+
+
+
+
 
 }

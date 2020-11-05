@@ -1,10 +1,21 @@
-package chatserver;
+package chatserver.server;
+
+import chatserver.server.ServerLauncher;
+import chatserver.server.commands.Command;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
 
     private static final int DEFAULT_PORT = 8081;
 
     public static void main(String[] args) {
+
+        List<Command> stringList = new LinkedList<>();
+
+      //  stringList.get(0).commandAction();
+
 
 
         try {
@@ -14,6 +25,5 @@ public class Main {
         } catch (NumberFormatException e) {
             System.out.println("Invalid port number: " + args[0]);
         }
-
     }
 }

@@ -1,6 +1,4 @@
-package chatserver.Commands;
-
-import chatserver.ChatServer;
+package chatserver.server.commands;
 
 public enum Commands {
 
@@ -12,6 +10,8 @@ public enum Commands {
     WHISPER("/whisper");
 
      private final String identifier;
+     private Command command;
+
 
      Commands(String identifier) {
          this.identifier = identifier;

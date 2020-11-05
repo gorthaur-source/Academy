@@ -1,6 +1,6 @@
-package chatserver.Commands;
+package chatserver.server.commands;
 
-import chatserver.ChatServer;
+import chatserver.server.ChatServer;
 
 import java.io.PrintWriter;
 
@@ -43,13 +43,16 @@ public class Whisper implements Command {
                 inputArray[1] = key;
                 PrintWriter toSend = myServer.getUserWriterMap().get(inputArray[1]);
 
+                StringBuilder messageTo = new StringBuilder();
                 StringBuilder message = new StringBuilder();
-                message.append(name).append("(whisper) ").append(":").append(" ");
-
+                messageTo.append(name).append("(whisper): ");
+                message.append(inputArray[1]).append("to ").append(name).append("whisper: ");
                 for (int i = 2; i < inputArray.length; i++) {
+                    messageTo.append(inputArray[i]).append(" ");
                     message.append(inputArray[i]).append(" ");
                 }
-                toSend.println(message);
+                myOut.println(message);
+                toSend.println(messageTo);
                 return;
             }
         }

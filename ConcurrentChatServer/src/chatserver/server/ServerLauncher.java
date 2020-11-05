@@ -1,4 +1,4 @@
-package chatserver;
+package chatserver.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -24,5 +24,6 @@ public class ServerLauncher {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        pool.shutdown();
     }
 }

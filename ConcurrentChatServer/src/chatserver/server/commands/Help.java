@@ -1,11 +1,9 @@
-package chatserver.Commands;
+package chatserver.server.commands;
 
-import chatserver.ChatServer;
+import chatserver.server.ChatServer;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Help implements Command {
 
