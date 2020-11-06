@@ -34,73 +34,45 @@ public class ClientThread implements Runnable {
                 out.println("Please choose a nickname between 4 and 15 characters");
                 continue;
             }
-
-            synchronized (myServer.getUserWriterMap()) {
-                boolean duplicateName = false;
-
-                for (String key : myServer.getUserWriterMap().keySet()) {
-                    if (key.toLowerCase().equals(name.toLowerCase())) {
-                        out.println("Invalid name. This key belongs to another user. Please choose another one");
-                        duplicateName = true;
-                        break;
-                    }
-                }
-                if (!duplicateName) {
-                    myServer.getUserWriterMap().put(name, out);
-                    break;
-                }
+            if (myServer.validateUsername(name)) {
+                myServer.addToUserMap(name, this);
+                break;
             }
         }
     }
 
-
-    public void handleJoinedUser() {
-        Date date = new Date();
-
-        myServer.getUserSpamMap().put(name, currentTimeMillis());
-
-        out.println(date+ ": Hello " + name + ". Welcome to Academia de Codigo's server! Type /help to get a list of available commands");
-
-        for (PrintWriter writer : myServer.getUserWriterMap().values()) {
-            if(writer == out) continue;
-            writer.println(name + " has joined the server. Hello!");
-        }
-    }
 
     public void acceptAndBroadcastMsg() {
 
         while (true) {
 
-                String input = in.nextLine();
-                String[] inputArray = input.split(" ");
+            String input = in.nextLine();
+            String[] inputArray = input.split(" ");
 
-                if (input.isBlank()) {
-                    out.println("You're trying to send a blank message. Please type something.");
-                    continue;
-                }
-                if (!input.startsWith("/")) {
-                    if(myServer.getUserSpamMap().containsKey(name)) {
-                        System.out.println("checking");
-                        Long currentTime = currentTimeMillis();
-                        if (currentTime - myServer.getUserSpamMap().get(name) < 500) {
-                            System.out.println(currentTime - myServer.getUserSpamMap().get(name));
-                            out.println("You're sending messages too fast. Please wait.");
-                            continue;
-                        }
-                        myServer.getUserSpamMap().remove(name);
-                        myServer.getUserSpamMap().put(name, currentTimeMillis());
-                    }
-                    for (PrintWriter writer : myServer.getUserWriterMap().values()) {
-                        writer.println(name + ": " + input);
-                    }
-
-                    continue;
-                }
-                boolean validCommand = commandConfig(inputArray);
-                if (!validCommand) out.println("Wrong use of command. Please refer to /help for proper usage.");
-                else if (hasQuit) break;
+            if (input.isBlank()) {
+                out.println("You're trying to send a blank message. Please type something.");
+                continue;
             }
+            if (!input.startsWith("/")) {
+                if (myServer.spamMapContainsKey(name)) {
+                    System.out.println("checking");
+                    long currentTime = currentTimeMillis();
+                    if (currentTime - myServer.getSpamValueFromKey(name) < 500) {
+                        System.out.println(currentTime - myServer.getSpamValueFromKey(name));
+                        out.println("You're sending messages too fast. Please wait.");
+                        continue;
+                    }
+                    myServer.removeFromSpamMap(name);
+                    myServer.addToSpamMap(name, currentTimeMillis());
+                }
+                myServer.broadcast(name + ": " + input);
+                continue;
+            }
+            boolean validCommand = commandConfig(inputArray);
+            if (!validCommand) out.println("Wrong use of command. Please refer to /help for proper usage.");
+            else if (hasQuit) break;
         }
+    }
 
 
     public void run() {
@@ -111,15 +83,15 @@ public class ClientThread implements Runnable {
             out = new PrintWriter(socket.getOutputStream(), true);
 
             requestUsername();
-            handleJoinedUser();
+            myServer.joinedUser(name);
             acceptAndBroadcastMsg();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Client disconnected");
         } finally {
             try {
                 socket.close();
-                System.out.println("Socket Closed");
+                myServer.removeFromUserMap(name);
             } catch (IOException e) {
                 e.getMessage();
             }
@@ -134,36 +106,26 @@ public class ClientThread implements Runnable {
                 validCommand = true;
                 switch (c) {
                     case QUIT:
-                        new Quit(myServer, name).commandAction();
+                        Commands.QUIT.getCommand().commandAction(myServer, name);
                         hasQuit = true;
                         break;
                     case LIST:
-                        new List(myServer, name).commandAction();
+                        Commands.LIST.getCommand().commandAction(myServer, name);
                         break;
                     case NAME:
-                        new Name(myServer, input, name).commandAction();
-                        name = (String) getKeyFromValue();
+                        Commands.NAME.getCommand().commandAction(myServer, input, name);
+                        name = (String) myServer.getKeyFromValue(this);
                         break;
                     case HELP:
-                        new Help(myServer, name).commandAction();
+                        Commands.HELP.getCommand().commandAction(myServer, name);
                         break;
                     case WHISPER:
-                        new Whisper(myServer, input, name).commandAction();
+                        Commands.WHISPER.getCommand().commandAction(myServer, input, name);
                         break;
-
                 }
             }
         }
         return validCommand;
-
-    }
-    public Object getKeyFromValue() {
-        for (Object o : myServer.getUserWriterMap().keySet()) {
-            if (myServer.getUserWriterMap().get(o).equals(out)) {
-                return o;
-            }
-        }
-        return null;
     }
 
 

@@ -1,6 +1,7 @@
 package chatserver.server.commands;
 
 import chatserver.server.ChatServer;
+import chatserver.server.ClientThread;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,26 +15,19 @@ public class Help implements Command {
 
     }
 
-    public Help(ChatServer myServer, String name) {
-        this.name = name;
-        this.myServer = myServer;
-    }
-
     @Override
-    public void commandAction() {
+    public void commandAction(ChatServer myServer, String name) {
 
-        List<Command> commands = myServer.getCommands();
+        myServer.getFromName(name).send("List of available commands: ");
+        for (Commands command : Commands.values()) {
 
-        myServer.getUserWriterMap().get(name).println("List of available commands: ");
-        for (Command command : commands) {
-            command.commandDescription(myServer.getUserWriterMap().get(name));
+            myServer.getFromName(name).send(command.getInstruction());
         }
     }
 
     @Override
-    public void commandDescription(PrintWriter out) {
-
-        out.println("/help - returns a list of all active commands in the server.");
+    public void commandAction(ChatServer myServer, String[] input, String name) {
 
     }
+
 }

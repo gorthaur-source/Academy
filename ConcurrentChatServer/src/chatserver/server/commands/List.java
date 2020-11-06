@@ -1,38 +1,24 @@
 package chatserver.server.commands;
 
 import chatserver.server.ChatServer;
+import chatserver.server.ClientThread;
 
 import java.io.PrintWriter;
 
 public class List implements Command {
 
-    private ChatServer myServer;
-    private String name;
 
-    public List(ChatServer myServer, String name) {
-        this.myServer = myServer;
-        this.name = name;
+    public void commandAction(ChatServer myServer, String name) {
+
+        myServer.getFromName(name).send("List of connected users:");
+        myServer.listUsers(name);
     }
 
-    public List() {
+    @Override
+    public void commandAction(ChatServer myServer, String[] input, String name) {
 
     }
 
-    public void commandAction() {
-
-        PrintWriter out = myServer.getUserWriterMap().get(name);
-
-        out.println("List of connected users:");
-        for (String user : myServer.getUserWriterMap().keySet()) {
-           out.println(user);
-        }
-    }
-
-    public void commandDescription(PrintWriter out) {
-
-        out.println("/list - returns a list of all connected server users.");
-
-    }
 
 
 }

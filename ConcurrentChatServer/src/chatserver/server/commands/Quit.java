@@ -1,43 +1,23 @@
 package chatserver.server.commands;
 
 import chatserver.server.ChatServer;
+import chatserver.server.ClientThread;
 
-import java.io.PrintWriter;
-
-public class Quit implements Command{
-
-
-        private ChatServer myServer;
-        private String name;
+public class Quit implements Command {
 
 
-    public Quit(ChatServer myServer, String name) {
-            this.myServer = myServer;
-            this.name = name;
-        }
+    public void commandAction(ChatServer myServer, String name) {
 
-        public Quit() {
 
-        }
+            myServer.getFromName(name).send("Farewell " + name + "! We hope you come back.");
+            myServer.removeFromUserMap(name);
+            myServer.broadcast(name + " has left the server. We hope he comes back.");
+    }
 
-        public void commandAction() {
 
-        PrintWriter out = myServer.getUserWriterMap().get(name);
-
-            if (name != null && out != null) {
-                out.println("Farewell " + name + "! We hope you come back.");
-                myServer.getUserWriterMap().remove(name, out);
-                for (PrintWriter writer : myServer.getUserWriterMap().values()) {
-                    writer.println(name + " has left the server. We hope he comes back.");
-                }
-            }
-
-        }
-
-        public void commandDescription(PrintWriter out) {
-
-            out.println("/quit - disconnect from the server.");
-
-        }
+    @Override
+    public void commandAction(ChatServer myServer, String[] input, String name) {
 
     }
+
+}

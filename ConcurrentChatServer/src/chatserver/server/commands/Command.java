@@ -1,13 +1,13 @@
 package chatserver.server.commands;
 
-import java.io.PrintWriter;
+import chatserver.server.ChatServer;
 
 public interface Command {
 
 
-    void commandAction();
+    void commandAction(ChatServer myServer, String name);
 
-    void commandDescription(PrintWriter out);
+    void commandAction(ChatServer myServer, String[] input, String name);
 
 
 }

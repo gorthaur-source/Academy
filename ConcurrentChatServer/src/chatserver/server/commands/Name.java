@@ -1,77 +1,52 @@
 package chatserver.server.commands;
 
 import chatserver.server.ChatServer;
-
-import java.io.PrintWriter;
-import java.util.Arrays;
+import chatserver.server.ClientThread;
 
 public class Name implements Command {
-
-    private ChatServer myServer;
-    private String[] inputArray;
-    private String name;
-
 
     public Name() {
 
     }
 
-    public Name(ChatServer myServer, String[] input, String name) {
-        this.myServer = myServer;
-        this.inputArray = input;
-        this.name = name;
-    }
-
     @Override
-    public void commandAction() {
+    public void commandAction(ChatServer myServer, String[] input, String name) {
 
-        PrintWriter out = myServer.getUserWriterMap().get(this.name);
-        System.out.println(Arrays.toString(inputArray));
+        ClientThread myThread = myServer.getFromName(name);
 
-        if (inputArray.length != 2) {
-            out.println("You've used the command wrong. /name <newNickname>");
+        if (input.length != 2) {
+            myThread.send("You've used the command wrong. /name <newNickname>");
             return;
         }
 
-        String name = inputArray[1];
-        System.out.println(name);
+        String parsedName = input[1];
+        System.out.println(parsedName);
 
-        if (name.length() > 15 || name.length() < 4) {
-            out.println("Please choose a nickname between 4 and 15 characters");
+        if (parsedName.length() > 15 || parsedName.length() < 4) {
+            myThread.send("Please choose a nickname between 4 and 15 characters");
             return;
         }
 
-        synchronized (myServer.getUserWriterMap()) {
+        if (parsedName.toLowerCase().equals(name.toLowerCase())) {
+            myThread.send("Your name is already " + name);
+            return;
+        }
 
-            if (name.toLowerCase().equals(this.name.toLowerCase())) {
-                out.println("Your name is already " + name);
-                return;
-            }
-
-            for (String key : myServer.getUserWriterMap().keySet()) {
-                if (key.toLowerCase().equals(name.toLowerCase())) {
-                    out.println("Invalid name. This key belongs to another user. Please choose another one");
-                    return;
-                }
-            }
-
-                myServer.getUserWriterMap().put(name, out);
-                myServer.getUserWriterMap().remove(this.name);
-
-                out.println("You've successfully changed your nickname from " + this.name + " to " + name);
-                for (PrintWriter writer : myServer.getUserWriterMap().values()) {
-                    if (writer == out) continue;
-                    writer.println(this.name + " has changed his nickname to " + name);
-                }
-            }
+        if (myServer.nameExistsCaseInsensitive(parsedName)) {
+            myThread.send("Invalid name. This key belongs to another user. Please choose another one");
         }
 
 
+        myServer.addToUserMap(parsedName, myServer.getFromName(name));
+        myServer.removeFromUserMap(name);
+
+        myServer.broadcast(name + " has changed his nickname to " + parsedName);
+    }
+
 
     @Override
-    public void commandDescription(PrintWriter out) {
-
-        out.println("/name <newName> - changes your nickname");
+    public void commandAction(ChatServer myServer, String name) {
 
     }
+
 }

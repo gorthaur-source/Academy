@@ -3,7 +3,7 @@ package chatserver.client;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Main {
+public class LaunchClient {
 
     private static final int DEFAULT_PORT = 8081;
     private static final String DEFAULT_ADDRESS = "localhost";

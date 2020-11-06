@@ -48,11 +48,6 @@ public class ChatClient {
 
                     String toServer = input.nextLine();
                     out.println(toServer);
-
-                    if(toServer.equals(Commands.QUIT.getIdentifier())) {
-                        System.out.println("Checking");
-                        break;
-                    }
                 }
 
 

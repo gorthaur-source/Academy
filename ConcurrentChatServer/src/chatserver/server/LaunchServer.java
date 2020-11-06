@@ -6,16 +6,11 @@ import chatserver.server.commands.Command;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Main {
+public class LaunchServer {
 
     private static final int DEFAULT_PORT = 8081;
 
     public static void main(String[] args) {
-
-        List<Command> stringList = new LinkedList<>();
-
-      //  stringList.get(0).commandAction();
-
 
 
         try {

@@ -23,7 +23,6 @@ public class ClientListener implements Runnable {
             while (!serverSocket.isClosed()) {
 
                 String fromServer = in.nextLine();
-                if (fromServer.equals(Commands.QUIT.getIdentifier())) break;
                 System.out.println(fromServer);
             }
 
@@ -31,7 +30,7 @@ public class ClientListener implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NoSuchElementException e) {
-            System.out.println("Server has closed down.");
+            System.out.println("Disconnected from server.");
         } finally {
             try {
                 serverSocket.close();
