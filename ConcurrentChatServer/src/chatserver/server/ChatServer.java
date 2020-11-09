@@ -109,7 +109,6 @@ public class ChatServer implements Runnable {
 
         synchronized (userThreadMap) {
             for (ClientThread thread : userThreadMap.values()) {
-                //    if (userThreadMap.get(name) == thread) continue;
                 thread.send(message);
             }
         }

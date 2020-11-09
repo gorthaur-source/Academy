@@ -8,8 +8,6 @@ import java.util.List;
 
 public class Help implements Command {
 
-    private String name;
-    private ChatServer myServer;
 
    public Help() {
 

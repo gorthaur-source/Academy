@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Main {
 
-    private static final int DEFAULT_PORT = 8080;
+    private static final int DEFAULT_PORT = 2555;
 
     public static void main(String[] args) {
 
