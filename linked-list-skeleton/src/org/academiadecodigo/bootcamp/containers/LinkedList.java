@@ -89,7 +89,7 @@ public class LinkedList {
         }
         return false;
     }
-    private class Node {
+    private static class Node {
 
         private Object data;
         private Node next;

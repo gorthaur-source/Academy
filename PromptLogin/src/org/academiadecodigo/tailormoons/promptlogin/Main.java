@@ -7,7 +7,7 @@ public class Main {
 
         ChoicePrompt init = new ChoicePrompt();
         UserPasswords.addAUser("JoAO", "bigodes");
-        init.createMenu();
+        init.createEntryMenu();
 
 
 

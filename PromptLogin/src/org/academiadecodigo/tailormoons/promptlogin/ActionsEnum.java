@@ -2,7 +2,9 @@ package org.academiadecodigo.tailormoons.promptlogin;
 
 public enum ActionsEnum {
 
-    LOGIN(1, new Login());
+    LOGIN(1, new Login()),
+    REGISTER(2, new Register()),
+    EXIT(3, new Exit());
 
 
     private final int identifier;

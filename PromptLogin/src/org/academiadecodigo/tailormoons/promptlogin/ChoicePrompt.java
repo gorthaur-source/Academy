@@ -8,12 +8,12 @@ import java.util.TreeMap;
 
 public class ChoicePrompt {
 
-    private final Prompt prompt = new Prompt(System.in, System.out);
+    private static final Prompt prompt = new Prompt(System.in, System.out);
 
-    public void createMenu() {
+    public static void createEntryMenu() {
 
-        System.out.println("Welcome to your first prompt-view experience.");
-        String[] options = {"Login"};
+        System.out.println("Welcome to our platform.");
+        String[] options = {"Login", "Register", "Exit"};
 
         MenuInputScanner scanner = new MenuInputScanner(options);
         scanner.setMessage("What do you want to do?");
@@ -25,7 +25,7 @@ public class ChoicePrompt {
         userChoice(answerIndex);
     }
 
-    public void userChoice(int choiceNumber) {
+    public static void userChoice(int choiceNumber) {
 
         for(ActionsEnum action : ActionsEnum.values()) {
             if (action.getIdentifier() == choiceNumber) {
