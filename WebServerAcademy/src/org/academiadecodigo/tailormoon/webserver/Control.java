@@ -16,7 +16,7 @@ public class Control {
     public Control(int port) throws IOException {
         new WebServer(new Socket());
         serverSocket = new ServerSocket(port);
-        cachedPool = Executors.newFixedThreadPool(20);
+        cachedPool = Executors.newFixedThreadPool(500);
         System.out.println("Binding to port " + port + " . Please wait.");
         System.out.println("Server started: " + serverSocket);
         System.out.println("Waiting for client...");
